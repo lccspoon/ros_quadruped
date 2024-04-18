@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/lcc/catkin_ws/src/unitree_ros/unitree_ros_to_real/unitree_legged_sdk/build/devel/setup.sh

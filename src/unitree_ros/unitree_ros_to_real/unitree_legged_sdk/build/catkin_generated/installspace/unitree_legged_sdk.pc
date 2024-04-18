@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: unitree_legged_sdk
+Description: Description of unitree_legged_sdk
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib /home/lcc/catkin_ws/src/unitree_ros/unitree_ros_to_real/unitree_legged_sdk/lib/cpp/amd64/libunitree_legged_sdk.a
+Requires: 

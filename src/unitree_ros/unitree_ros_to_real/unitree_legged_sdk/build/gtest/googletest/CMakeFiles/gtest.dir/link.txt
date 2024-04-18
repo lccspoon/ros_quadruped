@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -fPIC -shared -Wl,-soname,libgtest.so -o ../lib/libgtest.so "CMakeFiles/gtest.dir/src/gtest-all.cc.o"   -L/home/lcc/catkin_ws/src/unitree_ros/unitree_ros_to_real/unitree_legged_sdk/lib/cpp/amd64  -Wl,-rpath,/home/lcc/catkin_ws/src/unitree_ros/unitree_ros_to_real/unitree_legged_sdk/lib/cpp/amd64 -lpthread
