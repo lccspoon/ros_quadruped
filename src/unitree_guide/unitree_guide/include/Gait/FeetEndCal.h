@@ -27,6 +27,8 @@ private:
 
     float _Tstance, _Tswing;
     float _kx, _ky, _kyaw;
+
+    Vec3 *_Apla; //lcc 
 };
 
 #endif  // FEETENDCAL_H

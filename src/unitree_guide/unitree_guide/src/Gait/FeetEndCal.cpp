@@ -4,7 +4,7 @@
 #include "Gait/FeetEndCal.h"
 
 FeetEndCal::FeetEndCal(CtrlComponents *ctrlComp)
-           : _est(ctrlComp->estimator), _lowState(ctrlComp->lowState),
+           : _est(ctrlComp->estimator), _lowState(ctrlComp->lowState),_Apla( ctrlComp->Apla),
              _robModel(ctrlComp->robotModel){
     _Tstance  = ctrlComp->waveGen->getTstance();
     _Tswing   = ctrlComp->waveGen->getTswing();
@@ -12,7 +12,6 @@ FeetEndCal::FeetEndCal(CtrlComponents *ctrlComp)
     _kx = 0.005;
     _ky = 0.005;
     _kyaw = 0.005;
-
 
     // double h= 0.31;
     // Vec34 _feetPos ;
@@ -40,6 +39,15 @@ Vec3 FeetEndCal::calFootPos(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float
     _nextStep(1) = _bodyVelGlobal(1)*(1-phase)*_Tswing + _bodyVelGlobal(1)*_Tstance/2 + _ky*(_bodyVelGlobal(1) - vxyGoalGlobal(1));
     _nextStep(2) = 0;
 
+    //lcc
+    double hx, hy;
+    hx = _nextStep(0);
+    hy = _nextStep(1);
+
+    // _nextStep(2) = (*_Apla)(0) + (*_Apla)(1)*_footPos(0) + (*_Apla)(2)*_footPos(1);
+
+    // printf("_footPos(%d):%f  \n",legID, _footPos(2));
+
     _yaw = _lowState->getYaw();
     _dYaw = _lowState->getDYaw();
     _nextYaw = _dYaw*(1-phase)*_Tswing + _dYaw*_Tstance/2 + _kyaw*(dYawGoal - _dYaw);
@@ -47,16 +55,18 @@ Vec3 FeetEndCal::calFootPos(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float
     _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw);
     _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw);
 
-    // std::cout<<" _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw): \n"<< _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
-    // std::cout<<" _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw): \n"<< _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
-    
-    // std::cout<<" cos(_yaw + _feetInitAngle(legID) + _nextYaw): \n"<< cos(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
-    // std::cout<<" sin(_yaw + _feetInitAngle(legID) + _nextYaw): \n"<< sin(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
-
     // std::cout<<" _feetRadius(legID): \n"<< _feetRadius(legID) <<std::endl;
 
     _footPos = _est->getPosition() + _nextStep;// getPosition->world系下质心位置
     _footPos(2) = 0.0;
+
+    // lcc
+    // _footPos(2) = (*_Apla)(0) + (*_Apla)(1)*_nextStep(0) + (*_Apla)(2)*_nextStep(1);
+    // _footPos(2) = 0 + (*_Apla)(1)*_nextStep(0) + (*_Apla)(2)*_nextStep(1);
+    _footPos(2) = 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy;
+    // _footPos(2) = -_footPos(2);
+    // std::cout<<" _footPos(legID): \n"<< _footPos(legID) <<std::endl;
+    // printf("_footPos(%d):%f  \n",legID, _footPos(2));
 
     return _footPos;
 }

@@ -27,6 +27,7 @@ public:
         lowState = new LowlevelState();
         contact = new VecInt4;
         phase = new Vec4;
+        Apla = new Vec3; // lcc
         *contact = VecInt4(0, 0, 0, 0);
         // *phase = Vec4(0.5, 0.5, 0.5, 0.5);
         *phase = Vec4(1, 1, 1, 1);
@@ -50,7 +51,10 @@ public:
     WaveGenerator *waveGen;
     Estimator *estimator;
     BalanceCtrl *balCtrl;
-    ConvexMpc *convMpc;
+    ConvexMpc *convMpc; //lcc
+
+    //terrian estimator. by lcc
+    Vec3 *Apla;
 
     #ifdef COMPILE_DEBUG
         PyPlot *plot;

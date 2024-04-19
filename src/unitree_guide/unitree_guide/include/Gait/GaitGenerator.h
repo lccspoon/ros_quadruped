@@ -24,8 +24,8 @@ public:
 private:
     float cycloidXYPosition(float startXY, float endXY, float phase);
     float cycloidXYVelocity(float startXY, float endXY, float phase);
-    float cycloidZPosition(float startZ, float height, float phase);
-    float cycloidZVelocity(float height, float phase);
+    float cycloidZPosition(float startZ, float height, float phase, float end);
+    float cycloidZVelocity(float height, float phase, float end);
 
     WaveGenerator *_waveG;
     Estimator *_est;
@@ -39,6 +39,8 @@ private:
     VecInt4 *_contact;
     Vec34 _startP, _endP, _idealP, _pastP;
     bool _firstRun;
+
+    Vec4 endPz;
 
 #ifdef COMPILE_DEBUG
     PyPlot _testGaitPlot;

@@ -37,11 +37,58 @@
         <include>
             <uri>model://ground_plane</uri>
         </include>
+
         <!-- environment blocks, obstacles or stairs -->
+
         <model name="static_environment">
-        <static>true</static>
-            <link name="static_box">
-                <pose>-2 2 0.5 0 0 0</pose>
+            <static>true</static>
+            
+            <link name="static_box1">
+                <pose>6 6 0.5 0 0 0</pose>
+                <collision name="static_box_collision">
+                    <geometry>
+                        <box>
+                            <size>1 1 1</size>
+                        </box>
+                    </geometry>
+                </collision>
+                <visual name="static_box_visual">
+                    <geometry>
+                        <box>
+                            <size>1 1 1</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+            </link>
+            
+            <link name="static_box2">
+                <pose>20 0 0.5 0 0 0</pose>
+                <collision name="static_box_collision">
+                    <geometry>
+                        <box>
+                            <size>1 1 1</size>
+                        </box>
+                    </geometry>
+                </collision>
+                <visual name="static_box_visual">
+                    <geometry>
+                        <box>
+                            <size>1 1 1</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+            </link>
+            
+            <link name="static_box3">
+                <pose>-6 7 0.5 0 0 0</pose>
                 <collision name="static_box_collision">
                     <geometry>
                         <box>
@@ -62,6 +109,413 @@
                 </visual>
             </link>
         </model>
+
+
+        <model name="slope0">
+                <static>true</static>
+                <!-- 斜坡的物理属性 -->
+                <link name="slope_physics0">
+                    <pose>8.85 2.2 2.5 0 -0.4 0</pose>
+                    <collision name="slope_collision">
+                        <geometry>
+                            <box>
+                                <size>20 2 0.01</size>
+                            </box>
+                        </geometry>
+                    </collision>
+                    <visual name="slope_visual">
+                        <geometry>
+                            <box>
+                                <size>20 2 0.01</size>
+                            </box>
+                        </geometry>
+                        <material>
+                            <ambient>0.2 0.2 0.2 1.0</ambient>
+                            <diffuse>.421 0.225 0.0 1.0</diffuse>
+                        </material>
+                    </visual>
+                    <gravity>true</gravity> <!-- 启用重力 -->
+                    <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+                </link>
+            </model>
+
+        <model name="slope0_2">
+            <static>true</static>
+            <link name="slope_physics0_2">
+                <pose>20.56 2.2 6.394 0 0 0</pose>
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="slope0_3">
+                <static>true</static>
+                <!-- 斜坡的物理属性 -->
+                <link name="slope_physics0_3">
+                    <pose>32.25 2.2 2.5 0 0.4 0</pose>
+                    <collision name="slope_collision">
+                        <geometry>
+                            <box>
+                                <size>20 2 0.01</size>
+                            </box>
+                        </geometry>
+                    </collision>
+                    <visual name="slope_visual">
+                        <geometry>
+                            <box>
+                                <size>20 2 0.01</size>
+                            </box>
+                        </geometry>
+                        <material>
+                            <ambient>0.2 0.2 0.2 1.0</ambient>
+                            <diffuse>.421 0.225 0.0 1.0</diffuse>
+                        </material>
+                    </visual>
+                    <gravity>true</gravity> <!-- 启用重力 -->
+                    <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+                </link>
+            </model>
+
+        <model name="slope">
+            <static>true</static>
+            <!-- 斜坡的物理属性 -->
+            <link name="slope_physics">
+                <pose>11 0 2.5 0 -0.3 0</pose>
+
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>10000000</mu>
+                            <mu2>10000000</mu2>
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="slope1_2">
+            <static>true</static>
+            <!-- 斜坡的物理属性 -->
+            <link name="slope_physics1_2">
+                <pose>23.05 0 5.45 0 0 0</pose>
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>10000000</mu>
+                            <mu2>10000000</mu2>
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="slope1_3">
+            <static>true</static>
+            <link name="slope_physics1_3">
+                <pose>35.1 0 2.5 0 0.3 0</pose>
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>10000000</mu>
+                            <mu2>10000000</mu2>
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+
+
+
+
+        <model name="slope2">
+            <static>true</static>
+            <link name="slope_physics2">
+                <pose>11 -2 1.64 0 -0.2 0</pose>
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="slope2_2">
+            <static>true</static>
+            <link name="slope_physics2_2">
+                <pose>23.3 -2 3.625 0 0 0</pose>
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+
+        <model name="slope2_3">
+            <static>true</static>
+            <link name="slope_physics2_3">
+                <pose>35.6 -2 1.64 0 0.2 0</pose>
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+
+        <model name="slope3">
+            <static>true</static>
+            <!-- 斜坡的物理属性 -->
+            <link name="slope_physics3">
+                <pose>11 -4 0.81 0 -0.1 0</pose>
+
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="slope3_2">
+            <static>true</static>
+            <!-- 斜坡的物理属性 -->
+            <link name="slope_physics3_2">
+                <pose>23.45 -4 1.81 0 0 0</pose>
+
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>5 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+
+        <model name="slope3_3">
+            <static>true</static>
+            <!-- 斜坡的物理属性 -->
+            <link name="slope_physics3_3">
+                <pose>35.9 -4 0.81 0 0.1 0</pose>
+
+                <collision name="slope_collision">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+
+                <visual name="slope_visual">
+                    <geometry>
+                        <box>
+                            <size>20 2 0.01</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
 
     </world>
 </sdf>
