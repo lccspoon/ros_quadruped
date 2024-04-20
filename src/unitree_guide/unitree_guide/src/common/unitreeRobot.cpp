@@ -43,6 +43,15 @@ Vec12 QuadrupedRobot::getTau(const Vec12 &q, const Vec34 feetForce){
     return tau;
 }
 
+Vec34 QuadrupedRobot::calcForceByTauEst(const Vec12 &q, const Vec34 feetForce)//lcc
+{
+    Vec34 f;
+    for(int i(0); i < 4; ++i){
+        f.block<3, 1>(0, i) = ( _Legs[i]->calcJaco( q.segment(3*i, 3) ).transpose() ).inverse() * feetForce.block<3, 1>(0, i);
+    }
+    return f;
+}
+
 // Forward Kinematics
 Vec3 QuadrupedRobot::getFootPosition(LowlevelState &state, int id, FrameType frame){
     Vec34 qLegs= state.getQ();

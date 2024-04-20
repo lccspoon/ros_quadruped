@@ -10,6 +10,7 @@
 #include "control/ConvexMpc.h"
 #include "control/TerrianEsti.h"
 #include "common/filter.h"
+#include<cstdlib> 
 
 class State_A1MPC : public FSMState{
 public:
@@ -80,6 +81,9 @@ private:
 
     //terrian estimator
     Vec3 *_Apla;
+
+    Vec34 _posFeetGlobalGoal_last;
+    Vec4 touch_flag;
 };
 
 

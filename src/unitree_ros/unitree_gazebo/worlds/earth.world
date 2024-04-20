@@ -516,6 +516,889 @@
             </link>
         </model>
 
+        <model name="thread_hold1">
+            <static>true</static>
+            <link name="thread_hold_physics_1">
+                <pose>-2 -3 0.025 0 0 0</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.05 4 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.05 4 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold2">
+            <static>true</static>
+            <link name="thread_hold_physics_2">
+                <pose>-3.5 -4 0.025 0 0 0.5</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>2 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>2 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold2_1">
+            <static>true</static>
+            <link name="thread_hold_physics_2_1">
+                <pose>-3.5 -4 0.075 0 0 0.5</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold3">
+            <static>true</static>
+            <link name="thread_hold_physics_3">
+                <pose>-2.5 -2 0.025 0 0 -0.1</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.2 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.2 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold4">
+            <static>true</static>
+            <link name="thread_hold_physics_4">
+                <pose>-3.2 -2 0.025 0 0 0.2</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold5">
+            <static>true</static>
+            <link name="thread_hold_physics_5">
+                <pose>-3.4 -2 0.025 0 0 1</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold6">
+            <static>true</static>
+            <link name="thread_hold_physics_6">
+                <pose>-3.9 -2 0.025 0 0 0</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+
+
+        <model name="thread_hold7">
+            <static>true</static>
+            <link name="thread_hold_physics_7">
+                <pose>-4.2 -2 0.025 0 0 -0.2</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold8">
+            <static>true</static>
+            <link name="thread_hold_physics_8">
+                <pose>-4.6 -2 0.025 0 0 -1</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="thread_hold9">
+            <static>true</static>
+            <link name="thread_hold_physics_9">
+                <pose>-4.9 -2 0.025 0 0 0</pose>
+                <collision name="thread_hold_collision">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="thread_hold_visual">
+                    <geometry>
+                        <box>
+                            <size>0.1 2 0.05</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+
+        <model name="step1">
+            <static>true</static>
+            <link name="step_physics_1">
+                <pose>-2 2 0.08 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step2">
+            <static>true</static>
+            <link name="step_physics_2">
+                <pose>-2.3 2 0.24 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step3">
+            <static>true</static>
+            <link name="step_physics_3">
+                <pose>-2.6 2 0.4 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step4">
+            <static>true</static>
+            <link name="step_physics_4">
+                <pose>-2.9 2 0.56 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step5">
+            <static>true</static>
+            <link name="step_physics_5">
+                <pose>-3.2 2 0.66 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step6">
+            <static>true</static>
+            <link name="step_physics_6">
+                <pose>-3.5 2 0.82 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step7">
+            <static>true</static>
+            <link name="step_physics_7">
+                <pose>-3.8 2 0.98 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step8">
+            <static>true</static>
+            <link name="step_physics_8">
+                <pose>-4.1 2 1.14 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+        <model name="step9">
+            <static>true</static>
+            <link name="step_physics_9">
+                <pose>-4.4 2 1.30 0 0 0</pose>
+                <collision name="step_collision">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </collision>
+                <visual name="step_visual">
+                    <geometry>
+                        <box>
+                            <size>0.3 2 0.16</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.2 0.2 0.2 1.0</ambient>
+                        <diffuse>.421 0.225 0.0 1.0</diffuse>
+                    </material>
+                </visual>
+                <gravity>true</gravity> <!-- 启用重力 -->
+                <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+            </link>
+        </model>
+
+    <model name="wave1">
+        <static>true</static>
+        <link name="wave_link1">
+            <pose>-2 0 -1.4 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+    <model name="wave2">
+        <static>true</static>
+        <link name="wave_link2">
+            <pose>-3 0 -1.4 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+    <model name="wave3">
+        <static>true</static>
+        <link name="wave_link3">
+            <pose>-4.5 0 -1.4 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+    <model name="wave4">
+        <static>true</static>
+        <link name="wave_link4">
+            <pose>-5.25 0 -1.2 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+    <model name="wave5">
+        <static>true</static>
+        <link name="wave_link5">
+            <pose>-6 0 -1.4 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+
+    <model name="wave6">
+        <static>true</static>
+        <link name="wave_link6">
+            <pose>-7.85 0 -1.4 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.65</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+    <model name="wave7">
+        <static>true</static>
+        <link name="wave_link7">
+            <pose>-9 0 -1.35 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.5</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.5</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+    <model name="wave8">
+        <static>true</static>
+        <link name="wave_link8">
+            <pose>-9.75 0 -1.1 1.571 0 0</pose> <!-- 设置圆柱体的位置和姿态 -->
+            <collision name="wave_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>1.5</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+            <visual name="wave_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>1.5</radius> <!-- 设置圆柱体的半径 -->
+                        <length>2</length> <!-- 设置圆柱体的长度 -->
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
 
     </world>
 </sdf>

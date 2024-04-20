@@ -63,6 +63,8 @@ State_A1MPC::State_A1MPC(CtrlComponents *ctrlComp)
     _dYaw = 0.0;
     mpc_init_counter = 0;
     root_euler_d.setZero();
+
+    touch_flag.setZero();
 }
 
 State_A1MPC::~State_A1MPC(){
@@ -119,18 +121,47 @@ void State_A1MPC::run(){
     calcCmd();
 
     _gait->setGait(_vCmdGlobal.segment(0,2), _wCmdGlobal(2), _gaitHeight);
-    _gait->run(_posFeetGlobalGoal, _velFeetGlobalGoal);
-    // std::cout<<" _posFeetGlobal:\n  "<< _posFeetGlobal <<std::endl;
-    // std::cout<<" _posFeetGlobalGoal:\n  "<< _posFeetGlobalGoal <<std::endl;
-    // std::cout<<" _posBody:\n  "<< _posBody <<std::endl;
 
-    // calcGrf();
-    calcQPf();
     _q = vec34ToVec12(_lowState->getQ());
-    // mpc_init_counter++;
-    // if ( mpc_init_counter > PLAN_HORIZON + 1)
-    //     _tau = _robModel->getTau(_q, _forceFeetBody * 0.55 + foot_forces_grf * 0.6 * 0.5); // qp + mpc
-    // else
+    // Vec34 f_touch_est;
+    // f_touch_est = _robModel->calcForceByTauEst(_q, _lowState->getTau());
+    // std::cout<<" calcForceByTauEst: \n"<< f_touch_est<<std::endl;
+    // Vec4 touch_est;
+    _gait->run(_posFeetGlobalGoal, _velFeetGlobalGoal);
+    // /* 摆动足触碰检测 */
+    // for (int i = 0; i < 4; i++){
+    //     double fx = f_touch_est(0, i);
+    //     double fy = f_touch_est(1, i);
+    //     double fz = f_touch_est(2, i);
+    //     touch_est(i) = sqrt(fx*fx + fy*fy + fz*fz);
+    //     if ( (*_contact)(i) == 0 && (*_phase)(i) > 0.51  && (*_phase)(i) <= 0.9 && touch_est(i) > 50  && touch_flag(i) == 0){
+    //         // _posFeetGlobalGoal.block<3, 1>(0, i) = _posFeetGlobal.block<3, 1>(0, i);
+    //         touch_flag(i) = 1;
+    //     }
+    //     else if ( (*_contact)(i) == 1 ){
+    //         touch_flag(i) == 0;
+    //     }
+    //     if ( touch_flag(i) == 1 ){
+    //         _posFeetGlobalGoal.block<3, 1>(0, i) = _posFeetGlobal.block<3, 1>(0, i);
+    //         printf("ininini: %d \n", i);
+    //         std::cout<<" touch_flag: \n"<< touch_flag.transpose()<<std::endl;
+    //         std::cout<<" (*_phase): \n"<< (*_phase).transpose()<<std::endl;
+    //         std::cout<<" touch_est: \n"<< touch_est.transpose()<<std::endl;
+    //         // std::exit(0);
+    //     }
+    // }
+
+    calcQPf();
+
+    /*MPC*/
+    if ( mpc_init_counter<PLAN_HORIZON *2){
+        mpc_init_counter++;
+    }
+    calcGrf();
+    if ( mpc_init_counter > PLAN_HORIZON + 1)
+        _tau = _robModel->getTau(_q, _forceFeetBody * 0.5 + foot_forces_grf * 0.6 * 0.5); // qp + mpc
+    else
+        /*QP*/
         _tau = _robModel->getTau(_q, _forceFeetBody * 1 + foot_forces_grf * 0); // qp + mpc
     
     calcQQd();

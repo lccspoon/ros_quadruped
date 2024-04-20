@@ -20,6 +20,7 @@ public:
     Vec3 calcQd(Vec3 pEe, Vec3 vEe, FrameType frame);
     Vec3 calcTau(Vec3 q, Vec3 force);
     Mat3 calcJaco(Vec3 q);
+    // Mat3 calcForceByTauEst(Vec3 q);//lcc
     Vec3 getHip2B(){return _pHip2B;}
     const float _abadLinkLength, _hipLinkLength, _kneeLinkLength;//lcc 20240413
 protected:

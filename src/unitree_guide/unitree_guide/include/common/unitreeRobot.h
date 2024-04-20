@@ -20,6 +20,8 @@ public:
     Vec12 getQd(const Vec34 &feetPosition, const Vec34 &feetVelocity, FrameType frame);
     Vec12 getTau(const Vec12 &q, const Vec34 feetForce);
 
+    Vec34 calcForceByTauEst(const Vec12 &q, const Vec34 feetForce);//lcc
+
     // Forward Kinematics
     Vec3 getFootPosition(LowlevelState &state, int id, FrameType frame);
     Vec3 getFootVelocity(LowlevelState &state, int id);
@@ -31,6 +33,7 @@ public:
     Vec2 getRobVelLimitY(){return _robVelLimitY;}
     Vec2 getRobVelLimitYaw(){return _robVelLimitYaw;}
     Vec34 getFeetPosIdeal(){return _feetPosNormalStand;}
+
     double getRobMass(){return _mass;}
     Vec3 getPcb(){return _pcb;}
     Mat3 getRobInertial(){return _Ib;}

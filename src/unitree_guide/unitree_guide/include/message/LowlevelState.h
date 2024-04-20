@@ -93,6 +93,16 @@ struct LowlevelState
         return qdLegs;
     }
 
+    Vec34 getTau(){
+        Vec34 tauLegs;
+        for(int i(0); i < 4; ++i){
+            tauLegs.col(i)(0) = motorState[3*i    ].tauEst;
+            tauLegs.col(i)(1) = motorState[3*i + 1].tauEst;
+            tauLegs.col(i)(2) = motorState[3*i + 2].tauEst;
+        }
+        return tauLegs;
+    }
+
     RotMat getRotMat(){
         return imu.getRotMat();
     }
