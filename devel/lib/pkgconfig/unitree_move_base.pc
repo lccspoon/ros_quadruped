@@ -1,0 +1,8 @@
+prefix=/home/lcc/catkin_ws/devel
+
+Name: unitree_move_base
+Description: Description of unitree_move_base
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

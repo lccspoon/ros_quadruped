@@ -1,0 +1,8 @@
+prefix=/home/lcc/catkin_ws/devel
+
+Name: b2_description
+Description: Description of b2_description
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

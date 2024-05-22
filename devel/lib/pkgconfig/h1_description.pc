@@ -1,0 +1,8 @@
+prefix=/home/lcc/catkin_ws/devel
+
+Name: h1_description
+Description: Description of h1_description
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
