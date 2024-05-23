@@ -96,12 +96,12 @@ int main(int argc, char **argv){
 
     while (running)
     {   
-        auto t1 = std::chrono::high_resolution_clock::now();
+        // auto t1 = std::chrono::high_resolution_clock::now();
 
         ctrlFrame.run();
 
-        auto t2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> ms_double = t2 - t1;
+        // auto t2 = std::chrono::high_resolution_clock::now();
+        // std::chrono::duration<double, std::milli> ms_double = t2 - t1;
         // std::cout << "ctrlFrame.run() in " << ms_double.count() << "ms" << std::endl;
     }
 

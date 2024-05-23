@@ -1,17 +1,20 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
-#ifndef TROTTING_H
-#define TROTTING_H
+/*
+    @author lcc
+    @date 20240523
+*/
+#ifndef _VMC_H_
+#define _VMC_H_
 
 #include "FSM/FSMState.h"
 #include "Gait/GaitGenerator.h"
 #include "control/BalanceCtrl.h"
+#include "common/filter.h"
+#include<cstdlib> 
 
-class State_Trotting : public FSMState{
+class State_VMC : public FSMState{
 public:
-    State_Trotting(CtrlComponents *ctrlComp);
-    ~State_Trotting();
+    State_VMC(CtrlComponents *ctrlComp);
+    ~State_VMC();
     void enter();
     void run();
     void exit();

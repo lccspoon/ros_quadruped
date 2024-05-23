@@ -53,13 +53,13 @@ void State_FreeStand::exit(){
 }
 
 FSMStateName State_FreeStand::checkChange(){
-    if(_lowState->userCmd == UserCommand::L2_A){
+    if(_lowState->userCmd == UserCommand::FIXEDSTAND_2){
         return FSMStateName::FIXEDSTAND;
     }
-    else if(_lowState->userCmd == UserCommand::L2_B){
+    else if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
-    else if(_lowState->userCmd == UserCommand::START){
+    else if(_lowState->userCmd == UserCommand::TROTTING_5){
         return FSMStateName::TROTTING;
     }
     else{

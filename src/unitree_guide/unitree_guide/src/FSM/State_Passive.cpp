@@ -40,7 +40,7 @@ void State_Passive::exit(){
 }
 
 FSMStateName State_Passive::checkChange(){
-    if(_lowState->userCmd == UserCommand::L2_A){
+    if(_lowState->userCmd == UserCommand::FIXEDSTAND_2){
         return FSMStateName::FIXEDSTAND;
     }
     else{

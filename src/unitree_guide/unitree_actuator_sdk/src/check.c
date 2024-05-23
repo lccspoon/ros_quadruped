@@ -102,7 +102,7 @@ printf("95\n");
     send_recv(fd, &motor_s1, &motor_r);
 printf("102\n");
     extract_data(&motor_r);
-    printf("START\n");
+    printf("TROTTING_5\n");
 
     for(int i=0; i<500; i++)
     {

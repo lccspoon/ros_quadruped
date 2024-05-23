@@ -17,6 +17,8 @@
     #endif  // ROBOT_TYPE_Go1
 #endif  // COMPILE_WITH_REAL_ROBOT
 
+
+// UserValue指用户能够直接控制的输入变量
 struct UserValue{
     float lx;
     float ly;
@@ -41,7 +43,7 @@ public:
     virtual ~CmdPanel(){}
     UserCommand getUserCmd(){return userCmd;}
     UserValue getUserValue(){return userValue;}
-    void setPassive(){userCmd = UserCommand::L2_B;}
+    void setPassive(){userCmd = UserCommand::PASSIVE_1;}
     void setZero(){userValue.setZero();}
 #ifdef COMPILE_WITH_REAL_ROBOT
     virtual void receiveHandle(UNITREE_LEGGED_SDK::LowState *lowState){};

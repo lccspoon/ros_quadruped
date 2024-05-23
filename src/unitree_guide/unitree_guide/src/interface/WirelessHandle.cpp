@@ -20,15 +20,15 @@ void WirelessHandle::receiveHandle(UNITREE_LEGGED_SDK::LowState *lowState){
 #endif  
     if(((int)_keyData.btn.components.L2 == 1) && 
        ((int)_keyData.btn.components.B  == 1)){
-        userCmd = UserCommand::L2_B;
+        userCmd = UserCommand::PASSIVE_1;
     }
     else if(((int)_keyData.btn.components.L2 == 1) && 
             ((int)_keyData.btn.components.A  == 1)){
-        userCmd = UserCommand::L2_A;
+        userCmd = UserCommand::FIXEDSTAND_2;
     }
     else if(((int)_keyData.btn.components.L2 == 1) && 
             ((int)_keyData.btn.components.X  == 1)){
-        userCmd = UserCommand::L2_X;
+        userCmd = UserCommand::FREESTAND_3;
     }
 
 #ifdef COMPILE_WITH_MOVE_BASE
@@ -40,18 +40,18 @@ void WirelessHandle::receiveHandle(UNITREE_LEGGED_SDK::LowState *lowState){
 
     else if(((int)_keyData.btn.components.L1 == 1) && 
             ((int)_keyData.btn.components.X  == 1)){
-        userCmd = UserCommand::L1_X;
+        userCmd = UserCommand::BALANCE_TEST0;
     }
     else if(((int)_keyData.btn.components.L1 == 1) && 
             ((int)_keyData.btn.components.A  == 1)){
-        userCmd = UserCommand::L1_A;
+        userCmd = UserCommand::SWING_TEST9;
     }
     else if(((int)_keyData.btn.components.L1 == 1) && 
             ((int)_keyData.btn.components.Y  == 1)){
-        userCmd = UserCommand::L1_Y;
+        userCmd = UserCommand::SETP_TEST8;
     }
     else if((int)_keyData.btn.components.start == 1){
-        userCmd = UserCommand::START;
+        userCmd = UserCommand::TROTTING_5;
     }
 
     userValue.L2 = killZeroOffset(_keyData.L2, 0.08);

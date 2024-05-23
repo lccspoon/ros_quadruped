@@ -60,6 +60,8 @@ public:
         PyPlot *plot;
     #endif  // COMPILE_DEBUG
 
+
+    /* contact = 1 -> stand; contact = 0 -> swing */
     VecInt4 *contact;
     Vec4 *phase;
 

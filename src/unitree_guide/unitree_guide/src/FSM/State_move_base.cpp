@@ -13,10 +13,10 @@ State_move_base::State_move_base(CtrlComponents *ctrlComp)
 }
 
 FSMStateName State_move_base::checkChange(){
-    if(_lowState->userCmd == UserCommand::L2_B){
+    if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
-    else if(_lowState->userCmd == UserCommand::L2_A){
+    else if(_lowState->userCmd == UserCommand::FIXEDSTAND_2){
         return FSMStateName::FIXEDSTAND;
     }
     else{

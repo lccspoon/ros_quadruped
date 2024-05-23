@@ -15,6 +15,7 @@ GaitGenerator::~GaitGenerator(){
 }
 
 void GaitGenerator::setGait(Vec2 vxyGoalGlobal, float dYawGoal, float gaitHeight){
+    /* setGait： 得到 世界系下的速度 和 步高 */
     _vxyGoal = vxyGoalGlobal;
     _dYawGoal = dYawGoal;
     _gaitHeight = gaitHeight;
@@ -22,26 +23,30 @@ void GaitGenerator::setGait(Vec2 vxyGoalGlobal, float dYawGoal, float gaitHeight
 
 void GaitGenerator::restart(){
     _firstRun = true;
+    /* 将目标全局速度->setZero，因为落足点是根据速度来定的 */
     _vxyGoal.setZero();
     // std::cout<< "GaitGenerator restart!!! \n"<<std::endl;
 }
 
 void GaitGenerator::run(Vec34 &feetPos, Vec34 &feetVel){
+    /* 先获得当前足端在world下的位置 */
     if(_firstRun){
         _startP = _est->getFeetPos();
         _firstRun = false;
     }
 
+    /* 分别计算每条腿的规矩： 支撑相->轨迹为世界系下的足端位置； 摆动相->轨迹 由 落足点 和 摆线 构成*/
     for(int i(0); i<4; ++i){
-        if((*_contact)(i) == 1){
+        if((*_contact)(i) == 1){  // stand phase
             if((*_phase)(i) < 0.5){
-            // if((*_phase)(i) < 1){
+            // if((*_phase)(i) < 1){  //lcc
                 _startP.col(i) = _est->getFootPos(i);//返回足端在world下的坐标
             }
             feetPos.col(i) = _startP.col(i);
             feetVel.col(i).setZero();
         }
-        else{
+        else{  // swing phase
+            /* vxyGoalGlobal, dYawGoal 和相位进度phase来规划落足点*/
             _endP.col(i) = _feetCal->calFootPos(i, _vxyGoal, _dYawGoal, (*_phase)(i));
 
             feetPos.col(i) = getFootPos(i);

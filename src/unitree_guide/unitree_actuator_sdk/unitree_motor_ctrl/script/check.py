@@ -39,7 +39,7 @@ c.modify_data(byref(motor_s))
 c.modify_data(byref(motor_s1))
 
 c.send_recv(fd, byref(motor_s1), byref(motor_r))
-print('START')
+print('TROTTING_5')
 
 c.send_recv(fd, byref(motor_s), byref(motor_r))
 time.sleep(5)

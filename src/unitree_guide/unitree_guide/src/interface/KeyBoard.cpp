@@ -25,25 +25,31 @@ KeyBoard::~KeyBoard(){
 UserCommand KeyBoard::checkCmd(){
     switch (_c){
     case '1':
-        return UserCommand::L2_B;
+        return UserCommand::PASSIVE_1;
     case '2':
-        return UserCommand::L2_A;
+        return UserCommand::FIXEDSTAND_2;
     case '3':
-        return UserCommand::L2_X;
+        return UserCommand::FREESTAND_3;
     case '4':
-        return UserCommand::START;
+        // printf(" \n keyboard->VMC_4  \n ");
+        return UserCommand::VMC_4;
+    case '5':
+        return UserCommand::TROTTING_5;
+
 #ifdef COMPILE_WITH_MOVE_BASE
     case '5':
         return UserCommand::L2_Y;
 #endif  // COMPILE_WITH_MOVE_BASE
+
     case '6':
-        return UserCommand::A1MPC;
+        return UserCommand::A1MPC_6;
+
     case '0':
-        return UserCommand::L1_X;
+        return UserCommand::BALANCE_TEST0;
     case '9':
-        return UserCommand::L1_A;
+        return UserCommand::SWING_TEST9;
     case '8':
-        return UserCommand::L1_Y;
+        return UserCommand::SETP_TEST8;
     case ' ':
         userValue.setZero();
         return UserCommand::NONE;

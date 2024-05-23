@@ -1,3 +1,9 @@
+/*
+    @author lcc
+    @date 20240419
+    @brief 算法： MPC+QP， 斜坡地形估计，等。 运动： 1m/s奔跑， 23度斜坡稳定上下，等。
+    @cite 参考代码：unitree_guide,yy硕。 参考论文：yxy,mit。
+*/
 #include "FSM/State_A1MPC.h"
 #include <iomanip>
 #include <cmath>
@@ -91,10 +97,10 @@ void State_A1MPC::exit(){
 }
 
 FSMStateName State_A1MPC::checkChange(){
-    if(_lowState->userCmd == UserCommand::L2_B){
+    if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
-    else if(_lowState->userCmd == UserCommand::L2_A){
+    else if(_lowState->userCmd == UserCommand::FIXEDSTAND_2){
         return FSMStateName::FIXEDSTAND;
     }
     else{
@@ -115,56 +121,31 @@ void State_A1MPC::run(){
     _G2B_RotMat = _B2G_RotMat.transpose();
 
     _userValue = _lowState->userValue;
-    terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact, _posFeet2BGlobal, _Apla);
+    terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact, _posFeet2BGlobal, _Apla);//lcc
 
+    /* 将键盘输入的_userValue转换为 需要的控制量：body系下的 目标速度、角速度 */
     getUserCmd();
+    /* 继续，得到world系下的：机身目标速度、速度、期望姿态角yaw、dyaw */
     calcCmd();
 
     _gait->setGait(_vCmdGlobal.segment(0,2), _wCmdGlobal(2), _gaitHeight);
-
     _q = vec34ToVec12(_lowState->getQ());
-    // Vec34 f_touch_est;
-    // f_touch_est = _robModel->calcForceByTauEst(_q, _lowState->getTau());
-    // std::cout<<" calcForceByTauEst: \n"<< f_touch_est<<std::endl;
-    // Vec4 touch_est;
     _gait->run(_posFeetGlobalGoal, _velFeetGlobalGoal);
-    // /* 摆动足触碰检测 */
-    // for (int i = 0; i < 4; i++){
-    //     double fx = f_touch_est(0, i);
-    //     double fy = f_touch_est(1, i);
-    //     double fz = f_touch_est(2, i);
-    //     touch_est(i) = sqrt(fx*fx + fy*fy + fz*fz);
-    //     if ( (*_contact)(i) == 0 && (*_phase)(i) > 0.51  && (*_phase)(i) <= 0.9 && touch_est(i) > 50  && touch_flag(i) == 0){
-    //         // _posFeetGlobalGoal.block<3, 1>(0, i) = _posFeetGlobal.block<3, 1>(0, i);
-    //         touch_flag(i) = 1;
-    //     }
-    //     else if ( (*_contact)(i) == 1 ){
-    //         touch_flag(i) == 0;
-    //     }
-    //     if ( touch_flag(i) == 1 ){
-    //         _posFeetGlobalGoal.block<3, 1>(0, i) = _posFeetGlobal.block<3, 1>(0, i);
-    //         printf("ininini: %d \n", i);
-    //         std::cout<<" touch_flag: \n"<< touch_flag.transpose()<<std::endl;
-    //         std::cout<<" (*_phase): \n"<< (*_phase).transpose()<<std::endl;
-    //         std::cout<<" touch_est: \n"<< touch_est.transpose()<<std::endl;
-    //         // std::exit(0);
-    //     }
-    // }
 
-    calcQPf();
+    calcQPf();// QP力
 
     /*MPC*/
     if ( mpc_init_counter<PLAN_HORIZON *2){
         mpc_init_counter++;
     }
-    calcGrf();
-    if ( mpc_init_counter > PLAN_HORIZON + 1)
+    calcGrf();// 计算MPC支反力
+    if ( mpc_init_counter > PLAN_HORIZON + 1)  //
         _tau = _robModel->getTau(_q, _forceFeetBody * 0.5 + foot_forces_grf * 0.6 * 0.5); // qp + mpc
     else
         /*QP*/
         _tau = _robModel->getTau(_q, _forceFeetBody * 1 + foot_forces_grf * 0); // qp + mpc
     
-    calcQQd();
+    calcQQd();// 计算关节位置、速度
 
     if(checkStepOrNot()){
         _ctrlComp->setStartWave();
@@ -233,8 +214,8 @@ void State_A1MPC::calcCmd(){
     // _Rd = rotz(_yawCmd);
     Eigen::Matrix3d eye3;
     eye3.setIdentity();
-    // _Rd = rpyToRotMat(0, 0.2, _yawCmd)* eye3;
-    _Rd = rpyToRotMat(root_euler_d(0), root_euler_d(1), _yawCmd)* eye3;
+    // _Rd = rpyToRotMat(0, 0.2, _yawCmd)* eye3;//lcc
+    _Rd = rpyToRotMat(root_euler_d(0), root_euler_d(1), _yawCmd)* eye3;//lcc
     // std::cout<<" root_euler_d(0):  "<< root_euler_d(0) * 180 /3.14 <<std::endl;
     // std::cout<<" root_euler_d(1):  "<< root_euler_d(1) * 180 /3.14 <<std::endl;
     _wCmdGlobal(2) = _dYawCmd;
@@ -362,14 +343,16 @@ void State_A1MPC::calcQPf(){
     _dWbd(1) = saturation(_dWbd(1), Vec2(-40, 40));
     _dWbd(2) = saturation(_dWbd(2), Vec2(-10, 10));
 
+    /* 对于 (*_contact)(i) == 1-> 处于stand的腿。使用QP来获得支撑力  */
     _forceFeetGlobal = - _balCtrl->calF(_ddPcd, _dWbd, _B2G_RotMat, _posFeet2BGlobal, *_contact);
+    /* 对于 (*_contact)(i) == 0-> 处于swing的腿。使用PD来获得摆动力  */
     for(int i(0); i<4; ++i){
         if((*_contact)(i) == 0){
             _forceFeetGlobal.col(i) = _KpSwing*(_posFeetGlobalGoal.col(i) - _posFeetGlobal.col(i)) + _KdSwing*(_velFeetGlobalGoal.col(i)-_velFeetGlobal.col(i));
         }
     }
     // std::cout<<" _forceFeetGlobal2: \n"<< _forceFeetGlobal <<std::endl;
-    _forceFeetBody = _G2B_RotMat * _forceFeetGlobal;//将足端力从body系转换到world系
+    _forceFeetBody = _G2B_RotMat * _forceFeetGlobal;//将足端力从world系转换到body系
 }
 
 void State_A1MPC::calcQQd(){

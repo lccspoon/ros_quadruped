@@ -15,6 +15,7 @@
 #include "FSM/State_SwingTest.h"
 #include "FSM/State_StepTest.h"
 #include "FSM/State_A1MPC.h"
+#include "FSM/State_VMC.h"
 #include "common/enumClass.h"
 #include "control/CtrlComponents.h"
 #ifdef COMPILE_WITH_MOVE_BASE
@@ -27,7 +28,8 @@ struct FSMStateList{
     State_FixedStand *fixedStand;
     State_FreeStand *freeStand;
     State_Trotting *trotting;
-    State_A1MPC *a1mpc;
+    State_A1MPC *a1mpc; // lcc 20240416
+    State_VMC *vmc;// lcc 20240523
     State_BalanceTest *balanceTest;
     State_SwingTest *swingTest;
     State_StepTest *stepTest;
@@ -41,7 +43,8 @@ struct FSMStateList{
         delete fixedStand;
         delete freeStand;
         delete trotting;
-        delete a1mpc;
+        delete a1mpc;// lcc 20240416
+        delete vmc;// lcc 20240523
         delete balanceTest;
         delete swingTest;
         delete stepTest;

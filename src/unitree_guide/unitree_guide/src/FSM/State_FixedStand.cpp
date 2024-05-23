@@ -81,26 +81,29 @@ void State_FixedStand::exit(){
 }
 
 FSMStateName State_FixedStand::checkChange(){
-    if(_lowState->userCmd == UserCommand::L2_B){
+    if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
-    else if(_lowState->userCmd == UserCommand::L2_X){
+    else if(_lowState->userCmd == UserCommand::FREESTAND_3){
         return FSMStateName::FREESTAND;
     }
-    else if(_lowState->userCmd == UserCommand::START){
+    else if(_lowState->userCmd == UserCommand::TROTTING_5){
         return FSMStateName::TROTTING;
     }
-    else if(_lowState->userCmd == UserCommand::L1_X){
+    else if(_lowState->userCmd == UserCommand::BALANCE_TEST0){
         return FSMStateName::BALANCETEST;
     }
-    else if(_lowState->userCmd == UserCommand::L1_A){
+    else if(_lowState->userCmd == UserCommand::SWING_TEST9){
         return FSMStateName::SWINGTEST;
     }
-    else if(_lowState->userCmd == UserCommand::L1_Y){
+    else if(_lowState->userCmd == UserCommand::SETP_TEST8){
         return FSMStateName::STEPTEST;
     }
-    else if(_lowState->userCmd == UserCommand::A1MPC){
+    else if(_lowState->userCmd == UserCommand::A1MPC_6){
         return FSMStateName::A1MPC;
+    }
+    else if(_lowState->userCmd == UserCommand::VMC_4){  //lcc 20240523
+        return FSMStateName::VMC;
     }
 #ifdef COMPILE_WITH_MOVE_BASE
     else if(_lowState->userCmd == UserCommand::L2_Y){

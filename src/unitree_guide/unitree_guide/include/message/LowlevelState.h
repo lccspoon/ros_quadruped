@@ -131,11 +131,11 @@ struct LowlevelState
         return getGyroGlobal()(2);
     }
 
-    void setQ(Vec12 q){
-        for(int i(0); i<12; ++i){
-            motorState[i].q = q(i);
-        }
-    }
+    // void setQ(Vec12 q){
+    //     for(int i(0); i<12; ++i){
+    //         motorState[i].q = q(i);
+    //     }
+    // }
 };
 
 #endif  //LOWLEVELSTATE_HPP

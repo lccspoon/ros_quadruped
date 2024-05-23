@@ -1,6 +1,9 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+/*
+    @author lcc
+    @date 20240419
+    @brief 算法： MPC+QP， 斜坡地形估计，等。 运动： 1m/s奔跑， 23度斜坡稳定上下，等。
+    @cite 参考代码：unitree_guide,yy硕。 参考论文：yxy,mit。
+*/
 #ifndef A1MPC_H_
 #define A1MPC_H_
 

@@ -1,11 +1,13 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
-#include "FSM/State_Trotting.h"
+/*
+    @author lcc
+    @date 20240523
+*/
+#include "FSM/State_VMC.h"
 #include <iomanip>
+#include <cmath>
 
-State_Trotting::State_Trotting(CtrlComponents *ctrlComp)
-             :FSMState(ctrlComp, FSMStateName::TROTTING, "trotting"), 
+State_VMC::State_VMC(CtrlComponents *ctrlComp)
+             :FSMState(ctrlComp, FSMStateName::VMC, "vmc"), 
               _est(ctrlComp->estimator), _phase(ctrlComp->phase), 
               _contact(ctrlComp->contact), _robModel(ctrlComp->robotModel), 
               _balCtrl(ctrlComp->balCtrl){
@@ -36,11 +38,12 @@ State_Trotting::State_Trotting(CtrlComponents *ctrlComp)
     _wyawLim = _robModel->getRobVelLimitYaw();
 }
 
-State_Trotting::~State_Trotting(){
+State_VMC::~State_VMC(){
     delete _gait;
 }
 
-void State_Trotting::enter(){
+void State_VMC::enter(){
+    // printf(" \n enter -> vmc \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
     _pcd(2) = -_robModel->getFeetPosIdeal()(2, 0);
@@ -60,12 +63,12 @@ void State_Trotting::enter(){
     // std::cout<<" _wyawLim: "<< _wyawLim.transpose() <<std::endl;
 }
 
-void State_Trotting::exit(){
+void State_VMC::exit(){
     _ctrlComp->ioInter->zeroCmdPanel();
     _ctrlComp->setAllSwing();
 }
 
-FSMStateName State_Trotting::checkChange(){
+FSMStateName State_VMC::checkChange(){
     if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
@@ -73,11 +76,11 @@ FSMStateName State_Trotting::checkChange(){
         return FSMStateName::FIXEDSTAND;
     }
     else{
-        return FSMStateName::TROTTING;
+        return FSMStateName::VMC;
     }
 }
 
-void State_Trotting::run(){
+void State_VMC::run(){
     // Rob State
     _posBody = _est->getPosition();
     _velBody = _est->getVelocity();
@@ -126,7 +129,7 @@ void State_Trotting::run(){
     }
 }
 
-bool State_Trotting::checkStepOrNot(){
+bool State_VMC::checkStepOrNot(){
     if( (fabs(_vCmdBody(0)) > 0.03) ||
         (fabs(_vCmdBody(1)) > 0.03) ||
         (fabs(_posError(0)) > 0.08) ||
@@ -141,7 +144,7 @@ bool State_Trotting::checkStepOrNot(){
     }
 }
 
-void State_Trotting::getUserCmd(){
+void State_VMC::getUserCmd(){
     /* Movement */
     _vCmdBody(0) =  invNormalize(_userValue.ly, _vxLim(0), _vxLim(1));
     _vCmdBody(1) = -invNormalize(_userValue.lx, _vyLim(0), _vyLim(1));
@@ -153,7 +156,7 @@ void State_Trotting::getUserCmd(){
     _dYawCmdPast = _dYawCmd;
 }
 
-void State_Trotting::calcCmd(){
+void State_VMC::calcCmd(){
     /* Movement */
     _vCmdGlobal = _B2G_RotMat * _vCmdBody; //将机身速度映射到world系
 
@@ -177,7 +180,7 @@ void State_Trotting::calcCmd(){
     _wCmdGlobal(2) = _dYawCmd;
 }
 
-void State_Trotting::calcTau(){
+void State_VMC::calcTau(){
     _posError = _pcd - _posBody;
     _velError = _vCmdGlobal - _velBody;
 
@@ -213,7 +216,7 @@ void State_Trotting::calcTau(){
     _tau = _robModel->getTau(_q, _forceFeetBody);
 }
 
-void State_Trotting::calcQQd(){
+void State_VMC::calcQQd(){
 
     Vec34 _posFeet2B;
     _posFeet2B = _robModel->getFeet2BPositions(*_lowState,FrameType::BODY);

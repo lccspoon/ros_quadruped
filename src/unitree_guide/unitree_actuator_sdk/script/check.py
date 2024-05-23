@@ -39,7 +39,7 @@ motor_s1.mode = 0
 c.modify_data(byref(motor_s))
 c.modify_data(byref(motor_s1))
 
-print('START')
+print('TROTTING_5')
 
 i = 0
 while(i < 5):

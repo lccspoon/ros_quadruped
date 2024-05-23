@@ -1,3 +1,10 @@
+/*
+    @author lcc
+    @date 20240419
+    @brief 斜坡地形估计。
+    @cite 参考代码：yy硕。 参考论文：yxy。
+*/
+
 #include "control/TerrianEsti.h"
 
 TerrianEsti::TerrianEsti(/* args */)

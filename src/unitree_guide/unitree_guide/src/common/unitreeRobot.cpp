@@ -119,10 +119,10 @@ Mat3 QuadrupedRobot::getJaco(LowlevelState &state, int legID){
 }
 
 A1Robot::A1Robot(){
-    _Legs[0] = new A1Leg(0, Vec3( 0.1805, -0.047, 0));
-    _Legs[1] = new A1Leg(1, Vec3( 0.1805,  0.047, 0));
-    _Legs[2] = new A1Leg(2, Vec3(-0.1805, -0.047, 0));
-    _Legs[3] = new A1Leg(3, Vec3(-0.1805,  0.047, 0));
+    _Legs[0] = new A1Leg(0, Vec3( 0.1805, -0.047, 0));//rf
+    _Legs[1] = new A1Leg(1, Vec3( 0.1805,  0.047, 0));//lf
+    _Legs[2] = new A1Leg(2, Vec3(-0.1805, -0.047, 0));//rb
+    _Legs[3] = new A1Leg(3, Vec3(-0.1805,  0.047, 0));//lb
 
     //lcc 实际上，这个理想位置就是：body系下 x和y值就是(足端+小腿+大腿)平面,即LX和LY+L1。z方向的值还不知道怎么确定
     _feetPosNormalStand <<  0.1805,  0.1805, -0.1805, -0.1805, 

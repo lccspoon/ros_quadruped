@@ -17,20 +17,27 @@ enum class RobotType{
     Go1
 };
 
+// 指的是用户能够控制的几种模式
 enum class UserCommand{
     // EXIT,
     NONE,
-    START,      // trotting
-    L2_A,       // fixedStand
-    L2_B,       // passive
-    L2_X,       // freeStand
+    //START,      // trotting
+    // L2_A,       // fixedStand
+    // L2_B,       // passive
+    // L2_X,       // freeStand
 #ifdef COMPILE_WITH_MOVE_BASE
     L2_Y,       // move_base
 #endif  // COMPILE_WITH_MOVE_BASE
-    L1_X,       // balanceTest
-    L1_A,       // swingTest
-    L1_Y,        // stepTest
-    A1MPC        //lcc 20240416
+    BALANCE_TEST0,       // balanceTest
+    SWING_TEST9,       // swingTest
+    SETP_TEST8,        // stepTest
+
+    PASSIVE_1,
+    FIXEDSTAND_2,
+    FREESTAND_3,
+    VMC_4,
+    TROTTING_5,
+    A1MPC_6        //lcc 20240416
 };
 
 enum class FrameType{
@@ -63,7 +70,8 @@ enum class FSMStateName{
     BALANCETEST,
     SWINGTEST,
     STEPTEST,
-    A1MPC  // lcc 20240416
+    A1MPC,  // lcc 20240416
+    VMC  // lcc 20240523
 };
 
 #endif  // ENUMCLASS_H

@@ -43,7 +43,7 @@ int main()
     // printf("status2: %d\n", sta);
     extract_data(&motor_r);
     // show_resv_data_hex(&motor_r);
-    printf("START\n");
+    printf("TROTTING_5\n");
     // show_resv_data(&motor_r);
 
 
