@@ -1,0 +1,11 @@
+<launch>
+  
+  <!-- positon control -->
+  <!-- <include file="$(find quadruped)/launch/Positioncontroller.launch"/> -->
+  <include file="$(find quadruped)/launch/gazebo_mdf_inertia.launch"/>
+
+  <!-- torque control -->
+  <include file="$(find quadruped)/launch/Touquecontroller.launch"/>
+  <!-- <include file="$(find quadruped)/launch/gazebo_ori_inertia.launch"/> -->
+  
+</launch>

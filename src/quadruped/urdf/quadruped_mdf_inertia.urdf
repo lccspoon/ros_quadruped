@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="quadruped">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00084087 -3.4694E-18 0.0034489"
+        rpy="0 0 0" />
+      <mass
+        value="16" />
+      <inertia
+        ixx="1"  
+        ixy="0"
+        ixz="0"
+        iyy="1"
+        iyz="0"
+        izz="1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="RfL1">
+    <inertial>
+      <origin
+        xyz="-1.4632E-09 0.0013606 -2.1089E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.2020892" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RfJ1"
+    type="continuous">
+    <origin
+      xyz="0.2255 -0.065 0.003"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RfL1" />
+    <axis
+      xyz="1 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="RfL2">
+    <inertial>
+      <origin
+        xyz="-4.3615E-06 0.017625 -0.026198"
+        rpy="0 0 0" />
+      <mass
+        value="0.203684" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RfJ2"
+    type="continuous">
+    <origin
+      xyz="0 -0.06725 0"
+      rpy="0 0 0" />
+    <parent
+      link="RfL1" />
+    <child
+      link="RfL2" />
+    <axis
+      xyz="0 1 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="RfL3">
+    <inertial>
+      <origin
+        xyz="-8.3225E-05 -1.7847E-14 -0.13449"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RfJ3"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="RfL2" />
+    <child
+      link="RfL3" />
+    <axis
+      xyz="0 -1 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="RfL4">
+    <inertial>
+      <origin
+        xyz="3.8349E-05 -1.7777E-14 0.061968"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RfL4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RfJ4"
+    type="fixed">
+    <origin
+      xyz="-0.00012157 0 -0.19645"
+      rpy="0 0 0" />
+    <parent
+      link="RfL3" />
+    <child
+      link="RfL4" />
+    <axis
+      xyz="0 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LfL1">
+    <inertial>
+      <origin
+        xyz="-1.4632E-09 -0.0013606 2.1089E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.2020892" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LfJ1"
+    type="continuous">
+    <origin
+      xyz="0.2255 0.065 0.003"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LfL1" />
+    <axis
+      xyz="1 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LfL2">
+    <inertial>
+      <origin
+        xyz="4.3615E-06 -0.017625 -0.026198"
+        rpy="0 0 0" />
+      <mass
+        value="0.203684" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LfJ2"
+    type="continuous">
+    <origin
+      xyz="0 0.06725 0"
+      rpy="0 0 0" />
+    <parent
+      link="LfL1" />
+    <child
+      link="LfL2" />
+    <axis
+      xyz="0 -1 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LfL3">
+    <inertial>
+      <origin
+        xyz="-0.00015249 -3.3556E-14 -0.13449"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LfJ3"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="LfL2" />
+    <child
+      link="LfL3" />
+    <axis
+      xyz="0 1 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LfL4">
+    <inertial>
+      <origin
+        xyz="7.0263E-05 -3.2113E-14 0.061968"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LfL4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LfJ4"
+    type="fixed">
+    <origin
+      xyz="-0.00022275 0 -0.19645"
+      rpy="0 0 0" />
+    <parent
+      link="LfL3" />
+    <child
+      link="LfL4" />
+    <axis
+      xyz="0 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="RbL1">
+    <inertial>
+      <origin
+        xyz="1.4632E-09 0.0013606 2.1089E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.2020892" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RbJ1"
+    type="continuous">
+    <origin
+      xyz="-0.2255 -0.065 0.003"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RbL1" />
+    <axis
+      xyz="-1 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="RbL2">
+    <inertial>
+      <origin
+        xyz="-4.3615E-06 0.017625 -0.026198"
+        rpy="0 0 0" />
+      <mass
+        value="0.203684" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RbJ2"
+    type="continuous">
+    <origin
+      xyz="0 -0.06725 0"
+      rpy="0 0 0" />
+    <parent
+      link="RbL1" />
+    <child
+      link="RbL2" />
+    <axis
+      xyz="0 1 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="RbL3">
+    <inertial>
+      <origin
+        xyz="-4.4688E-05 -9.4924E-15 -0.13449"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RbJ3"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="RbL2" />
+    <child
+      link="RbL3" />
+    <axis
+      xyz="0 -1 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="RbL4">
+    <inertial>
+      <origin
+        xyz="2.0591E-05 -9.5618E-15 0.061968"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RbL4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RbJ4"
+    type="fixed">
+    <origin
+      xyz="-6.528E-05 0 -0.19645"
+      rpy="0 0 0" />
+    <parent
+      link="RbL3" />
+    <child
+      link="RbL4" />
+    <axis
+      xyz="0 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LbL1">
+    <inertial>
+      <origin
+        xyz="1.4632E-09 -0.0013606 -2.1089E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.2020892" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LbJ1"
+    type="continuous">
+    <origin
+      xyz="-0.2255 0.065 0.003"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LbL1" />
+    <axis
+      xyz="-1 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LbL2">
+    <inertial>
+      <origin
+        xyz="4.3615E-06 -0.017625 -0.026198"
+        rpy="0 0 0" />
+      <mass
+        value="0.203684" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LbJ2"
+    type="continuous">
+    <origin
+      xyz="0 0.06725 0"
+      rpy="0 0 0" />
+    <parent
+      link="LbL1" />
+    <child
+      link="LbL2" />
+    <axis
+      xyz="0 -1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LbL3">
+    <inertial>
+      <origin
+        xyz="0.00011183 2.3037E-14 -0.13449"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LbJ3"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="LbL2" />
+    <child
+      link="LbL3" />
+    <axis
+      xyz="0 1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="LbL4">
+    <inertial>
+      <origin
+        xyz="-5.1528E-05 2.4342E-14 0.061968"
+        rpy="0 0 0" />
+      <mass
+        value="0.2012147" />
+      <inertia
+        ixx="0.2"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LbL4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LbJ4"
+    type="fixed">
+    <origin
+      xyz="0.00016336 0 -0.19645"
+      rpy="0 0 0" />
+    <parent
+      link="LbL3" />
+    <child
+      link="LbL4" />
+    <axis
+      xyz="0 0 0" />
+          <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="1"
+       friction="0.01"
+    />
+  </joint>
+
+<transmission name="trans_RfJ1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="RfJ1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="RfJ1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_RfJ2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="RfJ2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="RfJ2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_RfJ3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="RfJ3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="RfJ3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_RbJ1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="RbJ1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="RbJ1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_RbJ2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="RbJ2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="RbJ2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_RbJ3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="RbJ3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="RbJ3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_LfJ1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LfJ1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LfJ1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_LfJ2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LfJ2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LfJ2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_LfJ3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LfJ3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LfJ3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+  
+<transmission name="trans_LbJ1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LbJ1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LbJ1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_LbJ2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LbJ2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LbJ2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_LbJ3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="LbJ3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="LbJ3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+  	  <alwaysOn>true</alwaysOn>
+    	<bodyName>base_link</bodyName>
+    	<topicName>imu</topicName>
+    	<serviceName>imu_service</serviceName>
+    	<gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>base_link</frameName>
+    	<updateRate>500.0</updateRate>
+    </plugin>
+
+    <plugin name="POS_COM" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>500.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>POS_COM</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+  <!-- fix the model  -->
+  <!-- <link name="world"/>
+  <joint name="fix" type="fixed">
+  <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  <parent link="world"/>
+  <child link="base_link"/> 
+  </joint> -->
+
+  <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/quadruped</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+  </gazebo>
+
+</robot>

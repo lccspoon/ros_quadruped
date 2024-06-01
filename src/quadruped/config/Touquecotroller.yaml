@@ -1,0 +1,138 @@
+# Publish all joint states
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 500.0
+  
+# Toqure Controllers
+RfJ1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: RfJ1
+
+
+RfJ2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: RfJ2
+
+
+RfJ3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: RfJ3
+
+
+
+RbJ1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: RbJ1
+
+
+RbJ2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: RbJ2
+
+
+RbJ3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: RbJ3
+
+
+
+
+
+LfJ1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: LfJ1
+
+
+LfJ2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: LfJ2
+
+
+LfJ3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: LfJ3
+
+
+
+LbJ1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: LbJ1
+
+
+LbJ2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: LbJ2
+
+
+LbJ3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: LbJ3
+
+
+
+
+# Positon Controllers
+# RfJ1_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: RfJ1
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+# RfJ2_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: RfJ2
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+# RfJ3_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: RfJ3
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+# RbJ1_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: RbJ1
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+# RbJ2_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: RbJ2
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+# RbJ3_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: RbJ3
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+
+# LfJ1_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: LfJ1
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+# LfJ2_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: LfJ2
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+# LfJ3_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: LfJ3
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+# LbJ1_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: LbJ1
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+# LbJ2_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: LbJ2
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+ 
+# LbJ3_jointcc:
+#   type: effort_controllers/JointPositionController
+#   joint: LbJ3
+#   pid: {p: 100.0, i: 0.01, d: 10.0}
+  
