@@ -11,7 +11,7 @@
         xyz="0.00084087 -3.4694E-18 0.0034489"
         rpy="0 0 0" />
       <mass
-        value="6.2588" />
+        value="16" /> <!-- value="6.2588"   -->
       <inertia
         ixx="0.023799"
         ixy="-4.539E-19"
@@ -1195,12 +1195,12 @@
   </gazebo>
 
   <!-- fix the model  -->
-  <link name="world"/>
+  <!-- <link name="world"/>
   <joint name="fix" type="fixed">
   <origin xyz="0 0 0.5" rpy="0 0 0"/>
   <parent link="world"/>
   <child link="base_link"/> 
-  </joint>
+  </joint> -->
 
   <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

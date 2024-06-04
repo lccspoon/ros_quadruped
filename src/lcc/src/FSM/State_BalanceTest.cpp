@@ -89,7 +89,7 @@ void State_BalanceTest::run(){
     _lowCmd->setTau(_tau);
     _lowCmd->setQ(_q);//lcc
     
-    _torqueCtrl();
+    // _torqueCtrl();
 
     // Vec3 root_euler;
     // root_euler = rotMatToRPY( _B2G_RotMat );

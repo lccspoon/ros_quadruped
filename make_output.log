@@ -1,0 +1,194 @@
+execve("/usr/bin/make", ["make"], 0x7fffe26f6c80 /* 77 vars */) = 0
+brk(NULL)                               = 0x5634e8cd4000
+arch_prctl(0x3001 /* ARCH_??? */, 0x7ffcebb79dd0) = -1 EINVAL (无效的参数)
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc3d641a000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/tls", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/tls/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib/tls/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/tls/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib/tls/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/tls/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib/tls/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/tls/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib/tls", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/ck_ws/devel/lib", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/tls/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib/tls/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/tls/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib/tls/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/tls/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib/tls/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/tls/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib/tls", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/home/lcc/catkin_ws/devel/lib", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/tls/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/tls/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/tls/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/tls/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/tls", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib", {st_mode=S_IFDIR|0755, st_size=36864, ...}) = 0
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/tls/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu/tls/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/tls/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu/tls/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/tls/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu/tls/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/tls/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu/tls", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/haswell/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu/haswell/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/haswell/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu/haswell", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu/x86_64", 0x7ffcebb79020) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+stat("/opt/ros/noetic/lib/x86_64-linux-gnu", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=336865, ...}) = 0
+mmap(NULL, 336865, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fc3d63c7000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0 \22\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=18848, ...}) = 0
+mmap(NULL, 20752, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fc3d63c1000
+mmap(0x7fc3d63c2000, 8192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1000) = 0x7fc3d63c2000
+mmap(0x7fc3d63c4000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7fc3d63c4000
+mmap(0x7fc3d63c5000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7fc3d63c5000
+close(3)                                = 0
+openat(AT_FDCWD, "/opt/ros/noetic/share/euslisp/jskeus/eus//Linux64/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/ck_ws/devel/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/home/lcc/catkin_ws/devel/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/opt/ros/noetic/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300A\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\356\276]_K`\213\212S\354Dkc\230\33\272"..., 68, 880) = 68
+fstat(3, {st_mode=S_IFREG|0755, st_size=2029592, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32, 848) = 32
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\356\276]_K`\213\212S\354Dkc\230\33\272"..., 68, 880) = 68
+mmap(NULL, 2037344, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fc3d61cf000
+mmap(0x7fc3d61f1000, 1540096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x22000) = 0x7fc3d61f1000
+mmap(0x7fc3d6369000, 319488, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19a000) = 0x7fc3d6369000
+mmap(0x7fc3d63b7000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7fc3d63b7000
+mmap(0x7fc3d63bd000, 13920, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fc3d63bd000
+close(3)                                = 0
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fc3d61cc000
+arch_prctl(ARCH_SET_FS, 0x7fc3d61cc740) = 0
+mprotect(0x7fc3d63b7000, 16384, PROT_READ) = 0
+mprotect(0x7fc3d63c5000, 4096, PROT_READ) = 0
+mprotect(0x5634e71d3000, 4096, PROT_READ) = 0
+mprotect(0x7fc3d6449000, 4096, PROT_READ) = 0
+munmap(0x7fc3d63c7000, 336865)          = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+prlimit64(0, RLIMIT_STACK, {rlim_cur=RLIM64_INFINITY, rlim_max=RLIM64_INFINITY}, NULL) = 0
+brk(NULL)                               = 0x5634e8cd4000
+brk(0x5634e8cf5000)                     = 0x5634e8cf5000
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=9221872, ...}) = 0
+mmap(NULL, 9221872, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fc3d5900000
+close(3)                                = 0
+rt_sigaction(SIGHUP, {sa_handler=0x5634e71a9810, sa_mask=[HUP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGQUIT, {sa_handler=0x5634e71a9810, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x5634e71a9810, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGTERM, {sa_handler=0x5634e71a9810, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGXCPU, {sa_handler=0x5634e71a9810, sa_mask=[XCPU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGXFSZ, {sa_handler=0x5634e71a9810, sa_mask=[XFSZ], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=SIG_DFL, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+fcntl(1, F_GETFL)                       = 0x402 (flags O_RDWR|O_APPEND)
+fcntl(1, F_SETFL, O_RDWR|O_APPEND)      = 0
+fcntl(2, F_GETFL)                       = 0x402 (flags O_RDWR|O_APPEND)
+fcntl(2, F_SETFL, O_RDWR|O_APPEND)      = 0
+fcntl(1, F_GETFD)                       = 0
+getcwd("/home/lcc/ck_ws", 4096)         = 16
+ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0
+ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0), ...}) = 0
+readlink("/proc/self/fd/1", "/dev/pts/0", 4095) = 10
+stat("/dev/pts/0", {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0), ...}) = 0
+ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0
+ioctl(2, TCGETS, {B38400 opost isig icanon echo ...}) = 0
+fstat(2, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0), ...}) = 0
+readlink("/proc/self/fd/2", "/dev/pts/0", 4095) = 10
+stat("/dev/pts/0", {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0), ...}) = 0
+stat("/usr/include", {st_mode=S_IFDIR|0755, st_size=20480, ...}) = 0
+stat("/usr/gnu/include", 0x7ffcebb783c0) = -1 ENOENT (没有那个文件或目录)
+stat("/usr/local/include", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/usr/include", {st_mode=S_IFDIR|0755, st_size=20480, ...}) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x5634e71b44c0, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+rt_sigaction(SIGUSR1, {sa_handler=0x5634e71b6990, sa_mask=[USR1], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fc3d6212090}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+brk(0x5634e8d16000)                     = 0x5634e8d16000
+stat(".", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+fstat(3, {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+getdents64(3, /* 9 entries */, 32768)   = 272
+getdents64(3, /* 0 entries */, 32768)   = 0
+close(3)                                = 0
+stat("RCS", 0x7ffcebb78360)             = -1 ENOENT (没有那个文件或目录)
+stat("SCCS", 0x7ffcebb78360)            = -1 ENOENT (没有那个文件或目录)
+stat("GNUmakefile", 0x7ffcebb76280)     = -1 ENOENT (没有那个文件或目录)
+stat("makefile", 0x7ffcebb76280)        = -1 ENOENT (没有那个文件或目录)
+stat("Makefile", 0x7ffcebb76280)        = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=2996, ...}) = 0
+read(3, "# Locale name alias data base.\n#"..., 4096) = 2996
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/share/locale/zh_CN/LC_MESSAGES/make.mo", O_RDONLY) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/usr/share/locale/zh/LC_MESSAGES/make.mo", O_RDONLY) = -1 ENOENT (没有那个文件或目录)
+openat(AT_FDCWD, "/usr/share/locale-langpack/zh_CN/LC_MESSAGES/make.mo", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=42080, ...}) = 0
+mmap(NULL, 42080, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fc3d640f000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=27002, ...}) = 0
+mmap(NULL, 27002, PROT_READ, MAP_SHARED, 3, 0) = 0x7fc3d6408000
+close(3)                                = 0
+write(2, "make: *** \346\262\241\346\234\211\346\214\207\346\230\216\347\233\256\346\240\207\345\271\266\344"..., 66) = 66
+chdir("/home/lcc/ck_ws")                = 0
+close(1)                                = 0
+exit_group(2)                           = ?
++++ exited with 2 +++

@@ -1,0 +1,8 @@
+prefix=/home/lcc/ck_ws/devel
+
+Name: quadruped
+Description: Description of quadruped
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

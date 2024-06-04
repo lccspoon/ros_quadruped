@@ -8,29 +8,40 @@
 
 State_VMC::State_VMC(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::VMC, "vmc"), 
-              _est(ctrlComp->estimator), _phase(ctrlComp->phase), 
+              _est(ctrlComp->estimator), _phase(ctrlComp->phase), _Apla( ctrlComp->Apla),
               _contact(ctrlComp->contact), _robModel(ctrlComp->robotModel), 
               _balCtrl(ctrlComp->balCtrl){
     _gait = new GaitGenerator(ctrlComp);
 
     _gaitHeight = 0.08;
+    root_euler_d.setZero();
 
 // #ifdef ROBOT_TYPE_Go1
-//     _Kpp = Vec3(70, 70, 70).asDiagonal();
-//     _Kdp = Vec3(10, 10, 10).asDiagonal();
-//     _kpw = 780; 
-//     _Kdw = Vec3(70, 70, 70).asDiagonal();
-//     _KpSwing = Vec3(400, 400, 400).asDiagonal();
-//     _KdSwing = Vec3(10, 10, 10).asDiagonal();
+    // // _Kpp = Vec3(70, 70, 70).asDiagonal();
+    // _Kdp = Vec3(10, 10, 10).asDiagonal();
+    // _kpw = 780; 
+    // _Kdw = Vec3(70, 70, 70).asDiagonal();
+    // _KpSwing = Vec3(400, 400, 400).asDiagonal();
+    // _KdSwing = Vec3(10, 10, 10).asDiagonal();
 // #endif
 
-// #ifdef ROBOT_TYPE_A1
-    _Kpp = Vec3(20, 20, 100).asDiagonal();
+    //lcc tuning 20240604
+    _Kpp = Vec3(30, 30, 100).asDiagonal();
     _Kdp = Vec3(20, 20, 20).asDiagonal();
-    _kpw = 400;
-    _Kdw = Vec3(50, 50, 50).asDiagonal();
+    _kpw = 1000; 
+    _Kdw = Vec3(70, 70, 70).asDiagonal();
+
     _KpSwing = Vec3(400, 400, 400).asDiagonal();
     _KdSwing = Vec3(10, 10, 10).asDiagonal();
+
+
+// #ifdef ROBOT_TYPE_A1
+    // _Kpp = Vec3(20, 20, 100).asDiagonal();
+    // _Kdp = Vec3(20, 20, 20).asDiagonal();
+    // _kpw = 400;
+    // _Kdw = Vec3(50, 50, 50).asDiagonal();
+    // _KpSwing = Vec3(400, 400, 400).asDiagonal();
+    // _KdSwing = Vec3(10, 10, 10).asDiagonal();
 // #endif
 
     _vxLim = _robModel->getRobVelLimitX();
@@ -47,6 +58,9 @@ void State_VMC::enter(){
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
     _pcd(2) = -_robModel->getFeetPosIdeal()(2, 0);
+
+    body_h = -_robModel->getFeetPosIdeal()(2, 0);//lcc 20240604
+
     _vCmdBody.setZero();
     _yawCmd = _lowState->getYaw();
     _Rd = rotz(_yawCmd);
@@ -56,6 +70,8 @@ void State_VMC::enter(){
     _ctrlComp->ioInter->zeroCmdPanel();
     /* 将目标全局速度->setZero，因为落足点是根据速度来定的 */
     _gait->restart();
+
+    _initFeetPos = _ctrlComp->robotModel->getFeet2BPositions(*_lowState, FrameType::HIP);//VMC
 
     // printf(" lcc had edited2!\n ");
     // std::cout<<" _vxLim: "<< _vxLim.transpose() <<std::endl;
@@ -93,6 +109,7 @@ void State_VMC::run(){
     _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
 
     // _lowState->userValue = _lowState->userValue;
+    terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact, _posFeet2BGlobal, _Apla);//lcc
 
     /* 将键盘输入的_userValue转换为 需要的控制量：body系下的 目标速度、角速度 */
     getUserCmd();
@@ -109,6 +126,7 @@ void State_VMC::run(){
 
     calcTau(); // 计算关节力矩
     calcQQd(); // 计算关节位置、速度
+    _torqueCtrl();//VMC lcc 20240604
 
     if(checkStepOrNot()){
         _ctrlComp->setStartWave();
@@ -116,7 +134,8 @@ void State_VMC::run(){
         _ctrlComp->setAllStance();
     }
 
-    _lowCmd->setTau(_tau);
+    _lowCmd->setTau( _tau + torque12 * 0.1 ); //lcc 20240602
+    // _lowCmd->setTau(_tau );
     _lowCmd->setQ(vec34ToVec12(_qGoal));
     _lowCmd->setQd(vec34ToVec12(_qdGoal));
 
@@ -176,12 +195,39 @@ void State_VMC::calcCmd(){
     /* Turning */
     _yawCmd = _yawCmd + _dYawCmd * _ctrlComp->dt;
 
-    _Rd = rotz(_yawCmd);
+    // _Rd = rotz(_yawCmd);
+    Eigen::Matrix3d eye3;
+    eye3.setIdentity();
+    // _Rd = rpyToRotMat(0, 0.2, _yawCmd)* eye3;//lcc
+    _Rd = rpyToRotMat(root_euler_d(0), root_euler_d(1), _yawCmd)* eye3;//lcc
     _wCmdGlobal(2) = _dYawCmd;
 }
 
 void State_VMC::calcTau(){
+
     _posError = _pcd - _posBody;
+
+    /*--------------lcc start 20240604----------------*/
+    Vec4 leg_deep;
+    int leg_deep_num;
+    leg_deep_num = 0;
+    leg_deep.setZero();
+    for (int i = 0; i < 4; i++)
+    {   
+        if((*_contact)(i) == 1) //stand
+        {
+            leg_deep(i) = _ctrlComp->robotModel->getFootPosition(*_lowState, i, FrameType::BODY)(2);
+            leg_deep_num ++;
+        }
+    }
+    if( (*_phase)(0) > 0.5 && (*_phase)(0) <= 0.6 )
+    {
+        body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) )/leg_deep_num;
+    }
+    _posError(2) = _pcd(2) - body_h; // 使用接地腿的高度平均值作为机身实际高度，摆脱世界系下机身高度状态估计不准的难题
+    // std::cout<<" body_h :"<< body_h <<std::endl;
+    /*--------------lcc end 20240604----------------*/
+
     _velError = _vCmdGlobal - _velBody;
 
     _ddPcd = _Kpp * _posError + _Kdp * _velError;
@@ -235,3 +281,31 @@ void State_VMC::calcQQd(){
     _qdGoal = vec12ToVec34(_robModel->getQd(_posFeet2B, _velFeet2BGoal, FrameType::BODY));
 }
 
+
+void State_VMC::_torqueCtrl(){
+
+    _Kp = Vec3(5000, 5000, 5000).asDiagonal();
+    _Kd = Vec3( 200,  200, 200).asDiagonal();
+
+    Vec34 pos34;
+    Vec34 vel34;
+    Vec34 _targetPos34;
+    Vec34 force34;
+    pos34.setZero();
+    vel34.setZero();
+    force34.setZero();
+    _targetPos34.setZero();
+    torque12.setZero();
+
+    pos34 = _ctrlComp->robotModel->getFeet2BPositions(*_lowState,FrameType::BODY );
+    vel34 = _ctrlComp->robotModel->getFeet2BVelocities(*_lowState,FrameType::BODY );
+
+    _targetPos34 = _posFeet2BGoal;
+
+    for (int i = 0; i < 4; ++i){
+        force34.block< 3, 1>( 0, i) =  _Kp*(_targetPos34.block< 3, 1>( 0, i) - pos34.block< 3, 1>( 0, i) ) + _Kd*(-vel34.block< 3, 1>( 0, i) );
+    }
+
+    Vec12 _q = vec34ToVec12(_lowState->getQ()); 
+    torque12 = _ctrlComp->robotModel->getTau( _q, force34);
+}

@@ -26,7 +26,7 @@
 // #include "utils/Utils.h"
 
 // mpc
-#define PLAN_HORIZON 10
+#define PLAN_HORIZON 9
 #define MPC_STATE_DIM 13
 #define MPC_CONSTRAINT_DIM 20
 

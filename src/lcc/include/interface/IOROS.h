@@ -21,12 +21,19 @@
 #define NUM_DOF 12
 #define NUM_MOD 3 // 运动模式数量
 
+extern Vec3 ODE_P;
+extern Vec3 ODE_V;
+
 // class IOROS : public IOInterface, public GazeboSim{
 class IOROS : public IOInterface{
 public:
 IOROS();
 ~IOROS();
 void sendRecv(const LowlevelCmd *cmd, LowlevelState *state);
+
+Eigen::Matrix<double, 3, 1> retSimOdeBodyP();
+
+Eigen::Matrix<double, 3, 1> retSimOdeBodyV();
 
 private:
 void sendCmd(const LowlevelCmd *cmd);

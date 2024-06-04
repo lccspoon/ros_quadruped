@@ -1,6 +1,6 @@
 <launch>
-    <!-- <arg name="wname" default="earth"/> -->
-    <arg name="wname" default="stairs"/>
+    <arg name="wname" default="earth"/>
+    <!-- <arg name="wname" default="stairs"/> -->
     <!-- <arg name="wname" default="stair"/> -->
     <!-- <arg name="wname" default="rugged"/> -->
     <!-- <arg name="wname" default="slope7"/> -->

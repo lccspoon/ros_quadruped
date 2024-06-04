@@ -52,6 +52,7 @@ private:
     Eigen::Matrix<double, 18, 18> _A;               // The transtion matrix of estimator
     Eigen::Matrix<double, 18, 3>  _B;               // The input matrix
     Eigen::Matrix<double, 28, 18> _C;               // The output matrix
+
     // Covariance Matrix
     Eigen::Matrix<double, 18, 18> _P;               // Prediction covariance
     Eigen::Matrix<double, 18, 18> _Ppriori;         // Priori prediction covariance
@@ -59,8 +60,13 @@ private:
     Eigen::Matrix<double, 28, 28> _R;               // Measurement covariance
     Eigen::Matrix<double, 18, 18> _QInit;           // Initial value of Dynamic simulation covariance
     Eigen::Matrix<double, 28, 28> _RInit;           // Initial value of Measurement covariance
+
+
+    Eigen::Matrix<double, 28, 1> _Rdig;             // lcc
+    Eigen::Matrix<double, 28, 28> _RasD;             // lcc
     Vec18 _Qdig;                                    // adjustable process noise covariance
     Mat3 _Cu;                                       // The covariance of system input u
+    
     // Output Measurement
     Eigen::Matrix<double, 12, 1>  _feetPos2Body;    // The feet positions to body, in the global coordinate
     Eigen::Matrix<double, 12, 1>  _feetVel2Body;    // The feet velocity to body, in the global coordinate
@@ -92,6 +98,11 @@ private:
     AvgCov *_RCheck;
     AvgCov *_uCheck;
     std::string _estName;
+
+    AvgCov *_accAvg_offset; //lcc
+    Vec3 accOffset;
+    Vec3 postionOffset;
+    Vec3 velocityOffset;
 
 #ifdef COMPILE_DEBUG
     PyPlot *_testPlot;

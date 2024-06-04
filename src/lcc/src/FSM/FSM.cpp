@@ -34,13 +34,13 @@ void FSM::initialize(){
     _mode = FSMMode::NORMAL;
 }
 
-Vec3 getPosition_offset;
-Vec3 getVelocity_offset;
-Vec34 getFeetVel_offset;
-Vec34 getFeetPos_offset;
-Vec34 getFeetPos_Z_offset;
-Vec34 getPosFeet2BGlobal_offset;
-Vec34 getPosFeet2BGlobal_Z_offset;
+// Vec3 getPosition_offset;
+// Vec3 getVelocity_offset;
+// Vec34 getFeetVel_offset;
+// Vec34 getFeetPos_offset;
+// Vec34 getFeetPos_Z_offset;
+// Vec34 getPosFeet2BGlobal_offset;
+// Vec34 getPosFeet2BGlobal_Z_offset;
 
 void FSM::run(){
     _startTime = getSystemTime();
@@ -49,40 +49,42 @@ void FSM::run(){
     _ctrlComp->estimator->run();
     
     if ( _currentState->_lowState->userFunctionMode.function_test == true ){
-        getVelocity_offset = -_ctrlComp->estimator->getVelocity();
-        getFeetVel_offset = -_ctrlComp->estimator->getFeetVel();
+    //     getVelocity_offset = -_ctrlComp->estimator->getVelocity();
+    //     getFeetVel_offset = -_ctrlComp->estimator->getFeetVel();
 
-        getFeetPos_Z_offset = _ctrlComp->robotModel-> _feetPosNormalStand;
-        getFeetPos_Z_offset(2) = 0; getFeetPos_Z_offset(5) = 0;
-        getFeetPos_Z_offset(8) = 0;getFeetPos_Z_offset(11) = 0;
+    //     getFeetPos_Z_offset = _ctrlComp->robotModel-> _feetPosNormalStand;
+    //     getFeetPos_Z_offset(2) = 0; getFeetPos_Z_offset(5) = 0;
+    //     getFeetPos_Z_offset(8) = 0;getFeetPos_Z_offset(11) = 0;
 
-        getPosFeet2BGlobal_Z_offset = _ctrlComp->robotModel-> _feetPosNormalStand;  //这个需要  xRsb
+    //     getPosFeet2BGlobal_Z_offset = _ctrlComp->robotModel-> _feetPosNormalStand;  //这个需要  xRsb
 
-        if ( _currentState->_stateName == FSMStateName::PASSIVE ){
-            getPosition_offset = -_ctrlComp->estimator->getPosition();
+    //     if ( _currentState->_stateName == FSMStateName::PASSIVE ){
+    //         getPosition_offset = -_ctrlComp->estimator->getPosition();
 
-            getFeetPos_offset = -_ctrlComp->estimator->getFeetPos() + getFeetPos_Z_offset;
+    //         getFeetPos_offset = -_ctrlComp->estimator->getFeetPos() + getFeetPos_Z_offset;
 
-            getPosFeet2BGlobal_Z_offset(2) = 0; getPosFeet2BGlobal_Z_offset(5) = 0;
-            getPosFeet2BGlobal_Z_offset(8) = 0;getPosFeet2BGlobal_Z_offset(11) = 0;
-            getPosFeet2BGlobal_offset = -_ctrlComp->estimator->getPosFeet2BGlobal() + getPosFeet2BGlobal_Z_offset;
+    //         getPosFeet2BGlobal_Z_offset(2) = 0; getPosFeet2BGlobal_Z_offset(5) = 0;
+    //         getPosFeet2BGlobal_Z_offset(8) = 0;getPosFeet2BGlobal_Z_offset(11) = 0;
+    //         getPosFeet2BGlobal_offset = -_ctrlComp->estimator->getPosFeet2BGlobal() + getPosFeet2BGlobal_Z_offset;
 
-        }
-        else{
-            getPosition_offset = -_ctrlComp->estimator->getPosition() - Vec3(0, 0, _ctrlComp->robotModel-> _feetPosNormalStand(2));
+    //     }
+    //     else{
+    //         getPosition_offset = -_ctrlComp->estimator->getPosition() - Vec3(0, 0, _ctrlComp->robotModel-> _feetPosNormalStand(2));
 
-            getFeetPos_offset = -_ctrlComp->estimator->getFeetPos() + getFeetPos_Z_offset;
+    //         getFeetPos_offset = -_ctrlComp->estimator->getFeetPos() + getFeetPos_Z_offset;
 
-            getPosFeet2BGlobal_offset = -_ctrlComp->estimator->getPosFeet2BGlobal() + getPosFeet2BGlobal_Z_offset;
-        }
+    //         getPosFeet2BGlobal_offset = -_ctrlComp->estimator->getPosFeet2BGlobal() + getPosFeet2BGlobal_Z_offset;
+    //     }
+    // }
+    // else{
+    //     // std::cout<<" _est->getPosition()\n"<< _ctrlComp->estimator->getPosition() + getPosition_offset <<std::endl;
+    //     // std::cout<<" _est->getVelocity()\n"<< _ctrlComp->estimator->getVelocity() + getVelocity_offset <<std::endl;
+    //     // std::cout<<" _est->getFeetVel()\n"<< _ctrlComp->estimator->getFeetVel() + getFeetVel_offset <<std::endl;
+    //     // std::cout<<" _ctrlComp->estimator->getFeetPos()\n"<< _ctrlComp->estimator->getFeetPos() + getFeetPos_offset <<std::endl;
+    //     // std::cout<<" _ctrlComp->estimator->getPosFeet2BGlobal()\n"<< _ctrlComp->estimator->getPosFeet2BGlobal() + getPosFeet2BGlobal_offset <<std::endl;
     }
-    else{
-        // std::cout<<" _est->getPosition()\n"<< _ctrlComp->estimator->getPosition() + getPosition_offset <<std::endl;
-        // std::cout<<" _est->getVelocity()\n"<< _ctrlComp->estimator->getVelocity() + getVelocity_offset <<std::endl;
-        // std::cout<<" _est->getFeetVel()\n"<< _ctrlComp->estimator->getFeetVel() + getFeetVel_offset <<std::endl;
-        // std::cout<<" _ctrlComp->estimator->getFeetPos()\n"<< _ctrlComp->estimator->getFeetPos() + getFeetPos_offset <<std::endl;
-        // std::cout<<" _ctrlComp->estimator->getPosFeet2BGlobal()\n"<< _ctrlComp->estimator->getPosFeet2BGlobal() + getPosFeet2BGlobal_offset <<std::endl;
-    }
+
+    
 
     if(!checkSafty()){
         _ctrlComp->ioInter->setPassive();

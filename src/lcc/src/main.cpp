@@ -27,6 +27,48 @@
 #include <thread> // std::this_thread::sleep_for
 #include <chrono> // std::chrono::milliseconds
 
+#include "control/OsqpMpcTest.h"//lcc
+#include "ros/ros.h"
+#include "std_msgs/Float64MultiArray.h"
+#include "std_msgs/Float64.h"
+//lcc 
+class RosTopicMsgPub
+{
+protected:
+    ros::Publisher msgPub;
+    std_msgs::Float64 msgTemp;
+    std_msgs::Float64MultiArray msgTempArray;
+    ros::NodeHandle node;
+public:
+    RosTopicMsgPub(std::string topicName) {
+        msgPub=node.advertise<std_msgs::Float64MultiArray>(topicName,1000);
+        // std::cout<<topicName<<std::endl;
+    }
+    void msgPubRun(double * msg_array){
+        msgTempArray.data = {msg_array[0], msg_array[1], msg_array[2]};
+        msgPub.publish(msgTempArray);
+    }
+    void msgPubRun(Eigen::Matrix<double,3,1> msg_matrix){
+        msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2)};
+        msgPub.publish(msgTempArray);
+    }
+    void msgPubRun(Eigen::Matrix<double,4,1> msg_matrix){
+        msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2), msg_matrix(3)};
+        msgPub.publish(msgTempArray); 
+    }
+    void msgPubRun(Eigen::Matrix<double,6,1> msg_matrix) {
+        msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2), msg_matrix(3), msg_matrix(4), msg_matrix(5)};
+        msgPub.publish(msgTempArray);
+    }
+    void msgPubRun(Eigen::Matrix<double,18,1> msg_matrix) {
+        msgTempArray.data={
+            msg_matrix(0),msg_matrix(1),msg_matrix(2),msg_matrix(3),msg_matrix(4),msg_matrix(5),
+            msg_matrix(6),msg_matrix(7),msg_matrix(8),msg_matrix(9),msg_matrix(10),msg_matrix(11),
+            msg_matrix(12),msg_matrix(13),msg_matrix(14),msg_matrix(15),msg_matrix(16),msg_matrix(17),
+            };
+        msgPub.publish(msgTempArray);
+    }
+};
 bool running = true;
 
 // over watch the ctrl+c command
@@ -50,8 +92,8 @@ int main(int argc, char **argv){
     /* set the print format */
     // 这段代码用于设置 `std::cout` 的输出格式。
     // 具体来说，`std::fixed` 表示浮点数将以固定小数位数的格式输出，而 `std::setprecision(3)` 则表示设置输出浮点数的小数位数为 3。
-    // 因此，该代码段会导致 `std::cout` 输出的浮点数保留 3 位小数。
-    std::cout << std::fixed << std::setprecision(3);
+    // 因此，该代码段会导致 `std::cout` 输出的浮点数保留 4 位小数。
+    std::cout << std::fixed << std::setprecision(4);
 
     // osqpMpcTest();//lcc
     // printf("\naaa\n");
@@ -111,17 +153,23 @@ int main(int argc, char **argv){
     // ros::AsyncSpinner spinner(3);
     // spinner.start();
 
+    RosTopicMsgPub COM("COM");
+    RosTopicMsgPub VEL("VEL");
+    RosTopicMsgPub RPY("RPY");
+    // COM.msgPubRun(_ctrlComp->estimator->getPosition());
     while (running)
     {   
-        auto t1 = std::chrono::high_resolution_clock::now();
+        // auto t1 = std::chrono::high_resolution_clock::now();
 
         ctrlFrame.run();
-
+        COM.msgPubRun( ctrlComp->estimator->getPosition() );
+        VEL.msgPubRun( ctrlComp->estimator->getVelocity() );
+        RPY.msgPubRun( rotMatToRPY(ctrlComp->lowState->getRotMat()));
         // 延时2毫秒
         // std::this_thread::sleep_for(std::chrono::milliseconds(2));
 
-        auto t2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> ms_double = t2 - t1;
+        // auto t2 = std::chrono::high_resolution_clock::now();
+        // std::chrono::duration<double, std::milli> ms_double = t2 - t1;
         // std::cout << "ctrlFrame.run() in " << ms_double.count() << "ms" << std::endl;
     }
 

@@ -88,44 +88,44 @@ private:
     ros::Subscriber sub_nav_odometry;
 };
 
-class RosTopicMsgPub
-{
-protected:
-    ros::Publisher msgPub;
-    std_msgs::Float64 msgTemp;
-    std_msgs::Float64MultiArray msgTempArray;
-    ros::NodeHandle node;
-public:
-    RosTopicMsgPub(std::string topicName) {
-        msgPub=node.advertise<std_msgs::Float64MultiArray>(topicName,1000);
-        // std::cout<<topicName<<std::endl;
-    }
-    void msgPubRun(double * msg_array){
-        msgTempArray.data = {msg_array[0], msg_array[1], msg_array[2]};
-        msgPub.publish(msgTempArray);
-    }
-    void msgPubRun(Eigen::Matrix<double,3,1> msg_matrix){
-        msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2)};
-        msgPub.publish(msgTempArray);
-    }
-    void msgPubRun(Eigen::Matrix<double,4,1> msg_matrix){
-        msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2), msg_matrix(3)};
-        msgPub.publish(msgTempArray); 
-    }
-    void msgPubRun(Eigen::Matrix<double,6,1> msg_matrix) {
-        msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2), msg_matrix(3), msg_matrix(4), msg_matrix(5)};
-        msgPub.publish(msgTempArray);
-    }
-    void msgPubRun(Eigen::Matrix<double,18,1> msg_matrix) {
-        msgTempArray.data={
-            msg_matrix(0),msg_matrix(1),msg_matrix(2),msg_matrix(3),msg_matrix(4),msg_matrix(5),
-            msg_matrix(6),msg_matrix(7),msg_matrix(8),msg_matrix(9),msg_matrix(10),msg_matrix(11),
-            msg_matrix(12),msg_matrix(13),msg_matrix(14),msg_matrix(15),msg_matrix(16),msg_matrix(17),
-            };
-        msgPub.publish(msgTempArray);
-    }
+// class RosTopicMsgPub
+// {
+// protected:
+//     ros::Publisher msgPub;
+//     std_msgs::Float64 msgTemp;
+//     std_msgs::Float64MultiArray msgTempArray;
+//     ros::NodeHandle node;
+// public:
+//     RosTopicMsgPub(std::string topicName) {
+//         msgPub=node.advertise<std_msgs::Float64MultiArray>(topicName,1000);
+//         // std::cout<<topicName<<std::endl;
+//     }
+//     void msgPubRun(double * msg_array){
+//         msgTempArray.data = {msg_array[0], msg_array[1], msg_array[2]};
+//         msgPub.publish(msgTempArray);
+//     }
+//     void msgPubRun(Eigen::Matrix<double,3,1> msg_matrix){
+//         msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2)};
+//         msgPub.publish(msgTempArray);
+//     }
+//     void msgPubRun(Eigen::Matrix<double,4,1> msg_matrix){
+//         msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2), msg_matrix(3)};
+//         msgPub.publish(msgTempArray); 
+//     }
+//     void msgPubRun(Eigen::Matrix<double,6,1> msg_matrix) {
+//         msgTempArray.data = {msg_matrix(0), msg_matrix(1), msg_matrix(2), msg_matrix(3), msg_matrix(4), msg_matrix(5)};
+//         msgPub.publish(msgTempArray);
+//     }
+//     void msgPubRun(Eigen::Matrix<double,18,1> msg_matrix) {
+//         msgTempArray.data={
+//             msg_matrix(0),msg_matrix(1),msg_matrix(2),msg_matrix(3),msg_matrix(4),msg_matrix(5),
+//             msg_matrix(6),msg_matrix(7),msg_matrix(8),msg_matrix(9),msg_matrix(10),msg_matrix(11),
+//             msg_matrix(12),msg_matrix(13),msg_matrix(14),msg_matrix(15),msg_matrix(16),msg_matrix(17),
+//             };
+//         msgPub.publish(msgTempArray);
+//     }
 
-};
+// };
 
 
 

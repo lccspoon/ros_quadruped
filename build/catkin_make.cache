@@ -1,0 +1,2 @@
+lcc:quadruped
+-DCATKIN_DEVEL_PREFIX=/home/lcc/ck_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lcc/ck_ws/install -G Unix Makefiles

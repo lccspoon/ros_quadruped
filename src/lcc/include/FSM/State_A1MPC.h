@@ -87,6 +87,15 @@ private:
 
     Vec34 _posFeetGlobalGoal_last;
     Vec4 touch_flag;
+
+    //VMC lcc 20240604
+    Mat3 _Kp, _Kd;
+    void _torqueCtrl();
+    Vec34 _initFeetPos;
+    Vec12 torque12;
+    int init_cout;
+
+    double body_h;
 };
 
 

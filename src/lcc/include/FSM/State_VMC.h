@@ -9,6 +9,7 @@
 #include "Gait/GaitGenerator.h"
 #include "control/BalanceCtrl.h"
 #include "common/filter.h"
+#include "control/TerrianEsti.h"
 #include<cstdlib> 
 
 class State_VMC : public FSMState{
@@ -32,6 +33,7 @@ private:
     Estimator *_est;
     QuadrupedRobot *_robModel;
     BalanceCtrl *_balCtrl;
+    TerrianEsti terr;//lcc 20240604
 
     // Rob State
     Vec3  _posBody, _velBody; // 由Estimator得到的：world下body的位置和速度
@@ -68,6 +70,18 @@ private:
     // Calculate average value
     AvgCov *_avg_posError = new AvgCov(3, "_posError", true, 1000, 1000, 1);
     AvgCov *_avg_angError = new AvgCov(3, "_angError", true, 1000, 1000, 1000);
+
+    //VMC lcc 20240604
+    Mat3 _Kp, _Kd;
+    void _torqueCtrl();
+    Vec34 _initFeetPos;
+    Vec12 torque12;
+    int init_cout;
+
+    //terrian estimator lcc 20240604
+    Vec3 *_Apla;
+    Vec3 root_euler_d;
+    double body_h;
 };
 
 #endif  // TROTTING_H

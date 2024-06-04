@@ -14,7 +14,7 @@ State_A1MPC::State_A1MPC(CtrlComponents *ctrlComp)
               _balCtrl(ctrlComp->balCtrl),_convMpc(ctrlComp->convMpc){
     _gait = new GaitGenerator(ctrlComp);
 
-    _gaitHeight = 0.1;
+    _gaitHeight = 0.08;
 
 // #ifdef ROBOT_TYPE_Go1
 //     _Kpp = Vec3(70, 70, 70).asDiagonal();
@@ -34,17 +34,9 @@ State_A1MPC::State_A1MPC(CtrlComponents *ctrlComp)
     _KdSwing = Vec3(10, 10, 10).asDiagonal();
 // #endif
 
-    // _vxLim = Vec2( -1, 1 );
-    // _vyLim = Vec2( -0.6, 0.6 );
-    // _wyawLim = Vec2( -0.8, 0.8 );
-
-    _vxLim = Vec2( -0.8, 0.8 );
-    _vyLim = Vec2( -0.5, 0.5 );
-    _wyawLim = Vec2( -0.4, 0.4 );
-
-    // _vxLim = _robModel->getRobVelLimitX();
-    // _vyLim = _robModel->getRobVelLimitY();
-    // _wyawLim = _robModel->getRobVelLimitYaw();
+    _vxLim = _robModel->getRobVelLimitX();
+    _vyLim = _robModel->getRobVelLimitY();
+    _wyawLim = _robModel->getRobVelLimitYaw();
 
     //mpc init
     q_weights.resize(13);
@@ -80,7 +72,7 @@ State_A1MPC::~State_A1MPC(){
 void State_A1MPC::enter(){
     _pcd = _est->getPosition();//获取body在world下的位置
     _pcd(2) = -_robModel->getFeetPosIdeal()(2, 0);//将机身高度设为理想足端高度的负数
-
+    body_h = -_robModel->getFeetPosIdeal()(2, 0);//lcc 20240604
     /*-----命令清零-----*/
     _vCmdBody.setZero();
     _yawCmd = _lowState->getYaw();
@@ -140,12 +132,14 @@ void State_A1MPC::run(){
     }
     calcGrf();// 计算MPC支反力
     if ( mpc_init_counter > PLAN_HORIZON + 1)  //
-        _tau = _robModel->getTau(_q, _forceFeetBody * 0.5 + foot_forces_grf * 0.6 * 0.5); // qp + mpc
+        _tau = _robModel->getTau(_q, _forceFeetBody * 0.5 + foot_forces_grf * 0.6 * 0.7); // qp + mpc
     else
         /*QP*/
         _tau = _robModel->getTau(_q, _forceFeetBody * 1 + foot_forces_grf * 0); // qp + mpc
     
+
     calcQQd();// 计算关节位置、速度
+    _torqueCtrl();
 
     if(checkStepOrNot()){
         _ctrlComp->setStartWave();
@@ -153,7 +147,8 @@ void State_A1MPC::run(){
         _ctrlComp->setAllStance();
     }
 
-    _lowCmd->setTau(_tau);
+    // _lowCmd->setTau(_tau );
+    _lowCmd->setTau(_tau + torque12 * 0.1); //lcc 20240604
     _lowCmd->setQ(vec34ToVec12(_qGoal));
     _lowCmd->setQd(vec34ToVec12(_qdGoal));
 
@@ -197,15 +192,10 @@ void State_A1MPC::calcCmd(){
     /* Movement */
     _vCmdGlobal = _B2G_RotMat * _vCmdBody; //将机身速度映射到world系
 
-    // _vCmdGlobal(0) = saturation(_vCmdGlobal(0), Vec2(_velBody(0)-0.2, _velBody(0)+0.2));
-    // _vCmdGlobal(1) = saturation(_vCmdGlobal(1), Vec2(_velBody(1)-0.2, _velBody(1)+0.2));
-    // _pcd(0) = saturation(_pcd(0) + _vCmdGlobal(0) * _ctrlComp->dt, Vec2(_posBody(0) - 0.05, _posBody(0) + 0.05));
-    // _pcd(1) = saturation(_pcd(1) + _vCmdGlobal(1) * _ctrlComp->dt, Vec2(_posBody(1) - 0.05, _posBody(1) + 0.05));
-
-    _vCmdGlobal(0) = saturation(_vCmdGlobal(0), Vec2(_velBody(0)-1, _velBody(0)+1));
-    _vCmdGlobal(1) = saturation(_vCmdGlobal(1), Vec2(_velBody(1)-1, _velBody(1)+1));
-    _pcd(0) = saturation(_pcd(0) + _vCmdGlobal(0) * _ctrlComp->dt, Vec2(_posBody(0) - 1, _posBody(0) + 1));
-    _pcd(1) = saturation(_pcd(1) + _vCmdGlobal(1) * _ctrlComp->dt, Vec2(_posBody(1) - 1, _posBody(1) + 1));
+    _vCmdGlobal(0) = saturation(_vCmdGlobal(0), Vec2(_velBody(0)-0.2, _velBody(0)+0.2));
+    _vCmdGlobal(1) = saturation(_vCmdGlobal(1), Vec2(_velBody(1)-0.2, _velBody(1)+0.2));
+    _pcd(0) = saturation(_pcd(0) + _vCmdGlobal(0) * _ctrlComp->dt, Vec2(_posBody(0) - 0.05, _posBody(0) + 0.05));
+    _pcd(1) = saturation(_pcd(1) + _vCmdGlobal(1) * _ctrlComp->dt, Vec2(_posBody(1) - 0.05, _posBody(1) + 0.05));
     _vCmdGlobal(2) = 0;
 
     /* Turning */
@@ -230,11 +220,15 @@ void State_A1MPC::calcGrf(){
     root_euler = rotMatToRPY( _B2G_RotMat );
     root_ang_vel = _lowState->getGyroGlobal();
     mpc_states <<   root_euler(0), root_euler(1), root_euler(2), 
-                    _posBody(0), _posBody(1), _posBody(2), 
+                    // _posBody(0), _posBody(1), _posBody(2), 
+                    _posBody(0), _posBody(1), body_h, //lcc 20240604
                     root_ang_vel(0), root_ang_vel(1), root_ang_vel(2), 
                     _velBody(0), _velBody(1), _velBody(2), 
                     -9.8;
-    double mpc_dt = 0.002;
+    // double mpc_dt = 0.002;
+    double mpc_dt = _ctrlComp->dt;
+    std::cout<<" body_h :"<< body_h <<std::endl;
+
 
      _yawCmd = _yawCmd + _dYawCmd * _ctrlComp->dt;
 
@@ -330,6 +324,28 @@ void State_A1MPC::calcGrf(){
 
 void State_A1MPC::calcQPf(){
     _posError = _pcd - _posBody;
+
+    /*--------------lcc start 20240604----------------*/
+    Vec4 leg_deep;
+    int leg_deep_num;
+    leg_deep_num = 0;
+    leg_deep.setZero();
+    for (int i = 0; i < 4; i++)
+    {   
+        if((*_contact)(i) == 1) //stand
+        {
+            leg_deep(i) = _ctrlComp->robotModel->getFootPosition(*_lowState, i, FrameType::BODY)(2);
+            leg_deep_num ++;
+        }
+    }
+    if( (*_phase)(0) > 0.5 && (*_phase)(0) <= 0.6 )
+    {
+        body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) )/leg_deep_num;
+    }
+    _posError(2) = _pcd(2) - body_h; // 使用接地腿的高度平均值作为机身实际高度，摆脱世界系下机身高度状态估计不准的难题
+    // std::cout<<" body_h :"<< body_h <<std::endl;
+    /*--------------lcc end 20240604----------------*/
+
     _velError = _vCmdGlobal - _velBody;
 
     _ddPcd = _Kpp * _posError + _Kdp * _velError;
@@ -369,4 +385,32 @@ void State_A1MPC::calcQQd(){
 
     _qGoal = vec12ToVec34(_robModel->getQ(_posFeet2BGoal, FrameType::BODY));
     _qdGoal = vec12ToVec34(_robModel->getQd(_posFeet2B, _velFeet2BGoal, FrameType::BODY));
+}
+
+void State_A1MPC::_torqueCtrl(){
+
+    _Kp = Vec3(5000, 5000, 5000).asDiagonal();
+    _Kd = Vec3( 200,  200, 200).asDiagonal();
+
+    Vec34 pos34;
+    Vec34 vel34;
+    Vec34 _targetPos34;
+    Vec34 force34;
+    pos34.setZero();
+    vel34.setZero();
+    force34.setZero();
+    _targetPos34.setZero();
+    torque12.setZero();
+
+    pos34 = _ctrlComp->robotModel->getFeet2BPositions(*_lowState,FrameType::BODY );
+    vel34 = _ctrlComp->robotModel->getFeet2BVelocities(*_lowState,FrameType::BODY );
+
+    _targetPos34 = _posFeet2BGoal;
+
+    for (int i = 0; i < 4; ++i){
+        force34.block< 3, 1>( 0, i) =  _Kp*(_targetPos34.block< 3, 1>( 0, i) - pos34.block< 3, 1>( 0, i) ) + _Kd*(-vel34.block< 3, 1>( 0, i) );
+    }
+
+    Vec12 _q = vec34ToVec12(_lowState->getQ()); 
+    torque12 = _ctrlComp->robotModel->getTau( _q, force34);
 }

@@ -60,6 +60,7 @@ public:
     UserFunctionMode getUserFunctionMode(){return userFunctionMode;}
     void setPassive(){userCmd = UserCommand::PASSIVE_1;}
     void setZero(){userValue.setZero();}
+    UserFunctionMode userFunctionMode; // lcc 20250601
 #ifdef COMPILE_WITH_REAL_ROBOT
     virtual void receiveHandle(UNITREE_LEGGED_SDK::LowState *lowState){};
 #endif  // COMPILE_WITH_REAL_ROBOT
@@ -67,7 +68,6 @@ protected:
     virtual void* run(void *arg){return NULL;}
     UserCommand userCmd;
     UserValue userValue;
-    UserFunctionMode userFunctionMode; // lcc 20250601
 };
 
 #endif  // CMDPANEL_H
