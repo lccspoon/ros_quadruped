@@ -1,0 +1,100 @@
+# Publish all joint states
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 1000.0
+  
+# Toqure Controllers
+rfj1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rfj1
+
+
+rfj2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rfj2
+
+
+rfj3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rfj3
+
+
+
+lfj5_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lfj5
+
+
+lfj6_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lfj6
+
+  
+lfj7_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lfj7
+
+  
+rmj9_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rmj9
+
+
+rmj10_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rmj10
+
+
+rmj11_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rmj11
+
+
+
+lmj13_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lmj13
+
+
+lmj14_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lmj14
+
+  
+lmj15_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lmj15
+
+
+
+rbj17_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rbj17
+
+
+rbj18_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rbj18
+
+  
+rbj19_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: rbj19
+
+
+
+lbj21_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lbj21
+
+
+lbj22_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lbj22
+
+  
+lbj23_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: lbj23
+
+  

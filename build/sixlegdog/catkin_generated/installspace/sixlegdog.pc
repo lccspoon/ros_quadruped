@@ -1,0 +1,8 @@
+prefix=/home/lcc/ccsix_ws/install
+
+Name: sixlegdog
+Description: Description of sixlegdog
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,1402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="sixlegdog">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0155117897181914 2.42861286636753E-17 0.000458340027840073"
+        rpy="0 0 0" />
+      <mass
+        value="16" />
+      <inertia
+        ixx="1"
+        ixy="0"
+        ixz="0"
+        iyy="1"
+        iyz="0"
+        izz="1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rfl1">
+    <inertial>
+      <origin
+        xyz="-0.00131447196887721 0 -4.33680868994202E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rfl1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rfl1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj1"
+    type="continuous">
+    <origin
+      xyz="0.21939 -0.09 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rfl1" />
+    <axis
+      xyz="1 0 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rfl2">
+    <inertial>
+      <origin
+        xyz="-6.53211652337782E-07 0.0322176779917884 -0.00392709303280481"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rfl2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rfl2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj2"
+    type="continuous">
+    <origin
+      xyz="0.06575 -0.0385 0"
+      rpy="0 0 0" />
+    <parent
+      link="rfl1" />
+    <child
+      link="rfl2" />
+    <axis
+      xyz="0 1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rfl3">
+    <inertial>
+      <origin
+        xyz="-1.38777878078145E-17 -2.77555756156289E-17 -0.134485646148589"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rfl3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rfl3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj3"
+    type="continuous">
+    <origin
+      xyz="0 -0.02875 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="rfl2" />
+    <child
+      link="rfl3" />
+    <axis
+      xyz="0 -1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lfl5">
+    <inertial>
+      <origin
+        xyz="-0.00131447196887721 0 8.67361737988404E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lfl5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lfl5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj5"
+    type="continuous">
+    <origin
+      xyz="0.21939 0.09 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lfl5" />
+    <axis
+      xyz="1 0 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lfl6">
+    <inertial>
+      <origin
+        xyz="6.54397969868104E-07 -0.0322176779917884 -0.00392709813580003"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lfl6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lfl6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj6"
+    type="continuous">
+    <origin
+      xyz="0.06575 0.0385 0"
+      rpy="0 0 0" />
+    <parent
+      link="lfl5" />
+    <child
+      link="lfl6" />
+    <axis
+      xyz="0 -1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lfl7">
+    <inertial>
+      <origin
+        xyz="-0.000152488307947535 -3.2612801348364E-14 -0.134485559698129"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lfl7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lfl7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj7"
+    type="continuous">
+    <origin
+      xyz="0 0.02875 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="lfl6" />
+    <child
+      link="lfl7" />
+    <axis
+      xyz="0 1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rml9">
+    <inertial>
+      <origin
+        xyz="0.00131447196887718 0 1.73472347597681E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rml9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rml9.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj9"
+    type="continuous">
+    <origin
+      xyz="0.05025 -0.09 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rml9" />
+    <axis
+      xyz="-1 0 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rml10">
+    <inertial>
+      <origin
+        xyz="-6.54397968535836E-07 0.0322176779917887 -0.00392709813580057"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rml10.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rml10.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj10"
+    type="continuous">
+    <origin
+      xyz="-0.06575 -0.0385 0"
+      rpy="0 0 0" />
+    <parent
+      link="rml9" />
+    <child
+      link="rml10" />
+    <axis
+      xyz="0 1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rml11">
+    <inertial>
+      <origin
+        xyz="-5.55111512312578E-17 0 -0.134485646148589"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rml11.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rml11.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj11"
+    type="continuous">
+    <origin
+      xyz="0 -0.02875 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="rml10" />
+    <child
+      link="rml11" />
+    <axis
+      xyz="0 -1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lml13">
+    <inertial>
+      <origin
+        xyz="0.00131447196887718 0 -2.16840434497101E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lml13.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lml13.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj13"
+    type="continuous">
+    <origin
+      xyz="0.05025 0.09 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lml13" />
+    <axis
+      xyz="-1 0 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lml14">
+    <inertial>
+      <origin
+        xyz="6.53211653378616E-07 -0.0322176779917884 -0.00392709303280481"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lml14.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lml14.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj14"
+    type="continuous">
+    <origin
+      xyz="-0.06575 0.0385 0"
+      rpy="0 0 0" />
+    <parent
+      link="lml13" />
+    <child
+      link="lml14" />
+    <axis
+      xyz="0 -1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lml15">
+    <inertial>
+      <origin
+        xyz="0.000111828846872997 2.38975506050565E-14 -0.13448559965406"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lml15.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lml15.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj15"
+    type="continuous">
+    <origin
+      xyz="0 0.02875 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="lml14" />
+    <child
+      link="lml15" />
+    <axis
+      xyz="0 1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rbl17">
+    <inertial>
+      <origin
+        xyz="0.00131447196887724 0 8.67361737988404E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rbl17.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rbl17.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj17"
+    type="continuous">
+    <origin
+      xyz="-0.20011 -0.09 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rbl17" />
+    <axis
+      xyz="-1 0 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rbl18">
+    <inertial>
+      <origin
+        xyz="-6.5439796970157E-07 0.0322176779917884 -0.0039270981358"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rbl18.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rbl18.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj18"
+    type="continuous">
+    <origin
+      xyz="-0.06575 -0.0385 0"
+      rpy="0 0 0" />
+    <parent
+      link="rbl17" />
+    <child
+      link="rbl18" />
+    <axis
+      xyz="0 1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rbl19">
+    <inertial>
+      <origin
+        xyz="-4.46883304429102E-05 -9.52016243616072E-15 -0.13448563872383"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rbl19.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/rbl19.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj19"
+    type="continuous">
+    <origin
+      xyz="0 -0.02875 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="rbl18" />
+    <child
+      link="rbl19" />
+    <axis
+      xyz="0 -1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lbl21">
+    <inertial>
+      <origin
+        xyz="0.00131447196887724 0 -8.67361737988404E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lbl21.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lbl21.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj21"
+    type="continuous">
+    <origin
+      xyz="-0.20011 0.09 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lbl21" />
+    <axis
+      xyz="-1 0 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lbl22">
+    <inertial>
+      <origin
+        xyz="6.53211653656172E-07 -0.0322176779917884 -0.00392709303280478"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lbl22.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lbl22.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj22"
+    type="continuous">
+    <origin
+      xyz="-0.06575 0.0385 0"
+      rpy="0 0 0" />
+    <parent
+      link="lbl21" />
+    <child
+      link="lbl22" />
+    <axis
+      xyz="0 -1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lbl23">
+    <inertial>
+      <origin
+        xyz="0.000111828846872997 2.39253061806721E-14 -0.13448559965406"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lbl23.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sixlegdog/meshes/lbl23.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj23"
+    type="continuous">
+    <origin
+      xyz="0 0.02875 -0.216"
+      rpy="0 0 0" />
+    <parent
+      link="lbl22" />
+    <child
+      link="lbl23" />
+    <axis
+      xyz="0 1 0" />
+                <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+
+<transmission name="trans_lfj5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lfj5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lfj5_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lfj6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lfj6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lfj6_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lfj7">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lfj7">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lfj7_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rfj1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rfj1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rfj1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rfj2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rfj2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rfj2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rfj3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rfj3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rfj3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rmj9">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rmj9">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rmj9_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rmj10">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rmj10">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rmj10_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rmj11">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rmj11">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rmj11_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lmj13">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lmj13">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lmj13_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lmj14">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lmj14">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lmj14_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lmj15">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lmj15">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lmj15_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rbj17">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rbj17">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rbj17_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rbj18">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rbj18">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rbj18_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rbj19">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rbj19">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rbj19_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lbj21">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lbj21">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lbj21_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lbj22">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lbj22">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lbj22_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lbj23">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lbj23">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lbj23_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+  	  <alwaysOn>true</alwaysOn>
+    	<bodyName>base_link</bodyName>
+    	<topicName>imu</topicName>
+    	<serviceName>imu_service</serviceName>
+    	<gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>base_link</frameName>
+    	<updateRate>1000.0</updateRate>
+    </plugin>
+
+    <plugin name="POS_COM" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>1000.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>POS_COM</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+  <!-- fix the model  -->
+  <!-- <link name="world"/>
+  <joint name="fix" type="fixed">
+  <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  <parent link="world"/>
+  <child link="base_link"/> 
+  </joint> -->
+
+  <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/sixlegdog</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,2 @@
+lcc:sixlegdog
+-DCATKIN_DEVEL_PREFIX=/home/lcc/ccsix_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lcc/ccsix_ws/install -G Unix Makefiles

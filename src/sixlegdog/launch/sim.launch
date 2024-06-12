@@ -1,0 +1,11 @@
+<launch>
+  
+  <!-- positon control -->
+  <!-- <include file="$(find sixlegdog)/launch/Positioncontroller.launch"/> -->
+  <include file="$(find sixlegdog)/launch/gazebo_mdf_inertia.launch"/>
+
+  <!-- torque control -->
+  <include file="$(find sixlegdog)/launch/Touquecontroller.launch"/>
+  <!-- <include file="$(find sixlegdog)/launch/gazebo_ori_inertia.launch"/> -->
+  
+</launch>

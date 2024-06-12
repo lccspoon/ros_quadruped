@@ -1,0 +1,8 @@
+prefix=/home/lcc/ccsix_ws/install
+
+Name: lcc
+Description: Description of lcc
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
