@@ -1,0 +1,97 @@
+# Publish all joint states
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 500.0
+  
+# Positon Controllers
+L1_1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L1_1J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L1_2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L1_2J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L1_3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L1_3J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L2_1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L2_1J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L2_2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L2_2J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L2_3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L2_3J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L3_1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L3_1J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L3_2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L3_2J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+L3_3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: L3_3J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R1_1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R1_1J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R1_2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R1_2J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R1_3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R1_3J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R2_1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R2_1J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R2_2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R2_2J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R2_3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R2_3J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R3_1_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R3_1J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R3_2_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R3_2J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+R3_3_jointcc:
+  type: effort_controllers/JointEffortController
+  joint: R3_3J
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  

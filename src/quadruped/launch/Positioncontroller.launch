@@ -1,0 +1,17 @@
+<launch>
+  <rosparam file="$(find quadruped)/config/Positioncotroller.yaml" command="load" ns="/quadruped" />
+  
+  <node name="control_spawner" pkg="controller_manager" type="spawner"
+             respawn="false" output="screen"  ns="/quadruped"
+             args="joint_state_controller
+                  RfJ1_jointcc RfJ2_jointcc RfJ3_jointcc 
+                  RbJ1_jointcc RbJ2_jointcc RbJ3_jointcc 
+                  LfJ1_jointcc LfJ2_jointcc LfJ3_jointcc 
+                  LbJ1_jointcc LbJ2_jointcc LbJ3_jointcc 
+                   "/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+             respawn="false" output="screen"  >
+    <remap from="/joint_state" to="/quadruped/joint_states"/>
+  </node>
+  
+</launch>
