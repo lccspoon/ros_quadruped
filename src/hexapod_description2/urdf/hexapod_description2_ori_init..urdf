@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="hexapod_description2">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0012365 5.5511E-17 0.028671"
+        rpy="0 0 0" />
+      <mass
+        value="5.8419" />
+      <inertia
+        ixx="0.026264"
+        ixy="1.0418E-17"
+        ixz="-0.00041705"
+        iyy="0.069583"
+        iyz="2.7871E-19"
+        izz="0.090006" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rfl1">
+    <inertial>
+      <origin
+        xyz="0 0 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.21339" />
+      <inertia
+        ixx="0.00012608"
+        ixy="9.0278E-36"
+        ixz="4.9365E-21"
+        iyy="0.00012608"
+        iyz="2.9395E-20"
+        izz="0.0002122" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj1"
+    type="continuous">
+    <origin
+      xyz="0.14185 -0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rfl1" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="rfl2">
+    <inertial>
+      <origin
+        xyz="-0.032218 -0.0039271 6.5321E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.24576" />
+      <inertia
+        ixx="0.00032109"
+        ixy="1.701E-05"
+        ixz="-2.8611E-09"
+        iyy="0.0001444"
+        iyz="1.9556E-08"
+        izz="0.00023844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj2"
+    type="continuous">
+    <origin
+      xyz="0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="rfl1" />
+    <child
+      link="rfl2" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="rfl3">
+    <inertial>
+      <origin
+        xyz="-5.5511E-17 -0.13449 -2.7756E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.012147" />
+      <inertia
+        ixx="7.0059E-05"
+        ixy="-2.3451E-20"
+        ixz="-5.131E-15"
+        iyy="2.025E-06"
+        iyz="1.5776E-22"
+        izz="6.9843E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj3"
+    type="continuous">
+    <origin
+      xyz="0.02875 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="rfl2" />
+    <child
+      link="rfl3" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="lfl4">
+    <inertial>
+      <origin
+        xyz="0 2.7756E-17 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.21339" />
+      <inertia
+        ixx="0.00012608"
+        ixy="-3.0093E-36"
+        ixz="4.2306E-21"
+        iyy="0.00012608"
+        iyz="1.1603E-20"
+        izz="0.0002122" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj4"
+    type="continuous">
+    <origin
+      xyz="0.14185 0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lfl4" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="lfl5">
+    <inertial>
+      <origin
+        xyz="-0.032218 0.0039271 -6.544E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.24576" />
+      <inertia
+        ixx="0.00032109"
+        ixy="-1.701E-05"
+        ixz="2.8028E-09"
+        iyy="0.0001444"
+        iyz="1.9556E-08"
+        izz="0.00023844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj5"
+    type="continuous">
+    <origin
+      xyz="0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="lfl4" />
+    <child
+      link="lfl5" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="lfl6">
+    <inertial>
+      <origin
+        xyz="-3.2585E-14 0.13449 0.00015249"
+        rpy="0 0 0" />
+      <mass
+        value="0.012147" />
+      <inertia
+        ixx="7.0059E-05"
+        ixy="3.0351E-18"
+        ixz="5.131E-15"
+        iyy="2.0251E-06"
+        iyz="-7.6896E-08"
+        izz="6.9843E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj6"
+    type="continuous">
+    <origin
+      xyz="0.0287500000000004 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="lfl5" />
+    <child
+      link="lfl6" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="rml7">
+    <inertial>
+      <origin
+        xyz="-0.0017584 -1.3878E-17 0.00056229"
+        rpy="0 0 0" />
+      <mass
+        value="0.22267" />
+      <inertia
+        ixx="0.00013154"
+        ixy="2.47E-21"
+        ixz="-6.7784E-06"
+        iyy="0.00014688"
+        iyz="3.0123E-20"
+        izz="0.00023263" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj7"
+    type="continuous">
+    <origin
+      xyz="0 -0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rml7" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="rml8">
+    <inertial>
+      <origin
+        xyz="-0.0587261224930773 -0.000532880509906325 -5.88251406696827E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.273391828190981" />
+      <inertia
+        ixx="0.000365879968645106"
+        ixy="-5.5840235668393E-05"
+        ixz="-2.86238071922877E-09"
+        iyy="0.000221339350714085"
+        iyz="-1.958510767732E-08"
+        izz="0.00034054404531645" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj8"
+    type="continuous">
+    <origin
+      xyz="0.02875 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="rml7" />
+    <child
+      link="rml8" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="rml9">
+    <inertial>
+      <origin
+        xyz="3.25295346215171E-14 -0.134485559698129 0.000152488307947479"
+        rpy="0 0 0" />
+      <mass
+        value="0.0121471500234535" />
+      <inertia
+        ixx="7.00586529163585E-05"
+        ixy="3.0178462755213E-18"
+        ixz="-5.13096249593542E-15"
+        iyy="2.02512865251898E-06"
+        iyz="7.68961629128491E-08"
+        izz="6.98428593223181E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml9.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj9"
+    type="continuous">
+    <origin
+      xyz="-0.02875 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="rml8" />
+    <child
+      link="rml9" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="lml10">
+    <inertial>
+      <origin
+        xyz="-0.0017584 -2.7756E-17 0.00056229"
+        rpy="0 0 0" />
+      <mass
+        value="0.22267" />
+      <inertia
+        ixx="0.00013154"
+        ixy="8.8324E-21"
+        ixz="-6.7784E-06"
+        iyy="0.00014688"
+        iyz="2.7943E-21"
+        izz="0.00023263" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml10.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml10.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj10"
+    type="continuous">
+    <origin
+      xyz="0 0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lml10" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="lml11">
+    <inertial>
+      <origin
+        xyz="-0.0587261224930773 0.000532880509906242 5.88251406696827E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.273391828190982" />
+      <inertia
+        ixx="0.000365879968645106"
+        ixy="5.5840235668393E-05"
+        ixz="2.86238071938836E-09"
+        iyy="0.000221339350714085"
+        iyz="-1.9585107677359E-08"
+        izz="0.000340544045316451" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml11.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml11.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj11"
+    type="continuous">
+    <origin
+      xyz="0.02875 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="lml10" />
+    <child
+      link="lml11" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="lml12">
+    <inertial>
+      <origin
+        xyz="3.26960680752109E-14 0.134485559698129 -0.000152488307947535"
+        rpy="0 0 0" />
+      <mass
+        value="0.0121471500234535" />
+      <inertia
+        ixx="7.00586529163585E-05"
+        ixy="-3.08130709209099E-18"
+        ixz="5.13096271676089E-15"
+        iyy="2.02512865251898E-06"
+        iyz="7.68961629128673E-08"
+        izz="6.9842859322318E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj12"
+    type="continuous">
+    <origin
+      xyz="-0.02875 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="lml11" />
+    <child
+      link="lml12" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="rbl13">
+    <inertial>
+      <origin
+        xyz="0 0 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.21339" />
+      <inertia
+        ixx="0.00012608"
+        ixy="-6.0185E-36"
+        ixz="-1.0408E-20"
+        iyy="0.00012608"
+        iyz="3.5349E-20"
+        izz="0.0002122" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl13.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl13.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj13"
+    type="continuous">
+    <origin
+      xyz="-0.14185 -0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rbl13" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="rbl14">
+    <inertial>
+      <origin
+        xyz="0.032218 -0.0039271 -6.544E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.24576" />
+      <inertia
+        ixx="0.00032109"
+        ixy="-1.701E-05"
+        ixz="-2.8028E-09"
+        iyy="0.0001444"
+        iyz="-1.9556E-08"
+        izz="0.00023844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl14.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl14.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj14"
+    type="continuous">
+    <origin
+      xyz="-0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="rbl13" />
+    <child
+      link="rbl14" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="rbl15">
+    <inertial>
+      <origin
+        xyz="-9.77E-15 -0.13449 -4.4688E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.012147" />
+      <inertia
+        ixx="7.0059E-05"
+        ixy="-9.1384E-19"
+        ixz="-5.131E-15"
+        iyy="2.025E-06"
+        iyz="-2.2535E-08"
+        izz="6.9843E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl15.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl15.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj15"
+    type="continuous">
+    <origin
+      xyz="-0.02875 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="rbl14" />
+    <child
+      link="rbl15" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="lbl16">
+    <inertial>
+      <origin
+        xyz="0 0 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.21339" />
+      <inertia
+        ixx="0.00012608"
+        ixy="6.0185E-36"
+        ixz="-1.2975E-20"
+        iyy="0.00012608"
+        iyz="5.4242E-21"
+        izz="0.0002122" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl16.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl16.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj16"
+    type="continuous">
+    <origin
+      xyz="-0.14185 0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lbl16" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="lbl17">
+    <inertial>
+      <origin
+        xyz="0.032218 0.0039271 6.5321E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.24576" />
+      <inertia
+        ixx="0.00032109"
+        ixy="1.701E-05"
+        ixz="2.8611E-09"
+        iyy="0.0001444"
+        iyz="-1.9556E-08"
+        izz="0.00023844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl17.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl17.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj17"
+    type="continuous">
+    <origin
+      xyz="-0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="lbl16" />
+    <child
+      link="lbl17" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="lbl18">
+    <inertial>
+      <origin
+        xyz="-2.3759E-14 0.13449 0.00011183"
+        rpy="0 0 0" />
+      <mass
+        value="0.012147" />
+      <inertia
+        ixx="7.0059E-05"
+        ixy="2.2205E-18"
+        ixz="5.131E-15"
+        iyy="2.0251E-06"
+        iyz="-5.6393E-08"
+        izz="6.9843E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl18.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl18.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj18"
+    type="continuous">
+    <origin
+      xyz="-0.02875 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="lbl17" />
+    <child
+      link="lbl18" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+</robot>

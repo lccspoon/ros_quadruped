@@ -1,0 +1,2 @@
+hexapod_description2:lcc
+-DCATKIN_DEVEL_PREFIX=/home/lcc/cchex_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lcc/cchex_ws/install -G Unix Makefiles

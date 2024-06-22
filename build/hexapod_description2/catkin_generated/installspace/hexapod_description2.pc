@@ -1,0 +1,8 @@
+prefix=/home/lcc/cchex_ws/install
+
+Name: hexapod_description2
+Description: Description of hexapod_description2
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
