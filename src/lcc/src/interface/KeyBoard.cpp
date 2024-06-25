@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include "interface/KeyBoard.h"
 // #include "interface/ "
 #include <iostream>
@@ -35,7 +33,7 @@ UserCommand KeyBoard::checkCmd(){
         // printf(" \n keyboard->VMC_4  \n ");
         return UserCommand::VMC_4;
     case '5':
-        return UserCommand::TROTTING_5;
+        return UserCommand::POSITION_5;
 
 #ifdef COMPILE_WITH_MOVE_BASE
     case '5':

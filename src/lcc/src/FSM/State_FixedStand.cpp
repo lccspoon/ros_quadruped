@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include <iostream>
 #include "FSM/State_FixedStand.h"
 
@@ -116,8 +114,8 @@ FSMStateName State_FixedStand::checkChange(){
     else if(_lowState->userCmd == UserCommand::FREESTAND_3){
         return FSMStateName::FREESTAND;
     }
-    else if(_lowState->userCmd == UserCommand::TROTTING_5){
-        return FSMStateName::TROTTING;
+    else if(_lowState->userCmd == UserCommand::POSITION_5){
+        return FSMStateName::POSITION;
     }
     else if(_lowState->userCmd == UserCommand::BALANCE_TEST0){
         return FSMStateName::BALANCETEST;
@@ -132,7 +130,7 @@ FSMStateName State_FixedStand::checkChange(){
         return FSMStateName::A1MPC;
     }
     else if(_lowState->userCmd == UserCommand::VMC_4){  //lcc 20240523
-        return FSMStateName::VMC;
+        return FSMStateName::QP;
     }
 #ifdef COMPILE_WITH_MOVE_BASE
     else if(_lowState->userCmd == UserCommand::L2_Y){

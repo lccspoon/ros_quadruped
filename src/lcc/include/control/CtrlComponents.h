@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #ifndef CTRLCOMPONENTS_H
 #define CTRLCOMPONENTS_H
 

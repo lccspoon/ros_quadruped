@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include "Gait/FeetEndCal.h"
 
 FeetEndCal::FeetEndCal(CtrlComponents *ctrlComp)
@@ -57,7 +55,6 @@ Vec3 FeetEndCal::calFootPos(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float
     _yaw = _lowState->getYaw();
     _dYaw = _lowState->getDYaw();
     _nextYaw = _dYaw*(1-phase)*_Tswing + _dYaw*_Tstance/2 + _kyaw*(dYawGoal - _dYaw);
-    // _nextYaw =  _dYaw*_Tstance/2 + _kyaw*(dYawGoal - _dYaw);
 
     _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw);
     _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw);
@@ -68,16 +65,16 @@ Vec3 FeetEndCal::calFootPos(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float
 
     if (legID == 1)
     {
-    // std::cout<<" vxyGoalGlobal "<< legID <<"  :\n"<<vxyGoalGlobal.transpose() <<std::endl;
+        // std::cout<<" vxyGoalGlobal "<< legID <<"  :\n"<<vxyGoalGlobal.transpose() <<std::endl;
 
-    // std::cout<<" rx "<< legID <<"  :\n"<<_feetRadius(legID) * cos(0 + _feetInitAngle(legID) + 0) <<std::endl;
-    // std::cout<<" ry "<< legID <<"  :\n"<<_feetRadius(legID) * sin(0 + _feetInitAngle(legID) + 0) <<std::endl;
+        // std::cout<<" rx "<< legID <<"  :\n"<<_feetRadius(legID) * cos(0 + _feetInitAngle(legID) + 0) <<std::endl;
+        // std::cout<<" ry "<< legID <<"  :\n"<<_feetRadius(legID) * sin(0 + _feetInitAngle(legID) + 0) <<std::endl;
 
-    // std::cout<<" rx "<< legID <<"  :\n"<<_feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
-    // std::cout<<" ry "<< legID <<"  :\n"<<_feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
+        // std::cout<<" rx "<< legID <<"  :\n"<<_feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
+        // std::cout<<" ry "<< legID <<"  :\n"<<_feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
 
-    // std::cout<<" cos "<< legID <<"  :\n"<< cos(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
-    // std::cout<<" sin "<< legID <<"  :\n"<<sin(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
+        // std::cout<<" cos "<< legID <<"  :\n"<< cos(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
+        // std::cout<<" sin "<< legID <<"  :\n"<<sin(_yaw + _feetInitAngle(legID) + _nextYaw) <<std::endl;
 
         // std::cout<<" _yaw "<< legID <<"  :\n"<< _yaw <<std::endl;
         // std::cout<<" _nextYaw "<< legID <<"  :\n"<<_nextYaw <<std::endl;

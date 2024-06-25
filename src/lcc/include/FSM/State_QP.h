@@ -12,10 +12,10 @@
 #include "control/TerrianEsti.h"
 #include<cstdlib> 
 
-class State_VMC : public FSMState{
+class State_QP : public FSMState{
 public:
-    State_VMC(CtrlComponents *ctrlComp);
-    ~State_VMC();
+    State_QP(CtrlComponents *ctrlComp);
+    ~State_QP();
     void enter();
     void run();
     void exit();
@@ -76,7 +76,7 @@ private:
     AvgCov *_avg_posError = new AvgCov(3, "_posError", true, 1000, 1000, 1);
     AvgCov *_avg_angError = new AvgCov(3, "_angError", true, 1000, 1000, 1000);
 
-    //VMC lcc 20240604
+    //QP lcc 20240604
     Mat3 _Kp, _Kd;
     void _torqueCtrl();
     Vec36 _initFeetPos;

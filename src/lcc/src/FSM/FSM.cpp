@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include "FSM/FSM.h"
 #include <iostream>
 
@@ -11,9 +9,9 @@ FSM::FSM(CtrlComponents *ctrlComp)
     _stateList.passive = new State_Passive(_ctrlComp);
     _stateList.fixedStand = new State_FixedStand(_ctrlComp);
     _stateList.freeStand = new State_FreeStand(_ctrlComp);
-    _stateList.trotting = new State_Trotting(_ctrlComp);
+    _stateList.position = new State_Position(_ctrlComp);
     _stateList.a1mpc = new State_A1MPC(_ctrlComp);//lcc 20240416
-    _stateList.vmc = new State_VMC(_ctrlComp);//lcc 20240523
+    _stateList.qp = new State_QP(_ctrlComp);//lcc 20240523
     _stateList.balanceTest = new State_BalanceTest(_ctrlComp);
     _stateList.swingTest = new State_SwingTest(_ctrlComp);
     _stateList.stepTest = new State_StepTest(_ctrlComp);
@@ -57,6 +55,13 @@ void FSM::run(){
     // std::cout<<" _velFeetGlobal: \n"<< _ctrlComp->estimator->getFeetVel() <<std::endl;
     // printf("\n--------     next      --------\n");
 
+    // std::cout<<" (*contact_hex): \n"<< (*_ctrlComp->contact_hex).transpose() <<std::endl;
+    // std::cout<<" getFeetPos: \n"<< _ctrlComp->estimator->getFeetPos() <<std::endl;
+
+    // _B2G_RotMat = _lowState->getRotMat();//机身 到 世界 的变化矩阵
+    // _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
+
+    // std::cout<<" _G2B_RotMat: \n"<< _ctrlComp->lowState->getRotMat().transpose() <<std::endl;
 
     if(!checkSafty()){
         _ctrlComp->ioInter->setPassive();
@@ -98,8 +103,8 @@ FSMState* FSM::getNextState(FSMStateName stateName){
     case FSMStateName::FREESTAND:
         return _stateList.freeStand;
         break;
-    case FSMStateName::TROTTING:
-        return _stateList.trotting;
+    case FSMStateName::POSITION:
+        return _stateList.position;
         break;
     case FSMStateName::BALANCETEST:
         return _stateList.balanceTest;
@@ -113,8 +118,8 @@ FSMState* FSM::getNextState(FSMStateName stateName){
     case FSMStateName::A1MPC:    //lcc 20240416
         return _stateList.a1mpc;
         break;
-    case FSMStateName::VMC:    //lcc 20240523
-        return _stateList.vmc;
+    case FSMStateName::QP:    //lcc 20240523
+        return _stateList.qp;
         break;
 #ifdef COMPILE_WITH_MOVE_BASE
     case FSMStateName::MOVE_BASE:

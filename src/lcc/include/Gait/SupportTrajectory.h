@@ -1,19 +1,20 @@
  
-#ifndef GAITGENERATOR_H
-#define GAITGENERATOR_H
+#ifndef SUPPORTTRAJECTORY_H_
+#define SUPPORTTRAJECTORY_H_
 
 #include "Gait/WaveGenerator.h"
 #include "Gait/FeetEndCal.h"
+#include "Gait/SupportFeetEndP.h"
 
 #ifdef COMPILE_DEBUG
 #include <common/PyPlot.h>
 #endif  // COMPILE_DEBUG
 
 /*cycloid gait*/
-class GaitGenerator{
+class SupportTrajectory{
 public:
-    GaitGenerator(CtrlComponents *ctrlComp);
-    ~GaitGenerator();
+    SupportTrajectory(CtrlComponents *ctrlComp);
+    ~SupportTrajectory();
     void setGait(Vec2 vxyGoalGlobal, float dYawGoal, float gaitHeight);
     // void run(Vec34 &feetPos, Vec34 &feetVel);
     void run(Vec36 &feetPos, Vec36 &feetVel);
@@ -29,11 +30,16 @@ private:
     WaveGenerator *_waveG;
     Estimator *_est;
     FeetEndCal *_feetCal;
-    QuadrupedRobot *_robModel;
+    // QuadrupedRobot *_robModel;
+    HexapodRobot *_robModel;
     LowlevelState *_state;
     float _gaitHeight;
     Vec2 _vxyGoal;
     float _dYawGoal;
+
+    SupportFeetEndP *_spfe;
+
+    double _feetPosNormalStand_h;
 
     #if IS_THIS_A_HEXAPOD
     Vec6 *_phase, _phasePast;

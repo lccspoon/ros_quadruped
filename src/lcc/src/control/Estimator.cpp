@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include "control/Estimator.h"
 #include "common/mathTools.h"
 #include "common/enumClass.h"
@@ -314,9 +312,9 @@ Vec3 Estimator::getVelocity(){
     // return _xhat.segment(3, 3) + velocityOffset; //lcc 20240604
 
 
-    // Vec3 z3;
-    // z3.setZero();
-    // return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
+    Vec3 z3;
+    z3.setZero();
+    return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
 
     //lcc 20240622, 一个简单的:足端->质心速度估计
     Vec3 body_est_vel;

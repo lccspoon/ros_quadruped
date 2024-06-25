@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #ifndef FSM_H
 #define FSM_H
 
@@ -9,13 +7,13 @@
 #include "FSM/State_FixedStand.h"
 #include "FSM/State_Passive.h"
 #include "FSM/State_FreeStand.h"
-#include "FSM/State_Trotting.h"
-#include "FSM/State_A1MPC.h"
+#include "FSM/State_Position.h"
+#include "FSM/State_MPC.h"
 #include "FSM/State_BalanceTest.h"
 #include "FSM/State_SwingTest.h"
 #include "FSM/State_StepTest.h"
-#include "FSM/State_A1MPC.h"
-#include "FSM/State_VMC.h"
+#include "FSM/State_MPC.h"
+#include "FSM/State_QP.h"
 #include "common/enumClass.h"
 #include "control/CtrlComponents.h"
 
@@ -24,9 +22,9 @@ struct FSMStateList{
     State_Passive *passive;
     State_FixedStand *fixedStand;
     State_FreeStand *freeStand;
-    State_Trotting *trotting;
+    State_Position *position;
     State_A1MPC *a1mpc; // lcc 20240416
-    State_VMC *vmc;// lcc 20240523
+    State_QP *qp;// lcc 20240523
     State_BalanceTest *balanceTest;
     State_SwingTest *swingTest;
     State_StepTest *stepTest;
@@ -39,9 +37,9 @@ struct FSMStateList{
         delete passive;
         delete fixedStand;
         delete freeStand;
-        delete trotting;
+        delete position;
         delete a1mpc;// lcc 20240416
-        delete vmc;// lcc 20240523
+        delete qp;// lcc 20240523
         delete balanceTest;
         delete swingTest;
         delete stepTest;

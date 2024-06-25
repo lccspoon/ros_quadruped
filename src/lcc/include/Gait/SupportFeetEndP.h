@@ -1,15 +1,17 @@
  
-#ifndef FEETENDCAL_H
-#define FEETENDCAL_H
+#ifndef SUPPORTFEETENDP_H_
+#define SUPPORTFEETENDP_H_
 
 #include "control/CtrlComponents.h"
 #include "message/LowlevelState.h"
 
-class FeetEndCal{
+class SupportFeetEndP{
 public:
-    FeetEndCal(CtrlComponents *ctrlComp);
-    ~FeetEndCal();
-    Vec3 calFootPos(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float phase);
+    SupportFeetEndP(CtrlComponents *ctrlComp);
+    ~SupportFeetEndP();
+    // Vec3 calc(int legID, Vec2 vxyGoalGlobal, float dYawGoal, Vec3 _startP);
+    Vec3 calc_support_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal);
+    Vec3 calc_swing_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float phase);
 private:
     LowlevelState *_lowState;
     Estimator *_est;
@@ -21,6 +23,10 @@ private:
     Vec3 _bodyAccGlobal;        // linear accelerator
     Vec3 _bodyWGlobal;          // angular velocity
 
+    VecInt6 *_contact;
+    Vec6 *_phase;
+    // VecInt6 _contact_last;
+
     Vec6 _feetRadius, _feetInitAngle;
     float _yaw, _dYaw, _nextYaw;
 
@@ -28,6 +34,8 @@ private:
     float _kx, _ky, _kyaw;
 
     Vec3 *_Apla; //lcc 
+
+    Vec36 feetPosBody;
 };
 
 #endif  // FEETENDCAL_H

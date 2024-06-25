@@ -4,7 +4,7 @@
     @brief 算法： MPC+QP， 斜坡地形估计，等。 运动： 1m/s奔跑， 23度斜坡稳定上下，等。
     @cite 参考代码：unitree_guide,yy硕。 参考论文：yxy,mit。
 */
-#include "FSM/State_A1MPC.h"
+#include "FSM/State_MPC.h"
 #include <iomanip>
 #include <cmath>
 State_A1MPC::State_A1MPC(CtrlComponents *ctrlComp)
@@ -15,15 +15,6 @@ State_A1MPC::State_A1MPC(CtrlComponents *ctrlComp)
     _gait = new GaitGenerator(ctrlComp);
 
     _gaitHeight = 0.08;
-
-// #ifdef ROBOT_TYPE_Go1
-//     _Kpp = Vec3(70, 70, 70).asDiagonal();
-//     _Kdp = Vec3(10, 10, 10).asDiagonal();
-//     _kpw = 780; 
-//     _Kdw = Vec3(70, 70, 70).asDiagonal();
-//     _KpSwing = Vec3(400, 400, 400).asDiagonal();
-//     _KdSwing = Vec3(10, 10, 10).asDiagonal();
-// #endif
 
 // #ifdef ROBOT_TYPE_A1
     _Kpp = Vec3(20, 20, 100).asDiagonal();
@@ -49,12 +40,6 @@ State_A1MPC::State_A1MPC(CtrlComponents *ctrlComp)
             20.0, 30.0, 20.0,  // VX VY vz
             0.0;
 
-    // q_weights << 80.0, 80.0, 1.0,  //R P Y
-    //         0.0, 0.0, 270.0,     // X Y Z
-    //         1.0, 1.0, 20.0,    // WX WY WZ
-    //         20.0, 20.0, 20.0,  // VX VY vz
-    //         0.0;
-
     r_weights << 1e-5, 1e-5, 1e-6,
             1e-5, 1e-5, 1e-6,
             1e-5, 1e-5, 1e-6,
@@ -76,7 +61,7 @@ State_A1MPC::~State_A1MPC(){
 }
 
 void State_A1MPC::enter(){
-    // printf(" \n enter -> vmc \n ");
+    // printf(" \n enter -> qp \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
     // _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0);
@@ -167,7 +152,7 @@ void State_A1MPC::run(){
         _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1;
         foot_forces_grf.block< 1, 6>( 0, 0) = foot_forces_grf.block< 1, 6>( 0, 0) * 2.5;
         foot_forces_grf.block< 2, 6>( 0, 0) = foot_forces_grf.block< 2, 6>( 0, 0) * 1;
-        _tau = _sixlegdogModel->getTau(_q, _forceFeetBody * 0.5 + foot_forces_grf * 0.5 * 0.8); // qp + mpc
+        _tau = _sixlegdogModel->getTau(_q, _forceFeetBody * 0.6 + foot_forces_grf * 0.6 * 0.8); // qp + mpc
     }
     else
     {
@@ -388,7 +373,8 @@ void State_A1MPC::calcGrf(){
                     -9.8;
     // double mpc_dt = 0.002;
     double mpc_dt = _ctrlComp->dt;
-    // std::cout<<" body_h :"<< body_h <<std::endl;
+    std::cout<<" body_h :"<< body_h <<std::endl;
+    std::cout<<" _pcd(2) :"<< _pcd(2) <<std::endl;
 
      _yawCmd = _yawCmd + _dYawCmd * _ctrlComp->dt;
 
@@ -460,12 +446,12 @@ void State_A1MPC::calcGrf(){
     solver.solve();
     auto t6 = std::chrono::high_resolution_clock::now();
 
-    std::chrono::duration<double, std::milli> ms_double_1 = t2 - t1;
-    std::chrono::duration<double, std::milli> ms_double_2 = t3 - t2;
-    std::chrono::duration<double, std::milli> ms_double_3 = t4 - t3;
-    std::chrono::duration<double, std::milli> ms_double_4 = t5 - t4;
-    std::chrono::duration<double, std::milli> ms_double_5 = t6 - t5;
-    double total_time_ms = ms_double_1.count() + ms_double_2.count() + ms_double_3.count() + ms_double_4.count() + ms_double_5.count();
+    // std::chrono::duration<double, std::milli> ms_double_1 = t2 - t1;
+    // std::chrono::duration<double, std::milli> ms_double_2 = t3 - t2;
+    // std::chrono::duration<double, std::milli> ms_double_3 = t4 - t3;
+    // std::chrono::duration<double, std::milli> ms_double_4 = t5 - t4;
+    // std::chrono::duration<double, std::milli> ms_double_5 = t6 - t5;
+    // double total_time_ms = ms_double_1.count() + ms_double_2.count() + ms_double_3.count() + ms_double_4.count() + ms_double_5.count();
     // std::cout << "mpc cal A_mat_c: " << ms_double_1.count() << "ms" << std::endl;
     // std::cout << "mpc cal B_mat_d_list: " << ms_double_2.count() << "ms" << std::endl;
     // std::cout << "mpc cal qp mats: " << ms_double_3.count() << "ms" << std::endl;

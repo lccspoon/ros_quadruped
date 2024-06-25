@@ -1,7 +1,8 @@
  
-#ifndef GAITGENERATOR_H
-#define GAITGENERATOR_H
+#ifndef GAITGENERATOR_P_H_
+#define GAITGENERATOR_P_H_
 
+#include "Gait/SupportFeetEndP.h"
 #include "Gait/WaveGenerator.h"
 #include "Gait/FeetEndCal.h"
 
@@ -10,10 +11,10 @@
 #endif  // COMPILE_DEBUG
 
 /*cycloid gait*/
-class GaitGenerator{
+class GaitGenerator_P{
 public:
-    GaitGenerator(CtrlComponents *ctrlComp);
-    ~GaitGenerator();
+    GaitGenerator_P(CtrlComponents *ctrlComp);
+    ~GaitGenerator_P();
     void setGait(Vec2 vxyGoalGlobal, float dYawGoal, float gaitHeight);
     // void run(Vec34 &feetPos, Vec34 &feetVel);
     void run(Vec36 &feetPos, Vec36 &feetVel);
@@ -28,8 +29,9 @@ private:
 
     WaveGenerator *_waveG;
     Estimator *_est;
-    FeetEndCal *_feetCal;
-    QuadrupedRobot *_robModel;
+    SupportFeetEndP *_feetCal;
+    // QuadrupedRobot *_robModel;
+    HexapodRobot *_robModel;
     LowlevelState *_state;
     float _gaitHeight;
     Vec2 _vxyGoal;

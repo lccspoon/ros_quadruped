@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include "FSM/State_FreeStand.h"
 
 State_FreeStand::State_FreeStand(CtrlComponents *ctrlComp)
@@ -11,8 +9,8 @@ State_FreeStand::State_FreeStand(CtrlComponents *ctrlComp)
     _pitchMin = -_pitchMax;
     _yawMax = 20 * M_PI / 180;
     _yawMin = -_yawMax;
-    _heightMax = 0.04;
-    _heightMin = -_heightMax;
+    _heightMax = 0.15;
+    _heightMin = -_heightMax + 0.02;
 }
 
 void State_FreeStand::enter(){
@@ -30,8 +28,8 @@ void State_FreeStand::enter(){
     for(int i=0; i<18; i++){
         _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
     }
-    _initVecOX = _ctrlComp->sixlegdogModel->getX(*_lowState);
-    _initVecXP = _ctrlComp->sixlegdogModel->getVecXP(*_lowState);
+    _initVecOX = _ctrlComp->sixlegdogModel->getX(*_lowState); // P_b0_(0)
+    _initVecXP = _ctrlComp->sixlegdogModel->getVecXP(*_lowState); // P_si
 
     _ctrlComp->setAllStance();
     _ctrlComp->ioInter->zeroCmdPanel();
@@ -57,8 +55,8 @@ FSMStateName State_FreeStand::checkChange(){
     else if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
-    else if(_lowState->userCmd == UserCommand::TROTTING_5){
-        return FSMStateName::TROTTING;
+    else if(_lowState->userCmd == UserCommand::POSITION_5){
+        return FSMStateName::POSITION;
     }
     else{
         return FSMStateName::FREESTAND;
@@ -66,27 +64,27 @@ FSMStateName State_FreeStand::checkChange(){
 }
 
 Vec36 State_FreeStand::_calcOP(float row, float pitch, float yaw, float height){
-    // Vec3 vecXO = -_initVecOX;
-    // vecXO(2) += height;
+    Vec3 vecXO = -_initVecOX;
+    vecXO(2) += height;
 
-    // RotMat rotM = rpyToRotMat(row, pitch, yaw);
+    RotMat rotM = rpyToRotMat(row, pitch, yaw);
 
-    // HomoMat Tsb = homoMatrix(vecXO, rotM);
-    // HomoMat Tbs = homoMatrixInverse(Tsb);
+    HomoMat Tsb = homoMatrix(vecXO, rotM);
+    HomoMat Tbs = homoMatrixInverse(Tsb);
 
-    // Vec6 tempVec6;
-    // Vec36 vecOP;
-    // for(int i(0); i<6; ++i){
-    //     tempVec6 = Tbs * homoVec(_initVecXP.col(i));
-    //     vecOP.col(i) = noHomoVec(tempVec6);
-    // }
+    Vec4 tempVec6;
+    Vec36 vecOP;
+    for(int i(0); i<6; ++i){
+        tempVec6 = Tbs * homoVec(_initVecXP.col(i));
+        vecOP.col(i) = noHomoVec(tempVec6);
+    }
 
-    // return vecOP;
+    return vecOP;
 }
 
 void State_FreeStand::_calcCmd(Vec36 vecOP){
-    // Vec12 q = _ctrlComp->robotModel->getQ(vecOP, FrameType::BODY);
-    // _lowCmd->setQ(q);
+    Vec18 q = _ctrlComp->sixlegdogModel->getQ(vecOP, FrameType::BODY);
+    _lowCmd->setQ(q);
 }
 
 void State_FreeStand::_torqueCtrl(){

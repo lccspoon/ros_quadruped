@@ -1,12 +1,10 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #ifdef COMPILE_WITH_MOVE_BASE
 
 #include "FSM/State_move_base.h"
 
 State_move_base::State_move_base(CtrlComponents *ctrlComp)
-    :State_Trotting(ctrlComp){
+    :State_Position(ctrlComp){
     // _stateName = FSMStateName::MOVE_BASE;
     // _stateNameString = "move_base";
     // initRecv();

@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #ifndef UNITREE_JOYSTICK_H
 #define UNITREE_JOYSTICK_H
 

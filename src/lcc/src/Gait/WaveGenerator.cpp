@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include "Gait/WaveGenerator.h"
 #include <iostream>
 #include <sys/time.h>
@@ -129,15 +127,15 @@ void WaveGenerator::calcWave(Vec6 &phase, VecInt6 &contact, WaveStatus status)
     else if (status == WaveStatus::SWING_ALL)
     {
         contact.setZero();
-        phase << 0.5, 0.5, 0.5, 0.5, 0.5, 0.5;
-        // phase << 0, 0, 0, 0;
+        // phase << 0.5, 0.5, 0.5, 0.5, 0.5, 0.5;
+        phase << 0, 0, 0, 0, 0, 0;
         // phase << 1, 1, 1, 1;
     }
     else if (status == WaveStatus::STANCE_ALL)
     {
         contact.setOnes();
-        phase << 0.5, 0.5, 0.5, 0.5, 0.5, 0.5;
-        // phase << 0, 0, 0, 0;
+        // phase << 0.5, 0.5, 0.5, 0.5, 0.5, 0.5;
+        phase << 0, 0, 0, 0, 0, 0;
         // phase << 1, 1, 1, 1;
     }
     // std::cout<<" contact: \n"<< contact <<std::endl;

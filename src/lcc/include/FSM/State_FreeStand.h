@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #ifndef FREESTAND_H
 #define FREESTAND_H
 
@@ -22,7 +20,6 @@ private:
     float _yawMax, _yawMin;
     float _heightMax, _heightMin;
     Vec36 _vecOP;
-    // Estimator *_est;
 
     Vec36 _calcOP(float row, float pitch, float yaw, float height);
     void _calcCmd(Vec36 vecOP);

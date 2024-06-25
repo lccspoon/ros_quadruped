@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #ifndef ENUMCLASS_H
 #define ENUMCLASS_H
 
@@ -33,7 +31,7 @@ enum class RobotType{
 enum class UserCommand{
     // EXIT,
     NONE,
-    //START,      // trotting
+    //START,      // position
     // L2_A,       // fixedStand
     // L2_B,       // passive
     // L2_X,       // freeStand
@@ -48,7 +46,7 @@ enum class UserCommand{
     FIXEDSTAND_2,
     FREESTAND_3,
     VMC_4,
-    TROTTING_5,
+    POSITION_5,
     A1MPC_6        //lcc 20240416
 };
 
@@ -75,7 +73,7 @@ enum class FSMStateName{
     PASSIVE,
     FIXEDSTAND,
     FREESTAND,
-    TROTTING,
+    // POSITION,
     POSITION,
 #ifdef COMPILE_WITH_MOVE_BASE
     MOVE_BASE,       // move_base
@@ -84,7 +82,7 @@ enum class FSMStateName{
     SWINGTEST,
     STEPTEST,
     A1MPC,  // lcc 20240416
-    VMC  // lcc 20240523
+    QP  // lcc 20240523
 };
 
 #endif  // ENUMCLASS_H

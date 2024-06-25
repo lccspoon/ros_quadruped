@@ -1,6 +1,4 @@
-/**********************************************************************
- Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
-***********************************************************************/
+ 
 #include "FSM/State_Passive.h"
 
 State_Passive::State_Passive(CtrlComponents *ctrlComp)
