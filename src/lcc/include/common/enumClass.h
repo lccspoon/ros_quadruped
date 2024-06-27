@@ -47,7 +47,8 @@ enum class UserCommand{
     FREESTAND_3,
     VMC_4,
     POSITION_5,
-    A1MPC_6        //lcc 20240416
+    A1MPC_6,        //lcc 20240416
+    POSREFLEX_7        //lcc 20240627
 };
 
 enum class FrameType{

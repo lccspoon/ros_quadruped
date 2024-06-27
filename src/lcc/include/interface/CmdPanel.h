@@ -41,11 +41,13 @@ struct UserValue{
 */
 struct UserFunctionMode{
     bool function_test;
+    bool state_reset;
     UserFunctionMode(){
         setZero();
     }
     void setZero(){
         function_test = false;
+        state_reset = false;
     }
 };
 

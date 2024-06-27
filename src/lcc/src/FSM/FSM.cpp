@@ -61,7 +61,9 @@ void FSM::run(){
     // _B2G_RotMat = _lowState->getRotMat();//机身 到 世界 的变化矩阵
     // _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
 
-    // std::cout<<" _G2B_RotMat: \n"<< _ctrlComp->lowState->getRotMat().transpose() <<std::endl;
+    // std::cout<<" getRotMat: \n"<< _ctrlComp->lowState->getRotMat()<<std::endl;
+    // std::cout<<" getYaw: \n"<< _ctrlComp->lowState->getYaw()<<std::endl;
+    // std::cout<<" getPosition: \n"<< _ctrlComp->estimator->getPosition()<<std::endl;
 
     if(!checkSafty()){
         _ctrlComp->ioInter->setPassive();

@@ -66,9 +66,16 @@ struct IMU
 
 struct LowlevelState
 {
-    // LowlevelState(){
-        // userFunctionMode_p = new UserFunctionMode();
-    // }
+    LowlevelState(){
+        realRotMat.setZero();
+        offsRotMat.setZero();
+        retuRotMat.setZero();
+        defaRotMat.setZero();
+        defaRotMat.setIdentity();
+
+        retuYaw = 0;
+        offsYaw = 0;
+    }
 
     IMU imu;
     MotorState motorState[NUM_DOF_W];
@@ -143,8 +150,24 @@ struct LowlevelState
         }
     // #endif
 
+    Eigen::Matrix<double, 3, 3> realRotMat;
+    Eigen::Matrix<double, 3, 3> offsRotMat;
+    Eigen::Matrix<double, 3, 3> retuRotMat;
+    Eigen::Matrix<double, 3, 3> defaRotMat;
+    
     RotMat getRotMat(){
-        return imu.getRotMat();
+
+        retuRotMat = imu.getRotMat();
+        // std::cout<<" asasas-state_reset: \n"<< userFunctionMode.state_reset <<std::endl;
+
+        if( userFunctionMode.state_reset == true){
+            offsRotMat = defaRotMat - retuRotMat;
+        }
+
+        // std::cout<<" retuRotMat: \n"<< retuRotMat <<std::endl;
+        // std::cout<<" retuRotMat + offsRotMat: \n"<< retuRotMat + offsRotMat <<std::endl;
+
+        return retuRotMat + offsRotMat;
     }
 
     Vec3 getAcc(){
@@ -163,8 +186,18 @@ struct LowlevelState
         return getRotMat() * getGyro();
     }
 
+    double retuYaw;
+    double offsYaw;
+
     double getYaw(){
-        return rotMatToRPY(getRotMat())(2);
+        retuYaw = rotMatToRPY(getRotMat())(2);
+        if( userFunctionMode.state_reset == true){
+            offsYaw = 0 - retuYaw;
+        }
+
+        // std::cout<<" retuYaw + offsYaw: \n"<< retuYaw + offsYaw <<std::endl;
+
+        return retuYaw + offsYaw;
     }
 
     double getDYaw(){

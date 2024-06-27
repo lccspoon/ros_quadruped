@@ -39,10 +39,10 @@ UserCommand KeyBoard::checkCmd(){
     case '5':
         return UserCommand::L2_Y;
 #endif  // COMPILE_WITH_MOVE_BASE
-
     case '6':
         return UserCommand::A1MPC_6;
-
+    case '7':
+        return UserCommand::POSREFLEX_7;
     case '0':
         return UserCommand::BALANCE_TEST0;
     case '9':
@@ -50,7 +50,9 @@ UserCommand KeyBoard::checkCmd(){
     case '8':
         return UserCommand::SETP_TEST8;
     case ' ':
-        userValue.setZero();
+        {
+            userValue.setZero();
+        }
         return UserCommand::NONE;
     default:
         return UserCommand::NONE;
@@ -94,11 +96,19 @@ void KeyBoard::changeFunctionModeValue(){
     switch (_c){
     case 't':case 'T':
         {
-            if( userFunctionMode.function_test == false )
-                userFunctionMode.function_test = true;
-            else if( userFunctionMode.function_test == true )
-                userFunctionMode.function_test = false;
-            std::cout<<" function_test:  "<< userFunctionMode.function_test <<std::endl;
+
+            // if( userFunctionMode.function_test == false )
+            //     userFunctionMode.function_test = true;
+            // else if( userFunctionMode.function_test == true )
+            //     userFunctionMode.function_test = false;
+            // std::cout<<"function_test:  "<< userFunctionMode.function_test <<std::endl;
+
+            // if( userFunctionMode.state_reset == false )
+            //     userFunctionMode.state_reset = true;
+            // else if( userFunctionMode.state_reset == true )
+            //     userFunctionMode.state_reset = false;
+            // std::cout<<"state_reset:  "<< userFunctionMode.state_reset <<std::endl;
+
         }
         break;
     default:

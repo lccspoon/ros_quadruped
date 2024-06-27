@@ -280,15 +280,17 @@ void Estimator::run(){
         + _Ppriori * _C.transpose() * _SR * _STC * _Ppriori.transpose();
 
     // //lcc 20240604
-    // // if ( _lowState->userFunctionMode.function_test == true ){
-    // //     postionOffset = -_xhat.segment(0, 3) - Vec3(0, 0, _robModel-> _feetPosNormalStand(2));// 只有站起来才可以用
-    // //     velocityOffset = -_xhat.segment(3, 3);
-    // //     printf(" adadadada\n");
-    // // }
+    if ( _lowState->userFunctionMode.state_reset == true ){
+        postionOffset = -_xhat.segment(0, 3) - Vec3(0, 0, _robModel-> _feetPosNormalStand(2));// 只有站起来才可以用
+        // velocityOffset = -_xhat.segment(3, 3);
+        // printf(" adadadada\n");
+    }
     // // std::cout<<" getPosition(): "<< getPosition().transpose() << std::endl;
     // // std::cout<<" getVelocity():\n "<< getVelocity().transpose() << std::endl;
     // // std::cout<<" _u:\n "<< _u << std::endl;
     // // std::cout<<" ODE_P:\n "<< ODE_P << std::endl;
+
+
 
     //lcc 20240603
     // std::cout<<" x:\n "<< _xhat.segment(0, 3).transpose() << std::endl;
@@ -299,9 +301,10 @@ void Estimator::run(){
 }
 
 Vec3 Estimator::getPosition(){
-    // return _xhat.segment(0, 3) + postionOffset; //lcc 20240604
+    
+    return _xhat.segment(0, 3) + Vec3(postionOffset(0), postionOffset(1), 0); //lcc 20240604
 
-    return _xhat.segment(0, 3); //lcc 20240604
+    // return _xhat.segment(0, 3); //lcc 20240604
 
     // Vec3 z3;
     // z3.setZero();
@@ -311,10 +314,9 @@ Vec3 Estimator::getPosition(){
 Vec3 Estimator::getVelocity(){
     // return _xhat.segment(3, 3) + velocityOffset; //lcc 20240604
 
-
-    Vec3 z3;
-    z3.setZero();
-    return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
+    // Vec3 z3;
+    // z3.setZero();
+    // return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
 
     //lcc 20240622, 一个简单的:足端->质心速度估计
     Vec3 body_est_vel;

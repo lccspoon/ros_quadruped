@@ -53,7 +53,9 @@ Vec3 FeetEndCal::calFootPos(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float
     hy = _nextStep(1);
 
     _yaw = _lowState->getYaw();
+    // _yaw = 0;
     _dYaw = _lowState->getDYaw();
+    
     _nextYaw = _dYaw*(1-phase)*_Tswing + _dYaw*_Tstance/2 + _kyaw*(dYawGoal - _dYaw);
 
     _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw);
