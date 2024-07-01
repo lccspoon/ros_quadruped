@@ -61,6 +61,10 @@ State_Position::State_Position(CtrlComponents *ctrlComp)
 
     adj_RPY_P.setZero();
     adj_RPY_P_past.setZero();
+
+    _posFeet2BGoal_P_Increment.setZero();
+    terian_FootHold = new Vec1_6;
+    (*terian_FootHold).setZero();
 }
 
 State_Position::~State_Position(){
@@ -146,7 +150,7 @@ void State_Position::run(){
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 1) =  _posFeet2BGlobal.block< 3, 1>( 0, 1); 
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 2) =  _posFeet2BGlobal.block< 3, 1>( 0, 2); 
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 3) =  _posFeet2BGlobal.block< 3, 1>( 0, 3); 
-        // terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
+        terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
     #else
         terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_hex, _posFeet2BGlobal, _Apla);//lcc
     #endif
@@ -172,7 +176,7 @@ void State_Position::run(){
     }
 
     Vec18 tau_send;
-    tau_send = _tau * 0 + torque18 * 1;
+    tau_send = _tau * 1 + torque18 * 1;
     _lowCmd->setTau( tau_send ); //lcc 20240602
 
     for(int i(0); i<6; ++i){
@@ -314,10 +318,12 @@ void State_Position::calcTau(){
 void State_Position::calcP(){
     //lcc 20240624: 位置控制的摆动轨迹
     _gait_P->setGait(_vCmdBody.segment(0,2), _wCmdGlobal(2), _gaitHeight);
-    _gait_P->run(_posSwingLeg_P, _velSwingLeg_P);
+    // _gait_P->run(_posSwingLeg_P, _velSwingLeg_P);
+    _gait_P->run(_posSwingLeg_P, _velSwingLeg_P, _posFeet2BGoal_P_Increment, terian_FootHold);
     //lcc 20240624: 位置控制的支撑轨迹
     _spt->setGait(_vCmdBody.segment(0,2), _wCmdGlobal(2), 0);
-    _spt->run(_posSupportLeg_P, _velSupportLeg_P);
+    // _spt->run(_posSupportLeg_P, _velSupportLeg_P);
+    _spt->run(_posSupportLeg_P, _velSupportLeg_P, _posFeet2BGoal_P_Increment, terian_FootHold);
     for(int i(0); i<6; ++i){  
         if((*_contact_hex)(i) == 1){  //stand
             // _posFeet2BGoal_P.col(i) = _G2B_RotMat * (_posSupportLeg_P.col(i) - _posBody);
@@ -352,14 +358,13 @@ void State_Position::calcP(){
     row = invNormalize(adj_RPY_P(0), _rowMin, _rowMax);
     pitch = invNormalize(adj_RPY_P(1), _pitchMin, _pitchMax);
     yaw = -invNormalize(adj_RPY_P(2), _yawMin, _yawMax);
-    height = invNormalize(_lowState->userValue.ry, _heightMin, _heightMax) ;
+    // height = invNormalize(_lowState->userValue.ry, _heightMin, _heightMax) ;
+    height = 0;
     for(int i(0); i < 6; ++i){
         if((*_contact_hex)(i) == 1){  //stand
         _posFeet2BGoal_P.col(i) = _posFeet2BGoal_P.col(i) + (_calcOP(row, pitch, yaw, height).col(i) - _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ).col(i));
-        // _posFeet2BGoal_P.col(i) = _posFeet2BGoal_P.col(i) + (_calcOP(0.1, 0, yaw, height).col(i) - _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ).col(i));
         }
     }
-    
     _ctrlComp->lowCmd->setQ( _ctrlComp->sixlegdogModel->getQ( _posFeet2BGoal_P, FrameType::BODY) );
 }
 
@@ -436,5 +441,5 @@ void State_Position::_torqueCtrl(){
     torque18_o3 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o3);
     // torque18 = torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 0; //力矩控制
     torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1; //力位混合
-    torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
+    // torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
 }

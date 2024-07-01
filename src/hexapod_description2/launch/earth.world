@@ -1400,5 +1400,39 @@
         </link>
     </model>
 
+    <model name="ABigStep">
+        <static>true</static>
+        <link name="ABigStep_L">
+            <pose>2 10 0 0 0 0</pose>
+            <collision name="ABigStep_C">
+                <geometry>
+                    <box>
+                        <size>1 2 0.5</size>
+                    </box>
+                </geometry>
+                <friction>
+                    <ode>
+                        <mu>1.5</mu> <!-- 设置摩擦系数 -->
+                    </ode>
+                </friction>
+            </collision>
+            <visual name="step_visual">
+                <geometry>
+                    <box>
+                        <size>1 2 0.5</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>.421 0.225 0.0 1.0</diffuse>
+                </material>
+            </visual>
+            <gravity>true</gravity> <!-- 启用重力 -->
+            <self_collide>true</self_collide> <!-- 允许自身碰撞 -->
+        </link>
+    </model>
+
     </world>
 </sdf>
+
+

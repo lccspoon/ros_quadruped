@@ -31,14 +31,20 @@ void SupportTrajectory::restart(){
     // std::cout<< "SupportTrajectory restart!!! \n"<<std::endl;
 }
 
-void SupportTrajectory::run(Vec36 &feetPos, Vec36 &feetVel){
+void SupportTrajectory::useCPG(Eigen::Matrix<double,1,6> cpg_phase, Eigen::Matrix<double,1,6> cpg_contact){
+    for (int i = 0; i < 6; i++){
+        (*_phase)(i) = cpg_phase(i);
+        (*_contact)(i) = (int)cpg_contact(i);
+    }
+}
+
+void SupportTrajectory::run(Vec36 &feetPos, Vec36 &feetVel, Vec36 P_Increment, Vec1_6 *terian_FootHold){
     /* 先获得当前足端在world下的位置 */
     if(_firstRun){
         _firstRun = false;
         for (int i = 0; i < 6; i++)
             _startP.col(i) = _robModel->getFootPosition(*_state, i, FrameType::BODY);
     }
-
     /* 分别计算每条腿的规矩： 支撑相->轨迹为世界系下的足端位置； 摆动相->轨迹 由 落足点 和 摆线 构成*/
     for(int i(0); i<6; ++i){
         if((*_contact)(i) == 0){  // swing phase 
@@ -47,28 +53,24 @@ void SupportTrajectory::run(Vec36 &feetPos, Vec36 &feetVel){
             feetVel.col(i).setZero();
         }
         else if((*_contact)(i) == 1){  // stand phase
-            _endP.col(i) = _spfe->calc_support_fe(i, _vxyGoal, _dYawGoal);
+            _endP.col(i) = _spfe->calc_support_fe(i, _vxyGoal, _dYawGoal,P_Increment.col(i), terian_FootHold);
+
             feetPos.col(i) = getFootPos(i);
             feetVel.col(i) = getFootVel(i);
         }
     }
-
     // std::cout<<" _startP: \n"<< _startP <<std::endl;
     // std::cout<<" _feetPosNormalStand_h: \n"<< _feetPosNormalStand_h <<std::endl;
-
     // std::cout<<" (*_contact): \n"<< (*_contact).transpose() <<std::endl;
-    // std::cout<<" (*_phase): \n"<< (*_phase).transpose() <<std::endl;
-    _pastP = feetPos;
-    _phasePast = *_phase;
 }
 
 Vec3 SupportTrajectory::getFootPos(int i){  //这里就是摆动轨迹的计算
     Vec3 footPos;
 
-    footPos(0) = cycloidXYPosition(_startP.col(i)(0), _endP.col(i)(0), (*_phase)(i));
+    footPos(0) = cycloidXYPosition(_startP.col(i)(0) , _endP.col(i)(0), (*_phase)(i));
     footPos(1) = cycloidXYPosition(_startP.col(i)(1), _endP.col(i)(1), (*_phase)(i));
     // footPos(2) =  cycloidZPosition(_startP.col(i)(2), _gaitHeight, (*_phase)(i), _endP.col(i)(2));//origin
-    footPos(2) =  cycloidZPosition(_feetPosNormalStand_h, _gaitHeight, (*_phase)(i), _endP.col(i)(2)); //lcc 20240624
+    footPos(2) =  cycloidZPosition((_robModel->getFeetPosIdeal())( 2, i) , _gaitHeight, (*_phase)(i), _endP.col(i)(2)); //lcc 20240624
     
     return footPos;
 }

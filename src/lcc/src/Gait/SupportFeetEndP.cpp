@@ -20,7 +20,9 @@ SupportFeetEndP::SupportFeetEndP(CtrlComponents *ctrlComp)
 
 SupportFeetEndP::~SupportFeetEndP(){}
 
-Vec3 SupportFeetEndP::calc_support_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal){
+Vec3 SupportFeetEndP::calc_support_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal, Vec3 P_Increment, Vec1_6 *terian_FootHold)
+
+{
 
     _nextStep(0) = -vxyGoalGlobal(0) * _Tstance;
     _nextStep(1) = -vxyGoalGlobal(1) * _Tstance;
@@ -36,20 +38,40 @@ Vec3 SupportFeetEndP::calc_support_fe(int legID, Vec2 vxyGoalGlobal, float dYawG
     // _nextYaw = -( _dYaw*(1-(*_phase)(legID))*_Tswing + _dYaw*_Tstance/2 + _kyaw*(dYawGoal - _dYaw) );
     _nextYaw = -( dYawGoal*_Tstance);
 
-    _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw);
-    _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw);
+    // if (legID == 1 || legID==3 || legID==5)
+    // {
+    //     _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(0);
+    //     _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(1)+0.2;
+    //     _footPos = _nextStep;// getPosition->world系下质心位置
+    //     #if PCONTROL_REFLEX_LIFE_DOWM == true
+    //     (*terian_FootHold)(legID) = 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy + 0.0;
+    //     #else
+    //     _footPos(2) += 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy+0.2;
+    //     #endif
+    // }
+    // else
+    {
+        _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(0);
+        _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(1);
+        _footPos = _nextStep;// getPosition->world系下质心位置
+        #if PCONTROL_REFLEX_LIFE_DOWM == true
+        (*terian_FootHold)(legID) = 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy + 0.0;
+        #else
+        _footPos(2) += 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy;
+        #endif
+    }
 
-    _footPos = _nextStep;// getPosition->world系下质心位置
-    _footPos(2) += 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy;
 
     if (legID == 1){
         // std::cout<<" _footPos-------------------- "<< legID <<"  :\n"<<_footPos.transpose() <<std::endl;
         // std::cout<<" ry "<< legID <<"  :\n"<<_feetRadius(legID) * sin(0 + _feetInitAngle(legID) + 0) <<std::endl;
     }
+    
+    // return _footPos + P_Increment;
     return _footPos;
 }
 
-Vec3 SupportFeetEndP::calc_swing_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float phase){
+Vec3 SupportFeetEndP::calc_swing_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float phase, Vec3 P_Increment, Vec1_6 *terian_FootHold){
 
     _nextStep(0) = vxyGoalGlobal(0)*(1-phase)*_Tswing + vxyGoalGlobal(0)*_Tstance/2;
     _nextStep(1) = vxyGoalGlobal(1)*(1-phase)*_Tswing + vxyGoalGlobal(1)*_Tstance/2;
@@ -67,17 +89,30 @@ Vec3 SupportFeetEndP::calc_swing_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoa
     // _nextYaw = _dYaw*(1-phase)*_Tswing + _dYaw*_Tstance/2 + _kyaw*(dYawGoal - _dYaw);
     _nextYaw = dYawGoal*_Tstance/2;
 
-    _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw);
-    _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw);
-
-    if (legID == 1){
-        // std::cout<<" rx "<< legID <<"  :\n"<<_feetRadius(legID) * cos(0 + _feetInitAngle(legID) + 0) <<std::endl;
-        // std::cout<<" ry "<< legID <<"  :\n"<<_feetRadius(legID) * sin(0 + _feetInitAngle(legID) + 0) <<std::endl;
+    // if (legID == 1 || legID==3 || legID==5)
+    // {
+    //     _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(0);
+    //     _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(1)+0.2;
+    //     _footPos = _nextStep;// getPosition->world系下质心位置
+    //     #if PCONTROL_REFLEX_LIFE_DOWM == true
+    //     (*terian_FootHold)(legID) = 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy + 0.0;
+    //     #else
+    //     _footPos(2) += 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy+0.2;
+    //     #endif
+    // }
+    // else
+    {
+        _nextStep(0) += _feetRadius(legID) * cos(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(0);
+        _nextStep(1) += _feetRadius(legID) * sin(_yaw + _feetInitAngle(legID) + _nextYaw) + P_Increment(1);
+        _footPos = _nextStep;// getPosition->world系下质心位置
+        #if PCONTROL_REFLEX_LIFE_DOWM == true
+        (*terian_FootHold)(legID) = 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy + 0.0;
+        #else
+        _footPos(2) += 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy;
+        #endif
     }
 
-    _footPos = _nextStep;// getPosition->world系下质心位置
-    _footPos(2) += 0 + (*_Apla)(1)*hx + (*_Apla)(2)*hy;
-
+    // return _footPos + P_Increment;
     return _footPos;
 }
 

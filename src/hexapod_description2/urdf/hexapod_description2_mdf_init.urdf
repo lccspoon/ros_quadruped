@@ -1386,12 +1386,12 @@
   </gazebo>
 
   <!-- fix the model  -->
-  <!-- <link name="world"/>
+  <link name="world"/>
   <joint name="fix" type="fixed">
   <origin xyz="0 0 0.5" rpy="0 0 0"/>
   <parent link="world"/>
   <child link="base_link"/> 
-  </joint> -->
+  </joint>
 
   <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

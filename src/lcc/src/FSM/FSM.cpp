@@ -12,6 +12,7 @@ FSM::FSM(CtrlComponents *ctrlComp)
     _stateList.position = new State_Position(_ctrlComp);
     _stateList.a1mpc = new State_A1MPC(_ctrlComp);//lcc 20240416
     _stateList.qp = new State_QP(_ctrlComp);//lcc 20240523
+    _stateList.posReflex = new State_PosReflex(_ctrlComp);//lcc 20240627
     _stateList.balanceTest = new State_BalanceTest(_ctrlComp);
     _stateList.swingTest = new State_SwingTest(_ctrlComp);
     _stateList.stepTest = new State_StepTest(_ctrlComp);
@@ -122,6 +123,9 @@ FSMState* FSM::getNextState(FSMStateName stateName){
         break;
     case FSMStateName::QP:    //lcc 20240523
         return _stateList.qp;
+    case FSMStateName::POSREFLEX:    //lcc 20240523
+        return _stateList.posReflex;
+        break;
         break;
 #ifdef COMPILE_WITH_MOVE_BASE
     case FSMStateName::MOVE_BASE:

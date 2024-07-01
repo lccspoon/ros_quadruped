@@ -16,6 +16,7 @@
 #include "FSM/State_QP.h"
 #include "common/enumClass.h"
 #include "control/CtrlComponents.h"
+#include "FSM/State_PosReflex.h"
 
 struct FSMStateList{
     FSMState *invalid;
@@ -28,6 +29,7 @@ struct FSMStateList{
     State_BalanceTest *balanceTest;
     State_SwingTest *swingTest;
     State_StepTest *stepTest;
+    State_PosReflex *posReflex;//lcc 20240627
 #ifdef COMPILE_WITH_MOVE_BASE
     State_move_base *moveBase;
 #endif  // COMPILE_WITH_MOVE_BASE
@@ -39,6 +41,7 @@ struct FSMStateList{
         delete freeStand;
         delete position;
         delete a1mpc;// lcc 20240416
+        delete posReflex;// lcc 20240627
         delete qp;// lcc 20240523
         delete balanceTest;
         delete swingTest;

@@ -10,12 +10,16 @@
 #define LEG_DOF_W 3
 #define NUM_DOF_W 18
 #define IS_THIS_A_HEXAPOD true
+// #define IS_THIS_A_HEXAPOD false
+
 // #define NUM_LEG 4
 // #define LEG_DOF 3
 // #define NUM_DOF 12
-// #define IS_THIS_A_HEXAPOD false
 
 #define TERRIANESTI_FOURLEG true
+
+// #define PCONTROL_REFLEX_LIFE_DOWM true
+#define PCONTROL_REFLEX_LIFE_DOWM false
 
 enum class CtrlPlatform{
     GAZEBO,
@@ -83,7 +87,8 @@ enum class FSMStateName{
     SWINGTEST,
     STEPTEST,
     A1MPC,  // lcc 20240416
-    QP  // lcc 20240523
+    QP,  // lcc 20240523
+    POSREFLEX        //lcc 20240627
 };
 
 #endif  // ENUMCLASS_H

@@ -5,6 +5,8 @@
 #include "message/unitree_joystick.h"
 #include "common/enumClass.h"
 #include <pthread.h>
+#include <Eigen/Dense>
+#include <eigen3/Eigen/Core>
 
 #ifdef COMPILE_WITH_REAL_ROBOT
     #ifdef ROBOT_TYPE_A1
@@ -42,12 +44,21 @@ struct UserValue{
 struct UserFunctionMode{
     bool function_test;
     bool state_reset;
+    Eigen::Matrix<double,1,6>  LEG_LIFT_TRIGGER;//20230907cheet
+    Eigen::Matrix<double,1,6>  LEG_DOWM_TRIGGER;//20230907cheet
+    Eigen::Matrix<double,1,6>  LEG_MKAN_TRIGGER;//20230907cheet
+    int life_reaction_off_on=0,dowm_reaction_off_on=0,mkan_reaction_off_on=0,berzier_shape_off_on = 0;
+    double set_pitch;
     UserFunctionMode(){
         setZero();
     }
     void setZero(){
         function_test = false;
         state_reset = false;
+        LEG_LIFT_TRIGGER.setZero();
+        LEG_DOWM_TRIGGER.setZero();
+        LEG_MKAN_TRIGGER.setZero();
+        set_pitch = 0;
     }
 };
 

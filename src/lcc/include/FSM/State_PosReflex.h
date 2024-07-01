@@ -1,6 +1,6 @@
  
-#ifndef TROTTING_H
-#define TROTTING_H
+#ifndef STATES_POSREFLEX_H_
+#define STATES_POSREFLEX_H_
 
 #include "FSM/FSMState.h"
 #include "Gait/GaitGenerator.h"
@@ -9,11 +9,15 @@
 #include "control/TerrianEsti.h"
 #include "Gait/SupportFeetEndP.h"
 #include "Gait/SupportTrajectory.h"
+#include "control/ContactEst.h"
+#include "Gait/cpg_scheduler.h"
+#include"control/robot_lift_dowm_relex.h"
+#include"control/neural_bezier_curve.h"
 
-class State_Position : public FSMState{
+class State_PosReflex : public FSMState{
 public:
-    State_Position(CtrlComponents *ctrlComp);
-    ~State_Position();
+    State_PosReflex(CtrlComponents *ctrlComp);
+    ~State_PosReflex();
     void enter();
     void run();
     void exit();
@@ -99,7 +103,6 @@ private:
     Vec36 _posSwingLeg_P, _velSwingLeg_P;
     Vec36 _posFeet2BGoal_P;
 
-
     //lcc 20240624:机器人姿态与足端位置控制，参考书P77
     Vec3 _initVecOX;
     Vec36 _initVecXP;
@@ -111,8 +114,42 @@ private:
     Vec36 _calcOP(float row, float pitch, float yaw, float height);
     Vec3 adj_RPY_P, adj_RPY_P_past;
 
+    //lcc 20240627： Reflex
+    Vec36 _footTipForceEst;
+    ContactEst _contactEst;
+    CPG _Cpg;
+    Eigen::Matrix<double,2,6> cpg_scheduler;  // 第一行为x  ;第二行为y; y->1为支撑相位，x: 0->1; y->0为摆动相位；x:1->0；
+    //lcc 20240627： Reflex
+    void adaptive_control(void);
+    void liftFollowReaction(void);
+    void liftFollowTraject(void);
+    void changeBezierShape(int i);
+    void dowmwardReaction(void);
+    void berzierShapeChangeRecation(void);
+    Eigen::Matrix<double,3,6> foot_swing_traj;
+    Eigen::Matrix<double,1,6> cpg_period_count;
+    Eigen::Matrix<double,3,6> foot_cross_traj;         //　越障轨迹
+    Eigen::Matrix<double,3,6> foot_dowmward_traj;      //　下探轨迹
+    Eigen::Matrix<double,1,6> foot_cross_object_est;    //　记录腿的抬升高度并且用这个高度来估计腿遇到的障碍物．
+    Eigen::Matrix<double,1,6> foot_ditch_deepth_est;    //　
+    Eigen::Matrix<double,3,6> foot_lift_traj;    //　
+    Eigen::Matrix<double,3,6> foot_dowm_traj;    //　
+    double  set_z_deviation_adaptiv = 0; 
+    neural_bezier_curve neur_bezier[6];
+    Eigen::Matrix<double,1,6> step_set_length; 
+    neural_bezier_curve neur_bezier_lift_curve[6];
+    Eigen::Matrix<double,3,6> foot_trajectory;
+    linear_trans deviation_conver_z_adaptive;
+    linear_trans deviation_conver[3];
+    BubbleSort foot_cross_hight_sort, foot_ditch_deepth_sort;
+    TimeMteter _Tim1;
+    Eigen::Matrix<double,1,6> swing_contact_threadhold;
+    Vec36 _feetPosNormalStand_original;
     Vec36 _posFeet2BGoal_P_Increment;
     Vec1_6 *terian_FootHold;
+
+
+
 };
 
 #endif  // TROTTING_H

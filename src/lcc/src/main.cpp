@@ -135,10 +135,11 @@ int main(int argc, char **argv){
 
     Vec6 _bias;
     _bias << 0, 0.5, 0.5, 0, 0, 0.5;
-    ctrlComp->waveGen = new WaveGenerator(0.45, 0.5, _bias); // Trot
-    // ctrlComp->waveGen = new WaveGenerator(0.55, 0.5, _bias); // Trot
+    // ctrlComp->waveGen = new WaveGenerator(0.45, 0.5, _bias); // Trot
+    ctrlComp->waveGen = new WaveGenerator(0.55, 0.5, _bias); // Trot
+    // ctrlComp->waveGen = new WaveGenerator(0.8, 0.5, _bias); // Trot
     // ctrlComp->waveGen = new WaveGenerator(1, 0.5, _bias); // Trot
-    // ctrlComp->waveGen = new WaveGenerator(2, 0.5, _bias); // Trot
+    // ctrlComp->waveGen = new WaveGenerator(3, 0.5, _bias); // Trot
 
 //     // ctrlComp->waveGen = new WaveGenerator(1.1, 0.75, Vec4(0, 0.25, 0.5, 0.75));  //Crawl, only for sim
 //     // ctrlComp->waveGen = new WaveGenerator(0.4, 0.6, Vec4(0, 0.5, 0.5, 0));  //Walking Trot, only for sim

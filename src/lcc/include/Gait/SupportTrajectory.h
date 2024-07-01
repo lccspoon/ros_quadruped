@@ -17,10 +17,11 @@ public:
     ~SupportTrajectory();
     void setGait(Vec2 vxyGoalGlobal, float dYawGoal, float gaitHeight);
     // void run(Vec34 &feetPos, Vec34 &feetVel);
-    void run(Vec36 &feetPos, Vec36 &feetVel);
+    void run(Vec36 &feetPos, Vec36 &feetVel, Vec36 P_Increment, Vec1_6 *terian_FootHold);
     Vec3 getFootPos(int i);
     Vec3 getFootVel(int i);
     void restart();
+    void useCPG(Eigen::Matrix<double,1,6> cpg_phase, Eigen::Matrix<double,1,6> cpg_contact);
 private:
     float cycloidXYPosition(float startXY, float endXY, float phase);
     float cycloidXYVelocity(float startXY, float endXY, float phase);

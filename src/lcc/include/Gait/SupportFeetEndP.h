@@ -10,8 +10,8 @@ public:
     SupportFeetEndP(CtrlComponents *ctrlComp);
     ~SupportFeetEndP();
     // Vec3 calc(int legID, Vec2 vxyGoalGlobal, float dYawGoal, Vec3 _startP);
-    Vec3 calc_support_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal);
-    Vec3 calc_swing_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float phase);
+    Vec3 calc_support_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal, Vec3 P_Increment, Vec1_6 *terian_FootHold);
+    Vec3 calc_swing_fe(int legID, Vec2 vxyGoalGlobal, float dYawGoal, float phase, Vec3 P_Increment, Vec1_6 *terian_FootHold);
 private:
     LowlevelState *_lowState;
     Estimator *_est;
