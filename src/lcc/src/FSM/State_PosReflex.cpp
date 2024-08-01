@@ -121,7 +121,7 @@ FSMStateName State_PosReflex::checkChange(){
         return FSMStateName::POSREFLEX;
     }
 }
-
+         
 void State_PosReflex::run(){
     // Rob State
     _posBody = _est->getPosition();
@@ -133,7 +133,7 @@ void State_PosReflex::run(){
     _velFeetGlobal = _est->getFeetVel();
     _B2G_RotMat = _lowState->getRotMat();//机身 到 世界 的变化矩阵
     _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
-
+                                                                  
     #if TERRIANESTI_FOURLEG
         (*_contact_te)(0) = (*_contact_hex)(0); 
         (*_contact_te)(1) = (*_contact_hex)(1); 
@@ -151,9 +151,9 @@ void State_PosReflex::run(){
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 1) =  _posFeet2BGlobal.block< 3, 1>( 0, 1); 
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 2) =  _posFeet2BGlobal.block< 3, 1>( 0, 2); 
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 3) =  _posFeet2BGlobal.block< 3, 1>( 0, 3); 
-        // terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
-    #else
-        terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_hex, _posFeet2BGlobal, _Apla);//lcc
+        terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
+    // #else
+        // terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_hex, _posFeet2BGlobal, _Apla);//lcc
     #endif
 
     /* 将键盘输入的_userValue转换为 需要的控制量：body系下的 目标速度、角速度 */

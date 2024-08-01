@@ -151,8 +151,8 @@ void State_Position::run(){
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 2) =  _posFeet2BGlobal.block< 3, 1>( 0, 2); 
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 3) =  _posFeet2BGlobal.block< 3, 1>( 0, 3); 
         terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
-    #else
-        terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_hex, _posFeet2BGlobal, _Apla);//lcc
+    // #else
+        // terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_hex, _posFeet2BGlobal, _Apla);//lcc
     #endif
 
     /* 将键盘输入的_userValue转换为 需要的控制量：body系下的 目标速度、角速度 */
@@ -176,7 +176,8 @@ void State_Position::run(){
     }
 
     Vec18 tau_send;
-    tau_send = _tau * 1 + torque18 * 1;
+    // tau_send = _tau * 1 + torque18 * 1;
+    tau_send = _tau * 0 + torque18 * 1;
     _lowCmd->setTau( tau_send ); //lcc 20240602
 
     for(int i(0); i<6; ++i){
@@ -385,7 +386,8 @@ Vec36 State_Position::_calcOP(float row, float pitch, float yaw, float height){
 
 void State_Position::_torqueCtrl(){
 
-    _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+    // _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+    _Kp = Vec3(5000, 5000, 5000).asDiagonal();
     _Kd = Vec3( 120,  120, 120).asDiagonal();
     Vec36 pos36;
     Vec36 vel36;
@@ -440,6 +442,6 @@ void State_Position::_torqueCtrl(){
     torque18_o2 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o2);
     torque18_o3 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o3);
     // torque18 = torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 0; //力矩控制
-    torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1; //力位混合
+    torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5; //力位混合
     // torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
 }

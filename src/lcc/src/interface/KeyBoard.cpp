@@ -13,6 +13,8 @@ KeyBoard::KeyBoard(){
     tcsetattr( fileno( stdin ), TCSANOW, &_newSettings );
 
     pthread_create(&_tid, NULL, runKeyBoard, (void*)this);
+    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1(***);\n 2->FIXEDSTAND_2(***);\n 3->FREESTAND_3;\n 4->QP_4(***);\n 5->POSITION_5(***);\n 6->A1MPC_6;\n 7->POSREFLEX_7;\n 9->SWING_TEST9\n");
+    printf(" TERRIANESTI_FOURLEG: %d \n",TERRIANESTI_FOURLEG);
 }
 
 KeyBoard::~KeyBoard(){
@@ -30,8 +32,8 @@ UserCommand KeyBoard::checkCmd(){
     case '3':
         return UserCommand::FREESTAND_3;
     case '4':
-        // printf(" \n keyboard->VMC_4  \n ");
-        return UserCommand::VMC_4;
+        // printf(" \n keyboard->QP_4  \n ");
+        return UserCommand::QP_4;
     case '5':
         return UserCommand::POSITION_5;
 

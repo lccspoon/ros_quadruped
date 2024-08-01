@@ -294,8 +294,8 @@ void IOROS::sendCmd(const LowlevelCmd *lowCmd){
     else
     {
         for(int m(0); m < NUM_DOF_W; ++m){
-            pub_data[m].data = motor_q(m);
-            // pub_data[m].data = lowCmd->motorCmd[m].tau;
+            // pub_data[m].data = motor_q(m);
+            pub_data[m].data = lowCmd->motorCmd[m].tau;
         }
     }
 

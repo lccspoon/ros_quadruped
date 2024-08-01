@@ -125,9 +125,9 @@ void State_A1MPC::run(){
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 1) =  _posFeet2BGlobal.block< 3, 1>( 0, 1); 
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 2) =  _posFeet2BGlobal.block< 3, 1>( 0, 2); 
         // _posFeet2BGlobal_te.block< 3, 1>( 0, 3) =  _posFeet2BGlobal.block< 3, 1>( 0, 3); 
-        // terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
-    #else
-        terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact, _posFeet2BGlobal, _Apla);//lcc
+        terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
+    // #else
+        // terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact, _posFeet2BGlobal, _Apla);//lcc
     #endif
 
     /* 将键盘输入的_userValue转换为 需要的控制量：body系下的 目标速度、角速度 */
@@ -373,8 +373,8 @@ void State_A1MPC::calcGrf(){
                     -9.8;
     // double mpc_dt = 0.002;
     double mpc_dt = _ctrlComp->dt;
-    std::cout<<" body_h :"<< body_h <<std::endl;
-    std::cout<<" _pcd(2) :"<< _pcd(2) <<std::endl;
+    // std::cout<<" body_h :"<< body_h <<std::endl;
+    // std::cout<<" _pcd(2) :"<< _pcd(2) <<std::endl;
 
      _yawCmd = _yawCmd + _dYawCmd * _ctrlComp->dt;
 

@@ -28,10 +28,11 @@
 #include <chrono> // std::chrono::milliseconds
 
 #include "control/OsqpMpcTest.h"//lcc
+
+#if USE_A_REAL_HEXAPOD == false
 #include "ros/ros.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "std_msgs/Float64.h"
-//lcc 
 class RosTopicMsgPub
 {
 protected:
@@ -69,6 +70,8 @@ public:
         msgPub.publish(msgTempArray);
     }
 };
+#endif
+
 bool running = true;
 
 // over watch the ctrl+c command
@@ -105,10 +108,13 @@ int main(int argc, char **argv){
     IOInterface *ioInter;
     CtrlPlatform ctrlPlat;
     
-// #ifdef COMPILE_WITH_SIMULATION
-    ioInter = new IOROS();
-    ctrlPlat = CtrlPlatform::GAZEBO;
-// #endif // COMPILE_WITH_SIMULATION
+    #if USE_A_REAL_HEXAPOD
+        ioInter = new IOSDK();
+        ctrlPlat = CtrlPlatform::REALROBOT;
+    #else
+        ioInter = new IOROS();
+        ctrlPlat = CtrlPlatform::GAZEBO;
+    #endif 
 
 // // #ifdef COMPILE_WITH_REAL_ROBOT
 // //     ioInter = new IOSDK();
@@ -165,9 +171,11 @@ int main(int argc, char **argv){
     // ros::AsyncSpinner spinner(3);
     // spinner.start();
 
+    #if USE_A_REAL_HEXAPOD == false
     RosTopicMsgPub COM("COM");
     RosTopicMsgPub VEL("VEL");
     RosTopicMsgPub RPY("RPY");
+    #endif
     // COM.msgPubRun(_ctrlComp->estimator->getPosition());
     while (running)
     {   

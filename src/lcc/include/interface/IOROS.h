@@ -32,7 +32,6 @@
 #include "common/unitreeRobot.h"
 
 
-#define NUM_DOFa 18
 extern Vec3 ODE_P;
 extern Vec3 ODE_V;
 

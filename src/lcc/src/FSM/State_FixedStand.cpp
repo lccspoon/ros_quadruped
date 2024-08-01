@@ -129,7 +129,7 @@ FSMStateName State_FixedStand::checkChange(){
     else if(_lowState->userCmd == UserCommand::A1MPC_6){
         return FSMStateName::A1MPC;
     }
-    else if(_lowState->userCmd == UserCommand::VMC_4){  //lcc 20240523
+    else if(_lowState->userCmd == UserCommand::QP_4){  //lcc 20240523
         return FSMStateName::QP;
     }
     else if(_lowState->userCmd == UserCommand::POSREFLEX_7){  //lcc 20240627

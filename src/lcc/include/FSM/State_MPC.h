@@ -85,10 +85,10 @@ private:
     //terrian estimator
     Vec3 *_Apla;
     Vec3 root_euler_d;
-    #if TERRIANESTI_FOURLEG
+    // #if TERRIANESTI_FOURLEG
         Vec34 _posFeet2BGlobal_te;
         VecInt4 *_contact_te;
-    #endif
+    // #endif
 
 
     //QP lcc 20240604

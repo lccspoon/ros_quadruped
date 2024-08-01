@@ -12,11 +12,16 @@
 #define IS_THIS_A_HEXAPOD true
 // #define IS_THIS_A_HEXAPOD false
 
+// #define USE_A_REAL_HEXAPOD true
+#define USE_A_REAL_HEXAPOD false
+
+
 // #define NUM_LEG 4
 // #define LEG_DOF 3
 // #define NUM_DOF 12
 
-#define TERRIANESTI_FOURLEG true
+// #define TERRIANESTI_FOURLEG true
+#define TERRIANESTI_FOURLEG false
 
 // #define PCONTROL_REFLEX_LIFE_DOWM true
 #define PCONTROL_REFLEX_LIFE_DOWM false
@@ -49,7 +54,7 @@ enum class UserCommand{
     PASSIVE_1,
     FIXEDSTAND_2,
     FREESTAND_3,
-    VMC_4,
+    QP_4,
     POSITION_5,
     A1MPC_6,        //lcc 20240416
     POSREFLEX_7        //lcc 20240627

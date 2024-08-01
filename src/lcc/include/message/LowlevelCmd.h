@@ -69,6 +69,17 @@ struct LowlevelCmd{
             motorCmd[i].tau = saturation(tau(i), torqueLimit);
         }
     }
+
+    #if USE_A_REAL_HEXAPOD
+    void setTau(Vec18 tau, Vec2 torqueLimit = Vec2(-25, 25)){
+        for(int i(0); i<18; ++i){
+            if(std::isnan(tau(i))){
+                printf("[ERROR] The setTau function meets Nan\n");
+            }
+            motorCmd[i].tau = saturation(tau(i), torqueLimit);
+        }
+    }
+    #else
     void setTau(Vec18 tau, Vec2 torqueLimit = Vec2(-50, 50)){
         for(int i(0); i<18; ++i){
             if(std::isnan(tau(i))){
@@ -77,6 +88,7 @@ struct LowlevelCmd{
             motorCmd[i].tau = saturation(tau(i), torqueLimit);
         }
     }
+    #endif
 
     void setZeroDq(int legID){
         motorCmd[legID*3+0].dq = 0;
