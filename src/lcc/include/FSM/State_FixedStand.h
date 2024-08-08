@@ -15,7 +15,7 @@ public:
 
 private:
 
-    float _duration = 1000;   //steps
+    float _duration = 500;   //steps
     float _percent = 0;       //%
 
     //-------lcc------//

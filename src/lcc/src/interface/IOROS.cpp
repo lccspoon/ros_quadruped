@@ -38,7 +38,7 @@ IOROS::~IOROS(){
 }
 
 void IOROS::sendRecv(const LowlevelCmd *cmd, LowlevelState *state){
-    sendCmd(cmd);
+    sendCmd(cmd, state);
     recvState(state);
 
     state->userCmd = cmdPanel->getUserCmd();
@@ -89,6 +89,7 @@ Eigen::Matrix<double, LEG_DOF_W, NUM_LEG_W> sub_joint_p_local, sub_joint_p_local
 Eigen::Matrix<double, LEG_DOF_W, NUM_LEG_W> sub_joint_v_local, sub_joint_v_local_temp;
 Eigen::Matrix<double, LEG_DOF_W, NUM_LEG_W> sub_joint_t_local, sub_joint_t_local_temp;
 int sub_joint_state_seq_local;
+Vec36 sub_joint_p_local_temp_origin;
 void doMsg_yobotics_joint_states(const sensor_msgs::JointState::ConstPtr& sub_joint_states)
 {
     sub_joint_state_seq_local = sub_joint_states->header.seq;
@@ -133,6 +134,10 @@ void doMsg_yobotics_joint_states(const sensor_msgs::JointState::ConstPtr& sub_jo
     sub_joint_p_local.block<3,1>(0,3) = sub_joint_p_local_temp.block<3,1>(0,2);//lm
     sub_joint_p_local.block<3,1>(0,4) = sub_joint_p_local_temp.block<3,1>(0,3);//rb
     sub_joint_p_local.block<3,1>(0,5) = sub_joint_p_local_temp.block<3,1>(0,0);//lb
+    sub_joint_p_local_temp_origin = sub_joint_p_local;
+
+    // std::cout<<"sub_joint_p_local_temp_origin:  \n"<< sub_joint_p_local_temp_origin * 180/3.1415926 <<std::endl;
+
 
    //  0~18: RF LF RM LM RB LB 
     sub_joint_v_local.block<3,1>(0,0) = sub_joint_v_local_temp.block<3,1>(0,4);
@@ -229,40 +234,9 @@ Eigen::Matrix<double, 3, 1> IOROS::retSimOdeBodyV(){
     return sub_odo_lin_twist_local;
 }
 
-void IOROS::sendCmd(const LowlevelCmd *lowCmd){
+void IOROS::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
     std_msgs::Float64 pub_data[NUM_DOF_W];
-
-    Vec18 init_tau;
-    init_tau.setZero();
-    init_tau(2) = 0.1;
-    init_tau(5) = 0.1;
-    init_tau(8) = 0.1;
-    init_tau(11) = 0.1;
-    init_tau(14) = 0.1;
-    init_tau(17) = 0.1;
-
-    Vec18 init_pos;
-    init_pos.setZero();
-    init_pos(1) = 1.57;
-    init_pos(2) = -1.57;
-
-    init_pos(4) = -1.57;
-    init_pos(5) = 1.57;
-
-    //rm
-    init_pos(7) = -1.57;
-    init_pos(8) = 1.57;
-
-    init_pos(10) = -1.57;
-    init_pos(11) = -1.57;
-
-    init_pos(13) = 1.57;
-    init_pos(14) = 1.57;
-
-    init_pos(16) = -1.57;
-    init_pos(17) = -1.57;
-
-    Vec18 motor_q;;
+    Vec18 motor_q;
     for(int x; x < NUM_DOF_W; ++x)
         motor_q(x) = lowCmd->motorCmd[x].q;
 
@@ -284,35 +258,131 @@ void IOROS::sendCmd(const LowlevelCmd *lowCmd){
     motor_q(16) = -motor_q(16);
     motor_q(17) = -motor_q(17);
 
-    if (cmdPanel->userFunctionMode.function_test == true )
+    Vec36 motor_cmd_q_36;
+    motor_cmd_q_36 = vec18ToVec36(motor_q);
+    double radd;
+    radd = 3.1415926/180;
+
+
+    // std::cout<<"pub_data_msg:  \n"<< pub_data_msg * 180/3.1415926 <<std::endl;
+
+    if( wait_count >= 150 )
     {
+        motor_cmd_q_36.block<3,1>(0,1)=___dataUnuProtect[1].sendDataConPro(1,motor_cmd_q_36.block<3,1>(0,1),20*radd);
+        motor_cmd_q_36.block<3,1>(0,0)=___dataUnuProtect[6].sendDataConPro(0,motor_cmd_q_36.block<3,1>(0,0),20*radd);
+        motor_cmd_q_36.block<3,1>(0,2)=___dataUnuProtect[2].sendDataConPro(2,motor_cmd_q_36.block<3,1>(0,2),20*radd);
+        motor_cmd_q_36.block<3,1>(0,3)=___dataUnuProtect[3].sendDataConPro(3,motor_cmd_q_36.block<3,1>(0,3),20*radd);
+        motor_cmd_q_36.block<3,1>(0,4)=___dataUnuProtect[4].sendDataConPro(4,motor_cmd_q_36.block<3,1>(0,4),20*radd);
+        motor_cmd_q_36.block<3,1>(0,5)=___dataUnuProtect[5].sendDataConPro(5,motor_cmd_q_36.block<3,1>(0,5),20*radd);
+
         for(int m(0); m < NUM_DOF_W; ++m){
-            // pub_data[m].data = init_pos(m);
-            pub_data[m].data = init_tau(m)*1;
-        }
-    }
-    else
-    {
-        for(int m(0); m < NUM_DOF_W; ++m){
-            // pub_data[m].data = motor_q(m);
+            #if ONLY_POSITION_CTRL == true
+            pub_data[m].data = motor_cmd_q_36(m);
+            #else
             pub_data[m].data = lowCmd->motorCmd[m].tau;
+            #endif
+        }
+        //旋转方向调整->t
+        pub_data[0].data = -pub_data[0].data; 
+        pub_data[1].data = -pub_data[1].data; 
+        pub_data[5].data = -pub_data[5].data; 
+        pub_data[6].data = -pub_data[6].data; 
+        pub_data[8].data = -pub_data[8].data; 
+        pub_data[10].data = -pub_data[10].data; 
+        pub_data[12].data = -pub_data[12].data; 
+        pub_data[14].data = -pub_data[14].data; 
+        pub_data[16].data = -pub_data[16].data; 
+
+        Vec36 pub_data_msg;
+        for(int x; x < NUM_DOF_W; ++x)
+            pub_data_msg(x) = lowCmd->motorCmd[x].q;
+
+        pub_data_msg(1) = -pub_data_msg(1);
+        pub_data_msg(2) = -pub_data_msg(2);
+
+        pub_data_msg(4) = -pub_data_msg(4);
+        pub_data_msg(5) = -pub_data_msg(5);
+
+        pub_data_msg(7) = -pub_data_msg(7);
+        pub_data_msg(8) = -pub_data_msg(8);
+
+        pub_data_msg(10) = -pub_data_msg(10);
+        pub_data_msg(11) = -pub_data_msg(11);
+
+        pub_data_msg(13) = -pub_data_msg(13);
+        pub_data_msg(14) = -pub_data_msg(14);
+
+        pub_data_msg(16) = -pub_data_msg(16);
+        pub_data_msg(17) = -pub_data_msg(17);
+
+        pub_data_msg(0) = -pub_data_msg(0);
+        pub_data_msg(1) = -pub_data_msg(1);
+        pub_data_msg(5) = -pub_data_msg(5);
+        pub_data_msg(6) = -pub_data_msg(6);
+        pub_data_msg(8) = -pub_data_msg(8);
+        pub_data_msg(10) = -pub_data_msg(10);
+        pub_data_msg(12) = -pub_data_msg(12);
+        pub_data_msg(14) = -pub_data_msg(14);
+        pub_data_msg(16) = -pub_data_msg(16);
+
+        ___dataUnuProtect[6].velLimAndDifFroDesPosAndActPos(0, 3,
+                                                        pub_data_msg.block<3, 1>(0, 0), 
+                                                        sub_joint_p_local_temp_origin.block<3, 1>(0, 0), 30 * radd,
+                                                        sub_joint_v_local_temp.block<3, 1>(0, 0), 9);
+        ___dataUnuProtect[1].velLimAndDifFroDesPosAndActPos(1,3,
+                                                        pub_data_msg.block<3, 1>(0, 1), 
+                                                        sub_joint_p_local_temp_origin.block<3, 1>(0, 1), 30 * radd,
+                                                        sub_joint_v_local_temp.block<3, 1>(0, 1), 9);
+        ___dataUnuProtect[2].velLimAndDifFroDesPosAndActPos(2, 3,
+                                                        pub_data_msg.block<3, 1>(0, 2), 
+                                                        sub_joint_p_local_temp_origin.block<3, 1>(0, 2), 30 * radd,
+                                                        sub_joint_v_local_temp.block<3, 1>(0, 2), 9);
+        ___dataUnuProtect[3].velLimAndDifFroDesPosAndActPos(3, 3,
+                                                        pub_data_msg.block<3, 1>(0, 3), 
+                                                        sub_joint_p_local_temp_origin.block<3, 1>(0, 3), 30 * radd,
+                                                        sub_joint_v_local_temp.block<3, 1>(0, 3), 9);
+        ___dataUnuProtect[4].velLimAndDifFroDesPosAndActPos(4, 3,
+                                                        pub_data_msg.block<3, 1>(0, 4), 
+                                                        sub_joint_p_local_temp_origin.block<3, 1>(0, 4), 30 * radd,
+                                                        sub_joint_v_local_temp.block<3, 1>(0, 4), 9);
+        ___dataUnuProtect[5].velLimAndDifFroDesPosAndActPos(5, 3,
+                                                        pub_data_msg.block<3, 1>(0, 5), 
+                                                        sub_joint_p_local_temp_origin.block<3, 1>(0, 5), 30 * radd,
+                                                        sub_joint_v_local_temp.block<3, 1>(0, 5), 9);
+
+        // 如果有false,那么pub_data就不会执行
+        if (___dataUnuProtect[5].diff_val_flag == false or ___dataUnuProtect[4].diff_val_flag == false 
+        or ___dataUnuProtect[3].diff_val_flag == false or ___dataUnuProtect[2].diff_val_flag == false 
+        or ___dataUnuProtect[1].diff_val_flag == false or ___dataUnuProtect[6].diff_val_flag == false)
+        {
+                ___dataUnuProtect[5].diff_val_flag = false;
+                ___dataUnuProtect[4].diff_val_flag = false;
+                ___dataUnuProtect[3].diff_val_flag = false;
+                ___dataUnuProtect[2].diff_val_flag = false;
+                ___dataUnuProtect[1].diff_val_flag = false;
+                ___dataUnuProtect[6].diff_val_flag = false;
+                // printf("\n   ------------diff_val_flag:%d --------------\n",___dataUnuProtect[5].diff_val_flag);
+                exit(0);
+        }
+        else if(___dataUnuProtect[5].vel_lim_flag==false or ___dataUnuProtect[4].vel_lim_flag==false 
+        or ___dataUnuProtect[3].vel_lim_flag==false or ___dataUnuProtect[2].vel_lim_flag==false 
+        or ___dataUnuProtect[1].vel_lim_flag==false or ___dataUnuProtect[6].vel_lim_flag==false)
+        {
+                ___dataUnuProtect[5].vel_lim_flag=false;___dataUnuProtect[4].vel_lim_flag=false;
+                ___dataUnuProtect[3].vel_lim_flag=false;___dataUnuProtect[2].vel_lim_flag=false;
+                ___dataUnuProtect[1].vel_lim_flag=false;___dataUnuProtect[6].vel_lim_flag=false;
+                // printf("\n   ------------vel_lim_flag:%d --------------\n",___dataUnuProtect[5].vel_lim_flag);
+                exit(0);
+        }
+        else
+        {
+            for(int m(0); m < NUM_DOF_W; ++m){
+                pub_joint_cmd[m].publish(pub_data[m]);
+            }
         }
     }
+    wait_count++;
 
-    // //旋转方向调整->t
-    pub_data[0].data = -pub_data[0].data; 
-    pub_data[1].data = -pub_data[1].data; 
-    pub_data[5].data = -pub_data[5].data; 
-    pub_data[6].data = -pub_data[6].data; 
-    pub_data[8].data = -pub_data[8].data; 
-    pub_data[10].data = -pub_data[10].data; 
-    pub_data[12].data = -pub_data[12].data; 
-    pub_data[14].data = -pub_data[14].data; 
-    pub_data[16].data = -pub_data[16].data; 
-
-    for(int m(0); m < NUM_DOF_W; ++m){
-        pub_joint_cmd[m].publish(pub_data[m]);
-    }
     ros::spinOnce();
 }
 

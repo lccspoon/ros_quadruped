@@ -49,6 +49,10 @@ struct UserFunctionMode{
     Eigen::Matrix<double,1,6>  LEG_MKAN_TRIGGER;//20230907cheet
     int life_reaction_off_on=0,dowm_reaction_off_on=0,mkan_reaction_off_on=0,berzier_shape_off_on = 0;
     double set_pitch;
+
+    bool motor_enable_flag; // 进入闭环
+    bool motor_disenable_flag;//退出闭环
+
     UserFunctionMode(){
         setZero();
     }
@@ -59,6 +63,9 @@ struct UserFunctionMode{
         LEG_DOWM_TRIGGER.setZero();
         LEG_MKAN_TRIGGER.setZero();
         set_pitch = 0;
+
+        motor_enable_flag = false;
+        motor_disenable_flag = false;
     }
 };
 
@@ -71,7 +78,9 @@ public:
     UserFunctionMode getUserFunctionMode(){return userFunctionMode;}
     void setPassive(){userCmd = UserCommand::PASSIVE_1;}
     void setZero(){userValue.setZero();}
+
     UserFunctionMode userFunctionMode; // lcc 20250601
+
 #ifdef COMPILE_WITH_REAL_ROBOT
     virtual void receiveHandle(UNITREE_LEGGED_SDK::LowState *lowState){};
 #endif  // COMPILE_WITH_REAL_ROBOT

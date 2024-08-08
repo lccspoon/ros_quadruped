@@ -1,11 +1,11 @@
 <launch>
   
   <!-- positon control -->
-  <!-- <include file="$(find  hexapod_description2)/launch/Positioncontroller.launch"/> -->
+  <include file="$(find  hexapod_description2)/launch/Positioncontroller.launch"/>
   <include file="$(find  hexapod_description2)/launch/gazebo_mdf_inertia.launch"/>
 
   <!-- torque control -->
-  <include file="$(find  hexapod_description2)/launch/Touquecontroller.launch"/>
+  <!-- <include file="$(find  hexapod_description2)/launch/Touquecontroller.launch"/> -->
   <!-- <include file="$(find  hexapod_description2)/launch/gazebo_ori_inertia.launch"/> -->
   
 </launch>

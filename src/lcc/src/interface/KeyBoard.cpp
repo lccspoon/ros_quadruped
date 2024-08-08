@@ -13,7 +13,7 @@ KeyBoard::KeyBoard(){
     tcsetattr( fileno( stdin ), TCSANOW, &_newSettings );
 
     pthread_create(&_tid, NULL, runKeyBoard, (void*)this);
-    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1(***);\n 2->FIXEDSTAND_2(***);\n 3->FREESTAND_3;\n 4->QP_4(***);\n 5->POSITION_5(***);\n 6->A1MPC_6;\n 7->POSREFLEX_7;\n 9->SWING_TEST9\n");
+    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1(***);\n 2->FIXEDSTAND_2(***);\nc->FIXEDSQUAT_c(***);\n 3->FREESTAND_3;\n 4->QP_4(***);\n 5->POSITION_5(***);\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 9->SWING_TEST9\n");
     printf(" TERRIANESTI_FOURLEG: %d \n",TERRIANESTI_FOURLEG);
 }
 
@@ -27,6 +27,8 @@ UserCommand KeyBoard::checkCmd(){
     switch (_c){
     case '1':
         return UserCommand::PASSIVE_1;
+    case 'c':
+        return UserCommand::SQUAT_C;
     case '2':
         return UserCommand::FIXEDSTAND_2;
     case '3':
@@ -41,10 +43,10 @@ UserCommand KeyBoard::checkCmd(){
     case '5':
         return UserCommand::L2_Y;
 #endif  // COMPILE_WITH_MOVE_BASE
-    case '6':
-        return UserCommand::A1MPC_6;
-    case '7':
-        return UserCommand::POSREFLEX_7;
+    // case '6':
+    //     return UserCommand::A1MPC_6;
+    // case '7':
+    //     return UserCommand::POSREFLEX_7;
     case '0':
         return UserCommand::BALANCE_TEST0;
     case '9':
@@ -105,17 +107,34 @@ void KeyBoard::changeValue(){
 int life_reaction_off_on_flag=0,dowm_reaction_off_on_flag=0,mkan_reaction_off_on_flag=0, berzier_shape_off_on_flag = 0;
 void KeyBoard::changeFunctionModeValue(){
     switch (_c){
+
+    case 'p':case 'P':{ //进入闭环
+            if( userFunctionMode.motor_enable_flag == false )
+                userFunctionMode.motor_enable_flag = true;
+            else if( userFunctionMode.motor_enable_flag == true )
+                userFunctionMode.motor_enable_flag = false;
+            std::cout<<"motor_enable_flag:  "<< userFunctionMode.motor_enable_flag <<std::endl;
+        }
+        break;
+    case 'o':case 'O':{ //退出闭环
+            if( userFunctionMode.motor_disenable_flag == false )
+                userFunctionMode.motor_disenable_flag = true;
+            else if( userFunctionMode.motor_disenable_flag == true )
+                userFunctionMode.motor_disenable_flag = false;
+            std::cout<<"motor_disenable_flag:  "<< userFunctionMode.motor_disenable_flag <<std::endl;
+        }
+        break;
     case 't':case 'T':{
             if( userFunctionMode.function_test == false )
                 userFunctionMode.function_test = true;
             else if( userFunctionMode.function_test == true )
                 userFunctionMode.function_test = false;
             std::cout<<"function_test:  "<< userFunctionMode.function_test <<std::endl;
-            if( userFunctionMode.state_reset == false )
-                userFunctionMode.state_reset = true;
-            else if( userFunctionMode.state_reset == true )
-                userFunctionMode.state_reset = false;
-            std::cout<<"state_reset:  "<< userFunctionMode.state_reset <<std::endl;
+            // if( userFunctionMode.state_reset == false )
+            //     userFunctionMode.state_reset = true;
+            // else if( userFunctionMode.state_reset == true )
+            //     userFunctionMode.state_reset = false;
+            // std::cout<<"state_reset:  "<< userFunctionMode.state_reset <<std::endl;
         }
         break;
         /******************20230906自适应cheet按键******************/

@@ -111,24 +111,10 @@ lcc/CMakeFiles/main.dir/src/FSM/FSMState.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/FSMState.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/FSMState.cpp -o CMakeFiles/main.dir/src/FSM/FSMState.cpp.s
 
-lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o: lcc/CMakeFiles/main.dir/flags.make
-lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_A1MPC2.cpp
-lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_A1MPC2.cpp
-
-lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.i"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_A1MPC2.cpp > CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.i
-
-lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.s"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_A1MPC2.cpp -o CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.s
-
 lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_BalanceTest.cpp
 lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_BalanceTest.cpp
 
 lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.i: cmake_force
@@ -138,6 +124,20 @@ lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.i: cmake_force
 lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_BalanceTest.cpp -o CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.s
+
+lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_FixedSquat.cpp
+lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_FixedSquat.cpp
+
+lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_FixedSquat.cpp > CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.i
+
+lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_FixedSquat.cpp -o CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.s
 
 lcc/CMakeFiles/main.dir/src/FSM/State_FixedStand.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/FSM/State_FixedStand.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_FixedStand.cpp
@@ -167,10 +167,24 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_FreeStand.cpp -o CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.s
 
+lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_MPC.cpp
+lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_MPC.cpp
+
+lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_MPC.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_MPC.cpp > CMakeFiles/main.dir/src/FSM/State_MPC.cpp.i
+
+lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_MPC.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_MPC.cpp -o CMakeFiles/main.dir/src/FSM/State_MPC.cpp.s
+
 lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_Passive.cpp
 lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_Passive.cpp
 
 lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.i: cmake_force
@@ -181,10 +195,52 @@ lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_Passive.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_Passive.cpp -o CMakeFiles/main.dir/src/FSM/State_Passive.cpp.s
 
+lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_PosReflex.cpp
+lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_PosReflex.cpp
+
+lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_PosReflex.cpp > CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.i
+
+lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_PosReflex.cpp -o CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.s
+
+lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_Position.cpp
+lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_Position.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_Position.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_Position.cpp
+
+lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_Position.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_Position.cpp > CMakeFiles/main.dir/src/FSM/State_Position.cpp.i
+
+lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_Position.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_Position.cpp -o CMakeFiles/main.dir/src/FSM/State_Position.cpp.s
+
+lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_QP.cpp
+lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_QP.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_QP.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_QP.cpp
+
+lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_QP.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_QP.cpp > CMakeFiles/main.dir/src/FSM/State_QP.cpp.i
+
+lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_QP.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_QP.cpp -o CMakeFiles/main.dir/src/FSM/State_QP.cpp.s
+
 lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_StepTest.cpp
 lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_StepTest.cpp
 
 lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.i: cmake_force
@@ -198,7 +254,7 @@ lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_SwingTest.cpp
 lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_SwingTest.cpp
 
 lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.i: cmake_force
@@ -209,38 +265,10 @@ lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_SwingTest.cpp -o CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.s
 
-lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o: lcc/CMakeFiles/main.dir/flags.make
-lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_Trotting.cpp
-lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_Trotting.cpp
-
-lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.i"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_Trotting.cpp > CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.i
-
-lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.s"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_Trotting.cpp -o CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.s
-
-lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o: lcc/CMakeFiles/main.dir/flags.make
-lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_VMC.cpp
-lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_VMC.cpp
-
-lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/FSM/State_VMC.cpp.i"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/FSM/State_VMC.cpp > CMakeFiles/main.dir/src/FSM/State_VMC.cpp.i
-
-lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/FSM/State_VMC.cpp.s"
-	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/FSM/State_VMC.cpp -o CMakeFiles/main.dir/src/FSM/State_VMC.cpp.s
-
 lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o: /home/lcc/cchex_ws/src/lcc/src/FSM/State_move_base.cpp
 lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o -MF CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o.d -o CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/FSM/State_move_base.cpp
 
 lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.i: cmake_force
@@ -254,7 +282,7 @@ lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o: /home/lcc/cchex_ws/src/lcc/src/Gait/FeetEndCal.cpp
 lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o -MF CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o.d -o CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/Gait/FeetEndCal.cpp
 
 lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.i: cmake_force
@@ -268,7 +296,7 @@ lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o: /home/lcc/cchex_ws/src/lcc/src/Gait/GaitGenerator.cpp
 lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o -MF CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o.d -o CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/Gait/GaitGenerator.cpp
 
 lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.i: cmake_force
@@ -279,10 +307,52 @@ lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/Gait/GaitGenerator.cpp -o CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.s
 
+lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o: /home/lcc/cchex_ws/src/lcc/src/Gait/GaitGenerator_P.cpp
+lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o -MF CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o.d -o CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/Gait/GaitGenerator_P.cpp
+
+lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/Gait/GaitGenerator_P.cpp > CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.i
+
+lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/Gait/GaitGenerator_P.cpp -o CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.s
+
+lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o: /home/lcc/cchex_ws/src/lcc/src/Gait/SupportFeetEndP.cpp
+lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o -MF CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o.d -o CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/Gait/SupportFeetEndP.cpp
+
+lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/Gait/SupportFeetEndP.cpp > CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.i
+
+lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/Gait/SupportFeetEndP.cpp -o CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.s
+
+lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o: /home/lcc/cchex_ws/src/lcc/src/Gait/SupportTrajectory.cpp
+lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o -MF CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o.d -o CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/Gait/SupportTrajectory.cpp
+
+lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/Gait/SupportTrajectory.cpp > CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.i
+
+lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/Gait/SupportTrajectory.cpp -o CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.s
+
 lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o: /home/lcc/cchex_ws/src/lcc/src/Gait/WaveGenerator.cpp
 lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o -MF CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o.d -o CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/Gait/WaveGenerator.cpp
 
 lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.i: cmake_force
@@ -293,10 +363,24 @@ lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/Gait/WaveGenerator.cpp -o CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.s
 
+lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o: /home/lcc/cchex_ws/src/lcc/src/Gait/cpg_scheduler.cpp
+lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o -MF CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o.d -o CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/Gait/cpg_scheduler.cpp
+
+lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/Gait/cpg_scheduler.cpp > CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.i
+
+lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/Gait/cpg_scheduler.cpp -o CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.s
+
 lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o: /home/lcc/cchex_ws/src/lcc/src/common/LowPassFilter.cpp
 lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o -MF CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o.d -o CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/common/LowPassFilter.cpp
 
 lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.i: cmake_force
@@ -310,7 +394,7 @@ lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o: /home/lcc/cchex_ws/src/lcc/src/common/hexpodRobot.cpp
 lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o -MF CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o.d -o CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/common/hexpodRobot.cpp
 
 lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.i: cmake_force
@@ -324,7 +408,7 @@ lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o: /home/lcc/cchex_ws/src/lcc/src/common/unitreeLeg.cpp
 lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o -MF CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o.d -o CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/common/unitreeLeg.cpp
 
 lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.i: cmake_force
@@ -338,7 +422,7 @@ lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o: /home/lcc/cchex_ws/src/lcc/src/common/unitreeRobot.cpp
 lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o -MF CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o.d -o CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/common/unitreeRobot.cpp
 
 lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.i: cmake_force
@@ -352,7 +436,7 @@ lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/BalanceCtrl.cpp
 lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o -MF CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o.d -o CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/BalanceCtrl.cpp
 
 lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.i: cmake_force
@@ -363,10 +447,24 @@ lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/control/BalanceCtrl.cpp -o CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.s
 
+lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/ContactEst.cpp
+lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.o -MF CMakeFiles/main.dir/src/control/ContactEst.cpp.o.d -o CMakeFiles/main.dir/src/control/ContactEst.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/ContactEst.cpp
+
+lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/control/ContactEst.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/control/ContactEst.cpp > CMakeFiles/main.dir/src/control/ContactEst.cpp.i
+
+lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/control/ContactEst.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/control/ContactEst.cpp -o CMakeFiles/main.dir/src/control/ContactEst.cpp.s
+
 lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/ControlFrame.cpp
 lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o -MF CMakeFiles/main.dir/src/control/ControlFrame.cpp.o.d -o CMakeFiles/main.dir/src/control/ControlFrame.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/ControlFrame.cpp
 
 lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.i: cmake_force
@@ -380,7 +478,7 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/ConvexMpc.cpp
 lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o -MF CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o.d -o CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/ConvexMpc.cpp
 
 lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.i: cmake_force
@@ -394,7 +492,7 @@ lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/Estimator.cpp
 lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o -MF CMakeFiles/main.dir/src/control/Estimator.cpp.o.d -o CMakeFiles/main.dir/src/control/Estimator.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/Estimator.cpp
 
 lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.i: cmake_force
@@ -408,7 +506,7 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/OsqpMpcTest.cpp
 lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o -MF CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o.d -o CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/OsqpMpcTest.cpp
 
 lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.i: cmake_force
@@ -422,7 +520,7 @@ lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/TerrianEsti.cpp
 lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o -MF CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o.d -o CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/TerrianEsti.cpp
 
 lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.i: cmake_force
@@ -433,10 +531,38 @@ lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/control/TerrianEsti.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/control/TerrianEsti.cpp -o CMakeFiles/main.dir/src/control/TerrianEsti.cpp.s
 
+lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/neural_bezier_curve.cpp
+lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o -MF CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o.d -o CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/neural_bezier_curve.cpp
+
+lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/control/neural_bezier_curve.cpp > CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.i
+
+lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/control/neural_bezier_curve.cpp -o CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.s
+
+lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o: /home/lcc/cchex_ws/src/lcc/src/control/robot_lift_dowm_relex.cpp
+lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o -MF CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o.d -o CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/control/robot_lift_dowm_relex.cpp
+
+lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/control/robot_lift_dowm_relex.cpp > CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.i
+
+lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/control/robot_lift_dowm_relex.cpp -o CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s
+
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: /home/lcc/cchex_ws/src/lcc/src/interface/IOROS.cpp
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o -MF CMakeFiles/main.dir/src/interface/IOROS.cpp.o.d -o CMakeFiles/main.dir/src/interface/IOROS.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/interface/IOROS.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.i: cmake_force
@@ -447,10 +573,24 @@ lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/interface/IOROS.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/interface/IOROS.cpp -o CMakeFiles/main.dir/src/interface/IOROS.cpp.s
 
+lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: /home/lcc/cchex_ws/src/lcc/src/interface/IOSDK.cpp
+lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o -MF CMakeFiles/main.dir/src/interface/IOSDK.cpp.o.d -o CMakeFiles/main.dir/src/interface/IOSDK.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/interface/IOSDK.cpp
+
+lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/interface/IOSDK.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/interface/IOSDK.cpp > CMakeFiles/main.dir/src/interface/IOSDK.cpp.i
+
+lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/interface/IOSDK.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/interface/IOSDK.cpp -o CMakeFiles/main.dir/src/interface/IOSDK.cpp.s
+
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: /home/lcc/cchex_ws/src/lcc/src/interface/KeyBoard.cpp
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o -MF CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o.d -o CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/interface/KeyBoard.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.i: cmake_force
@@ -461,10 +601,24 @@ lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/interface/KeyBoard.cpp.s"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/interface/KeyBoard.cpp -o CMakeFiles/main.dir/src/interface/KeyBoard.cpp.s
 
+lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o: /home/lcc/cchex_ws/src/lcc/src/interface/intl_spi.cpp
+lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o -MF CMakeFiles/main.dir/src/interface/intl_spi.cpp.o.d -o CMakeFiles/main.dir/src/interface/intl_spi.cpp.o -c /home/lcc/cchex_ws/src/lcc/src/interface/intl_spi.cpp
+
+lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/interface/intl_spi.cpp.i"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/cchex_ws/src/lcc/src/interface/intl_spi.cpp > CMakeFiles/main.dir/src/interface/intl_spi.cpp.i
+
+lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/interface/intl_spi.cpp.s"
+	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/cchex_ws/src/lcc/src/interface/intl_spi.cpp -o CMakeFiles/main.dir/src/interface/intl_spi.cpp.s
+
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o: /home/lcc/cchex_ws/src/lcc/src/quadProgpp/Array.cc
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o -MF CMakeFiles/main.dir/src/quadProgpp/Array.cc.o.d -o CMakeFiles/main.dir/src/quadProgpp/Array.cc.o -c /home/lcc/cchex_ws/src/lcc/src/quadProgpp/Array.cc
 
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.i: cmake_force
@@ -478,7 +632,7 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.s: cmake_force
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/lcc/cchex_ws/src/lcc/src/quadProgpp/QuadProg++.cc
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o"
 	cd /home/lcc/cchex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o -MF CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o.d -o CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o -c /home/lcc/cchex_ws/src/lcc/src/quadProgpp/QuadProg++.cc
 
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.i: cmake_force
@@ -494,31 +648,42 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/src/main.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/FSM.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/FSMState.cpp.o" \
-"CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o" \
+"CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/State_FixedStand.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o" \
+"CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o" \
+"CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o" \
+"CMakeFiles/main.dir/src/FSM/State_Position.cpp.o" \
+"CMakeFiles/main.dir/src/FSM/State_QP.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o" \
-"CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o" \
-"CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o" \
 "CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o" \
 "CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o" \
 "CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o" \
+"CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o" \
+"CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o" \
+"CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o" \
 "CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o" \
+"CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o" \
 "CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o" \
 "CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o" \
 "CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o" \
 "CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o" \
 "CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o" \
+"CMakeFiles/main.dir/src/control/ContactEst.cpp.o" \
 "CMakeFiles/main.dir/src/control/ControlFrame.cpp.o" \
 "CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o" \
 "CMakeFiles/main.dir/src/control/Estimator.cpp.o" \
 "CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o" \
 "CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o" \
+"CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o" \
+"CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o" \
 "CMakeFiles/main.dir/src/interface/IOROS.cpp.o" \
+"CMakeFiles/main.dir/src/interface/IOSDK.cpp.o" \
 "CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o" \
+"CMakeFiles/main.dir/src/interface/intl_spi.cpp.o" \
 "CMakeFiles/main.dir/src/quadProgpp/Array.cc.o" \
 "CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o"
 
@@ -528,31 +693,42 @@ main_EXTERNAL_OBJECTS =
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/main.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/FSMState.cpp.o
-/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_FixedStand.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_StepTest.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.o
-/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o
-/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/FSM/State_move_base.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/Gait/FeetEndCal.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/common/LowPassFilter.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/common/unitreeLeg.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/ConvexMpc.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/OsqpMpcTest.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o
+/home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/build.make
@@ -576,7 +752,7 @@ main_EXTERNAL_OBJECTS =
 /home/lcc/cchex_ws/devel/lib/lcc/main: /usr/local/lib/libOsqpEigen.so.0.8.1
 /home/lcc/cchex_ws/devel/lib/lcc/main: /usr/local/lib/libosqp.so
 /home/lcc/cchex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable /home/lcc/cchex_ws/devel/lib/lcc/main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/lcc/cchex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Linking CXX executable /home/lcc/cchex_ws/devel/lib/lcc/main"
 	cd /home/lcc/cchex_ws/build/lcc && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

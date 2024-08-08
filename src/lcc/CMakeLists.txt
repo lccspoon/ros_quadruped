@@ -14,7 +14,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall")
 # 同样使用-O3进行最高级别的优化，并启用所有警告
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -Wall")
 
-
 # 使用C++11标准
 add_compile_options(-std=c++11)
 

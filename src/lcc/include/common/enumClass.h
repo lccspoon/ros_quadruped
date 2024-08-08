@@ -15,6 +15,7 @@
 // #define USE_A_REAL_HEXAPOD true
 #define USE_A_REAL_HEXAPOD false
 
+#define ONLY_POSITION_CTRL true
 
 // #define NUM_LEG 4
 // #define LEG_DOF 3
@@ -57,7 +58,8 @@ enum class UserCommand{
     QP_4,
     POSITION_5,
     A1MPC_6,        //lcc 20240416
-    POSREFLEX_7        //lcc 20240627
+    POSREFLEX_7,        //lcc 20240627
+    SQUAT_C        //lcc 20240808
 };
 
 enum class FrameType{
@@ -93,7 +95,8 @@ enum class FSMStateName{
     STEPTEST,
     A1MPC,  // lcc 20240416
     QP,  // lcc 20240523
-    POSREFLEX        //lcc 20240627
+    POSREFLEX,        //lcc 20240627
+    SQUAT        //lcc 20240808
 };
 
 #endif  // ENUMCLASS_H

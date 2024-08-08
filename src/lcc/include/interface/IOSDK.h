@@ -5,8 +5,13 @@
 #define IOSDK_H
 
 #include "interface/IOInterface.h"
+#include"interface/intl_spi.h"
 #include <string>
 #include "common/unitreeRobot.h"
+
+#if USE_A_REAL_HEXAPOD == true
+extern spi_sr spi;
+#endif
 
 class IOSDK : public IOInterface{
 public:
@@ -21,7 +26,6 @@ Eigen::Matrix<double, 3, 1> retSimOdeBodyV();
 private:
 void sendCmd(const LowlevelCmd *cmd);
 void recvState(LowlevelState *state);
-
 
 };
 

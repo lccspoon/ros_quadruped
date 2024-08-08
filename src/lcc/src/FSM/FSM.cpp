@@ -1,6 +1,8 @@
- 
+
 #include "FSM/FSM.h"
+#include "interface/IOSDK.h"
 #include <iostream>
+#include "interface/IOROS.h"
 
 FSM::FSM(CtrlComponents *ctrlComp)
     :_ctrlComp(ctrlComp){
@@ -8,6 +10,7 @@ FSM::FSM(CtrlComponents *ctrlComp)
     _stateList.invalid = nullptr;
     _stateList.passive = new State_Passive(_ctrlComp);
     _stateList.fixedStand = new State_FixedStand(_ctrlComp);
+    _stateList.fixedSquat = new State_FixedSquat(_ctrlComp);
     _stateList.freeStand = new State_FreeStand(_ctrlComp);
     _stateList.position = new State_Position(_ctrlComp);
     _stateList.a1mpc = new State_A1MPC(_ctrlComp);//lcc 20240416
@@ -35,41 +38,59 @@ void FSM::initialize(){
 
 unsigned int _waitCount;
 void FSM::run(){
+
+    #if USE_A_REAL_HEXAPOD == true
+        if( _ctrlComp->lowState->userFunctionMode.motor_disenable_flag == true ){
+            spi.exit_close_loop();
+        }
+        else{
+
+        }
+        usleep(2000);
+    #endif
+
+    // std::cout<<"getQ_Hex:  \n"<< _ctrlComp->lowState->getQ_Hex() * 180/3.1415926 <<std::endl;
+    if( _waitCount <= 100 )
+    {
+        sub_joint_p_local_temp_origin(1) = -sub_joint_p_local_temp_origin(1);
+        sub_joint_p_local_temp_origin(2) = -sub_joint_p_local_temp_origin(2);
+
+        sub_joint_p_local_temp_origin(4) = -sub_joint_p_local_temp_origin(4);
+        sub_joint_p_local_temp_origin(5) = -sub_joint_p_local_temp_origin(5);
+
+        sub_joint_p_local_temp_origin(7) = -sub_joint_p_local_temp_origin(7);
+        sub_joint_p_local_temp_origin(8) = -sub_joint_p_local_temp_origin(8);
+
+        sub_joint_p_local_temp_origin(10) = -sub_joint_p_local_temp_origin(10);
+        sub_joint_p_local_temp_origin(11) = -sub_joint_p_local_temp_origin(11);
+
+        sub_joint_p_local_temp_origin(13) = -sub_joint_p_local_temp_origin(13);
+        sub_joint_p_local_temp_origin(14) = -sub_joint_p_local_temp_origin(14);
+
+        sub_joint_p_local_temp_origin(16) = -sub_joint_p_local_temp_origin(16);
+        sub_joint_p_local_temp_origin(17) = -sub_joint_p_local_temp_origin(17);
+
+        sub_joint_p_local_temp_origin(0) = -sub_joint_p_local_temp_origin(0);
+        sub_joint_p_local_temp_origin(1) = -sub_joint_p_local_temp_origin(1);
+        sub_joint_p_local_temp_origin(5) = -sub_joint_p_local_temp_origin(5);
+        sub_joint_p_local_temp_origin(6) = -sub_joint_p_local_temp_origin(6);
+        sub_joint_p_local_temp_origin(8) = -sub_joint_p_local_temp_origin(8);
+        sub_joint_p_local_temp_origin(10) = -sub_joint_p_local_temp_origin(10);
+        sub_joint_p_local_temp_origin(12) = -sub_joint_p_local_temp_origin(12);
+        sub_joint_p_local_temp_origin(14) = -sub_joint_p_local_temp_origin(14);
+        sub_joint_p_local_temp_origin(16) = -sub_joint_p_local_temp_origin(16);
+        _ctrlComp->lowCmd->setQ( vec36ToVec18( sub_joint_p_local_temp_origin )  );
+    }
+    _waitCount++;
+
     _startTime = getSystemTime();
     _ctrlComp->sendRecv();
     _ctrlComp->runWaveGen();
-    // ++_waitCount;
-    // if (_waitCount > 5000)
-    // {
-    //     _ctrlComp->estimator->run();
-    // }
     _ctrlComp->estimator->run();
-
-    // _ctrlComp->lowState->getQ_Hex()
-    // std::cout << "getQ_Hex:\n" <<_ctrlComp->lowState->getQ_Hex()<< std::endl;
-
-    // std::cout<<" _posBody: \n"<< _ctrlComp->estimator->getPosition() <<std::endl;
-    // std::cout<<" _velBody: \n"<< _ctrlComp->estimator->getFeetVel() <<std::endl;
-
-    // std::cout<<" _posFeet2BGlobal: \n"<< _ctrlComp->estimator->getPosFeet2BGlobal() <<std::endl;
-    // std::cout<<" _posFeetGlobal: \n"<< _ctrlComp->estimator->getFeetPos() <<std::endl;
-    // std::cout<<" _velFeetGlobal: \n"<< _ctrlComp->estimator->getFeetVel() <<std::endl;
-    // printf("\n--------     next      --------\n");
-
-    // std::cout<<" (*contact_hex): \n"<< (*_ctrlComp->contact_hex).transpose() <<std::endl;
-    // std::cout<<" getFeetPos: \n"<< _ctrlComp->estimator->getFeetPos() <<std::endl;
-
-    // _B2G_RotMat = _lowState->getRotMat();//机身 到 世界 的变化矩阵
-    // _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
-
-    // std::cout<<" getRotMat: \n"<< _ctrlComp->lowState->getRotMat()<<std::endl;
-    // std::cout<<" getYaw: \n"<< _ctrlComp->lowState->getYaw()<<std::endl;
-    // std::cout<<" getPosition: \n"<< _ctrlComp->estimator->getPosition()<<std::endl;
 
     if(!checkSafty()){
         _ctrlComp->ioInter->setPassive();
     }
-
     if(_mode == FSMMode::NORMAL){
         _currentState->run();
         _nextStateName = _currentState->checkChange();
@@ -87,8 +108,8 @@ void FSM::run(){
         _mode = FSMMode::NORMAL;
         _currentState->run();
     }
-    
     absoluteWait(_startTime, (long long)(_ctrlComp->dt * 1000000));
+
 }
 
 FSMState* FSM::getNextState(FSMStateName stateName){
@@ -123,9 +144,12 @@ FSMState* FSM::getNextState(FSMStateName stateName){
         break;
     case FSMStateName::QP:    //lcc 20240523
         return _stateList.qp;
+        break;
     case FSMStateName::POSREFLEX:    //lcc 20240523
         return _stateList.posReflex;
         break;
+    case FSMStateName::SQUAT:    //lcc 20240523
+        return _stateList.fixedSquat;
         break;
 #ifdef COMPILE_WITH_MOVE_BASE
     case FSMStateName::MOVE_BASE:

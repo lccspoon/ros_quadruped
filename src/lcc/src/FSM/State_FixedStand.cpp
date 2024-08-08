@@ -61,32 +61,6 @@ void State_FixedStand::run(){
     // _targetPos2 = _ctrlComp->sixlegdogModel->getQ(_feetPos, FrameType::BODY);
     _lowCmd->setQ(  _targetPos2   );
 
-    Vec18 init_pos;
-    init_pos.setZero();
-    init_pos(0) = 0.785 *1;
-    init_pos(1) = 0.785 *1;
-    init_pos(2) = 0.785 *1;
-
-    init_pos(3) = 0.785*1;
-    init_pos(4) = 0.785*1;
-    init_pos(5) = 0.785*1;
-
-    init_pos(6) = 0.785 *1;
-    init_pos(7) = 0.785 *1;
-    init_pos(8) = 0.785 *1;
-
-    init_pos(9) = 0.785*1;
-    init_pos(10) = 0.785*1;
-    init_pos(11) = 0.785*1;
-
-    init_pos(12) = 0.785*1;
-    init_pos(13) = 0.785*1;
-    init_pos(14) = 0.785*1;
-
-    init_pos(15) = 0.785*1;
-    init_pos(16) = 0.785*1;
-    init_pos(17) = 0.785*1;
-
     // _lowCmd->setQ(  init_pos   );
 
     // // std::cout<<" _feetPos2 BODY: \n"<< _feetPos2 <<std::endl;
@@ -113,6 +87,9 @@ FSMStateName State_FixedStand::checkChange(){
     }
     else if(_lowState->userCmd == UserCommand::FREESTAND_3){
         return FSMStateName::FREESTAND;
+    }
+    else if(_lowState->userCmd == UserCommand::SQUAT_C){
+        return FSMStateName::SQUAT;
     }
     else if(_lowState->userCmd == UserCommand::POSITION_5){
         return FSMStateName::POSITION;

@@ -50,6 +50,9 @@ FSMStateName State_Passive::checkChange(){
     if(_lowState->userCmd == UserCommand::FIXEDSTAND_2){
         return FSMStateName::FIXEDSTAND;
     }
+    else if(_lowState->userCmd == UserCommand::SQUAT_C){
+        return FSMStateName::SQUAT;
+    }
     else{
         return FSMStateName::PASSIVE;
     }

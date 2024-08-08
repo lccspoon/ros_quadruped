@@ -20,6 +20,7 @@
 // #ifdef COMPILE_WITH_ROS
 #include "interface/KeyBoard.h"
 #include "interface/IOROS.h"
+#include "interface/IOSDK.h"
 // #endif // COMPILE_WITH_ROS
 
 #include "control/OsqpMpcTest.h"//lcc
@@ -123,8 +124,9 @@ int main(int argc, char **argv){
 
     CtrlComponents *ctrlComp = new CtrlComponents(ioInter);
     ctrlComp->ctrlPlatform = ctrlPlat;
-    ctrlComp->dt = 0.002; // run at 500hz
+    // ctrlComp->dt = 0.002; // run at 500hz
     // // ctrlComp->dt = 0.0025; // lcc
+    ctrlComp->dt = 0.005; // lcc
     ctrlComp->running = &running;
 
     // #if IS_THIS_A_HEXAPOD
@@ -177,8 +179,33 @@ int main(int argc, char **argv){
     RosTopicMsgPub RPY("RPY");
     #endif
     // COM.msgPubRun(_ctrlComp->estimator->getPosition());
-    while (running)
-    {   
+    // while (1){   
+        
+    //     if( ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag == true ){
+    //         spi.exit_close_loop();
+    //         printf("\n ininininin \n");
+    //     }
+    //     else{
+
+    //     }
+    //     printf("\n ininininin \n");
+    //     usleep(2000);
+    // }
+
+    while (running){   
+
+        // if( ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag == 1 ){
+        //     spi.exit_close_loop();
+        //     printf("\n ininininin \n");
+        // }
+        // else{
+
+        // }
+        // // printf("\n ininininin \n");
+        // // std::cout<<"motor_disenable_flag:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag <<std::endl;
+        // // std::cout<<"function_test:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.function_test <<std::endl;
+        // usleep(2000);
+
         // auto t1 = std::chrono::high_resolution_clock::now();
 
         ctrlFrame.run();

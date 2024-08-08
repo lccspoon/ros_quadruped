@@ -391,6 +391,7 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
+ /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/interface/IOInterface.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
@@ -407,7 +408,7 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/control/ConvexMpc.h \
  /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
  /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
- /usr/include/eigen3/Eigen/Dense /usr/local/include/OsqpEigen/OsqpEigen.h \
+ /usr/local/include/OsqpEigen/OsqpEigen.h \
  /usr/local/include/OsqpEigen/Constants.hpp \
  /usr/local/include/OsqpEigen/Compat.hpp /usr/local/include/osqp/osqp.h \
  /usr/local/include/osqp/osqp_configure.h \
@@ -525,22 +526,33 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixSquareRoot.h \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixLogarithm.h \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixPower.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/protection.h \
+ /usr/include/c++/9/math.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_FixedStand.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_Passive.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/FSMState.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_FreeStand.h \
- /home/lcc/cchex_ws/src/lcc/include/FSM/State_Trotting.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_Position.h \
  /home/lcc/cchex_ws/src/lcc/include/Gait/GaitGenerator.h \
  /home/lcc/cchex_ws/src/lcc/include/Gait/FeetEndCal.h \
- /home/lcc/cchex_ws/src/lcc/include/FSM/State_A1MPC.h \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/GaitGenerator_P.h \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/SupportFeetEndP.h \
  /home/lcc/cchex_ws/src/lcc/include/control/TerrianEsti.h \
  /home/lcc/cchex_ws/src/lcc/include/common/filter.h \
  /usr/include/c++/9/deque /usr/include/c++/9/bits/stl_deque.h \
  /usr/include/c++/9/bits/deque.tcc \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/SupportTrajectory.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_MPC.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_BalanceTest.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_SwingTest.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_StepTest.h \
- /home/lcc/cchex_ws/src/lcc/include/FSM/State_VMC.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_QP.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_PosReflex.h \
+ /home/lcc/cchex_ws/src/lcc/include/control/ContactEst.h \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/cpg_scheduler.h \
+ /home/lcc/cchex_ws/src/lcc/include/control/robot_lift_dowm_relex.h \
+ /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_FixedSquat.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
  /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
@@ -562,7 +574,7 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: \
  /opt/ros/noetic/include/ros/ros.h /opt/ros/noetic/include/ros/time.h \
  /opt/ros/noetic/include/ros/platform.h \
  /opt/ros/noetic/include/ros/exception.h \
- /opt/ros/noetic/include/ros/duration.h /usr/include/c++/9/math.h \
+ /opt/ros/noetic/include/ros/duration.h \
  /opt/ros/noetic/include/ros/rostime_decl.h \
  /opt/ros/noetic/include/ros/macros.h \
  /usr/include/boost/math/special_functions/round.hpp \
@@ -1478,6 +1490,41 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: \
  /opt/ros/noetic/include/geometry_msgs/WrenchStamped.h \
  /opt/ros/noetic/include/geometry_msgs/Wrench.h \
  /opt/ros/noetic/include/geometry_msgs/PointStamped.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/IOSDK.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/intl_spi.h \
+ /usr/include/arpa/inet.h /usr/include/netinet/in.h \
+ /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+ /usr/include/x86_64-linux-gnu/bits/socket2.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
+ /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
+ /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
+ /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
+ /usr/include/linux/spi/spidev.h /usr/include/linux/ioctl.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctl.h \
+ /usr/include/asm-generic/ioctl.h \
+ /usr/include/x86_64-linux-gnu/sys/ioctl.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctls.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
  /home/lcc/cchex_ws/src/lcc/include/control/OsqpMpcTest.h \
  /usr/include/c++/9/thread \
  /opt/ros/noetic/include/std_msgs/Float64MultiArray.h \

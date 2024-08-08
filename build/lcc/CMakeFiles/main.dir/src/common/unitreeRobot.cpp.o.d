@@ -363,4 +363,5 @@ lcc/CMakeFiles/main.dir/src/common/unitreeRobot.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
- /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h
+ /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
+ /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core

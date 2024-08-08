@@ -373,6 +373,7 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
+ /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/interface/IOInterface.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
@@ -389,7 +390,7 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/control/ConvexMpc.h \
  /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
  /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
- /usr/include/eigen3/Eigen/Dense /usr/local/include/OsqpEigen/OsqpEigen.h \
+ /usr/local/include/OsqpEigen/OsqpEigen.h \
  /usr/local/include/OsqpEigen/Constants.hpp \
  /usr/local/include/OsqpEigen/Compat.hpp /usr/local/include/osqp/osqp.h \
  /usr/local/include/osqp/osqp_configure.h \
@@ -507,19 +508,30 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixSquareRoot.h \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixLogarithm.h \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixPower.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/protection.h \
+ /usr/include/c++/9/math.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_FixedStand.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_Passive.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/FSMState.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_FreeStand.h \
- /home/lcc/cchex_ws/src/lcc/include/FSM/State_Trotting.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_Position.h \
  /home/lcc/cchex_ws/src/lcc/include/Gait/GaitGenerator.h \
  /home/lcc/cchex_ws/src/lcc/include/Gait/FeetEndCal.h \
- /home/lcc/cchex_ws/src/lcc/include/FSM/State_A1MPC.h \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/GaitGenerator_P.h \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/SupportFeetEndP.h \
  /home/lcc/cchex_ws/src/lcc/include/control/TerrianEsti.h \
  /home/lcc/cchex_ws/src/lcc/include/common/filter.h \
  /usr/include/c++/9/deque /usr/include/c++/9/bits/stl_deque.h \
  /usr/include/c++/9/bits/deque.tcc \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/SupportTrajectory.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_MPC.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_BalanceTest.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_SwingTest.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_StepTest.h \
- /home/lcc/cchex_ws/src/lcc/include/FSM/State_VMC.h
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_QP.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_PosReflex.h \
+ /home/lcc/cchex_ws/src/lcc/include/control/ContactEst.h \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/cpg_scheduler.h \
+ /home/lcc/cchex_ws/src/lcc/include/control/robot_lift_dowm_relex.h \
+ /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_FixedSquat.h

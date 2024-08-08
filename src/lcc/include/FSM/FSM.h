@@ -17,6 +17,7 @@
 #include "common/enumClass.h"
 #include "control/CtrlComponents.h"
 #include "FSM/State_PosReflex.h"
+#include "FSM/State_FixedSquat.h"
 
 struct FSMStateList{
     FSMState *invalid;
@@ -30,6 +31,7 @@ struct FSMStateList{
     State_SwingTest *swingTest;
     State_StepTest *stepTest;
     State_PosReflex *posReflex;//lcc 20240627
+    State_FixedSquat *fixedSquat;//lcc 20240808
 #ifdef COMPILE_WITH_MOVE_BASE
     State_move_base *moveBase;
 #endif  // COMPILE_WITH_MOVE_BASE

@@ -366,6 +366,7 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
+ /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/common/hexpodRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
  /home/lcc/cchex_ws/src/lcc/include/Gait/WaveGenerator.h \
@@ -1317,4 +1318,5 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /opt/ros/noetic/include/geometry_msgs/Vector3Stamped.h \
  /opt/ros/noetic/include/geometry_msgs/WrenchStamped.h \
  /opt/ros/noetic/include/geometry_msgs/Wrench.h \
- /opt/ros/noetic/include/geometry_msgs/PointStamped.h
+ /opt/ros/noetic/include/geometry_msgs/PointStamped.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/protection.h

@@ -12,9 +12,10 @@ public:
 		delete _FSMController;
 	}
 	void run();
+	CtrlComponents *_ctrlComp;
 private:
 	FSM* _FSMController;
-	CtrlComponents *_ctrlComp;
+	// CtrlComponents *_ctrlComp;
 };
 
 #endif  //CONTROLFRAME_H

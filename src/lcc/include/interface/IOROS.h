@@ -31,10 +31,11 @@
 #include <string>
 #include "common/unitreeRobot.h"
 
+#include"common/protection.h"
 
 extern Vec3 ODE_P;
 extern Vec3 ODE_V;
-
+extern Vec36 sub_joint_p_local_temp_origin;
 // class IOROS : public IOInterface, public GazeboSim{
 class IOROS : public IOInterface{
 public:
@@ -47,9 +48,12 @@ Eigen::Matrix<double, 3, 1> retSimOdeBodyP();
 Eigen::Matrix<double, 3, 1> retSimOdeBodyV();
 
 private:
-void sendCmd(const LowlevelCmd *cmd);
+void sendCmd(const LowlevelCmd *cmd, LowlevelState *state);
 void recvState(LowlevelState *state);
 
+unsigned int wait_count;
+
+DataUnusualProtect ___dataUnuProtect[7]; //lcc 20240807:保护程序
 
 //  0~12: RF LF RB LB 
 //  0~18: RF LF RM LM RB LB 

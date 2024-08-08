@@ -933,30 +933,6 @@ src/FSM/FSMState.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/FSMState.cpp.s
 .PHONY : src/FSM/FSMState.cpp.s
 
-src/FSM/State_A1MPC2.o: src/FSM/State_A1MPC2.cpp.o
-.PHONY : src/FSM/State_A1MPC2.o
-
-# target to build an object file
-src/FSM/State_A1MPC2.cpp.o:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.o
-.PHONY : src/FSM/State_A1MPC2.cpp.o
-
-src/FSM/State_A1MPC2.i: src/FSM/State_A1MPC2.cpp.i
-.PHONY : src/FSM/State_A1MPC2.i
-
-# target to preprocess a source file
-src/FSM/State_A1MPC2.cpp.i:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.i
-.PHONY : src/FSM/State_A1MPC2.cpp.i
-
-src/FSM/State_A1MPC2.s: src/FSM/State_A1MPC2.cpp.s
-.PHONY : src/FSM/State_A1MPC2.s
-
-# target to generate assembly for a file
-src/FSM/State_A1MPC2.cpp.s:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_A1MPC2.cpp.s
-.PHONY : src/FSM/State_A1MPC2.cpp.s
-
 src/FSM/State_BalanceTest.o: src/FSM/State_BalanceTest.cpp.o
 .PHONY : src/FSM/State_BalanceTest.o
 
@@ -980,6 +956,30 @@ src/FSM/State_BalanceTest.s: src/FSM/State_BalanceTest.cpp.s
 src/FSM/State_BalanceTest.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_BalanceTest.cpp.s
 .PHONY : src/FSM/State_BalanceTest.cpp.s
+
+src/FSM/State_FixedSquat.o: src/FSM/State_FixedSquat.cpp.o
+.PHONY : src/FSM/State_FixedSquat.o
+
+# target to build an object file
+src/FSM/State_FixedSquat.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.o
+.PHONY : src/FSM/State_FixedSquat.cpp.o
+
+src/FSM/State_FixedSquat.i: src/FSM/State_FixedSquat.cpp.i
+.PHONY : src/FSM/State_FixedSquat.i
+
+# target to preprocess a source file
+src/FSM/State_FixedSquat.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.i
+.PHONY : src/FSM/State_FixedSquat.cpp.i
+
+src/FSM/State_FixedSquat.s: src/FSM/State_FixedSquat.cpp.s
+.PHONY : src/FSM/State_FixedSquat.s
+
+# target to generate assembly for a file
+src/FSM/State_FixedSquat.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_FixedSquat.cpp.s
+.PHONY : src/FSM/State_FixedSquat.cpp.s
 
 src/FSM/State_FixedStand.o: src/FSM/State_FixedStand.cpp.o
 .PHONY : src/FSM/State_FixedStand.o
@@ -1029,6 +1029,30 @@ src/FSM/State_FreeStand.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.s
 .PHONY : src/FSM/State_FreeStand.cpp.s
 
+src/FSM/State_MPC.o: src/FSM/State_MPC.cpp.o
+.PHONY : src/FSM/State_MPC.o
+
+# target to build an object file
+src/FSM/State_MPC.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o
+.PHONY : src/FSM/State_MPC.cpp.o
+
+src/FSM/State_MPC.i: src/FSM/State_MPC.cpp.i
+.PHONY : src/FSM/State_MPC.i
+
+# target to preprocess a source file
+src/FSM/State_MPC.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.i
+.PHONY : src/FSM/State_MPC.cpp.i
+
+src/FSM/State_MPC.s: src/FSM/State_MPC.cpp.s
+.PHONY : src/FSM/State_MPC.s
+
+# target to generate assembly for a file
+src/FSM/State_MPC.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.s
+.PHONY : src/FSM/State_MPC.cpp.s
+
 src/FSM/State_Passive.o: src/FSM/State_Passive.cpp.o
 .PHONY : src/FSM/State_Passive.o
 
@@ -1052,6 +1076,78 @@ src/FSM/State_Passive.s: src/FSM/State_Passive.cpp.s
 src/FSM/State_Passive.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Passive.cpp.s
 .PHONY : src/FSM/State_Passive.cpp.s
+
+src/FSM/State_PosReflex.o: src/FSM/State_PosReflex.cpp.o
+.PHONY : src/FSM/State_PosReflex.o
+
+# target to build an object file
+src/FSM/State_PosReflex.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o
+.PHONY : src/FSM/State_PosReflex.cpp.o
+
+src/FSM/State_PosReflex.i: src/FSM/State_PosReflex.cpp.i
+.PHONY : src/FSM/State_PosReflex.i
+
+# target to preprocess a source file
+src/FSM/State_PosReflex.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.i
+.PHONY : src/FSM/State_PosReflex.cpp.i
+
+src/FSM/State_PosReflex.s: src/FSM/State_PosReflex.cpp.s
+.PHONY : src/FSM/State_PosReflex.s
+
+# target to generate assembly for a file
+src/FSM/State_PosReflex.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.s
+.PHONY : src/FSM/State_PosReflex.cpp.s
+
+src/FSM/State_Position.o: src/FSM/State_Position.cpp.o
+.PHONY : src/FSM/State_Position.o
+
+# target to build an object file
+src/FSM/State_Position.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.o
+.PHONY : src/FSM/State_Position.cpp.o
+
+src/FSM/State_Position.i: src/FSM/State_Position.cpp.i
+.PHONY : src/FSM/State_Position.i
+
+# target to preprocess a source file
+src/FSM/State_Position.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.i
+.PHONY : src/FSM/State_Position.cpp.i
+
+src/FSM/State_Position.s: src/FSM/State_Position.cpp.s
+.PHONY : src/FSM/State_Position.s
+
+# target to generate assembly for a file
+src/FSM/State_Position.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Position.cpp.s
+.PHONY : src/FSM/State_Position.cpp.s
+
+src/FSM/State_QP.o: src/FSM/State_QP.cpp.o
+.PHONY : src/FSM/State_QP.o
+
+# target to build an object file
+src/FSM/State_QP.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.o
+.PHONY : src/FSM/State_QP.cpp.o
+
+src/FSM/State_QP.i: src/FSM/State_QP.cpp.i
+.PHONY : src/FSM/State_QP.i
+
+# target to preprocess a source file
+src/FSM/State_QP.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.i
+.PHONY : src/FSM/State_QP.cpp.i
+
+src/FSM/State_QP.s: src/FSM/State_QP.cpp.s
+.PHONY : src/FSM/State_QP.s
+
+# target to generate assembly for a file
+src/FSM/State_QP.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_QP.cpp.s
+.PHONY : src/FSM/State_QP.cpp.s
 
 src/FSM/State_StepTest.o: src/FSM/State_StepTest.cpp.o
 .PHONY : src/FSM/State_StepTest.o
@@ -1100,54 +1196,6 @@ src/FSM/State_SwingTest.s: src/FSM/State_SwingTest.cpp.s
 src/FSM/State_SwingTest.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_SwingTest.cpp.s
 .PHONY : src/FSM/State_SwingTest.cpp.s
-
-src/FSM/State_Trotting.o: src/FSM/State_Trotting.cpp.o
-.PHONY : src/FSM/State_Trotting.o
-
-# target to build an object file
-src/FSM/State_Trotting.cpp.o:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.o
-.PHONY : src/FSM/State_Trotting.cpp.o
-
-src/FSM/State_Trotting.i: src/FSM/State_Trotting.cpp.i
-.PHONY : src/FSM/State_Trotting.i
-
-# target to preprocess a source file
-src/FSM/State_Trotting.cpp.i:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.i
-.PHONY : src/FSM/State_Trotting.cpp.i
-
-src/FSM/State_Trotting.s: src/FSM/State_Trotting.cpp.s
-.PHONY : src/FSM/State_Trotting.s
-
-# target to generate assembly for a file
-src/FSM/State_Trotting.cpp.s:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Trotting.cpp.s
-.PHONY : src/FSM/State_Trotting.cpp.s
-
-src/FSM/State_VMC.o: src/FSM/State_VMC.cpp.o
-.PHONY : src/FSM/State_VMC.o
-
-# target to build an object file
-src/FSM/State_VMC.cpp.o:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.o
-.PHONY : src/FSM/State_VMC.cpp.o
-
-src/FSM/State_VMC.i: src/FSM/State_VMC.cpp.i
-.PHONY : src/FSM/State_VMC.i
-
-# target to preprocess a source file
-src/FSM/State_VMC.cpp.i:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.i
-.PHONY : src/FSM/State_VMC.cpp.i
-
-src/FSM/State_VMC.s: src/FSM/State_VMC.cpp.s
-.PHONY : src/FSM/State_VMC.s
-
-# target to generate assembly for a file
-src/FSM/State_VMC.cpp.s:
-	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_VMC.cpp.s
-.PHONY : src/FSM/State_VMC.cpp.s
 
 src/FSM/State_move_base.o: src/FSM/State_move_base.cpp.o
 .PHONY : src/FSM/State_move_base.o
@@ -1221,6 +1269,78 @@ src/Gait/GaitGenerator.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator.cpp.s
 .PHONY : src/Gait/GaitGenerator.cpp.s
 
+src/Gait/GaitGenerator_P.o: src/Gait/GaitGenerator_P.cpp.o
+.PHONY : src/Gait/GaitGenerator_P.o
+
+# target to build an object file
+src/Gait/GaitGenerator_P.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.o
+.PHONY : src/Gait/GaitGenerator_P.cpp.o
+
+src/Gait/GaitGenerator_P.i: src/Gait/GaitGenerator_P.cpp.i
+.PHONY : src/Gait/GaitGenerator_P.i
+
+# target to preprocess a source file
+src/Gait/GaitGenerator_P.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.i
+.PHONY : src/Gait/GaitGenerator_P.cpp.i
+
+src/Gait/GaitGenerator_P.s: src/Gait/GaitGenerator_P.cpp.s
+.PHONY : src/Gait/GaitGenerator_P.s
+
+# target to generate assembly for a file
+src/Gait/GaitGenerator_P.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/GaitGenerator_P.cpp.s
+.PHONY : src/Gait/GaitGenerator_P.cpp.s
+
+src/Gait/SupportFeetEndP.o: src/Gait/SupportFeetEndP.cpp.o
+.PHONY : src/Gait/SupportFeetEndP.o
+
+# target to build an object file
+src/Gait/SupportFeetEndP.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.o
+.PHONY : src/Gait/SupportFeetEndP.cpp.o
+
+src/Gait/SupportFeetEndP.i: src/Gait/SupportFeetEndP.cpp.i
+.PHONY : src/Gait/SupportFeetEndP.i
+
+# target to preprocess a source file
+src/Gait/SupportFeetEndP.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.i
+.PHONY : src/Gait/SupportFeetEndP.cpp.i
+
+src/Gait/SupportFeetEndP.s: src/Gait/SupportFeetEndP.cpp.s
+.PHONY : src/Gait/SupportFeetEndP.s
+
+# target to generate assembly for a file
+src/Gait/SupportFeetEndP.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/SupportFeetEndP.cpp.s
+.PHONY : src/Gait/SupportFeetEndP.cpp.s
+
+src/Gait/SupportTrajectory.o: src/Gait/SupportTrajectory.cpp.o
+.PHONY : src/Gait/SupportTrajectory.o
+
+# target to build an object file
+src/Gait/SupportTrajectory.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.o
+.PHONY : src/Gait/SupportTrajectory.cpp.o
+
+src/Gait/SupportTrajectory.i: src/Gait/SupportTrajectory.cpp.i
+.PHONY : src/Gait/SupportTrajectory.i
+
+# target to preprocess a source file
+src/Gait/SupportTrajectory.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.i
+.PHONY : src/Gait/SupportTrajectory.cpp.i
+
+src/Gait/SupportTrajectory.s: src/Gait/SupportTrajectory.cpp.s
+.PHONY : src/Gait/SupportTrajectory.s
+
+# target to generate assembly for a file
+src/Gait/SupportTrajectory.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/SupportTrajectory.cpp.s
+.PHONY : src/Gait/SupportTrajectory.cpp.s
+
 src/Gait/WaveGenerator.o: src/Gait/WaveGenerator.cpp.o
 .PHONY : src/Gait/WaveGenerator.o
 
@@ -1244,6 +1364,30 @@ src/Gait/WaveGenerator.s: src/Gait/WaveGenerator.cpp.s
 src/Gait/WaveGenerator.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/WaveGenerator.cpp.s
 .PHONY : src/Gait/WaveGenerator.cpp.s
+
+src/Gait/cpg_scheduler.o: src/Gait/cpg_scheduler.cpp.o
+.PHONY : src/Gait/cpg_scheduler.o
+
+# target to build an object file
+src/Gait/cpg_scheduler.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.o
+.PHONY : src/Gait/cpg_scheduler.cpp.o
+
+src/Gait/cpg_scheduler.i: src/Gait/cpg_scheduler.cpp.i
+.PHONY : src/Gait/cpg_scheduler.i
+
+# target to preprocess a source file
+src/Gait/cpg_scheduler.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.i
+.PHONY : src/Gait/cpg_scheduler.cpp.i
+
+src/Gait/cpg_scheduler.s: src/Gait/cpg_scheduler.cpp.s
+.PHONY : src/Gait/cpg_scheduler.s
+
+# target to generate assembly for a file
+src/Gait/cpg_scheduler.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/Gait/cpg_scheduler.cpp.s
+.PHONY : src/Gait/cpg_scheduler.cpp.s
 
 src/common/LowPassFilter.o: src/common/LowPassFilter.cpp.o
 .PHONY : src/common/LowPassFilter.o
@@ -1365,6 +1509,30 @@ src/control/BalanceCtrl.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.s
 .PHONY : src/control/BalanceCtrl.cpp.s
 
+src/control/ContactEst.o: src/control/ContactEst.cpp.o
+.PHONY : src/control/ContactEst.o
+
+# target to build an object file
+src/control/ContactEst.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.o
+.PHONY : src/control/ContactEst.cpp.o
+
+src/control/ContactEst.i: src/control/ContactEst.cpp.i
+.PHONY : src/control/ContactEst.i
+
+# target to preprocess a source file
+src/control/ContactEst.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.i
+.PHONY : src/control/ContactEst.cpp.i
+
+src/control/ContactEst.s: src/control/ContactEst.cpp.s
+.PHONY : src/control/ContactEst.s
+
+# target to generate assembly for a file
+src/control/ContactEst.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/ContactEst.cpp.s
+.PHONY : src/control/ContactEst.cpp.s
+
 src/control/ControlFrame.o: src/control/ControlFrame.cpp.o
 .PHONY : src/control/ControlFrame.o
 
@@ -1485,6 +1653,54 @@ src/control/TerrianEsti.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.s
 .PHONY : src/control/TerrianEsti.cpp.s
 
+src/control/neural_bezier_curve.o: src/control/neural_bezier_curve.cpp.o
+.PHONY : src/control/neural_bezier_curve.o
+
+# target to build an object file
+src/control/neural_bezier_curve.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o
+.PHONY : src/control/neural_bezier_curve.cpp.o
+
+src/control/neural_bezier_curve.i: src/control/neural_bezier_curve.cpp.i
+.PHONY : src/control/neural_bezier_curve.i
+
+# target to preprocess a source file
+src/control/neural_bezier_curve.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.i
+.PHONY : src/control/neural_bezier_curve.cpp.i
+
+src/control/neural_bezier_curve.s: src/control/neural_bezier_curve.cpp.s
+.PHONY : src/control/neural_bezier_curve.s
+
+# target to generate assembly for a file
+src/control/neural_bezier_curve.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.s
+.PHONY : src/control/neural_bezier_curve.cpp.s
+
+src/control/robot_lift_dowm_relex.o: src/control/robot_lift_dowm_relex.cpp.o
+.PHONY : src/control/robot_lift_dowm_relex.o
+
+# target to build an object file
+src/control/robot_lift_dowm_relex.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o
+.PHONY : src/control/robot_lift_dowm_relex.cpp.o
+
+src/control/robot_lift_dowm_relex.i: src/control/robot_lift_dowm_relex.cpp.i
+.PHONY : src/control/robot_lift_dowm_relex.i
+
+# target to preprocess a source file
+src/control/robot_lift_dowm_relex.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.i
+.PHONY : src/control/robot_lift_dowm_relex.cpp.i
+
+src/control/robot_lift_dowm_relex.s: src/control/robot_lift_dowm_relex.cpp.s
+.PHONY : src/control/robot_lift_dowm_relex.s
+
+# target to generate assembly for a file
+src/control/robot_lift_dowm_relex.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s
+.PHONY : src/control/robot_lift_dowm_relex.cpp.s
+
 src/interface/IOROS.o: src/interface/IOROS.cpp.o
 .PHONY : src/interface/IOROS.o
 
@@ -1509,6 +1725,30 @@ src/interface/IOROS.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.s
 .PHONY : src/interface/IOROS.cpp.s
 
+src/interface/IOSDK.o: src/interface/IOSDK.cpp.o
+.PHONY : src/interface/IOSDK.o
+
+# target to build an object file
+src/interface/IOSDK.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o
+.PHONY : src/interface/IOSDK.cpp.o
+
+src/interface/IOSDK.i: src/interface/IOSDK.cpp.i
+.PHONY : src/interface/IOSDK.i
+
+# target to preprocess a source file
+src/interface/IOSDK.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.i
+.PHONY : src/interface/IOSDK.cpp.i
+
+src/interface/IOSDK.s: src/interface/IOSDK.cpp.s
+.PHONY : src/interface/IOSDK.s
+
+# target to generate assembly for a file
+src/interface/IOSDK.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.s
+.PHONY : src/interface/IOSDK.cpp.s
+
 src/interface/KeyBoard.o: src/interface/KeyBoard.cpp.o
 .PHONY : src/interface/KeyBoard.o
 
@@ -1532,6 +1772,30 @@ src/interface/KeyBoard.s: src/interface/KeyBoard.cpp.s
 src/interface/KeyBoard.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.s
 .PHONY : src/interface/KeyBoard.cpp.s
+
+src/interface/intl_spi.o: src/interface/intl_spi.cpp.o
+.PHONY : src/interface/intl_spi.o
+
+# target to build an object file
+src/interface/intl_spi.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o
+.PHONY : src/interface/intl_spi.cpp.o
+
+src/interface/intl_spi.i: src/interface/intl_spi.cpp.i
+.PHONY : src/interface/intl_spi.i
+
+# target to preprocess a source file
+src/interface/intl_spi.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.i
+.PHONY : src/interface/intl_spi.cpp.i
+
+src/interface/intl_spi.s: src/interface/intl_spi.cpp.s
+.PHONY : src/interface/intl_spi.s
+
+# target to generate assembly for a file
+src/interface/intl_spi.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.s
+.PHONY : src/interface/intl_spi.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -1675,33 +1939,39 @@ help:
 	@echo "... src/FSM/FSMState.o"
 	@echo "... src/FSM/FSMState.i"
 	@echo "... src/FSM/FSMState.s"
-	@echo "... src/FSM/State_A1MPC2.o"
-	@echo "... src/FSM/State_A1MPC2.i"
-	@echo "... src/FSM/State_A1MPC2.s"
 	@echo "... src/FSM/State_BalanceTest.o"
 	@echo "... src/FSM/State_BalanceTest.i"
 	@echo "... src/FSM/State_BalanceTest.s"
+	@echo "... src/FSM/State_FixedSquat.o"
+	@echo "... src/FSM/State_FixedSquat.i"
+	@echo "... src/FSM/State_FixedSquat.s"
 	@echo "... src/FSM/State_FixedStand.o"
 	@echo "... src/FSM/State_FixedStand.i"
 	@echo "... src/FSM/State_FixedStand.s"
 	@echo "... src/FSM/State_FreeStand.o"
 	@echo "... src/FSM/State_FreeStand.i"
 	@echo "... src/FSM/State_FreeStand.s"
+	@echo "... src/FSM/State_MPC.o"
+	@echo "... src/FSM/State_MPC.i"
+	@echo "... src/FSM/State_MPC.s"
 	@echo "... src/FSM/State_Passive.o"
 	@echo "... src/FSM/State_Passive.i"
 	@echo "... src/FSM/State_Passive.s"
+	@echo "... src/FSM/State_PosReflex.o"
+	@echo "... src/FSM/State_PosReflex.i"
+	@echo "... src/FSM/State_PosReflex.s"
+	@echo "... src/FSM/State_Position.o"
+	@echo "... src/FSM/State_Position.i"
+	@echo "... src/FSM/State_Position.s"
+	@echo "... src/FSM/State_QP.o"
+	@echo "... src/FSM/State_QP.i"
+	@echo "... src/FSM/State_QP.s"
 	@echo "... src/FSM/State_StepTest.o"
 	@echo "... src/FSM/State_StepTest.i"
 	@echo "... src/FSM/State_StepTest.s"
 	@echo "... src/FSM/State_SwingTest.o"
 	@echo "... src/FSM/State_SwingTest.i"
 	@echo "... src/FSM/State_SwingTest.s"
-	@echo "... src/FSM/State_Trotting.o"
-	@echo "... src/FSM/State_Trotting.i"
-	@echo "... src/FSM/State_Trotting.s"
-	@echo "... src/FSM/State_VMC.o"
-	@echo "... src/FSM/State_VMC.i"
-	@echo "... src/FSM/State_VMC.s"
 	@echo "... src/FSM/State_move_base.o"
 	@echo "... src/FSM/State_move_base.i"
 	@echo "... src/FSM/State_move_base.s"
@@ -1711,9 +1981,21 @@ help:
 	@echo "... src/Gait/GaitGenerator.o"
 	@echo "... src/Gait/GaitGenerator.i"
 	@echo "... src/Gait/GaitGenerator.s"
+	@echo "... src/Gait/GaitGenerator_P.o"
+	@echo "... src/Gait/GaitGenerator_P.i"
+	@echo "... src/Gait/GaitGenerator_P.s"
+	@echo "... src/Gait/SupportFeetEndP.o"
+	@echo "... src/Gait/SupportFeetEndP.i"
+	@echo "... src/Gait/SupportFeetEndP.s"
+	@echo "... src/Gait/SupportTrajectory.o"
+	@echo "... src/Gait/SupportTrajectory.i"
+	@echo "... src/Gait/SupportTrajectory.s"
 	@echo "... src/Gait/WaveGenerator.o"
 	@echo "... src/Gait/WaveGenerator.i"
 	@echo "... src/Gait/WaveGenerator.s"
+	@echo "... src/Gait/cpg_scheduler.o"
+	@echo "... src/Gait/cpg_scheduler.i"
+	@echo "... src/Gait/cpg_scheduler.s"
 	@echo "... src/common/LowPassFilter.o"
 	@echo "... src/common/LowPassFilter.i"
 	@echo "... src/common/LowPassFilter.s"
@@ -1729,6 +2011,9 @@ help:
 	@echo "... src/control/BalanceCtrl.o"
 	@echo "... src/control/BalanceCtrl.i"
 	@echo "... src/control/BalanceCtrl.s"
+	@echo "... src/control/ContactEst.o"
+	@echo "... src/control/ContactEst.i"
+	@echo "... src/control/ContactEst.s"
 	@echo "... src/control/ControlFrame.o"
 	@echo "... src/control/ControlFrame.i"
 	@echo "... src/control/ControlFrame.s"
@@ -1744,12 +2029,24 @@ help:
 	@echo "... src/control/TerrianEsti.o"
 	@echo "... src/control/TerrianEsti.i"
 	@echo "... src/control/TerrianEsti.s"
+	@echo "... src/control/neural_bezier_curve.o"
+	@echo "... src/control/neural_bezier_curve.i"
+	@echo "... src/control/neural_bezier_curve.s"
+	@echo "... src/control/robot_lift_dowm_relex.o"
+	@echo "... src/control/robot_lift_dowm_relex.i"
+	@echo "... src/control/robot_lift_dowm_relex.s"
 	@echo "... src/interface/IOROS.o"
 	@echo "... src/interface/IOROS.i"
 	@echo "... src/interface/IOROS.s"
+	@echo "... src/interface/IOSDK.o"
+	@echo "... src/interface/IOSDK.i"
+	@echo "... src/interface/IOSDK.s"
 	@echo "... src/interface/KeyBoard.o"
 	@echo "... src/interface/KeyBoard.i"
 	@echo "... src/interface/KeyBoard.s"
+	@echo "... src/interface/intl_spi.o"
+	@echo "... src/interface/intl_spi.i"
+	@echo "... src/interface/intl_spi.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

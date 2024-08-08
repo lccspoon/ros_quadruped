@@ -15,6 +15,8 @@
 #include <string>
 #include <iostream>
 
+#include"common/protection.h"
+
 #ifdef COMPILE_DEBUG
 #include "common/PyPlot.h"
 #endif  // COMPILE_DEBUG
@@ -69,6 +71,7 @@ public:
     Vec4 *phase;
     Vec6 *phase_hex;
     VecInt6 *contact_hex;
+    DataUnusualProtect _dataUnuProtect[6]; //lcc 20240807:保护程序
 
     double dt;
     bool *running;

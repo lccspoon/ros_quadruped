@@ -365,6 +365,7 @@ lcc/CMakeFiles/main.dir/src/control/BalanceCtrl.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
+ /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/common/hexpodRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/timeMarker.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/unistd.h \

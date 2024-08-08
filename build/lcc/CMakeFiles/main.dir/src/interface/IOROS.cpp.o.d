@@ -1287,6 +1287,7 @@ lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
+ /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /opt/ros/noetic/include/std_msgs/Float64.h \
  /opt/ros/noetic/include/ros/message_operations.h \
  /opt/ros/noetic/include/sensor_msgs/Joy.h \
@@ -1311,6 +1312,7 @@ lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: \
  /opt/ros/noetic/include/geometry_msgs/PointStamped.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/protection.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
  /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \

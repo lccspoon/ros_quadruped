@@ -38,6 +38,7 @@ public:
     Mat3 getRobInertial(){return _Ib;}
     QuadrupedLeg* _Legs[6]; //lcc 20240413
     Vec36 _feetPosNormalStand;//lcc 20240416
+    Vec36 _feetPosNormalSquat;//lcc 20240808
 
 protected:
     // QuadrupedLeg* _Legs[6];//lcc 20240413
