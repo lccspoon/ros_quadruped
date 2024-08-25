@@ -5,26 +5,26 @@ State_Passive::State_Passive(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::PASSIVE, "passive"){}
 
 void State_Passive::enter(){
-    if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
-        for(int i=0; i<NUM_DOF_W; i++){
-            _lowCmd->motorCmd[i].mode = 10;
-            _lowCmd->motorCmd[i].q = 0;
-            _lowCmd->motorCmd[i].dq = 0;
-            _lowCmd->motorCmd[i].Kp = 0;
-            _lowCmd->motorCmd[i].Kd = 8;
-            _lowCmd->motorCmd[i].tau = 0;
-        }
-    }
-    else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
-        for(int i=0; i<NUM_DOF_W; i++){
-            _lowCmd->motorCmd[i].mode = 10;
-            _lowCmd->motorCmd[i].q = 0;
-            _lowCmd->motorCmd[i].dq = 0;
-            _lowCmd->motorCmd[i].Kp = 0;
-            _lowCmd->motorCmd[i].Kd = 3;
-            _lowCmd->motorCmd[i].tau = 0;
-        }
-    }
+    // if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
+    //     for(int i=0; i<NUM_DOF_W; i++){
+    //         _lowCmd->motorCmd[i].mode = 10;
+    //         _lowCmd->motorCmd[i].q = 0;
+    //         _lowCmd->motorCmd[i].dq = 0;
+    //         _lowCmd->motorCmd[i].Kp = 0;
+    //         _lowCmd->motorCmd[i].Kd = 8;
+    //         _lowCmd->motorCmd[i].tau = 0;
+    //     }
+    // }
+    // else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
+    //     for(int i=0; i<NUM_DOF_W; i++){
+    //         _lowCmd->motorCmd[i].mode = 10;
+    //         _lowCmd->motorCmd[i].q = 0;
+    //         _lowCmd->motorCmd[i].dq = 0;
+    //         _lowCmd->motorCmd[i].Kp = 0;
+    //         _lowCmd->motorCmd[i].Kd = 3;
+    //         _lowCmd->motorCmd[i].tau = 0;
+    //     }
+    // }
     _ctrlComp->setAllSwing();
 }
 

@@ -15,7 +15,8 @@
 // #define USE_A_REAL_HEXAPOD true
 #define USE_A_REAL_HEXAPOD false
 
-#define ONLY_POSITION_CTRL true
+// #define ONLY_POSITION_CTRL true
+#define ONLY_POSITION_CTRL false
 
 // #define NUM_LEG 4
 // #define LEG_DOF 3

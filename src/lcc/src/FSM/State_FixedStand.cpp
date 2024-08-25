@@ -35,7 +35,7 @@ void State_FixedStand::enter(){
         _lowCmd->setZeroTau(i);
     }
     for(int i=0; i<NUM_DOF_W; i++){
-        _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
+        // _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
         _startPos[i] = _lowState->motorState[i].q;
     }
 
