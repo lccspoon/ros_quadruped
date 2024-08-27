@@ -77,7 +77,7 @@ ros::Subscriber sub_nav_odometry;
 ros::NodeHandle nh;
 void initRecv();
 void initSend();
-
+Vec4 quaternion_offset;
 
 };
 

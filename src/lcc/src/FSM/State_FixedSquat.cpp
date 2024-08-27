@@ -24,18 +24,28 @@ State_FixedSquat::State_FixedSquat(CtrlComponents *ctrlComp)
 
 void State_FixedSquat::enter(){
 
-    for(int i=0; i<NUM_LEG_W; i++){
-        if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
-            _lowCmd->setSimStanceGain(i);
-        }
-        else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
-            _lowCmd->setRealStanceGain(i);
-        }
-        _lowCmd->setZeroDq(i);
-        _lowCmd->setZeroTau(i);
+    // for(int i=0; i<NUM_LEG_W; i++){
+    //     if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
+    //         _lowCmd->setSimStanceGain(i);
+    //     }
+    //     else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
+    //         _lowCmd->setRealStanceGain(i);
+    //     }
+    //     _lowCmd->setZeroDq(i);
+    //     _lowCmd->setZeroTau(i);
+    // }
+
+    for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
+        _lowCmd->motorCmd[i].dq = 0;
+        _lowCmd->motorCmd[i].Kp = 30;
+        _lowCmd->motorCmd[i].Kd = 3;
+        _lowCmd->motorCmd[i].tau = 0;
     }
+
     for(int i=0; i<NUM_DOF_W; i++){
+        #if USE_A_REAL_HEXAPOD == true
         _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
+        #endif
         _startPos[i] = _lowState->motorState[i].q;
     }
 
@@ -96,11 +106,19 @@ FSMStateName State_FixedSquat::checkChange(){
 void State_FixedSquat::_torqueCtrl(){
 
     #if IS_THIS_A_HEXAPOD
-        // _Kp = Vec3(5000, 5000, 5000).asDiagonal();
-        // _Kd = Vec3( 200,  200, 200).asDiagonal();
-
-        _Kp = Vec3(3500, 3500, 3500).asDiagonal();
-        _Kd = Vec3( 120,  120, 120).asDiagonal();
+        #if USE_A_REAL_HEXAPOD == true
+            _Kp = Vec3(500, 500, 500).asDiagonal();
+            _Kd = Vec3( 15,  15, 15).asDiagonal() ;
+            // _Kp = Vec3(100, 100, 100).asDiagonal();
+            // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+            // _Kp = Vec3(35, 35, 35).asDiagonal();
+            // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+        #else
+            // _Kp = Vec3(5000, 5000, 5000).asDiagonal();
+            // _Kd = Vec3( 200,  200, 200).asDiagonal();
+            _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+            _Kd = Vec3( 120,  120, 120).asDiagonal();
+        #endif
 
         Vec36 pos36;
         Vec36 vel36;

@@ -1,7 +1,9 @@
- 
 #include "interface/KeyBoard.h"
 // #include "interface/ "
 #include <iostream>
+#include "interface/IOSDK.h"
+
+bool KEY_M = false;
 
 KeyBoard::KeyBoard(){
     userCmd = UserCommand::NONE;
@@ -13,7 +15,7 @@ KeyBoard::KeyBoard(){
     tcsetattr( fileno( stdin ), TCSANOW, &_newSettings );
 
     pthread_create(&_tid, NULL, runKeyBoard, (void*)this);
-    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1(***);\n 2->FIXEDSTAND_2(***);\nc->FIXEDSQUAT_c(***);\n 3->FREESTAND_3;\n 4->QP_4(***);\n 5->POSITION_5(***);\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 9->SWING_TEST9\n");
+    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n");
     printf(" TERRIANESTI_FOURLEG: %d \n",TERRIANESTI_FOURLEG);
 }
 
@@ -24,6 +26,7 @@ KeyBoard::~KeyBoard(){
 }
 
 UserCommand KeyBoard::checkCmd(){
+    // printf("\n-a-gf-asg-\n");
     switch (_c){
     case '1':
         return UserCommand::PASSIVE_1;
@@ -47,12 +50,14 @@ UserCommand KeyBoard::checkCmd(){
     //     return UserCommand::A1MPC_6;
     // case '7':
     //     return UserCommand::POSREFLEX_7;
-    case '0':
-        return UserCommand::BALANCE_TEST0;
+    // case '0':
+    //     return UserCommand::BALANCE_TEST0;
     case '9':
         return UserCommand::SWING_TEST9;
+    // case '8':
+    //     return UserCommand::SETP_TEST8;
     case '8':
-        return UserCommand::SETP_TEST8;
+        return UserCommand::FORCE_POS_8;
     case ' ':
         {
             userValue.setZero();
@@ -105,38 +110,91 @@ void KeyBoard::changeValue(){
 
 // lcc 20250601
 int life_reaction_off_on_flag=0,dowm_reaction_off_on_flag=0,mkan_reaction_off_on_flag=0, berzier_shape_off_on_flag = 0;
+float raddd = 3.14159/180;
 void KeyBoard::changeFunctionModeValue(){
     switch (_c){
+        case 'M':case 'm':{ //进入闭环
+        if( KEY_M == false )
+            KEY_M = true;
+        else if( KEY_M == true )
+            KEY_M = false;
+        std::cout<<"KEY_M:  "<< KEY_M <<std::endl;
+        }
+        break; 
+        #if USE_A_REAL_HEXAPOD == true
+        case 'p':case 'P':{ //进入闭环
+                // if( userFunctionMode.motor_enable_flag == false )
+                //     userFunctionMode.motor_enable_flag = true;
+                // else if( userFunctionMode.motor_enable_flag == true )
+                //     userFunctionMode.motor_enable_flag = false;
+                // std::cout<<"motor_enable_flag:  "<< userFunctionMode.motor_enable_flag <<std::endl;
 
-    case 'p':case 'P':{ //进入闭环
-            if( userFunctionMode.motor_enable_flag == false )
-                userFunctionMode.motor_enable_flag = true;
-            else if( userFunctionMode.motor_enable_flag == true )
-                userFunctionMode.motor_enable_flag = false;
-            std::cout<<"motor_enable_flag:  "<< userFunctionMode.motor_enable_flag <<std::endl;
+                MOTOR_ENABLE_FLAG = true;
+                MOTOR_DISABEL_FLAG = false;
+            }
+            break;
+        case 'o':case 'O':{ //退出闭环
+                // std::cout<<"getQ_Hex:  \n"<< _ctrlComp->lowState->getQ_Hex() * 180/3.1415926 <<std::endl;
+                // spi_2.exit_close_loop();
+
+                MOTOR_DISABEL_FLAG = true;
+                MOTOR_DATA_LOAD = false;
+
+                // if( userFunctionMode.motor_disenable_flag == false )
+                //     userFunctionMode.motor_disenable_flag = true;
+                // else if( userFunctionMode.motor_disenable_flag == true )
+                //     userFunctionMode.motor_disenable_flag = false;
+                // std::cout<<"motor_disenable_flag:  "<< userFunctionMode.motor_disenable_flag <<std::endl;
+            }
+            break;
+        case '[':case '{':{ //电机连续加载数据
+                MOTOR_READY_FLAG = true;
+                MOTOR_DATA_LOAD = false;
+                MOTOR_DISABEL_FLAG = false;
+            }
+            break;
+        case ']':case '}':{ //进入程序算法，点击获得程序的控制数据
+                MOTOR_DATA_LOAD = true;
+                MOTOR_READY_FLAG = false;
+                printf(" \n  ----------------- algorithm_run -------------------- \n ");
+            }
+            break;
+        case '-':case '_':{ //退出闭环
+                DOU_DONG_ANGEL = DOU_DONG_ANGEL -1 * raddd;
+                if( DOU_DONG_ANGEL >= 2.5 * raddd)
+                    DOU_DONG_ANGEL = 2.5 * raddd;
+                else if( DOU_DONG_ANGEL <= -2.5 * raddd )
+                    DOU_DONG_ANGEL = -2.5 * raddd;
+            }
+            break;
+        case '=':case '+':{ //退出闭环
+                DOU_DONG_ANGEL = DOU_DONG_ANGEL +1 * raddd;
+                if( DOU_DONG_ANGEL >= 2.5 * raddd)
+                    DOU_DONG_ANGEL = 2.5 * raddd;
+                else if( DOU_DONG_ANGEL <= -2.5 * raddd )
+                    DOU_DONG_ANGEL = -2.5 * raddd;
+            }
+            break;
+        case 't':case 'T':{
+
+                if( TEST_FLAG == false )
+                    TEST_FLAG = true;
+                else if( TEST_FLAG == true )
+                    TEST_FLAG = false;
+
+                // if( userFunctionMode.function_test == false )
+                //     userFunctionMode.function_test = true;
+                // else if( userFunctionMode.function_test == true )
+                //     userFunctionMode.function_test = false;
+                // std::cout<<"function_test:  "<< userFunctionMode.function_test <<std::endl;
+                // if( userFunctionMode.state_reset == false )
+                //     userFunctionMode.state_reset = true;
+                // else if( userFunctionMode.state_reset == true )
+                //     userFunctionMode.state_reset = false;
+                // std::cout<<"state_reset:  "<< userFunctionMode.state_reset <<std::endl;
         }
         break;
-    case 'o':case 'O':{ //退出闭环
-            if( userFunctionMode.motor_disenable_flag == false )
-                userFunctionMode.motor_disenable_flag = true;
-            else if( userFunctionMode.motor_disenable_flag == true )
-                userFunctionMode.motor_disenable_flag = false;
-            std::cout<<"motor_disenable_flag:  "<< userFunctionMode.motor_disenable_flag <<std::endl;
-        }
-        break;
-    case 't':case 'T':{
-            if( userFunctionMode.function_test == false )
-                userFunctionMode.function_test = true;
-            else if( userFunctionMode.function_test == true )
-                userFunctionMode.function_test = false;
-            std::cout<<"function_test:  "<< userFunctionMode.function_test <<std::endl;
-            // if( userFunctionMode.state_reset == false )
-            //     userFunctionMode.state_reset = true;
-            // else if( userFunctionMode.state_reset == true )
-            //     userFunctionMode.state_reset = false;
-            // std::cout<<"state_reset:  "<< userFunctionMode.state_reset <<std::endl;
-        }
-        break;
+        #endif
         /******************20230906自适应cheet按键******************/
         #if PCONTROL_REFLEX_LIFE_DOWM == true
         case 'Q':   {   // lf

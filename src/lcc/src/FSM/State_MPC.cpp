@@ -172,8 +172,7 @@ void State_A1MPC::run(){
 
     Vec18 tau_send;
     tau_send = _tau + torque18;
-    _lowCmd->setTau(tau_send); //lcc 20240604
-    // _lowCmd->setTau(torque18); //lcc 20240604
+    // _lowCmd->setTau(tau_send); //lcc 20240604
     // _lowCmd->setQ(vec34ToVec12(_qGoal));
     // _lowCmd->setQd(vec34ToVec12(_qdGoal));
 

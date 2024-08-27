@@ -14,6 +14,9 @@
 #include <linux/spi/spidev.h>
 #include <sys/ioctl.h>
 
+#include"common/protection.h"
+#include "common/mathTypes.h"
+
 #define datesize 47
 class spi_sr
 {
@@ -95,7 +98,6 @@ private:
     int send_date(uint16_t *Txdate);
     int send_date2(uint16_t *Txdate);
 
-    int send_recv(uint16_t *Txdate0, uint16_t *Txdate1);
 public:
 
     struct MotorCmd{
@@ -113,6 +115,14 @@ public:
         }
     } motor_cmd[18];
 
+    MotorCmd rf1,rf2,rf3;
+    MotorCmd rm1,rm2,rm3;
+    MotorCmd rb1,rb2,rb3;
+
+    MotorCmd lf1,lf2,lf3;
+    MotorCmd lm1,lm2,lm3;
+    MotorCmd lb1,lb2,lb3;
+
     struct MotorStates{
         float q;
         float dq;
@@ -127,12 +137,32 @@ public:
     spi_sr();
     ~spi_sr();
 
-    // void enter_close_loop();
+    void enter_close_loop();
     void exit_close_loop();
 
     //数据打包+发送与接收
-    void pos_loaddate2(float  pos0,float   pos1,float   pos2,float  pos3,float   pos4,float   pos5,float   pos6,float   pos7,float   pos8);
-    void pos_loaddate(float  pos0,float   pos1,float   pos2,float  pos3,float   pos4,float   pos5,float   pos6,float   pos7,float   pos8);
+    void pos_loaddate2();
+    // void pos_loaddate2(float  pos0,float   pos1,float   pos2,float  pos3,float   pos4,float   pos5,float   pos6,float   pos7,float   pos8);
+    void pos_loaddate();
+    // void pos_loaddate(float  pos0,float   pos1,float   pos2,float  pos3,float   pos4,float   pos5,float   pos6,float   pos7,float   pos8);
+
+    void load_all_motorCmd();
+    void send_all_data();
+
+    DataUnusualProtect ___dataUnuProtect[7]; //lcc 20240807:保护程序
+
+    
+    Vec36 rec_moter_q;
+    Vec36 rec_moter_v;
+    Vec36 rec_moter_t;
+
+    Vec36 rec_moter_q_last;
+    Vec36 rec_moter_v_last;
+    Vec36 rec_moter_t_last;
+
+    Vec36 rec_moter_q_erroCount;
+    Vec36 rec_moter_v_erroCount;
+    Vec36 rec_moter_t_erroCount;
 };
 
 # endif

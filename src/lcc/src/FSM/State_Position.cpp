@@ -1,5 +1,4 @@
- 
-#include "FSM/State_Position.h"
+ #include "FSM/State_Position.h"
 #include <iomanip>
 
 State_Position::State_Position(CtrlComponents *ctrlComp)
@@ -13,34 +12,6 @@ State_Position::State_Position(CtrlComponents *ctrlComp)
 
     _gaitHeight = 0.08;
     root_euler_d.setZero();
-
-// #ifdef ROBOT_TYPE_Go1
-    // // _Kpp = Vec3(70, 70, 70).asDiagonal();
-    // _Kdp = Vec3(10, 10, 10).asDiagonal();
-    // _kpw = 780; 
-    // _Kdw = Vec3(70, 70, 70).asDiagonal();
-    // _KpSwing = Vec3(400, 400, 400).asDiagonal();
-    // _KdSwing = Vec3(10, 10, 10).asDiagonal();
-// #endif
-
-    //lcc tuning 20240604
-    // _Kpp = Vec3(100, 30, 100).asDiagonal();
-    _Kpp = Vec3(30, 30, 100).asDiagonal();
-    _Kdp = Vec3(20, 20, 20).asDiagonal();
-    _kpw = 1000; 
-    _Kdw = Vec3(70, 70, 70).asDiagonal();
-
-    _KpSwing = Vec3(400, 400, 400).asDiagonal();
-    _KdSwing = Vec3(10, 10, 10).asDiagonal();
-
-// #ifdef ROBOT_TYPE_A1
-    // _Kpp = Vec3(20, 20, 100).asDiagonal();
-    // _Kdp = Vec3(20, 20, 20).asDiagonal();
-    // _kpw = 400;
-    // _Kdw = Vec3(50, 50, 50).asDiagonal();
-    // _KpSwing = Vec3(400, 400, 400).asDiagonal();
-    // _KdSwing = Vec3(10, 10, 10).asDiagonal();
-// #endif
 
     _vxLim = _sixlegdogModel->getRobVelLimitX();
     _vyLim = _sixlegdogModel->getRobVelLimitY();
@@ -102,6 +73,13 @@ void State_Position::enter(){
     _initFeetPos = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::HIP);//QP
 
     _lowState->userValue.setZero();
+
+    for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
+        _lowCmd->motorCmd[i].dq = 0;
+        _lowCmd->motorCmd[i].Kp = 30;
+        _lowCmd->motorCmd[i].Kd = 2;
+        _lowCmd->motorCmd[i].tau = 0;
+    }
 }
 
 void State_Position::exit(){
@@ -125,8 +103,6 @@ void State_Position::run(){
     // Rob State
     _posBody = _est->getPosition();
     _velBody = _est->getVelocity();
-    _yaw = _lowState->getYaw();
-    _dYaw = _lowState->getDYaw();
     _posFeet2BGlobal = _est->getPosFeet2BGlobal();
     _posFeetGlobal = _est->getFeetPos();
     _velFeetGlobal = _est->getFeetVel();
@@ -160,33 +136,17 @@ void State_Position::run(){
     /* 继续，得到world系下的：机身目标速度、速度、期望姿态角yaw、dyaw */
     calcCmd();
 
-    /* setGait -> 设置世界系下的目标: vxyGoalGlobal, dYawGoal, gaitHeight*/
-    _gait->setGait(_vCmdGlobal.segment(0,2), _wCmdGlobal(2), _gaitHeight);
-    /* run传的是指针，地址绑定，直接得到：世界系下足端目标位置和速度 */
-    _gait->run(_posFeetGlobalGoal, _velFeetGlobalGoal);
-
-    calcTau(); // 计算关节力矩
-    calcP();
-    _torqueCtrl();//QP lcc 20240604
-
+    calcP(); //位置控制
+    _torqueCtrl();// 位置控制 + 位置反馈 的力矩控制
+    
     if(checkStepOrNot()){
         _ctrlComp->setStartWave();
     }else{
         _ctrlComp->setAllStance();
     }
 
-    Vec18 tau_send;
-    // tau_send = _tau * 1 + torque18 * 1;
-    tau_send = _tau * 0 + torque18 * 1;
-    _lowCmd->setTau( tau_send ); //lcc 20240602
+    _lowCmd->setTau( torque18 ); //lcc 20240602
 
-    for(int i(0); i<6; ++i){
-        if((*_contact_hex)(i) == 0){
-            _lowCmd->setSwingGain(i);
-        }else{
-            _lowCmd->setStableGain(i);
-        }
-    }
 }
 
 bool State_Position::checkStepOrNot(){
@@ -258,62 +218,6 @@ void State_Position::calcCmd(){
     _Rd = rpyToRotMat(root_euler_d(0), root_euler_d(1), _yawCmd)* eye3;//lcc
     // std::cout<<" root_euler_d :\n"<< root_euler_d.transpose() <<std::endl;
     _wCmdGlobal(2) = _dYawCmd;
-}
-
-void State_Position::calcTau(){
-    _posError = _pcd - _posBody;
-    /*--------------lcc start 20240604----------------*/
-    Vec6 leg_deep;
-    int leg_deep_num;
-    leg_deep_num = 0;
-    leg_deep.setZero();
-    for (int i = 0; i < 6; i++)
-    {   
-        if((*_contact_hex)(i) == 1) //stand
-        {
-            leg_deep(i) = _ctrlComp->sixlegdogModel->getFootPosition(*_lowState, i, FrameType::BODY)(2);
-            leg_deep_num ++;
-        }
-    }
-    if( (*_phase_hex)(0) > 0.3 && (*_phase_hex)(0) <= 0.8 )
-    {
-        body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num + 0.0944;
-    }
-    _posError(2) = _pcd(2) - body_h; // 使用接地腿的高度平均值作为机身实际高度，摆脱世界系下机身高度状态估计不准的难题
-    // std::cout<<" body_h :"<< body_h <<std::endl;
-    // std::cout<<" _pcd :\n"<< _pcd.transpose() <<std::endl;
-    // std::cout<<" _posBody :\n"<< _posBody.transpose() <<std::endl;
-    /*--------------lcc end 20240604----------------*/
-
-    _velError = _vCmdGlobal - _velBody;
-    _ddPcd = _Kpp * _posError + _Kdp * _velError;
-    _dWbd  = _kpw*rotMatToExp(_Rd*_G2B_RotMat) + _Kdw * (_wCmdGlobal - _lowState->getGyroGlobal());
-
-    _ddPcd(0) = saturation(_ddPcd(0), Vec2(-3, 3));
-    _ddPcd(1) = saturation(_ddPcd(1), Vec2(-3, 3));
-    _ddPcd(2) = saturation(_ddPcd(2), Vec2(-5, 5));
-
-    _dWbd(0) = saturation(_dWbd(0), Vec2(-40, 40));
-    _dWbd(1) = saturation(_dWbd(1), Vec2(-40, 40));
-    _dWbd(2) = saturation(_dWbd(2), Vec2(-10, 10));
-
-    /* 对于 (*_contact)(i) == 1-> 处于stand的腿。使用QP来获得支撑力  */
-    _forceFeetGlobal = - _balCtrl->calF(_ddPcd, _dWbd, _B2G_RotMat, _posFeet2BGlobal, *_contact_hex);
-
-    /* 对于 (*_contact)(i) == 0-> 处于swing的腿。使用PD来获得摆动力  */
-    for(int i(0); i<6; ++i){
-        if((*_contact_hex)(i) == 0){
-            _forceFeetGlobal.col(i) = _KpSwing*(_posFeetGlobalGoal.col(i) - _posFeetGlobal.col(i)) + _KdSwing*(_velFeetGlobalGoal.col(i)-_velFeetGlobal.col(i));
-        }
-    }
-
-    _forceFeetBody = _G2B_RotMat * _forceFeetGlobal;//将足端力从world系转换到body系
-
-    //lcc 20240617
-    _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 5;
-    _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1;
-    _q = vec36ToVec18(_lowState->getQ_Hex());
-    _tau = _sixlegdogModel->getTau(_q, _forceFeetBody);
 }
 
 void State_Position::calcP(){
@@ -427,7 +331,7 @@ void State_Position::_torqueCtrl(){
     // std::cout<<" _posBody: \n"<< _posBody <<std::endl;
     // std::cout<<" _posFeet2BGoal calcQQd: \n"<< _posFeet2BGoal <<std::endl;
 
-    _targetPos36_o3 = _posFeet2BGoal_P;
+    _targetPos36_o3 = _posFeet2BGoal_P; //位置控制 计算得到的P
     _targetPos36_o2 = _posFeet2BGoal;
     _targetPos36_o1 = _ctrlComp->sixlegdogModel->_feetPosNormalStand;
     // std::cout<<" _posFeet2BGoal: \n"<< _posFeet2BGoal <<std::endl;
@@ -441,7 +345,7 @@ void State_Position::_torqueCtrl(){
     torque18_o1 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o1);
     torque18_o2 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o2);
     torque18_o3 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o3);
-    // torque18 = torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 0; //力矩控制
-    torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5; //力位混合
-    // torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
+    // torque18 = torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 0;
+    torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5; 
+    // torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; 
 }

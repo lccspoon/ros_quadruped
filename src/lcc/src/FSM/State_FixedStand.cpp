@@ -24,18 +24,28 @@ State_FixedStand::State_FixedStand(CtrlComponents *ctrlComp)
 
 void State_FixedStand::enter(){
 
-    for(int i=0; i<NUM_LEG_W; i++){
-        if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
-            _lowCmd->setSimStanceGain(i);
-        }
-        else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
-            _lowCmd->setRealStanceGain(i);
-        }
-        _lowCmd->setZeroDq(i);
-        _lowCmd->setZeroTau(i);
+    // for(int i=0; i<NUM_LEG_W; i++){
+    //     if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
+    //         _lowCmd->setSimStanceGain(i);
+    //     }
+    //     else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
+    //         _lowCmd->setRealStanceGain(i);
+    //     }
+    //     _lowCmd->setZeroDq(i);
+    //     _lowCmd->setZeroTau(i);
+    // }
+
+    for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
+        _lowCmd->motorCmd[i].dq = 0;
+        _lowCmd->motorCmd[i].Kp = 30;
+        _lowCmd->motorCmd[i].Kd = 3;
+        _lowCmd->motorCmd[i].tau = 0;
     }
+
     for(int i=0; i<NUM_DOF_W; i++){
-        // _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
+        #if USE_A_REAL_HEXAPOD == true
+        _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
+        #endif
         _startPos[i] = _lowState->motorState[i].q;
     }
 
@@ -46,7 +56,8 @@ void State_FixedStand::enter(){
     // _initFeetPos = _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::BODY);
     _initFeetPos = _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::BODY);
 }
-
+// double radToAngle = 3.1415926/180;
+double radToAngle = 180/3.1415926;
 void State_FixedStand::run(){
 
     //-------lcc------//
@@ -60,6 +71,26 @@ void State_FixedStand::run(){
     _targetPos2 = _ctrlComp->sixlegdogModel->getQ(_feetPos2, FrameType::BODY);
     // _targetPos2 = _ctrlComp->sixlegdogModel->getQ(_feetPos, FrameType::BODY);
     _lowCmd->setQ(  _targetPos2   );
+
+    // _lowCmd->setQ(   vec36ToVec18( _ctrlComp->lowState->getQ_Hex()  ) );
+
+    // Vec36 rec_q, cmd_q;
+    // for (int i = 0; i < 18; i++)
+    // {
+    //     rec_q(i) = _lowState->motorState[i].q; 
+    //     cmd_q(i) = _lowCmd->motorCmd[i].q;
+    // }
+    
+    // std::cout<<"rec_q: \n"<< rec_q * radToAngle <<std::endl;
+    // std::cout<<"cmd_q: \n"<< cmd_q * radToAngle <<std::endl;
+    // std::cout<<"_initFeetPos: \n"<< _initFeetPos <<std::endl;
+    // std::cout<<"  sixlegdogModel  getQ: \n"<< vec18ToVec36(_ctrlComp->sixlegdogModel->getQ(_initFeetPos, FrameType::BODY) ) * radToAngle<<std::endl;
+    // std::cout<<" _posFeet2BGlobal BODY: \n"<< _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY) <<std::endl;
+    // std::cout<<" _posFeet2BGlobal HIP: \n"<< _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::HIP) <<std::endl;
+    // printf(" \n  ----------------- State_FixedStand -------------------- \n ");
+
+
+
 
     // _lowCmd->setQ(  init_pos   );
 
@@ -112,6 +143,9 @@ FSMStateName State_FixedStand::checkChange(){
     else if(_lowState->userCmd == UserCommand::POSREFLEX_7){  //lcc 20240627
         return FSMStateName::POSREFLEX;
     }
+    else if(_lowState->userCmd == UserCommand::FORCE_POS_8){  //lcc 20240827
+        return FSMStateName::FORCE_POS;
+    }
 #ifdef COMPILE_WITH_MOVE_BASE
     else if(_lowState->userCmd == UserCommand::L2_Y){
         return FSMStateName::MOVE_BASE;
@@ -125,11 +159,20 @@ FSMStateName State_FixedStand::checkChange(){
 void State_FixedStand::_torqueCtrl(){
 
     #if IS_THIS_A_HEXAPOD
-        // _Kp = Vec3(5000, 5000, 5000).asDiagonal();
-        // _Kd = Vec3( 200,  200, 200).asDiagonal();
+        #if USE_A_REAL_HEXAPOD == true
+            // _Kp = Vec3(500, 500, 500).asDiagonal();
+            // _Kd = Vec3( 15,  15, 15).asDiagonal() ;
+            _Kp = Vec3(100, 100, 100).asDiagonal();
+            _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+            // _Kp = Vec3(35, 35, 35).asDiagonal();
+            // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+        #else
+            // _Kp = Vec3(5000, 5000, 5000).asDiagonal();
+            // _Kd = Vec3( 200,  200, 200).asDiagonal();
+            _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+            _Kd = Vec3( 120,  120, 120).asDiagonal();
+        #endif
 
-        _Kp = Vec3(3500, 3500, 3500).asDiagonal();
-        _Kd = Vec3( 120,  120, 120).asDiagonal();
 
         Vec36 pos36;
         Vec36 vel36;

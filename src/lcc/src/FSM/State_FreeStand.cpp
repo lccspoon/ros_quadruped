@@ -14,15 +14,21 @@ State_FreeStand::State_FreeStand(CtrlComponents *ctrlComp)
 }
 
 void State_FreeStand::enter(){
-    for(int i=0; i<6; i++){
-        if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
-            _lowCmd->setSimStanceGain(i);
-        }
-        else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
-            _lowCmd->setRealStanceGain(i);
-        }
-        _lowCmd->setZeroDq(i);
-        _lowCmd->setZeroTau(i);
+    // for(int i=0; i<6; i++){
+    //     if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
+    //         _lowCmd->setSimStanceGain(i);
+    //     }
+    //     else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
+    //         _lowCmd->setRealStanceGain(i);
+    //     }
+    //     _lowCmd->setZeroDq(i);
+    //     _lowCmd->setZeroTau(i);
+    // }
+    for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
+        _lowCmd->motorCmd[i].dq = 0;
+        _lowCmd->motorCmd[i].Kp = 30;
+        _lowCmd->motorCmd[i].Kd = 1;
+        _lowCmd->motorCmd[i].tau = 0;
     }
 
     for(int i=0; i<18; i++){
@@ -41,7 +47,11 @@ void State_FreeStand::run(){
                     -invNormalize(_lowState->userValue.rx, _yawMin, _yawMax),
                      invNormalize(_lowState->userValue.ry, _heightMin, _heightMax) );
     _calcCmd(_vecOP);
-    _torqueCtrl();
+    // _torqueCtrl();
+
+    // Vec36 vel36;
+    // vel36 = _ctrlComp->sixlegdogModel->getFeet2BVelocities(*_lowState,FrameType::BODY );
+    // std::cout<<" vel36 \n"<< vel36 <<std::endl;
 }
 
 void State_FreeStand::exit(){

@@ -10,7 +10,15 @@
 #include "common/unitreeRobot.h"
 
 #if USE_A_REAL_HEXAPOD == true
-extern spi_sr spi;
+extern spi_sr spi_2;
+extern bool MOTOR_DISABEL_FLAG;
+extern bool MOTOR_ENABLE_FLAG;
+extern bool MOTOR_READY_FLAG;
+extern bool MOTOR_DATA_LOAD;
+extern bool MOTOR_ENTER_CLOSELOOP;
+extern float DOU_DONG_ANGEL;
+extern bool TEST_FLAG;
+extern Vec36 rec_offset;
 #endif
 
 class IOSDK : public IOInterface{
@@ -26,7 +34,6 @@ Eigen::Matrix<double, 3, 1> retSimOdeBodyV();
 private:
 void sendCmd(const LowlevelCmd *cmd);
 void recvState(LowlevelState *state);
-
 };
 
 #endif  // IOROS_H

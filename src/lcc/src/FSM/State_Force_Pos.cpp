@@ -1,9 +1,8 @@
- 
-#include "FSM/State_PosReflex.h"
+#include "FSM/State_Force_Pos.h"
 #include <iomanip>
 
-State_PosReflex::State_PosReflex(CtrlComponents *ctrlComp)
-             :FSMState(ctrlComp, FSMStateName::POSREFLEX, "posreflex"), 
+State_Force_Pos::State_Force_Pos(CtrlComponents *ctrlComp)
+             :FSMState(ctrlComp, FSMStateName::FORCE_POS, "force_pos"), 
               _est(ctrlComp->estimator), _phase(ctrlComp->phase), _Apla( ctrlComp->Apla),
               _contact(ctrlComp->contact), _robModel(ctrlComp->robotModel), _sixlegdogModel(ctrlComp->sixlegdogModel), 
               _balCtrl(ctrlComp->balCtrl), _phase_hex(ctrlComp->phase_hex), _contact_hex(ctrlComp->contact_hex)
@@ -11,8 +10,7 @@ State_PosReflex::State_PosReflex(CtrlComponents *ctrlComp)
     _gait = new GaitGenerator(ctrlComp);
     _gait_P = new GaitGenerator_P(ctrlComp);
 
-    _gaitHeight = 0.10;
-    // _gaitHeight = 0.08;
+    _gaitHeight = 0.08;
     root_euler_d.setZero();
 
 // #ifdef ROBOT_TYPE_Go1
@@ -63,17 +61,17 @@ State_PosReflex::State_PosReflex(CtrlComponents *ctrlComp)
     adj_RPY_P.setZero();
     adj_RPY_P_past.setZero();
 
-    _feetPosNormalStand_original = _ctrlComp->sixlegdogModel->_feetPosNormalStand;
+    _posFeet2BGoal_P_Increment.setZero();
     terian_FootHold = new Vec1_6;
     (*terian_FootHold).setZero();
 }
 
-State_PosReflex::~State_PosReflex(){
+State_Force_Pos::~State_Force_Pos(){
     delete _gait;
     delete _gait_P;
 }
 
-void State_PosReflex::enter(){
+void State_Force_Pos::enter(){
     // printf(" \n enter -> qp \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
@@ -103,14 +101,21 @@ void State_PosReflex::enter(){
     _initFeetPos = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::HIP);//QP
 
     _lowState->userValue.setZero();
+
+    for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
+        _lowCmd->motorCmd[i].dq = 0;
+        _lowCmd->motorCmd[i].Kp = 30;
+        _lowCmd->motorCmd[i].Kd = 2;
+        _lowCmd->motorCmd[i].tau = 0;
+    }
 }
 
-void State_PosReflex::exit(){
+void State_Force_Pos::exit(){
     _ctrlComp->ioInter->zeroCmdPanel();
     _ctrlComp->setAllSwing();
 }
 
-FSMStateName State_PosReflex::checkChange(){
+FSMStateName State_Force_Pos::checkChange(){
     if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
@@ -118,11 +123,11 @@ FSMStateName State_PosReflex::checkChange(){
         return FSMStateName::FIXEDSTAND;
     }
     else{
-        return FSMStateName::POSREFLEX;
+        return FSMStateName::FORCE_POS;
     }
 }
-         
-void State_PosReflex::run(){
+
+void State_Force_Pos::run(){
     // Rob State
     _posBody = _est->getPosition();
     _velBody = _est->getVelocity();
@@ -133,7 +138,16 @@ void State_PosReflex::run(){
     _velFeetGlobal = _est->getFeetVel();
     _B2G_RotMat = _lowState->getRotMat();//机身 到 世界 的变化矩阵
     _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
-                                                                  
+
+    // std::cout<<" _posBody :"<< _posBody.transpose() <<std::endl;
+    // std::cout<<" _velBody :"<< _velBody.transpose() <<std::endl;
+    // std::cout<<" _yaw :\n"<< _yaw*180/3.1415926 <<std::endl;
+    // std::cout<<" getQuat :\n"<< _lowState->imu.getQuat() <<std::endl;
+    // std::cout<<" getRotMat :\n"<< _lowState->getRotMat() <<std::endl;
+    // std::cout<<" RPY :\n"<< rotMatToRPY(_lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
+    // std::cout<<" _yaw :\n"<< _yaw <<std::endl;
+    // std::cout<<" getAcc :\n"<< _lowState->getAcc().transpose() <<std::endl;
+
     #if TERRIANESTI_FOURLEG
         (*_contact_te)(0) = (*_contact_hex)(0); 
         (*_contact_te)(1) = (*_contact_hex)(1); 
@@ -166,30 +180,42 @@ void State_PosReflex::run(){
     /* run传的是指针，地址绑定，直接得到：世界系下足端目标位置和速度 */
     _gait->run(_posFeetGlobalGoal, _velFeetGlobalGoal);
 
-    calcTau(); // 计算关节力矩
-    calcP();
-    _torqueCtrl();//QP lcc 20240604
-
+    // calcTau(); // QP力矩控制
+    calcP(); //位置控制
+    #if USE_A_REAL_HEXAPOD == true
+    // _torqueCtrl();// 位置控制 + 位置反馈 的力矩控制
+    #else
+    _torqueCtrl();// 位置控制 + 位置反馈 的力矩控制
+    #endif
+    
     if(checkStepOrNot()){
         _ctrlComp->setStartWave();
     }else{
         _ctrlComp->setAllStance();
     }
 
+    #if USE_A_REAL_HEXAPOD == true
     Vec18 tau_send;
+    // tau_send = _tau * 1 + torque18 * 1;
     tau_send = _tau * 0 + torque18 * 1;
     // _lowCmd->setTau( tau_send ); //lcc 20240602
+    #else
+    Vec18 tau_send;
+    tau_send = _tau * 1 + torque18 * 1;
+    // tau_send = _tau * 0 + torque18 * 1;
+    _lowCmd->setTau( tau_send ); //lcc 20240602
+    #endif
 
-    for(int i(0); i<6; ++i){
-        if((*_contact_hex)(i) == 0){
-            _lowCmd->setSwingGain(i);
-        }else{
-            _lowCmd->setStableGain(i);
-        }
-    }
+    // for(int i(0); i<6; ++i){
+    //     if((*_contact_hex)(i) == 0){
+    //         _lowCmd->setSwingGain(i);
+    //     }else{
+    //         _lowCmd->setStableGain(i);
+    //     }
+    // }
 }
 
-bool State_PosReflex::checkStepOrNot(){
+bool State_Force_Pos::checkStepOrNot(){
     if( (fabs(_vCmdBody(0)) > 0.01) ||
         (fabs(_vCmdBody(1)) > 0.01) ||
         (fabs(_posError(0)) > 0.04) ||
@@ -204,7 +230,7 @@ bool State_PosReflex::checkStepOrNot(){
     }
 }
 
-void State_PosReflex::getUserCmd(){
+void State_Force_Pos::getUserCmd(){
     /* Movement */
     _vCmdBody(0) =  invNormalize(_lowState->userValue.ly, _vxLim(0), _vxLim(1));
     _vCmdBody(1) = -invNormalize(_lowState->userValue.lx, _vyLim(0), _vyLim(1));
@@ -216,7 +242,7 @@ void State_PosReflex::getUserCmd(){
     _dYawCmdPast = _dYawCmd;
 }
 
-void State_PosReflex::calcCmd(){
+void State_Force_Pos::calcCmd(){
     /* Movement */
     _vCmdGlobal = _B2G_RotMat * _vCmdBody; //将机身速度映射到world系
 
@@ -260,7 +286,7 @@ void State_PosReflex::calcCmd(){
     _wCmdGlobal(2) = _dYawCmd;
 }
 
-void State_PosReflex::calcTau(){
+void State_Force_Pos::calcTau(){
     _posError = _pcd - _posBody;
     /*--------------lcc start 20240604----------------*/
     Vec6 leg_deep;
@@ -286,8 +312,11 @@ void State_PosReflex::calcTau(){
     /*--------------lcc end 20240604----------------*/
 
     _velError = _vCmdGlobal - _velBody;
+
+    //lcc 20240827: 重大发现！！！ 这部用getGyro似乎比用getGyroGlobal更好；
     _ddPcd = _Kpp * _posError + _Kdp * _velError;
-    _dWbd  = _kpw*rotMatToExp(_Rd*_G2B_RotMat) + _Kdw * (_wCmdGlobal - _lowState->getGyroGlobal());
+    // _dWbd  = _kpw*rotMatToExp(_Rd*_G2B_RotMat) + _Kdw * ( _wCmdGlobal - _lowState->getGyroGlobal()); //lcc 20240827: yaw>=90直接崩
+    _dWbd  = _kpw*rotMatToExp(_Rd*_G2B_RotMat) + _Kdw * ( _wCmdGlobal - _lowState->getGyro()); //lcc 20240827: 在yaw=[95,-95]间灵活运动
 
     _ddPcd(0) = saturation(_ddPcd(0), Vec2(-3, 3));
     _ddPcd(1) = saturation(_ddPcd(1), Vec2(-3, 3));
@@ -316,56 +345,14 @@ void State_PosReflex::calcTau(){
     _tau = _sixlegdogModel->getTau(_q, _forceFeetBody);
 }
 
-void State_PosReflex::calcP(){
-    _q = vec36ToVec18(_lowState->getQ_Hex()); 
-    _footTipForceEst = _ctrlComp->sixlegdogModel->calcForceByTauEst( _q, _lowState->getTau_Hex());
-    swing_contact_threadhold.setOnes();
-    swing_contact_threadhold = swing_contact_threadhold * 250;
-    _contactEst.simple_contact_est(_footTipForceEst, (*_contact_hex), (*_phase_hex), swing_contact_threadhold, 50);
-    // std::cout<<" leg_suportingphase_contact_est \n:"<< _contactEst.leg_suportingphase_contact_est <<std::endl;
-    // std::cout<<" leg_swingphase_contact_est \n:"<< _contactEst.leg_swingphase_contact_est <<std::endl;
-
-    cpg_scheduler=_Cpg.cpgNewRun();
-    Eigen::Matrix<double,1,6> ab;
-    ab.setOnes(); ab = ab* 0.5;
-    cpg_scheduler.row(0) = cpg_scheduler.row(0) * 0.5 + ab;
-    for (int i = 0; i < 6; i++){
-        if ( cpg_scheduler(1, i) == 0 ){
-            cpg_scheduler(0, i) = 1 - cpg_scheduler(0, i);
-        }
-    }
-    Eigen::Matrix<double,2,6> cpg_scheduler_temp;
-    cpg_scheduler_temp = cpg_scheduler;
-    cpg_scheduler.col(0) = cpg_scheduler_temp.col(3);
-    cpg_scheduler.col(1) = cpg_scheduler_temp.col(0);
-    cpg_scheduler.col(2) = cpg_scheduler_temp.col(4);
-    cpg_scheduler.col(3) = cpg_scheduler_temp.col(1);
-    cpg_scheduler.col(4) = cpg_scheduler_temp.col(5);
-    cpg_scheduler.col(5) = cpg_scheduler_temp.col(2);
-    cpg_period_count = _Tim1.retSchedulerCount((*_contact_hex)); //lcc 得到cpg已经跑过的周期数; 以腿支撑态运动开始为新的cpg周期来计数
-    if(checkStepOrNot()){
-        // _ctrlComp->setStartWave();
-    }else{
-        cpg_scheduler.setZero();
-    }
-    // std::cout<<" cpg_scheduler \n:"<< cpg_scheduler <<std::endl;
-    // for(int i(0); i<6; ++i){
-    //     if( _contactEst.leg_swingphase_contact_est(i) == 1 )
-    //         _Cpg.cpg_stop_flag=1; //停止cpg来越过障碍
-    //         // std::exit(0);
-    // }
-    // std::cout<<" cpg_stop_flag: \n"<< _Cpg.cpg_stop_flag <<std::endl;
-
-    // std::cout<<" (*_contact_hex): \n"<< (*_contact_hex).transpose() <<std::endl;
-    // std::cout<<" (*_phase_hex): \n"<< (*_phase_hex).transpose() <<std::endl;
-
+void State_Force_Pos::calcP(){
     //lcc 20240624: 位置控制的摆动轨迹
-    _gait_P->useCPG(cpg_scheduler.row(0), cpg_scheduler.row(1));
     _gait_P->setGait(_vCmdBody.segment(0,2), _wCmdGlobal(2), _gaitHeight);
+    // _gait_P->run(_posSwingLeg_P, _velSwingLeg_P);
     _gait_P->run(_posSwingLeg_P, _velSwingLeg_P, _posFeet2BGoal_P_Increment, terian_FootHold);
     //lcc 20240624: 位置控制的支撑轨迹
-    _spt->useCPG(cpg_scheduler.row(0), cpg_scheduler.row(1));
     _spt->setGait(_vCmdBody.segment(0,2), _wCmdGlobal(2), 0);
+    // _spt->run(_posSupportLeg_P, _velSupportLeg_P);
     _spt->run(_posSupportLeg_P, _velSupportLeg_P, _posFeet2BGoal_P_Increment, terian_FootHold);
     for(int i(0); i<6; ++i){  
         if((*_contact_hex)(i) == 1){  //stand
@@ -379,7 +366,6 @@ void State_PosReflex::calcP(){
                 _velFeet2BGoal.col(i) = _G2B_RotMat * (_velSwingLeg_P.col(i) - _velBody); 
         }
     }
-    adaptive_control();
 
     //基于足端位置的姿态调整
     _initVecOX = _ctrlComp->sixlegdogModel->getFootPosition(*_lowState, 0, FrameType::BODY); // P_b0_(0)
@@ -399,28 +385,20 @@ void State_PosReflex::calcP(){
     adj_RPY_P = 0.0 * adj_RPY_P_past + (1 - 0.0) * adj_RPY_P;
     // std::cout<<" adj_RPY_P affter: \n"<< adj_RPY_P.transpose() <<std::endl;
     adj_RPY_P_past = adj_RPY_P;
-    row = invNormalize(adj_RPY_P(0)*0 + 0.0, _rowMin, _rowMax);
-    pitch = invNormalize(adj_RPY_P(1)*0 + 0.0 + _lowState->userFunctionMode.set_pitch, _pitchMin, _pitchMax);
-    yaw = -invNormalize(adj_RPY_P(2)*0 , _yawMin, _yawMax);
-    height = invNormalize(_lowState->userValue.ry + set_z_deviation_adaptiv + 0.0, _heightMin, _heightMax) ;
+    row = invNormalize(adj_RPY_P(0), _rowMin, _rowMax);
+    pitch = invNormalize(adj_RPY_P(1), _pitchMin, _pitchMax);
+    yaw = -invNormalize(adj_RPY_P(2), _yawMin, _yawMax);
+    // height = invNormalize(_lowState->userValue.ry, _heightMin, _heightMax) ;
+    height = 0;
     for(int i(0); i < 6; ++i){
-        // if((*_contact_hex)(i) == 1){  //stand _posFeet2BGoal_P_Increment
-        // _posFeet2BGoal_P.col(i) = _posFeet2BGoal_P.col(i) + (_calcOP(row, pitch, yaw, height).col(i) - _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ).col(i));
-        _posFeet2BGoal_P_Increment.col(i) = (_calcOP(row, pitch, yaw, height).col(i) - _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ).col(i));
-        // }
-        // if (i == 1 || i==3 || i==5){
-        //     _posFeet2BGoal_P_Increment.col(i) << 0, 0.2, 0.2;
-        // }
+        if((*_contact_hex)(i) == 1){  //stand
+        _posFeet2BGoal_P.col(i) = _posFeet2BGoal_P.col(i) + (_calcOP(row, pitch, yaw, height).col(i) - _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ).col(i));
+        }
     }
-
-    //z方向的轨迹在这里叠加，x、y方向的轨迹在支撑态和摆动态的落足点规划里叠加。这样才能保证轨迹不突变。
-    _posFeet2BGoal_P.row(2) = foot_trajectory.row(2) * 1 +_posFeet2BGoal_P.row(2) + _posFeet2BGoal_P_Increment.row(2) + (*terian_FootHold);
-    // _posFeet2BGoal_P.row(2) = foot_trajectory.row(2) * 1 +_posFeet2BGoal_P.row(2) + (*terian_FootHold);
-
     _ctrlComp->lowCmd->setQ( _ctrlComp->sixlegdogModel->getQ( _posFeet2BGoal_P, FrameType::BODY) );
 }
 
-Vec36 State_PosReflex::_calcOP(float row, float pitch, float yaw, float height){
+Vec36 State_Force_Pos::_calcOP(float row, float pitch, float yaw, float height){
     Vec3 vecXO = -_initVecOX;
     vecXO(2) += height;
     RotMat rotM = rpyToRotMat(row, pitch, yaw);
@@ -435,9 +413,10 @@ Vec36 State_PosReflex::_calcOP(float row, float pitch, float yaw, float height){
     return vecOP;
 }
 
-void State_PosReflex::_torqueCtrl(){
+void State_Force_Pos::_torqueCtrl(){
 
-    _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+    // _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+    _Kp = Vec3(5000, 5000, 5000).asDiagonal();
     _Kd = Vec3( 120,  120, 120).asDiagonal();
     Vec36 pos36;
     Vec36 vel36;
@@ -477,7 +456,7 @@ void State_PosReflex::_torqueCtrl(){
     // std::cout<<" _posBody: \n"<< _posBody <<std::endl;
     // std::cout<<" _posFeet2BGoal calcQQd: \n"<< _posFeet2BGoal <<std::endl;
 
-    _targetPos36_o3 = _posFeet2BGoal_P;
+    _targetPos36_o3 = _posFeet2BGoal_P; //位置控制 计算得到的P
     _targetPos36_o2 = _posFeet2BGoal;
     _targetPos36_o1 = _ctrlComp->sixlegdogModel->_feetPosNormalStand;
     // std::cout<<" _posFeet2BGoal: \n"<< _posFeet2BGoal <<std::endl;
@@ -492,6 +471,6 @@ void State_PosReflex::_torqueCtrl(){
     torque18_o2 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o2);
     torque18_o3 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o3);
     // torque18 = torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 0; //力矩控制
-    // torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1; //力位混合
-    torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
+    torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5; //力位混合
+    // torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
 }

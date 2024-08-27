@@ -30,6 +30,8 @@ IOROS::IOROS():IOInterface(){
     // 由于 KeyBoard 类继承自 CmdPanel 类，因此 KeyBoard 对象也被视为一种 CmdPanel 对象。
     // 这就是继承的基本概念，子类对象可以赋值给父类指针或引用。
     cmdPanel = new KeyBoard();
+
+    quaternion_offset << 0, 0, 0, 0;
 }
 
 IOROS::~IOROS(){
@@ -400,6 +402,13 @@ void IOROS::recvState(LowlevelState *state){
         state->imu.accelerometer[i] = sub_imu_lin_a_local(i);
         state->imu.gyroscope[i] = sub_imu_ang_v_local(i);
     }
+
+    //lcc 20240827: 重大发现！！！
+    state->imu.gyroscope[0] = state->imu.gyroscope[0];
+    state->imu.gyroscope[1] = state->imu.gyroscope[1];
+    // state->imu.gyroscope[0] = 0;
+    // state->imu.gyroscope[1] = 0;
+
     // Note: state->imu.quaternion:  w, x, y, z
     //   geometry_msgs/Quaternion orientation
     //   float64 x
@@ -411,4 +420,23 @@ void IOROS::recvState(LowlevelState *state){
     state->imu.quaternion[1] = sub_imu_orie_local[0];
     state->imu.quaternion[2] = sub_imu_orie_local[1];
     state->imu.quaternion[3] = sub_imu_orie_local[2];
+    
+    // if( KEY_M == true ){
+    //     // quaternion_offset(0) + state->imu.quaternion[0] = 1;
+    //     // quaternion_offset(1) + state->imu.quaternion[1] = 0;
+    //     // quaternion_offset(2) + state->imu.quaternion[2] = 0;
+    //     // quaternion_offset(3) + state->imu.quaternion[3] = 0;
+    //     quaternion_offset(0) =1 - state->imu.quaternion[0];
+    //     quaternion_offset(1) =  - state->imu.quaternion[1];
+    //     quaternion_offset(2) =  - state->imu.quaternion[2];
+    //     quaternion_offset(3) =  - state->imu.quaternion[3];
+    // }
+
+    state->imu.quaternion[0] = sub_imu_orie_local[3] + quaternion_offset(0);
+    state->imu.quaternion[1] = sub_imu_orie_local[0] + quaternion_offset(1);
+    state->imu.quaternion[2] = sub_imu_orie_local[1] + quaternion_offset(2);
+    state->imu.quaternion[3] = sub_imu_orie_local[2] + quaternion_offset(3);
+
+    // printf("quaternion_offset: %f,  %f,  %f,  %f\n", quaternion_offset(0),quaternion_offset(1),quaternion_offset(2),quaternion_offset(3));
+    // printf("quaternion: %f,  %f,  %f,  %f\n", state->imu.quaternion[0],state->imu.quaternion[1],state->imu.quaternion[2],state->imu.quaternion[3]);
 }

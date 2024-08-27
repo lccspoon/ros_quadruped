@@ -302,9 +302,9 @@ void Estimator::run(){
 
 Vec3 Estimator::getPosition(){
     
-    return _xhat.segment(0, 3) + Vec3(postionOffset(0), postionOffset(1), 0); //lcc 20240604
+    // return _xhat.segment(0, 3) + Vec3(postionOffset(0), postionOffset(1), 0); //lcc 20240604
 
-    // return _xhat.segment(0, 3); //lcc 20240604
+    return _xhat.segment(0, 3); //lcc 20240604SS
 
     // Vec3 z3;
     // z3.setZero();

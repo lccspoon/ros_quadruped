@@ -11,23 +11,28 @@ State_SwingTest::State_SwingTest(CtrlComponents *ctrlComp)
     _zMax =  0.20;
 }
 
-#define TEST_LEG_NUM 0 
+#define TEST_LEG_NUM 0
 
 void State_SwingTest::enter(){
-    for(int i=0; i<NUM_LEG_W; i++){
-        if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
-            _lowCmd->setSimStanceGain(i);
-        }
-        else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
-            _lowCmd->setRealStanceGain(i);
-        }
-        _lowCmd->setZeroDq(i);
-        _lowCmd->setZeroTau(i);
+    // for(int i=0; i<NUM_LEG_W; i++){
+    //     if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
+    //         _lowCmd->setSimStanceGain(i);
+    //     }
+    //     else if(_ctrlComp->ctrlPlatform == CtrlPlatform::REALROBOT){
+    //         _lowCmd->setRealStanceGain(i);
+    //     }
+    //     _lowCmd->setZeroDq(i);
+    //     _lowCmd->setZeroTau(i);
+    // }
+    for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
+        _lowCmd->motorCmd[i].dq = 0;
+        _lowCmd->motorCmd[i].Kp = 30;
+        _lowCmd->motorCmd[i].Kd = 2;
+        _lowCmd->motorCmd[i].tau = 0;
     }
-    _lowCmd->setSwingGain(TEST_LEG_NUM);
 
-    _Kp = Vec3(20, 20, 50).asDiagonal();
-    _Kd = Vec3( 5,  5, 20).asDiagonal();
+    // _lowCmd->setLegGain(TEST_LEG_NUM, 5, 1);
+    // _lowCmd->setLegGain(TEST_LEG_NUM, 1, 0.1);
 
     for(int i=0; i<NUM_DOF_W; i++){
         _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
@@ -107,10 +112,19 @@ void State_SwingTest::_torqueCtrl(){
 
     #if IS_THIS_A_HEXAPOD
 
-        // _Kp = Vec3(5000, 5000, 5000).asDiagonal();
-        // _Kd = Vec3( 200,  200, 200).asDiagonal();
-        _Kp = Vec3(3500, 3500, 3500).asDiagonal();
-        _Kd = Vec3( 120,  120, 120).asDiagonal();
+    #if USE_A_REAL_HEXAPOD == true
+        _Kp = Vec3(500, 500, 500).asDiagonal();
+        _Kd = Vec3( 15,  15, 15).asDiagonal() ;
+        // _Kp = Vec3(100, 100, 100).asDiagonal();
+        // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+        // _Kp = Vec3(35, 35, 35).asDiagonal();
+        // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+    #else
+        // _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+        // _Kd = Vec3( 120,  120, 120).asDiagonal();
+    #endif
+
+
         Vec36 pos36;
         Vec36 vel36;
         Vec36 _targetPos36;
@@ -131,12 +145,30 @@ void State_SwingTest::_torqueCtrl(){
             force36.block< 3, 1>( 0, i) =  _Kp*(_targetPos36.block< 3, 1>( 0, i) - pos36.block< 3, 1>( 0, i) ) + _Kd*(-vel36.block< 3, 1>( 0, i) );
         }
 
+
+        #if USE_A_REAL_HEXAPOD == true
+            for (int i = 0; i < 6; i++){
+                if( i == TEST_LEG_NUM ){
+                    ;
+                }
+                else{
+                    force36.col(i) = Vec3(0, 0, 0);
+                }
+            }
+        #endif
+
         Vec18 _q = vec36ToVec18(_lowState->getQ_Hex()); 
         torque18 = _ctrlComp->sixlegdogModel->getTau( _q, force36);
-        // std::cout<<" _feetPos2 :\n"<< _feetPos<<std::endl;
+        // std::cout<<" \nforce36 :\n"<< force36.col(TEST_LEG_NUM)<<std::endl;
+        // std::cout<<" _Kp :\n"<< _Kp<<std::endl;
+        // std::cout<<" _Kd :\n"<< _Kd<<std::endl;
+        // std::cout<<" _targetPos36 :\n"<< _targetPos36<<std::endl;
+        // std::cout<<" pos36 :\n"<< pos36<<std::endl;
+        // std::cout<<" \n vel36 :\n"<< vel36.col(TEST_LEG_NUM)<<std::endl;
         // std::cout<<" _feetPos :\n"<< _feetPos<<std::endl;
         // std::cout<<" pos36 :\n"<< pos36<<std::endl;
-        // std::cout<<" torque18 :\n"<< vec18ToVec36(torque18)<<std::endl;
+        // std::cout<<" \ntorque18 :\n"<< vec18ToVec36(torque18).col(TEST_LEG_NUM)<<std::endl;
+        // printf(" \n  -------------- next State_SwingTest ----------------- \n ");
 
         _lowCmd->setTau(torque18);
 

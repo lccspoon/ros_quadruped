@@ -19,7 +19,7 @@
   
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
              respawn="false" output="screen"
-             args="-urdf -model  hexapod_description2 -param robot_description -model mobile_base -x 0 -y 0 -z 0.4 " />
+             args="-urdf -model  hexapod_description2 -param robot_description -model mobile_base -x 0 -y 0 -z 0.4 -Y 0" />
 
 </launch>
 

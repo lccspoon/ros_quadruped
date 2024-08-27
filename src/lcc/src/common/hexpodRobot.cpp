@@ -24,6 +24,22 @@ Vec18 HexapodRobot::getQ(const Vec36 &vecP, FrameType frame){
     for(int i(0); i < 6; ++i){
         q.segment(3*i, 3) = _Legs[i]->invKinematic(i, vecP.col(i), frame);
     }
+
+    #if USE_A_REAL_HEXAPOD == true
+        q(1) = -q(1);
+        q(2) = -q(2);
+        q(4) = -q(4);
+        q(5) = -q(5);
+        q(7) = -q(7);
+        q(8) = -q(8);
+        q(10) = -q(10);
+        q(11) = -q(11);
+        q(13) = -q(13);
+        q(14) = -q(14);
+        q(16) = -q(16);
+        q(17) = -q(17);
+    #endif
+
     return q;
 }
 
@@ -40,6 +56,22 @@ Vec18 HexapodRobot::getTau(const Vec18 &q, const Vec36 feetForce){
     for(int i(0); i < 6; ++i){
         tau.segment(3*i, 3) = _Legs[i]->calcTau(q.segment(3*i, 3), feetForce.col(i));
     }
+
+    #if USE_A_REAL_HEXAPOD == true
+        // tau(1) = -tau(1);
+        // tau(2) = -tau(2);
+        // tau(4) = -tau(4);
+        // tau(5) = -tau(5);
+        // tau(7) = -tau(7);
+        // tau(8) = -tau(8);
+        // tau(10) = -tau(10);
+        // tau(11) = -tau(11);
+        // tau(13) = -tau(13);
+        // tau(14) = -tau(14);
+        // tau(16) = -tau(16);
+        // tau(17) = -tau(17);
+    #endif
+
     return tau;
 }
 
@@ -167,7 +199,7 @@ SixLegDogRobot::SixLegDogRobot(){
         // iyz="0"
         // izz="0.090006" />
 
-        // _Ib = Vec3(0.026264, 0.069583, 0.090006).asDiagonal(); //原始的转动惯量
+        // _Ib = Vec3(0.26264, 0.69583, 0.90006).asDiagonal(); //原始的转动惯量
         _Ib = Vec3(1, 1, 1).asDiagonal();//lcc 20240611: 修改后的转的惯量 -> 我发现换上这个以后，往前走也不会沉头了，效果好了很多
 }
 

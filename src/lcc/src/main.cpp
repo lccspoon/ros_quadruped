@@ -13,22 +13,17 @@
 #include "Gait/WaveGenerator.h"
 #include "control/BalanceCtrl.h"
 
-// #ifdef COMPILE_WITH_REAL_ROBOT
-// #include "interface/IOSDK.h"
-// #endif // COMPILE_WITH_REAL_ROBOT
-
-// #ifdef COMPILE_WITH_ROS
 #include "interface/KeyBoard.h"
 #include "interface/IOROS.h"
 #include "interface/IOSDK.h"
-// #endif // COMPILE_WITH_ROS
 
-#include "control/OsqpMpcTest.h"//lcc
+#include "control/OsqpMpcTest.h"
 
-#include <thread> // std::this_thread::sleep_for
-#include <chrono> // std::chrono::milliseconds
+#include <thread> 
+#include <chrono> 
 
-#include "control/OsqpMpcTest.h"//lcc
+#include "control/OsqpMpcTest.h"
+#include "interface/imu.h"
 
 #if USE_A_REAL_HEXAPOD == false
 #include "ros/ros.h"
@@ -79,6 +74,7 @@ bool running = true;
 void ShutDown(int sig){
     std::cout << "lcc stop the controller" << std::endl;
     running = false;
+    exit(0);
 }
 
 void setProcessScheduler(){
@@ -91,25 +87,17 @@ void setProcessScheduler(){
 }
 
 int main(int argc, char **argv){
-    /* set real-time process */
     setProcessScheduler();  //如果线程启动失败，那么可以启用超级权限
-    /* set the print format */
-    // 这段代码用于设置 `std::cout` 的输出格式。
-    // 具体来说，`std::fixed` 表示浮点数将以固定小数位数的格式输出，而 `std::setprecision(3)` 则表示设置输出浮点数的小数位数为 3。
-    // 因此，该代码段会导致 `std::cout` 输出的浮点数保留 4 位小数。
     std::cout << std::fixed << std::setprecision(4);
 
-    // osqpMpcTest();//lcc
-    // printf("\naaa\n");
-
-// #ifdef RUN_ROS
+    // #ifdef RUN_ROS
     ros::init(argc, argv, "lcc2423f");
-// #endif // RUN_ROS
+    // #endif // RUN_ROS
 
     IOInterface *ioInter;
     CtrlPlatform ctrlPlat;
     
-    #if USE_A_REAL_HEXAPOD
+    #if USE_A_REAL_HEXAPOD == true
         ioInter = new IOSDK();
         ctrlPlat = CtrlPlatform::REALROBOT;
     #else
@@ -117,29 +105,20 @@ int main(int argc, char **argv){
         ctrlPlat = CtrlPlatform::GAZEBO;
     #endif 
 
-// // #ifdef COMPILE_WITH_REAL_ROBOT
-// //     ioInter = new IOSDK();
-// //     ctrlPlat = CtrlPlatform::REALROBOT;
-// // #endif // COMPILE_WITH_REAL_ROBOT
 
     CtrlComponents *ctrlComp = new CtrlComponents(ioInter);
     ctrlComp->ctrlPlatform = ctrlPlat;
     // ctrlComp->dt = 0.002; // run at 500hz
-    // // ctrlComp->dt = 0.0025; // lcc
-    ctrlComp->dt = 0.005; // lcc
+    ctrlComp->dt = 0.0025; // lcc
+    // ctrlComp->dt = 0.003; // lcc
     ctrlComp->running = &running;
 
     // #if IS_THIS_A_HEXAPOD
         ctrlComp->sixlegdogModel = new SixLegDogRobot();
     // #else
-        ctrlComp->robotModel = new A1Robot();
+        // ctrlComp->robotModel = new A1Robot();
+        // ctrlComp->robotModel = new Go1Robot();
     // #endif
-//     #endif
-//     #ifdef ROBOT_TYPE_Go1
-//         ctrlComp->robotModel = new Go1Robot();
-//     #endif
-
-    // ctrlComp->waveGen = new WaveGenerator(0.45, 0.5, Vec4(0, 0.5, 0.5, 0)); // Trot
 
     Vec6 _bias;
     _bias << 0, 0.5, 0.5, 0, 0, 0.5;
@@ -149,78 +128,68 @@ int main(int argc, char **argv){
     // ctrlComp->waveGen = new WaveGenerator(1, 0.5, _bias); // Trot
     // ctrlComp->waveGen = new WaveGenerator(3, 0.5, _bias); // Trot
 
-//     // ctrlComp->waveGen = new WaveGenerator(1.1, 0.75, Vec4(0, 0.25, 0.5, 0.75));  //Crawl, only for sim
-//     // ctrlComp->waveGen = new WaveGenerator(0.4, 0.6, Vec4(0, 0.5, 0.5, 0));  //Walking Trot, only for sim
-//     // ctrlComp->waveGen = new WaveGenerator(0.4, 0.35, Vec4(0, 0.5, 0.5, 0));  //Running Trot, only for sim
-//     // ctrlComp->waveGen = new WaveGenerator(0.4, 0.7, Vec4(0, 0, 0, 0));  //Pronk, only for sim
-
     ctrlComp->geneObj();
-
     ControlFrame ctrlFrame(ctrlComp);
-
-    // 由于 KeyBoard 类继承自 CmdPanel 类，因此 KeyBoard 对象也被视为一种 CmdPanel 对象。
-    // 这就是继承的基本概念，子类对象可以赋值给父类指针或引用。
-    // cmdPanel = new KeyBoard();
-
-    // KeyBoard keyb;
-
-    // IOROS_lcc as;
-
     signal(SIGINT, ShutDown);
-    // printf(" \n  aaaafaf \n ");
-
-    // //! 12 在你的代码中表示你创建的异步微调对象将同时处理多达 12 个回调函数。这个数字可以根据你的应用程序的性能需求进行调整，以获得最佳性能。
-    // ros::AsyncSpinner spinner(3);
-    // spinner.start();
 
     #if USE_A_REAL_HEXAPOD == false
-    RosTopicMsgPub COM("COM");
-    RosTopicMsgPub VEL("VEL");
-    RosTopicMsgPub RPY("RPY");
+        RosTopicMsgPub COM("COM");
+        RosTopicMsgPub VEL("VEL");
+        RosTopicMsgPub RPY("RPY");
+        while (running){   
+
+            // if( ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag == 1 ){
+            //     spi.exit_close_loop();
+            //     printf("\n ininininin \n");
+            // }
+            // else{
+
+            // }
+            // // printf("\n ininininin \n");
+            // // std::cout<<"motor_disenable_flag:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag <<std::endl;
+            // // std::cout<<"function_test:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.function_test <<std::endl;
+            // usleep(2000);
+
+            // auto t1 = std::chrono::high_resolution_clock::now();
+            // printf("\n-a-gf-asg-\n");
+            ctrlFrame.run();
+            // COM.msgPubRun( ctrlComp->estimator->getPosition() );
+            // VEL.msgPubRun( ctrlComp->estimator->getVelocity() );
+            // RPY.msgPubRun( rotMatToRPY(ctrlComp->lowState->getRotMat()));
+            // 延时2毫秒
+            // std::this_thread::sleep_for(std::chrono::milliseconds(2));
+
+            // auto t2 = std::chrono::high_resolution_clock::now();
+            // std::chrono::duration<double, std::milli> ms_double = t2 - t1;
+            // std::cout << "ctrlFrame.run() in " << ms_double.count() << "ms" << std::endl;
+        }
+    #else
+        std::atomic<bool> control_execute{};
+        control_execute.store(true, std::memory_order_release);
+
+        // std::thread compute_foot_forces_grf_thread([&]() {
+        //     while (control_execute.load(std::memory_order_acquire)  && running) {
+        //         ;
+        //     }
+        // });
+
+        std::thread imu_recv([&]() {
+            while (control_execute.load(std::memory_order_acquire)  && running) {
+                imu_run();
+            }
+        });
+
+        std::thread main_thread([&]() {
+            while (control_execute.load(std::memory_order_acquire) && running) {
+                ctrlFrame.run();
+            }
+        });
+
+        // compute_foot_forces_grf_thread.join();
+        imu_recv.join();
+        main_thread.join();
     #endif
-    // COM.msgPubRun(_ctrlComp->estimator->getPosition());
-    // while (1){   
-        
-    //     if( ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag == true ){
-    //         spi.exit_close_loop();
-    //         printf("\n ininininin \n");
-    //     }
-    //     else{
 
-    //     }
-    //     printf("\n ininininin \n");
-    //     usleep(2000);
-    // }
-
-    while (running){   
-
-        // if( ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag == 1 ){
-        //     spi.exit_close_loop();
-        //     printf("\n ininininin \n");
-        // }
-        // else{
-
-        // }
-        // // printf("\n ininininin \n");
-        // // std::cout<<"motor_disenable_flag:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag <<std::endl;
-        // // std::cout<<"function_test:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.function_test <<std::endl;
-        // usleep(2000);
-
-        // auto t1 = std::chrono::high_resolution_clock::now();
-
-        ctrlFrame.run();
-        // COM.msgPubRun( ctrlComp->estimator->getPosition() );
-        // VEL.msgPubRun( ctrlComp->estimator->getVelocity() );
-        // RPY.msgPubRun( rotMatToRPY(ctrlComp->lowState->getRotMat()));
-        // 延时2毫秒
-        // std::this_thread::sleep_for(std::chrono::milliseconds(2));
-
-        // auto t2 = std::chrono::high_resolution_clock::now();
-        // std::chrono::duration<double, std::milli> ms_double = t2 - t1;
-        // std::cout << "ctrlFrame.run() in " << ms_double.count() << "ms" << std::endl;
-    }
-
-    // delete ctrlComp;
     return 0;
 }
 
