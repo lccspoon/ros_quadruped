@@ -37,13 +37,15 @@ void State_FixedStand::enter(){
 
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
-        _lowCmd->motorCmd[i].Kp = 30;
-        _lowCmd->motorCmd[i].Kd = 3;
+        _lowCmd->motorCmd[i].Kp = 200;
+        _lowCmd->motorCmd[i].Kd = 5;
         _lowCmd->motorCmd[i].tau = 0;
     }
 
     for(int i=0; i<NUM_DOF_W; i++){
+        #if USE_A_REAL_HEXAPOD == true
         _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
+        #endif
         _startPos[i] = _lowState->motorState[i].q;
     }
 
@@ -72,12 +74,12 @@ void State_FixedStand::run(){
 
     // _lowCmd->setQ(   vec36ToVec18( _ctrlComp->lowState->getQ_Hex()  ) );
 
-    Vec36 rec_q, cmd_q;
-    for (int i = 0; i < 18; i++)
-    {
-        rec_q(i) = _lowState->motorState[i].q; 
-        cmd_q(i) = _lowCmd->motorCmd[i].q;
-    }
+    // Vec36 rec_q, cmd_q;
+    // for (int i = 0; i < 18; i++)
+    // {
+    //     rec_q(i) = _lowState->motorState[i].q; 
+    //     cmd_q(i) = _lowCmd->motorCmd[i].q;
+    // }
     
     // std::cout<<"rec_q: \n"<< rec_q * radToAngle <<std::endl;
     // std::cout<<"cmd_q: \n"<< cmd_q * radToAngle <<std::endl;
@@ -140,6 +142,9 @@ FSMStateName State_FixedStand::checkChange(){
     }
     else if(_lowState->userCmd == UserCommand::POSREFLEX_7){  //lcc 20240627
         return FSMStateName::POSREFLEX;
+    }
+    else if(_lowState->userCmd == UserCommand::FORCE_POS_8){  //lcc 20240827
+        return FSMStateName::FORCE_POS;
     }
 #ifdef COMPILE_WITH_MOVE_BASE
     else if(_lowState->userCmd == UserCommand::L2_Y){

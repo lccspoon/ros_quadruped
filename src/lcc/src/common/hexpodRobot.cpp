@@ -135,9 +135,13 @@ Vec36 HexapodRobot::getFeet2BVelocities(LowlevelState &state, FrameType frame){
     }
 
     if(frame == FrameType::GLOBAL){
+        #if USE_A_REAL_HEXAPOD == true
+        return state.getRotMat() * feetVel;
+        #else
         Vec36 feetPos = getFeet2BPositions(state, FrameType::BODY);
         feetVel += skew(state.getGyro()) * feetPos;
         return state.getRotMat() * feetVel;
+        #endif
     }
     else if((frame == FrameType::BODY) || (frame == FrameType::HIP)){
         return feetVel;
@@ -154,23 +158,49 @@ Mat3 HexapodRobot::getJaco(LowlevelState &state, int legID){
 
 SixLegDogRobot::SixLegDogRobot(){
 
+    #if USE_A_REAL_HEXAPOD == true
+    _Legs[0] = new SixLegDogLeg(0, Vec3( 0.155, -0.075, 0));//rf  //这里输入的是 pHip2B 20240524
+    _Legs[1] = new SixLegDogLeg(1, Vec3( 0.155,  0.075, 0));//lf
+    _Legs[2] = new SixLegDogLeg(2, Vec3(0.0, -0.075, 0));//rm
+    _Legs[3] = new SixLegDogLeg(3, Vec3(0.0,  0.075, 0));//lm
+    _Legs[4] = new SixLegDogLeg(4, Vec3(-0.155, -0.075, 0));//rb
+    _Legs[5] = new SixLegDogLeg(5, Vec3(-0.155,  0.075, 0));//lb
+    //lcc 实际上，这个理想位置就是：body系下 x和y值就是(足端+小腿+大腿)平面,即LX和LY+L1。z方向的值还不知道怎么确定
+    //hip下的投影
+    _feetPosNormalStand <<  0.155 + 0.076,  0.155 + 0.076, 0.0, 0.0, -0.155 - 0.076, -0.155 - 0.076, 
+                           -0.075 - 0.12,  0.075 + 0.12, -0.075 - 0.12,  0.075 + 0.12, -0.075 - 0.12,  0.075 + 0.12,
+                           -0.20, -0.20, -0.20, -0.20, -0.20, -0.20;
+
+    _feetPosNormalSquat <<  0.155 + 0.076,  0.155 + 0.076, 0.0, 0.0, -0.155 - 0.076, -0.155 - 0.076, 
+                           -0.075 - 0.34,  0.075 + 0.34, -0.075 - 0.34,  0.075 + 0.34, -0.075 - 0.34,  0.075 + 0.34,
+                           -0.025, -0.025, -0.025, -0.025, -0.025, -0.025;
+
+    _robVelLimitX << -0.2, 0.2;
+    _robVelLimitY << -0.3, 0.3;
+    _robVelLimitYaw << -0.2, 0.2;
+
+    _mass =16.8;
+    // _mass =20;
+    _pcb << 0.0, 0.0, 0.0;
+
+    // ixx="0.026264"
+    // ixy="0"
+    // ixz="0"
+    // iyy="0.069583"
+    // iyz="0"
+    // izz="0.090006" />
+
+    // _Ib = Vec3(0.26264, 0.69583, 0.90006).asDiagonal(); //原始的转动惯量
+    _Ib = Vec3(1, 1, 1).asDiagonal();//lcc 20240611: 修改后的转的惯量 -> 我发现换上这个以后，往前走也不会沉头了，效果好了很多
+    #else
     _Legs[0] = new SixLegDogLeg(0, Vec3( 0.14185, -0.0655, 0));//rf  //这里输入的是 pHip2B 20240524
     _Legs[1] = new SixLegDogLeg(1, Vec3( 0.14185,  0.0655, 0));//lf
     _Legs[2] = new SixLegDogLeg(2, Vec3(0.0, -0.0655, 0));//rm
     _Legs[3] = new SixLegDogLeg(3, Vec3(0.0,  0.0655, 0));//lm
     _Legs[4] = new SixLegDogLeg(4, Vec3(-0.14185, -0.0655, 0));//rb
     _Legs[5] = new SixLegDogLeg(5, Vec3(-0.14185,  0.0655, 0));//lb
-
-    // _Legs[0] = new SixLegDogLeg(0, Vec3( 0.14185, -0.0655, 0));//rf  //这里输入的是 pHip2B 20240524
-    // _Legs[1] = new SixLegDogLeg(1, Vec3( 0.14185,  -0.0655, 0));//lf
-    // _Legs[2] = new SixLegDogLeg(2, Vec3(0.0, -0.0655, 0));//rm
-    // _Legs[3] = new SixLegDogLeg(3, Vec3(0.0,  -0.0655, 0));//lm
-    // _Legs[4] = new SixLegDogLeg(4, Vec3(-0.14185, -0.0655, 0));//rb
-    // _Legs[5] = new SixLegDogLeg(5, Vec3(-0.14185,  -0.0655, 0));//lb
-
     //lcc 实际上，这个理想位置就是：body系下 x和y值就是(足端+小腿+大腿)平面,即LX和LY+L1。z方向的值还不知道怎么确定
     //hip下的投影
-
     _feetPosNormalStand <<  0.14185 + 0.07725,  0.14185 + 0.07725, 0.0, 0.0, -0.14185 - 0.07725, -0.14185 - 0.07725, 
                            -0.0655 - 0.12,  0.0655 + 0.12, -0.0655 - 0.12,  0.0655 + 0.12, -0.0655 - 0.12,  0.0655 + 0.12,
                            -0.20, -0.20, -0.20, -0.20, -0.20, -0.20;
@@ -179,27 +209,24 @@ SixLegDogRobot::SixLegDogRobot(){
                            -0.0655 - 0.34,  0.0655 + 0.34, -0.0655 - 0.34,  0.0655 + 0.34, -0.0655 - 0.34,  0.0655 + 0.34,
                            -0.025, -0.025, -0.025, -0.025, -0.025, -0.025;
 
-    // _feetPosNormalStand <<  0.14185 + 0.07725,  0.14185 + 0.07725, 0.0, 0.0, -0.14185 - 0.07725, -0.14185 - 0.07725, 
-    //                        -0.0655 - 0.12,  0.0655 + 0.12+0.2, -0.0655 - 0.12,  0.0655 + 0.12+0.2, -0.0655 - 0.12,  0.0655 + 0.12+0.2,
-    //                        -0.20, -0.20+0.2, -0.20, -0.20+0.2, -0.20, -0.20+0.2;
-
     _robVelLimitX << -0.2, 0.2;
     _robVelLimitY << -0.3, 0.3;
     _robVelLimitYaw << -0.2, 0.2;
 
-        // _mass =16;
-        _mass =16.8;
-        // _mass =20;
-        _pcb << 0.0, 0.0, 0.0;
+    // _mass =16;
+    _mass =16.8;
+    // _mass =20;
+    _pcb << 0.0, 0.0, 0.0;
 
-        // ixx="0.026264"
-        // ixy="0"
-        // ixz="0"
-        // iyy="0.069583"
-        // iyz="0"
-        // izz="0.090006" />
+    // ixx="0.026264"
+    // ixy="0"
+    // ixz="0"
+    // iyy="0.069583"
+    // iyz="0"
+    // izz="0.090006" />
 
-        // _Ib = Vec3(0.026264, 0.069583, 0.090006).asDiagonal(); //原始的转动惯量
-        _Ib = Vec3(1, 1, 1).asDiagonal();//lcc 20240611: 修改后的转的惯量 -> 我发现换上这个以后，往前走也不会沉头了，效果好了很多
+    // _Ib = Vec3(0.26264, 0.69583, 0.90006).asDiagonal(); //原始的转动惯量
+    _Ib = Vec3(1, 1, 1).asDiagonal();//lcc 20240611: 修改后的转的惯量 -> 我发现换上这个以后，往前走也不会沉头了，效果好了很多
+    #endif
 }
 

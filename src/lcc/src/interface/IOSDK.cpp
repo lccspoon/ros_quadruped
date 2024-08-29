@@ -38,6 +38,7 @@ IOSDK::IOSDK():IOInterface(){
 //  -54.3691   95.5258 -119.5684 -124.1365 -127.1309   83.7448
 //  102.5419 -134.9120  -47.3093   82.6520 -115.9183  110.3448
 
+    #if USE_A_REAL_HEXAPOD == true
     float rad2;
     rad2 = 3.1415926/180;
     rec_offset(0) = -0.4481 * rad2;
@@ -69,7 +70,7 @@ IOSDK::IOSDK():IOInterface(){
     rec_offset(16) = 83.7448 * rad2;
     // rec_offset(17) = 110.3448 * rad2;
     rec_offset(17) = 70.7158 * rad2;
-
+    #endif
 }
 
 IOSDK::~IOSDK(){
@@ -95,6 +96,7 @@ void IOSDK::sendRecv(const LowlevelCmd *cmd, LowlevelState *state){
 }
 
 void IOSDK::sendCmd(const LowlevelCmd *lowCmd){
+    #if USE_A_REAL_HEXAPOD == true
     Vec3 rf_q, rf_t;
     Vec3 lf_q, lf_t;
     Vec3 rm_q, rm_t;
@@ -356,6 +358,7 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd){
             // printf("\n ------------ sending ------------ \n");
         }
     }
+    #endif
 }
 
 void IOSDK::recvState(LowlevelState *state){

@@ -37,13 +37,15 @@ void State_FixedSquat::enter(){
 
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
-        _lowCmd->motorCmd[i].Kp = 30;
-        _lowCmd->motorCmd[i].Kd = 3;
+        _lowCmd->motorCmd[i].Kp = 200;
+        _lowCmd->motorCmd[i].Kd = 5;
         _lowCmd->motorCmd[i].tau = 0;
     }
 
     for(int i=0; i<NUM_DOF_W; i++){
+        #if USE_A_REAL_HEXAPOD == true
         _lowCmd->motorCmd[i].q = _lowState->motorState[i].q;
+        #endif
         _startPos[i] = _lowState->motorState[i].q;
     }
 
@@ -105,10 +107,12 @@ void State_FixedSquat::_torqueCtrl(){
 
     #if IS_THIS_A_HEXAPOD
         #if USE_A_REAL_HEXAPOD == true
-            _Kp = Vec3(500, 500, 500).asDiagonal();
-            _Kd = Vec3( 15,  15, 15).asDiagonal() ;
-            // _Kp = Vec3(100, 100, 100).asDiagonal();
-            // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+            // _Kp = Vec3(500, 500, 500).asDiagonal();
+            // _Kd = Vec3( 15,  15, 15).asDiagonal() ;
+            // _Kp = Vec3(400, 400, 400).asDiagonal();
+            // _Kd = Vec3( 10,  10, 10).asDiagonal() ;
+            _Kp = Vec3(100, 100, 100).asDiagonal();
+            _Kd = Vec3( 1,  1, 1).asDiagonal() ;
             // _Kp = Vec3(35, 35, 35).asDiagonal();
             // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
         #else

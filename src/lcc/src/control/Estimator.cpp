@@ -36,6 +36,7 @@ Estimator::Estimator(QuadrupedRobot *robotModel, HexapodRobot *sixlegdogModel, L
     // _Qdig(5) = 1; //lcc
     _initSystem();
 
+    body_est_vel.setZero();
 }
 
 Estimator::~Estimator(){
@@ -290,8 +291,6 @@ void Estimator::run(){
     // // std::cout<<" _u:\n "<< _u << std::endl;
     // // std::cout<<" ODE_P:\n "<< ODE_P << std::endl;
 
-
-
     //lcc 20240603
     // std::cout<<" x:\n "<< _xhat.segment(0, 3).transpose() << std::endl;
     // std::cout<<" v:\n "<< _xhat.segment(3, 3).transpose() << std::endl;
@@ -304,11 +303,11 @@ Vec3 Estimator::getPosition(){
     
     // return _xhat.segment(0, 3) + Vec3(postionOffset(0), postionOffset(1), 0); //lcc 20240604
 
-    // return _xhat.segment(0, 3); //lcc 20240604
+    return _xhat.segment(0, 3); //lcc 20240604SS
 
-    Vec3 z3;
-    z3.setZero();
-    return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
+    // Vec3 z3;
+    // z3.setZero();
+    // return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
 }
 
 Vec3 Estimator::getVelocity(){
@@ -319,20 +318,28 @@ Vec3 Estimator::getVelocity(){
     // return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
 
     //lcc 20240622, 一个简单的:足端->质心速度估计
-    Vec3 body_est_vel;
     int leg_num;
+    leg_num = 0;
+    Vec36 feetVel = _sixlegdogModel->getFeet2BVelocities(*_lowState, FrameType::GLOBAL);
+    // Vec36 feetVel = _sixlegdogModel->getFeet2BVelocities(*_lowState, FrameType::BODY);
     body_est_vel.setZero();
-    // leg_num = 0;
-    // Vec36 feetVel = _sixlegdogModel->getFeet2BVelocities(*_lowState, FrameType::GLOBAL);
-    // for (int i = 0; i < 6; i++){
-    //     if ( (*_contact)(i) == 1 && (*_phase)(i) > 0.2 && (*_phase)(i) <= 0.9 ){
-    //         leg_num ++;
-    //         body_est_vel = body_est_vel + feetVel.col(i);
-    //     }
+    for (int i = 0; i < 6; i++){
+        if ( (*_contact)(i) == 1 && (*_phase)(i) > 0.05 && (*_phase)(i) <= 0.95 ){
+            leg_num ++;
+            body_est_vel = body_est_vel + feetVel.col(i);
+        }
+    }
+    // if ( (*_contact)(0) == 1 && (*_contact)(1) == 1 && (*_contact)(2) == 1 && (*_contact)(3) == 1 && (*_contact)(4) == 1 && (*_contact)(5) == 1)
+    // {
+    //     body_est_vel.setZero();
     // }
-    // if( leg_num != 0){
-    //     body_est_vel = -body_est_vel/leg_num;
-    // }
+    
+    if( leg_num != 0){
+        body_est_vel = -body_est_vel/leg_num;
+    }
+
+    // std::cout<<" (*_contact) :\n"<< (*_contact).transpose() <<std::endl;
+    // std::cout<<" (*_phase) :\n"<< (*_phase).transpose() <<std::endl;
 
     // std::cout<<" body_est_vel :\n"<< body_est_vel.transpose() <<std::endl;
     // std::cout<<" leg_num :"<< leg_num <<std::endl;

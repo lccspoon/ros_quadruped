@@ -26,8 +26,8 @@ void State_FreeStand::enter(){
     // }
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
-        _lowCmd->motorCmd[i].Kp = 30;
-        _lowCmd->motorCmd[i].Kd = 1;
+        _lowCmd->motorCmd[i].Kp = 200;
+        _lowCmd->motorCmd[i].Kd = 5;
         _lowCmd->motorCmd[i].tau = 0;
     }
 
@@ -52,6 +52,8 @@ void State_FreeStand::run(){
     // Vec36 vel36;
     // vel36 = _ctrlComp->sixlegdogModel->getFeet2BVelocities(*_lowState,FrameType::BODY );
     // std::cout<<" vel36 \n"<< vel36 <<std::endl;
+
+    std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
 }
 
 void State_FreeStand::exit(){

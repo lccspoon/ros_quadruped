@@ -27,13 +27,15 @@ void State_Passive::enter(){
     //     }
     // }
 
+    #if USE_A_REAL_HEXAPOD == true
         for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
             _lowCmd->motorCmd[i].dq = 0;
             _lowCmd->motorCmd[i].Kp = 0;
             _lowCmd->motorCmd[i].Kd = 5;
             _lowCmd->motorCmd[i].tau = 0;
         }
-
+    #endif
+    
     _ctrlComp->setAllSwing();
     init_q = _ctrlComp->lowState->getQ_Hex();
     // printf(" \n  -------------- enter passive-state ----------------- \n ");

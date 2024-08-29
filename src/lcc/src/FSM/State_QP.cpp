@@ -7,6 +7,9 @@
 #include <cmath>
 #include <cstdlib>  // Ensure this is included at the top of your file
 #include <iostream>
+#include <thread>
+#include <atomic>
+
 State_QP::State_QP(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::QP, "qp"), 
               _est(ctrlComp->estimator), _phase(ctrlComp->phase), _Apla( ctrlComp->Apla),
@@ -100,6 +103,29 @@ FSMStateName State_QP::checkChange(){
 }
 
 void State_QP::run(){
+
+        // std::atomic<bool> control_execute{};
+        // control_execute.store(true, std::memory_order_release);
+
+        // std::thread compute_foot_forces_grf_thread([&]() {
+        //     while (control_execute.load(std::memory_order_acquire)) {
+        //         ;
+        //         // printf(" --compute_foot_forces_grf_thread---\n");
+        //     }
+        // });
+
+        // std::thread main_thread([&]() {
+        //     while (control_execute.load(std::memory_order_acquire)) {
+        //         // ctrlFrame.run();
+        //         // printf(" --main_thread---\n");
+        //     }
+        // });
+
+        // compute_foot_forces_grf_thread.join();
+        // main_thread.join();
+
+        // printf(" --afasfasf---\n");
+
     // Rob State
     _posBody = _est->getPosition();
     _velBody = _est->getVelocity();
@@ -156,12 +182,15 @@ void State_QP::run(){
         _ctrlComp->setAllStance();
     }
 
+    #if USE_A_REAL_HEXAPOD == false
     Vec18 tau_send;
     tau_send = _tau + torque18;
     // tau_send =  torque18 * 1;
-    // _lowCmd->setTau( tau_send ); //lcc 20240602
+    _lowCmd->setTau( tau_send ); //lcc 20240602
+    // _lowCmd->setTau(_tau );
     // _lowCmd->setQ(vec36ToVec18(_qGoal));
     // _lowCmd->setQd(vec36ToVec18(_qdGoal));
+    #endif
 
     for(int i(0); i<6; ++i){
         if((*_contact_hex)(i) == 0){
@@ -227,7 +256,6 @@ void State_QP::calcCmd(){
         _vCmdGlobal(2) = 0;
     }
 
-
     /* Turning */
     _yawCmd = _yawCmd + _dYawCmd * _ctrlComp->dt;
 
@@ -276,8 +304,15 @@ void State_QP::calcTau(){
     // std::cout<<" _pcd :\n"<< _pcd.transpose() <<std::endl;
     // std::cout<<" _posBody :\n"<< _posBody.transpose() <<std::endl;
 
+    //lcc 20240827: 重大发现！！！ 这部用getGyro似乎比用getGyroGlobal更好；
     _ddPcd = _Kpp * _posError + _Kdp * _velError;
-    _dWbd  = _kpw*rotMatToExp(_Rd*_G2B_RotMat) + _Kdw * (_wCmdGlobal - _lowState->getGyroGlobal());
+    // _dWbd  = _kpw*rotMatToExp(_Rd*_G2B_RotMat) + _Kdw * ( _wCmdGlobal - _lowState->getGyroGlobal()); //lcc 20240827: yaw>=90直接崩
+    _dWbd  = _kpw*rotMatToExp(_Rd*_G2B_RotMat) + _Kdw * ( _wCmdGlobal - _lowState->getGyro()); //lcc 20240827: 在yaw=[95,-95]间灵活运动
+
+    // std::cout<<" _posError :\n"<< _posError.transpose() <<std::endl;
+    // std::cout<<" _velError :\n"<< _velError.transpose() <<std::endl;
+    // std::cout<<" _Rd :\n"<< _Rd <<std::endl;
+    // std::cout<<" _wCmdGlobal :\n"<< _wCmdGlobal.transpose() <<std::endl;
 
     _ddPcd(0) = saturation(_ddPcd(0), Vec2(-3, 3));
     _ddPcd(1) = saturation(_ddPcd(1), Vec2(-3, 3));
@@ -289,6 +324,41 @@ void State_QP::calcTau(){
 
     /* 对于 (*_contact)(i) == 1-> 处于stand的腿。使用QP来获得支撑力  */
     _forceFeetGlobal = - _balCtrl->calF(_ddPcd, _dWbd, _B2G_RotMat, _posFeet2BGlobal, *_contact_hex);
+    // std::cout<<" _ddPcd: \n"<< _ddPcd.transpose() <<std::endl;
+    // std::cout<<" _dWbd: \n"<< _dWbd.transpose() <<std::endl;
+    // std::cout<<" _B2G_RotMat: \n"<< _B2G_RotMat <<std::endl;
+    // std::cout<<" _posFeet2BGlobal: \n"<< _posFeet2BGlobal <<std::endl;
+
+    // std::cout<<" getGyroGlobal().transpose(): \n"<< _lowState->getGyroGlobal().transpose() <<std::endl;
+    // std::cout<<" _Rd*_G2B_RotMat: \n"<< _Rd*_G2B_RotMat <<std::endl;
+    // std::cout<<" _lowState->getGyroGlobal(): \n"<< _lowState->getGyroGlobal().transpose() <<std::endl;
+    // printf(" \n ");
+
+    //  _posError :
+    // 0.0000 0.0000 0.0000
+    //  _velError :
+    // 0.0000 0.0000 0.0000
+    //  _Rd :
+    //  1.0000  0.0001  0.0000
+    // -0.0001  1.0000  0.0000
+    //  0.0000  0.0000  1.0000
+    //  _wCmdGlobal :
+    // 0.0000 0.0000 0.0000
+    //  _ddPcd: 
+    // 0.0000 0.0000 0.0000
+    //  _dWbd: 
+    //  0.0021 -0.1080  0.0059
+    //  _B2G_RotMat: 
+    //  1.0000  0.0001  0.0001
+    // -0.0001  1.0000  0.0000
+    // -0.0001 -0.0000  1.0000
+    //  _posFeet2BGlobal: 
+    //  0.2188  0.2188 -0.0002 -0.0002 -0.2179 -0.2177
+    // -0.1863  0.1860 -0.1858  0.1862 -0.1863  0.1860
+    // -0.1817 -0.1816 -0.1816 -0.1818 -0.1817 -0.1816
+
+
+
 
     /* 对于 (*_contact)(i) == 0-> 处于swing的腿。使用PD来获得摆动力  */
     for(int i(0); i<6; ++i){

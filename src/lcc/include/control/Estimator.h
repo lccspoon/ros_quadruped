@@ -41,6 +41,8 @@ public:
         void setPyPlot(PyPlot *plot){_testPlot = plot;}
     #endif  // COMPILE_DEBUG
 
+
+
 private:
     void _initSystem();
     // Linear System
@@ -103,6 +105,8 @@ private:
     Vec3 accOffset;
     Vec3 postionOffset;
     Vec3 velocityOffset;
+
+    Vec3 body_est_vel;
 
 #ifdef COMPILE_DEBUG
     PyPlot *_testPlot;

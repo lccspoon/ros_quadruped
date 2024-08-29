@@ -20,6 +20,7 @@ FSM::FSM(CtrlComponents *ctrlComp)
     _stateList.balanceTest = new State_BalanceTest(_ctrlComp);
     _stateList.swingTest = new State_SwingTest(_ctrlComp);
     _stateList.stepTest = new State_StepTest(_ctrlComp);
+    _stateList.force_pos = new State_Force_Pos(_ctrlComp);//lcc 20240827
 #ifdef COMPILE_WITH_MOVE_BASE
     _stateList.moveBase = new State_move_base(_ctrlComp);
 #endif  // COMPILE_WITH_MOVE_BASE
@@ -73,6 +74,8 @@ void FSM::run(){
             // std::cout<<"\n MOTOR_DISABEL_FLAG : rec_moter_q:  \n"<< spi_2.rec_moter_q* 180/3.1415926 <<std::endl;
             // std::cout<<"\n MOTOR_DISABEL_FLAG : getQ_Hex:  \n"<< _ctrlComp->lowState->getQ_Hex() * 180/3.1415926 <<std::endl;
             std::cout<<"MOTOR_DISABEL_FLAG : motor_set:  \n"<< motor_set * 180/3.1415926 <<std::endl;
+            // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
+            std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
         }
         else if( MOTOR_ENABLE_FLAG == true && get_motor_response_flag == true){ // 'p'
             for (int i = 0; i < 6; i++){
@@ -91,6 +94,10 @@ void FSM::run(){
             }
             _ctrlComp->lowCmd->setQ( vec36ToVec18( init_motor_set_q + dou_dong_angle )  );
         }
+        else{
+            // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
+            // std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
+        }
 
         _startTime = getSystemTime();
         _ctrlComp->sendRecv();
@@ -98,6 +105,9 @@ void FSM::run(){
         if( MOTOR_DATA_LOAD == true && MOTOR_ENTER_CLOSELOOP == true){ // ']'
             spi_2.send_all_data();
             algorithm_run();
+        }
+        else{
+            // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
         }
         absoluteWait(_startTime, (long long)(_ctrlComp->dt * 1000000));
 
@@ -138,14 +148,14 @@ void FSM::run(){
 }
 
 void FSM::algorithm_run(){
-
     if( fsm_first_start == true ){
-        printf(" KeyBoard checkCmd:\n 1->PASSIVE_1(***);\n 2->FIXEDSTAND_2(***);\nc->FIXEDSQUAT_c(***);\n 3->FREESTAND_3;\n 4->QP_4(***);\n 5->POSITION_5(***);\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 9->SWING_TEST9\n");
+        #if USE_A_REAL_HEXAPOD == true
+        printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n");
         printf(" TERRIANESTI_FOURLEG: %d \n",TERRIANESTI_FOURLEG);
+        #endif
         initialize();
     }
     fsm_first_start = false;
-
     _ctrlComp->runWaveGen();
     _ctrlComp->estimator->run();
 
@@ -209,6 +219,9 @@ FSMState* FSM::getNextState(FSMStateName stateName){
         break;
     case FSMStateName::SQUAT:    //lcc 20240523
         return _stateList.fixedSquat;
+        break;
+    case FSMStateName::FORCE_POS:    //lcc 20240827
+        return _stateList.force_pos;
         break;
 #ifdef COMPILE_WITH_MOVE_BASE
     case FSMStateName::MOVE_BASE:

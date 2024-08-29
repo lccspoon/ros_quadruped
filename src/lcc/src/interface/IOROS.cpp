@@ -30,6 +30,8 @@ IOROS::IOROS():IOInterface(){
     // 由于 KeyBoard 类继承自 CmdPanel 类，因此 KeyBoard 对象也被视为一种 CmdPanel 对象。
     // 这就是继承的基本概念，子类对象可以赋值给父类指针或引用。
     cmdPanel = new KeyBoard();
+
+    quaternion_offset << 0, 0, 0, 0;
 }
 
 IOROS::~IOROS(){
@@ -268,13 +270,15 @@ void IOROS::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
 
     if( wait_count >= 150 )
     {
+        #if ONLY_POSITION_CTRL == true
         motor_cmd_q_36.block<3,1>(0,1)=___dataUnuProtect[1].sendDataConPro(1,motor_cmd_q_36.block<3,1>(0,1),20*radd);
         motor_cmd_q_36.block<3,1>(0,0)=___dataUnuProtect[6].sendDataConPro(0,motor_cmd_q_36.block<3,1>(0,0),20*radd);
         motor_cmd_q_36.block<3,1>(0,2)=___dataUnuProtect[2].sendDataConPro(2,motor_cmd_q_36.block<3,1>(0,2),20*radd);
         motor_cmd_q_36.block<3,1>(0,3)=___dataUnuProtect[3].sendDataConPro(3,motor_cmd_q_36.block<3,1>(0,3),20*radd);
         motor_cmd_q_36.block<3,1>(0,4)=___dataUnuProtect[4].sendDataConPro(4,motor_cmd_q_36.block<3,1>(0,4),20*radd);
         motor_cmd_q_36.block<3,1>(0,5)=___dataUnuProtect[5].sendDataConPro(5,motor_cmd_q_36.block<3,1>(0,5),20*radd);
-
+        #endif
+        
         for(int m(0); m < NUM_DOF_W; ++m){
             #if ONLY_POSITION_CTRL == true
             pub_data[m].data = motor_cmd_q_36(m);
@@ -325,6 +329,7 @@ void IOROS::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
         pub_data_msg(14) = -pub_data_msg(14);
         pub_data_msg(16) = -pub_data_msg(16);
 
+        #if ONLY_POSITION_CTRL == true
         ___dataUnuProtect[6].velLimAndDifFroDesPosAndActPos(0, 3,
                                                         pub_data_msg.block<3, 1>(0, 0), 
                                                         sub_joint_p_local_temp_origin.block<3, 1>(0, 0), 30 * radd,
@@ -349,7 +354,7 @@ void IOROS::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
                                                         pub_data_msg.block<3, 1>(0, 5), 
                                                         sub_joint_p_local_temp_origin.block<3, 1>(0, 5), 30 * radd,
                                                         sub_joint_v_local_temp.block<3, 1>(0, 5), 9);
-
+        #endif
         // 如果有false,那么pub_data就不会执行
         if (___dataUnuProtect[5].diff_val_flag == false or ___dataUnuProtect[4].diff_val_flag == false 
         or ___dataUnuProtect[3].diff_val_flag == false or ___dataUnuProtect[2].diff_val_flag == false 
@@ -397,6 +402,13 @@ void IOROS::recvState(LowlevelState *state){
         state->imu.accelerometer[i] = sub_imu_lin_a_local(i);
         state->imu.gyroscope[i] = sub_imu_ang_v_local(i);
     }
+
+    //lcc 20240827: 重大发现！！！
+    state->imu.gyroscope[0] = state->imu.gyroscope[0];
+    state->imu.gyroscope[1] = state->imu.gyroscope[1];
+    // state->imu.gyroscope[0] = 0;
+    // state->imu.gyroscope[1] = 0;
+
     // Note: state->imu.quaternion:  w, x, y, z
     //   geometry_msgs/Quaternion orientation
     //   float64 x
@@ -408,4 +420,23 @@ void IOROS::recvState(LowlevelState *state){
     state->imu.quaternion[1] = sub_imu_orie_local[0];
     state->imu.quaternion[2] = sub_imu_orie_local[1];
     state->imu.quaternion[3] = sub_imu_orie_local[2];
+    
+    // if( KEY_M == true ){
+    //     // quaternion_offset(0) + state->imu.quaternion[0] = 1;
+    //     // quaternion_offset(1) + state->imu.quaternion[1] = 0;
+    //     // quaternion_offset(2) + state->imu.quaternion[2] = 0;
+    //     // quaternion_offset(3) + state->imu.quaternion[3] = 0;
+    //     quaternion_offset(0) =1 - state->imu.quaternion[0];
+    //     quaternion_offset(1) =  - state->imu.quaternion[1];
+    //     quaternion_offset(2) =  - state->imu.quaternion[2];
+    //     quaternion_offset(3) =  - state->imu.quaternion[3];
+    // }
+
+    state->imu.quaternion[0] = sub_imu_orie_local[3] + quaternion_offset(0);
+    state->imu.quaternion[1] = sub_imu_orie_local[0] + quaternion_offset(1);
+    state->imu.quaternion[2] = sub_imu_orie_local[1] + quaternion_offset(2);
+    state->imu.quaternion[3] = sub_imu_orie_local[2] + quaternion_offset(3);
+
+    // printf("quaternion_offset: %f,  %f,  %f,  %f\n", quaternion_offset(0),quaternion_offset(1),quaternion_offset(2),quaternion_offset(3));
+    // printf("quaternion: %f,  %f,  %f,  %f\n", state->imu.quaternion[0],state->imu.quaternion[1],state->imu.quaternion[2],state->imu.quaternion[3]);
 }

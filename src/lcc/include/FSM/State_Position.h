@@ -113,6 +113,8 @@ private:
 
     Vec36 _posFeet2BGoal_P_Increment;
     Vec1_6 *terian_FootHold;
+
+    Vec3 _posBody_estByVelBody;  //通过速度来估计位置；
 };
 
 #endif  // TROTTING_H

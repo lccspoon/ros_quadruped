@@ -12,6 +12,8 @@
 #include "interface/CmdPanel.h"
 #include "common/mathTools.h"
 
+extern bool KEY_M;
+
 class KeyBoard : public CmdPanel{
 public:
     KeyBoard();

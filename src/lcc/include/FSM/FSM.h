@@ -18,6 +18,7 @@
 #include "control/CtrlComponents.h"
 #include "FSM/State_PosReflex.h"
 #include "FSM/State_FixedSquat.h"
+#include "FSM/State_Force_Pos.h"
 
 struct FSMStateList{
     FSMState *invalid;
@@ -32,6 +33,7 @@ struct FSMStateList{
     State_StepTest *stepTest;
     State_PosReflex *posReflex;//lcc 20240627
     State_FixedSquat *fixedSquat;//lcc 20240808
+    State_Force_Pos *force_pos;//lcc 20240827
 #ifdef COMPILE_WITH_MOVE_BASE
     State_move_base *moveBase;
 #endif  // COMPILE_WITH_MOVE_BASE
@@ -45,6 +47,7 @@ struct FSMStateList{
         delete a1mpc;// lcc 20240416
         delete posReflex;// lcc 20240627
         delete qp;// lcc 20240523
+        delete force_pos;// lcc 20240827
         delete balanceTest;
         delete swingTest;
         delete stepTest;
