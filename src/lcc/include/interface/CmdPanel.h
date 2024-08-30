@@ -1,12 +1,19 @@
- 
 #ifndef CMDPANEL_H
 #define CMDPANEL_H
 
+#include <stdio.h>
+#include <math.h>
+#include <Eigen/Dense>
+#include <eigen3/Eigen/Core>
+#include <iostream>
+#include <stdio.h>
 #include "message/unitree_joystick.h"
 #include "common/enumClass.h"
 #include <pthread.h>
 #include <Eigen/Dense>
 #include <eigen3/Eigen/Core>
+#include "control/neural_bezier_curve.h"
+// #include "interface/KeyBoard.h"
 
 #ifdef COMPILE_WITH_REAL_ROBOT
     #ifdef ROBOT_TYPE_A1
@@ -17,17 +24,27 @@
     #endif  // ROBOT_TYPE_Go1
 #endif  // COMPILE_WITH_REAL_ROBOT
 
+// bool USVLCC_SETZERO;
+
+    // int _add_count=0;
+    // float _data_last,_set_last;
+    // bool _conver_done_flag=true;
 
 // UserValue指用户能够直接控制的输入变量
-struct UserValue{
+class UserValue{
+public:
+    UserValue(){
+        lx = 0;
+        ly = 0;
+        rx = 0;
+        ry = 0;
+        L2 = 0;
+    }
     float lx;
     float ly;
     float rx;
     float ry;
     float L2;
-    UserValue(){
-        setZero();
-    }
     void setZero(){
         lx = 0;
         ly = 0;
@@ -36,6 +53,31 @@ struct UserValue{
         L2 = 0;
     }
 };
+
+class UserValue_lcc
+{
+private:
+    /* data */
+    linear_trans lt_lx;
+    linear_trans lt_ly;
+    linear_trans lt_l2;
+    linear_trans lt_rx;
+    linear_trans lt_ry;
+public:
+    float lx;
+    float ly;
+    float rx;
+    float ry;
+    float L2;
+    UserValue_lcc(/* args */);
+    ~UserValue_lcc();
+
+    void setZero();
+
+};
+
+extern UserValue_lcc userValue_lcc;
+
 
 /*
  @author:lcc
@@ -80,7 +122,7 @@ public:
     void setZero(){userValue.setZero();}
 
     UserFunctionMode userFunctionMode; // lcc 20250601
-
+    // UserValue_lcc userValue_lcc;
 #ifdef COMPILE_WITH_REAL_ROBOT
     virtual void receiveHandle(UNITREE_LEGGED_SDK::LowState *lowState){};
 #endif  // COMPILE_WITH_REAL_ROBOT

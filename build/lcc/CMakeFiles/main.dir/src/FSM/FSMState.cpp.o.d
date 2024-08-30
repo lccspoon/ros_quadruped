@@ -370,8 +370,12 @@ lcc/CMakeFiles/main.dir/src/FSM/FSMState.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/common/enumClass.h \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
+ /usr/include/c++/9/math.h /usr/include/eigen3/Eigen/Dense \
+ /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
- /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
+ /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
+ /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/IOInterface.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
@@ -386,8 +390,6 @@ lcc/CMakeFiles/main.dir/src/FSM/FSMState.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
  /home/lcc/cchex_ws/src/lcc/include/control/BalanceCtrl.h \
  /home/lcc/cchex_ws/src/lcc/include/control/ConvexMpc.h \
- /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
- /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
  /usr/local/include/OsqpEigen/OsqpEigen.h \
  /usr/local/include/OsqpEigen/Constants.hpp \
  /usr/local/include/OsqpEigen/Compat.hpp /usr/local/include/osqp/osqp.h \
@@ -506,5 +508,4 @@ lcc/CMakeFiles/main.dir/src/FSM/FSMState.cpp.o: \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixSquareRoot.h \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixLogarithm.h \
  /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixPower.h \
- /home/lcc/cchex_ws/src/lcc/include/common/protection.h \
- /usr/include/c++/9/math.h
+ /home/lcc/cchex_ws/src/lcc/include/common/protection.h

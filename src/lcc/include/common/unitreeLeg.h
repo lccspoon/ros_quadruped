@@ -58,8 +58,11 @@ public:
 class SixLegDogLeg : public QuadrupedLeg{
 public:
     SixLegDogLeg(const int legID, const Vec3 pHip2B):
-        // QuadrupedLeg(legID, 0.07725, 0.216, 0.205, pHip2B){}//lcc 20240524
+        #if USE_A_REAL_HEXAPOD == true
+        QuadrupedLeg(legID, 0.076, 0.2115, 0.215, pHip2B){}//lcc 20240828
+        #else
         QuadrupedLeg(legID, 0.07725, 0.216, 0.205, pHip2B){}//lcc 20240524
+        #endif
     ~SixLegDogLeg(){}
 };
 

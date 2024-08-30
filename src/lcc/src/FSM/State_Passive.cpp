@@ -1,6 +1,6 @@
  
 #include "FSM/State_Passive.h"
-
+#include "interface/KeyBoard.h"
 State_Passive::State_Passive(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::PASSIVE, "passive"){}
 

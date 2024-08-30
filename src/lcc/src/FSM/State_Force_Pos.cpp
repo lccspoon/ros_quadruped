@@ -1,4 +1,5 @@
 #include "FSM/State_Force_Pos.h"
+#include "interface/KeyBoard.h"
 #include <iomanip>
 
 State_Force_Pos::State_Force_Pos(CtrlComponents *ctrlComp)
@@ -10,7 +11,7 @@ State_Force_Pos::State_Force_Pos(CtrlComponents *ctrlComp)
     _gait = new GaitGenerator(ctrlComp);
     _gait_P = new GaitGenerator_P(ctrlComp);
 
-    _gaitHeight = 0.08;
+    _gaitHeight = 0.10;
     root_euler_d.setZero();
 
 // #ifdef ROBOT_TYPE_Go1
@@ -76,8 +77,10 @@ void State_Force_Pos::enter(){
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
     // _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0);
-    body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
-    _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    // body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    // _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0;//lcc 20240604
+    _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0;//lcc 20240604
 
     // std::cout<<" _pcd :\n"<< _pcd.transpose() <<std::endl;
 
@@ -100,7 +103,8 @@ void State_Force_Pos::enter(){
 
     _initFeetPos = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::HIP);//QP
 
-    _lowState->userValue.setZero();
+    // userValue_lcc.setZero();
+    USVLCC_SETZERO = true; 
 
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
@@ -180,7 +184,7 @@ void State_Force_Pos::run(){
     /* run传的是指针，地址绑定，直接得到：世界系下足端目标位置和速度 */
     _gait->run(_posFeetGlobalGoal, _velFeetGlobalGoal);
 
-    // calcTau(); // QP力矩控制
+    calcTau(); // QP力矩控制
     calcP(); //位置控制
     #if USE_A_REAL_HEXAPOD == true
     // _torqueCtrl();// 位置控制 + 位置反馈 的力矩控制
@@ -198,7 +202,7 @@ void State_Force_Pos::run(){
     Vec18 tau_send;
     // tau_send = _tau * 1 + torque18 * 1;
     tau_send = _tau * 0 + torque18 * 1;
-    // _lowCmd->setTau( tau_send ); //lcc 20240602
+    _lowCmd->setTau( tau_send ); //lcc 20240602
     #else
     Vec18 tau_send;
     tau_send = _tau * 1 + torque18 * 1;
@@ -206,13 +210,14 @@ void State_Force_Pos::run(){
     _lowCmd->setTau( tau_send ); //lcc 20240602
     #endif
 
-    // for(int i(0); i<6; ++i){
-    //     if((*_contact_hex)(i) == 0){
-    //         _lowCmd->setSwingGain(i);
-    //     }else{
-    //         _lowCmd->setStableGain(i);
-    //     }
-    // }
+    for(int i(0); i<6; ++i){
+        if((*_contact_hex)(i) == 0){
+            _lowCmd->setSwingGain(i);
+        }else{
+            _lowCmd->setStableGain(i);
+        }
+    }
+
 }
 
 bool State_Force_Pos::checkStepOrNot(){
@@ -232,12 +237,12 @@ bool State_Force_Pos::checkStepOrNot(){
 
 void State_Force_Pos::getUserCmd(){
     /* Movement */
-    _vCmdBody(0) =  invNormalize(_lowState->userValue.ly, _vxLim(0), _vxLim(1));
-    _vCmdBody(1) = -invNormalize(_lowState->userValue.lx, _vyLim(0), _vyLim(1));
+    _vCmdBody(0) =  invNormalize(userValue_lcc.ly, _vxLim(0), _vxLim(1));
+    _vCmdBody(1) = -invNormalize(userValue_lcc.lx, _vyLim(0), _vyLim(1));
     _vCmdBody(2) = 0;
     
     /* Turning */
-    _dYawCmd = -invNormalize(_lowState->userValue.rx, _wyawLim(0), _wyawLim(1));
+    _dYawCmd = -invNormalize(userValue_lcc.rx, _wyawLim(0), _wyawLim(1));
     _dYawCmd = 0.9*_dYawCmdPast + (1-0.9) * _dYawCmd;
     _dYawCmdPast = _dYawCmd;
 }
@@ -303,7 +308,8 @@ void State_Force_Pos::calcTau(){
     }
     if( (*_phase_hex)(0) > 0.3 && (*_phase_hex)(0) <= 0.8 )
     {
-        body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num + 0.0944;
+        // body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num + 0.0944;
+        body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num ;
     }
     _posError(2) = _pcd(2) - body_h; // 使用接地腿的高度平均值作为机身实际高度，摆脱世界系下机身高度状态估计不准的难题
     // std::cout<<" body_h :"<< body_h <<std::endl;
@@ -388,7 +394,7 @@ void State_Force_Pos::calcP(){
     row = invNormalize(adj_RPY_P(0), _rowMin, _rowMax);
     pitch = invNormalize(adj_RPY_P(1), _pitchMin, _pitchMax);
     yaw = -invNormalize(adj_RPY_P(2), _yawMin, _yawMax);
-    // height = invNormalize(_lowState->userValue.ry, _heightMin, _heightMax) ;
+    // height = invNormalize(userValue_lcc.ry, _heightMin, _heightMax) ;
     height = 0;
     for(int i(0); i < 6; ++i){
         if((*_contact_hex)(i) == 1){  //stand
@@ -414,10 +420,21 @@ Vec36 State_Force_Pos::_calcOP(float row, float pitch, float yaw, float height){
 }
 
 void State_Force_Pos::_torqueCtrl(){
-
-    // _Kp = Vec3(3500, 3500, 3500).asDiagonal();
-    _Kp = Vec3(5000, 5000, 5000).asDiagonal();
-    _Kd = Vec3( 120,  120, 120).asDiagonal();
+    #if USE_A_REAL_HEXAPOD == true
+        // _Kp = Vec3(500, 500, 500).asDiagonal();
+        // _Kd = Vec3( 15,  15, 15).asDiagonal() ;
+        // _Kp = Vec3(400, 400, 400).asDiagonal();
+        // _Kd = Vec3( 10,  10, 10).asDiagonal() ;
+        _Kp = Vec3(100, 100, 100).asDiagonal();
+        _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+        // _Kp = Vec3(35, 35, 35).asDiagonal();
+        // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+    #else
+        // _Kp = Vec3(5000, 5000, 5000).asDiagonal();
+        // _Kd = Vec3( 200,  200, 200).asDiagonal();
+        _Kp = Vec3(3500, 3500, 3500).asDiagonal();
+        _Kd = Vec3( 120,  120, 120).asDiagonal();
+    #endif
     Vec36 pos36;
     Vec36 vel36;
     Vec36 _targetPos36_o1;
@@ -470,7 +487,7 @@ void State_Force_Pos::_torqueCtrl(){
     torque18_o1 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o1);
     torque18_o2 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o2);
     torque18_o3 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o3);
-    // torque18 = torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 0; //力矩控制
-    torque18 = torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5; //力位混合
+    // torque18 = (torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 1.5) *1; //力矩控制
+    torque18 = (torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5) * 0.1; //力位混合
     // torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
 }

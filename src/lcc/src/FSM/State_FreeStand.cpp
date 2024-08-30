@@ -1,4 +1,4 @@
- 
+#include "interface/KeyBoard.h"
 #include "FSM/State_FreeStand.h"
 
 State_FreeStand::State_FreeStand(CtrlComponents *ctrlComp)
@@ -26,8 +26,8 @@ void State_FreeStand::enter(){
     // }
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
-        _lowCmd->motorCmd[i].Kp = 30;
-        _lowCmd->motorCmd[i].Kd = 1;
+        _lowCmd->motorCmd[i].Kp = 200;
+        _lowCmd->motorCmd[i].Kd = 5;
         _lowCmd->motorCmd[i].tau = 0;
     }
 
@@ -42,16 +42,18 @@ void State_FreeStand::enter(){
 }
 
 void State_FreeStand::run(){
-    _vecOP = _calcOP( invNormalize(_lowState->userValue.lx, _rowMin, _rowMax),
-                     invNormalize(_lowState->userValue.ly, _pitchMin, _pitchMax),
-                    -invNormalize(_lowState->userValue.rx, _yawMin, _yawMax),
-                     invNormalize(_lowState->userValue.ry, _heightMin, _heightMax) );
+    _vecOP = _calcOP( invNormalize(userValue_lcc.lx, _rowMin, _rowMax),
+                     invNormalize(userValue_lcc.ly, _pitchMin, _pitchMax),
+                    -invNormalize(userValue_lcc.rx, _yawMin, _yawMax),
+                     invNormalize(userValue_lcc.ry, _heightMin, _heightMax) );
     _calcCmd(_vecOP);
     // _torqueCtrl();
 
     // Vec36 vel36;
     // vel36 = _ctrlComp->sixlegdogModel->getFeet2BVelocities(*_lowState,FrameType::BODY );
     // std::cout<<" vel36 \n"<< vel36 <<std::endl;
+
+    std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
 }
 
 void State_FreeStand::exit(){

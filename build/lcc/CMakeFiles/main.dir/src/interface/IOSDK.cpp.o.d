@@ -364,8 +364,12 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/common/enumClass.h \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
+ /usr/include/c++/9/math.h /usr/include/eigen3/Eigen/Dense \
+ /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
- /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
+ /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
+ /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/intl_spi.h \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -412,6 +416,7 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /usr/include/asm-generic/ioctls.h \
  /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
  /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/protection.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
@@ -426,6 +431,9 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
  /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
  /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/imu.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/serial_port.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/hipnuc.h \
  /usr/include/c++/9/csignal /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \

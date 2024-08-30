@@ -1005,6 +1005,30 @@ src/FSM/State_FixedStand.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_FixedStand.cpp.s
 .PHONY : src/FSM/State_FixedStand.cpp.s
 
+src/FSM/State_Force_Pos.o: src/FSM/State_Force_Pos.cpp.o
+.PHONY : src/FSM/State_Force_Pos.o
+
+# target to build an object file
+src/FSM/State_Force_Pos.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Force_Pos.cpp.o
+.PHONY : src/FSM/State_Force_Pos.cpp.o
+
+src/FSM/State_Force_Pos.i: src/FSM/State_Force_Pos.cpp.i
+.PHONY : src/FSM/State_Force_Pos.i
+
+# target to preprocess a source file
+src/FSM/State_Force_Pos.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Force_Pos.cpp.i
+.PHONY : src/FSM/State_Force_Pos.cpp.i
+
+src/FSM/State_Force_Pos.s: src/FSM/State_Force_Pos.cpp.s
+.PHONY : src/FSM/State_Force_Pos.s
+
+# target to generate assembly for a file
+src/FSM/State_Force_Pos.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_Force_Pos.cpp.s
+.PHONY : src/FSM/State_Force_Pos.cpp.s
+
 src/FSM/State_FreeStand.o: src/FSM/State_FreeStand.cpp.o
 .PHONY : src/FSM/State_FreeStand.o
 
@@ -1701,6 +1725,30 @@ src/control/robot_lift_dowm_relex.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s
 .PHONY : src/control/robot_lift_dowm_relex.cpp.s
 
+src/interface/CmdPanel.o: src/interface/CmdPanel.cpp.o
+.PHONY : src/interface/CmdPanel.o
+
+# target to build an object file
+src/interface/CmdPanel.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o
+.PHONY : src/interface/CmdPanel.cpp.o
+
+src/interface/CmdPanel.i: src/interface/CmdPanel.cpp.i
+.PHONY : src/interface/CmdPanel.i
+
+# target to preprocess a source file
+src/interface/CmdPanel.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.i
+.PHONY : src/interface/CmdPanel.cpp.i
+
+src/interface/CmdPanel.s: src/interface/CmdPanel.cpp.s
+.PHONY : src/interface/CmdPanel.s
+
+# target to generate assembly for a file
+src/interface/CmdPanel.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.s
+.PHONY : src/interface/CmdPanel.cpp.s
+
 src/interface/IOROS.o: src/interface/IOROS.cpp.o
 .PHONY : src/interface/IOROS.o
 
@@ -1773,6 +1821,54 @@ src/interface/KeyBoard.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.s
 .PHONY : src/interface/KeyBoard.cpp.s
 
+src/interface/hipnuc_dec.o: src/interface/hipnuc_dec.cpp.o
+.PHONY : src/interface/hipnuc_dec.o
+
+# target to build an object file
+src/interface/hipnuc_dec.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o
+.PHONY : src/interface/hipnuc_dec.cpp.o
+
+src/interface/hipnuc_dec.i: src/interface/hipnuc_dec.cpp.i
+.PHONY : src/interface/hipnuc_dec.i
+
+# target to preprocess a source file
+src/interface/hipnuc_dec.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.i
+.PHONY : src/interface/hipnuc_dec.cpp.i
+
+src/interface/hipnuc_dec.s: src/interface/hipnuc_dec.cpp.s
+.PHONY : src/interface/hipnuc_dec.s
+
+# target to generate assembly for a file
+src/interface/hipnuc_dec.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.s
+.PHONY : src/interface/hipnuc_dec.cpp.s
+
+src/interface/imu.o: src/interface/imu.cpp.o
+.PHONY : src/interface/imu.o
+
+# target to build an object file
+src/interface/imu.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/imu.cpp.o
+.PHONY : src/interface/imu.cpp.o
+
+src/interface/imu.i: src/interface/imu.cpp.i
+.PHONY : src/interface/imu.i
+
+# target to preprocess a source file
+src/interface/imu.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/imu.cpp.i
+.PHONY : src/interface/imu.cpp.i
+
+src/interface/imu.s: src/interface/imu.cpp.s
+.PHONY : src/interface/imu.s
+
+# target to generate assembly for a file
+src/interface/imu.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/imu.cpp.s
+.PHONY : src/interface/imu.cpp.s
+
 src/interface/intl_spi.o: src/interface/intl_spi.cpp.o
 .PHONY : src/interface/intl_spi.o
 
@@ -1796,6 +1892,30 @@ src/interface/intl_spi.s: src/interface/intl_spi.cpp.s
 src/interface/intl_spi.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.s
 .PHONY : src/interface/intl_spi.cpp.s
+
+src/interface/serial_port.o: src/interface/serial_port.cpp.o
+.PHONY : src/interface/serial_port.o
+
+# target to build an object file
+src/interface/serial_port.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.o
+.PHONY : src/interface/serial_port.cpp.o
+
+src/interface/serial_port.i: src/interface/serial_port.cpp.i
+.PHONY : src/interface/serial_port.i
+
+# target to preprocess a source file
+src/interface/serial_port.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.i
+.PHONY : src/interface/serial_port.cpp.i
+
+src/interface/serial_port.s: src/interface/serial_port.cpp.s
+.PHONY : src/interface/serial_port.s
+
+# target to generate assembly for a file
+src/interface/serial_port.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.s
+.PHONY : src/interface/serial_port.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -1948,6 +2068,9 @@ help:
 	@echo "... src/FSM/State_FixedStand.o"
 	@echo "... src/FSM/State_FixedStand.i"
 	@echo "... src/FSM/State_FixedStand.s"
+	@echo "... src/FSM/State_Force_Pos.o"
+	@echo "... src/FSM/State_Force_Pos.i"
+	@echo "... src/FSM/State_Force_Pos.s"
 	@echo "... src/FSM/State_FreeStand.o"
 	@echo "... src/FSM/State_FreeStand.i"
 	@echo "... src/FSM/State_FreeStand.s"
@@ -2035,6 +2158,9 @@ help:
 	@echo "... src/control/robot_lift_dowm_relex.o"
 	@echo "... src/control/robot_lift_dowm_relex.i"
 	@echo "... src/control/robot_lift_dowm_relex.s"
+	@echo "... src/interface/CmdPanel.o"
+	@echo "... src/interface/CmdPanel.i"
+	@echo "... src/interface/CmdPanel.s"
 	@echo "... src/interface/IOROS.o"
 	@echo "... src/interface/IOROS.i"
 	@echo "... src/interface/IOROS.s"
@@ -2044,9 +2170,18 @@ help:
 	@echo "... src/interface/KeyBoard.o"
 	@echo "... src/interface/KeyBoard.i"
 	@echo "... src/interface/KeyBoard.s"
+	@echo "... src/interface/hipnuc_dec.o"
+	@echo "... src/interface/hipnuc_dec.i"
+	@echo "... src/interface/hipnuc_dec.s"
+	@echo "... src/interface/imu.o"
+	@echo "... src/interface/imu.i"
+	@echo "... src/interface/imu.s"
 	@echo "... src/interface/intl_spi.o"
 	@echo "... src/interface/intl_spi.i"
 	@echo "... src/interface/intl_spi.s"
+	@echo "... src/interface/serial_port.o"
+	@echo "... src/interface/serial_port.i"
+	@echo "... src/interface/serial_port.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

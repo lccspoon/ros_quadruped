@@ -4,6 +4,7 @@
 #include "interface/IOSDK.h"
 
 bool KEY_M = false;
+bool USVLCC_SETZERO = false;
 
 KeyBoard::KeyBoard(){
     userCmd = UserCommand::NONE;
@@ -59,8 +60,11 @@ UserCommand KeyBoard::checkCmd(){
     case '8':
         return UserCommand::FORCE_POS_8;
     case ' ':
-        {
-            userValue.setZero();
+        {   
+            USVLCC_SETZERO = true;
+            // userValue.LTsetZero = true;
+            // userValue.setZero();
+            // printf(" space\n");
         }
         return UserCommand::NONE;
     default:
@@ -73,35 +77,43 @@ void KeyBoard::changeValue(){
     // case 'w':case 'W':
     case 'w':
         userValue.ly = min<float>(userValue.ly+sensitivityLeft, 1.0);
-        break;
+        userValue_lcc.ly = min<float>(userValue_lcc.ly+sensitivityLeft, 1.0);
+    break;
     // case 's':case 'S':
     case 's':
         userValue.ly = max<float>(userValue.ly-sensitivityLeft, -1.0);
+        userValue_lcc.ly = max<float>(userValue_lcc.ly-sensitivityLeft, -1.0);
         break;
     // case 'd':case 'D':
     case 'd':
         userValue.lx = min<float>(userValue.lx+sensitivityLeft, 1.0);
+        userValue_lcc.lx = min<float>(userValue_lcc.lx+sensitivityLeft, 1.0);
         break;
     // case 'a':case 'A':
     case 'a':
         userValue.lx = max<float>(userValue.lx-sensitivityLeft, -1.0);
+        userValue_lcc.lx = max<float>(userValue_lcc.lx-sensitivityLeft, -1.0);
         break;
 
     // case 'i':case 'I':
     case 'i':
         userValue.ry = min<float>(userValue.ry+sensitivityRight, 1.0);
+        userValue_lcc.ry = min<float>(userValue_lcc.ry+sensitivityRight, 1.0);
         break;
     // case 'k':case 'K':
     case 'k':
         userValue.ry = max<float>(userValue.ry-sensitivityRight, -1.0);
+        userValue_lcc.ry = max<float>(userValue_lcc.ry-sensitivityRight, -1.0);
         break;
     // case 'l':case 'L':
     case 'l':
         userValue.rx = min<float>(userValue.rx+sensitivityRight, 1.0);
+        userValue_lcc.rx = min<float>(userValue_lcc.rx+sensitivityRight, 1.0);
         break;
     // case 'j':case 'J':
     case 'j':
         userValue.rx = max<float>(userValue.rx-sensitivityRight, -1.0);
+        userValue_lcc.rx = max<float>(userValue_lcc.rx-sensitivityRight, -1.0);
         break;
     default:
         break;

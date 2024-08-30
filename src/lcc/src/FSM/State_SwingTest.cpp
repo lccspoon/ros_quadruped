@@ -1,5 +1,6 @@
  
 #include "FSM/State_SwingTest.h"
+#include "interface/KeyBoard.h"
 
 State_SwingTest::State_SwingTest(CtrlComponents *ctrlComp)
                 :FSMState(ctrlComp, FSMStateName::SWINGTEST, "swingTest"){
@@ -11,7 +12,7 @@ State_SwingTest::State_SwingTest(CtrlComponents *ctrlComp)
     _zMax =  0.20;
 }
 
-#define TEST_LEG_NUM 0
+#define TEST_LEG_NUM 4
 
 void State_SwingTest::enter(){
     // for(int i=0; i<NUM_LEG_W; i++){
@@ -26,8 +27,8 @@ void State_SwingTest::enter(){
     // }
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
-        _lowCmd->motorCmd[i].Kp = 30;
-        _lowCmd->motorCmd[i].Kd = 2;
+        _lowCmd->motorCmd[i].Kp = 200;
+        _lowCmd->motorCmd[i].Kd = 5;
         _lowCmd->motorCmd[i].tau = 0;
     }
 
@@ -53,26 +54,27 @@ void State_SwingTest::enter(){
     // printf("\n---------lcc next----------\n");
 
     _ctrlComp->setAllSwing();
-    _lowState->userValue.setZero();
+    // userValue_lcc.setZero();
+    USVLCC_SETZERO = true; 
 }
 
 void State_SwingTest::run(){
-    if(_lowState->userValue.ly > 0){
-        _posGoal(0) = invNormalize(_lowState->userValue.ly, _initPos(0), _initPos(0)+_xMax, 0, 1);
+    if(userValue_lcc.ly > 0){
+        _posGoal(0) = invNormalize(userValue_lcc.ly, _initPos(0), _initPos(0)+_xMax, 0, 1);
     }else{
-        _posGoal(0) = invNormalize(_lowState->userValue.ly, _initPos(0)+_xMin, _initPos(0), -1, 0);
+        _posGoal(0) = invNormalize(userValue_lcc.ly, _initPos(0)+_xMin, _initPos(0), -1, 0);
     }
     
-    if(_lowState->userValue.lx > 0){
-        _posGoal(1) = invNormalize(_lowState->userValue.lx, _initPos(1, 0), _initPos(1)+_yMax, 0, 1);
+    if(userValue_lcc.lx > 0){
+        _posGoal(1) = invNormalize(userValue_lcc.lx, _initPos(1, 0), _initPos(1)+_yMax, 0, 1);
     }else{
-        _posGoal(1) = invNormalize(_lowState->userValue.lx, _initPos(1)+_yMin, _initPos(1), -1, 0);
+        _posGoal(1) = invNormalize(userValue_lcc.lx, _initPos(1)+_yMin, _initPos(1), -1, 0);
     }
 
-    if(_lowState->userValue.ry > 0){
-        _posGoal(2) = invNormalize(_lowState->userValue.ry, _initPos(2), _initPos(2)+_zMax, 0, 1);
+    if(userValue_lcc.ry > 0){
+        _posGoal(2) = invNormalize(userValue_lcc.ry, _initPos(2), _initPos(2)+_zMax, 0, 1);
     }else{
-        _posGoal(2) = invNormalize(_lowState->userValue.ry, _initPos(2)+_zMin, _initPos(2), -1, 0);
+        _posGoal(2) = invNormalize(userValue_lcc.ry, _initPos(2)+_zMin, _initPos(2), -1, 0);
     }
 
     _positionCtrl();
@@ -101,7 +103,7 @@ void State_SwingTest::_positionCtrl(){
     _targetPos = _ctrlComp->sixlegdogModel->getQ(_feetPos, FrameType::HIP);
     _lowCmd->setQ(_targetPos);
 
-    // printf(" lx:%f ly:%f ry:%f \n",_lowState->userValue.lx, _lowState->userValue.ly, _lowState->userValue.ry );
+    // printf(" lx:%f ly:%f ry:%f \n",userValue_lcc.lx, userValue_lcc.ly, userValue_lcc.ry );
     // std::cout<<"  _feetPos.col(TEST_LEG_NUM) \n"<< _feetPos.col(TEST_LEG_NUM).transpose() <<std::endl;
 
     // std::cout<<"  _feetPos.col(TEST_LEG_NUM) \n"<< _ctrlComp->robotModel->getFootPosition( *_lowState, TEST_LEG_NUM, FrameType::BODY).transpose() <<std::endl;
@@ -113,10 +115,10 @@ void State_SwingTest::_torqueCtrl(){
     #if IS_THIS_A_HEXAPOD
 
     #if USE_A_REAL_HEXAPOD == true
-        _Kp = Vec3(500, 500, 500).asDiagonal();
-        _Kd = Vec3( 15,  15, 15).asDiagonal() ;
-        // _Kp = Vec3(100, 100, 100).asDiagonal();
-        // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
+        // _Kp = Vec3(500, 500, 500).asDiagonal();
+        // _Kd = Vec3( 15,  15, 15).asDiagonal() ;
+        _Kp = Vec3(100, 100, 100).asDiagonal();
+        _Kd = Vec3( 1,  1, 1).asDiagonal() ;
         // _Kp = Vec3(35, 35, 35).asDiagonal();
         // _Kd = Vec3( 1,  1, 1).asDiagonal() ;
     #else
@@ -164,7 +166,7 @@ void State_SwingTest::_torqueCtrl(){
         // std::cout<<" _Kd :\n"<< _Kd<<std::endl;
         // std::cout<<" _targetPos36 :\n"<< _targetPos36<<std::endl;
         // std::cout<<" pos36 :\n"<< pos36<<std::endl;
-        // std::cout<<" \n vel36 :\n"<< vel36.col(TEST_LEG_NUM)<<std::endl;
+        std::cout<<" \n vel36 :"<< vel36.col(TEST_LEG_NUM)<<std::endl;
         // std::cout<<" _feetPos :\n"<< _feetPos<<std::endl;
         // std::cout<<" pos36 :\n"<< pos36<<std::endl;
         // std::cout<<" \ntorque18 :\n"<< vec18ToVec36(torque18).col(TEST_LEG_NUM)<<std::endl;

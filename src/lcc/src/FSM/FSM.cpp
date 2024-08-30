@@ -5,6 +5,9 @@
 #include "interface/IOROS.h"
 #include "interface/imu.h"
 #include <thread>
+#include "interface/KeyBoard.h"
+#include "interface/CmdPanel.h"
+
 FSM::FSM(CtrlComponents *ctrlComp)
     :_ctrlComp(ctrlComp){
 
@@ -74,6 +77,8 @@ void FSM::run(){
             // std::cout<<"\n MOTOR_DISABEL_FLAG : rec_moter_q:  \n"<< spi_2.rec_moter_q* 180/3.1415926 <<std::endl;
             // std::cout<<"\n MOTOR_DISABEL_FLAG : getQ_Hex:  \n"<< _ctrlComp->lowState->getQ_Hex() * 180/3.1415926 <<std::endl;
             std::cout<<"MOTOR_DISABEL_FLAG : motor_set:  \n"<< motor_set * 180/3.1415926 <<std::endl;
+            // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
+            std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
         }
         else if( MOTOR_ENABLE_FLAG == true && get_motor_response_flag == true){ // 'p'
             for (int i = 0; i < 6; i++){
@@ -92,6 +97,10 @@ void FSM::run(){
             }
             _ctrlComp->lowCmd->setQ( vec36ToVec18( init_motor_set_q + dou_dong_angle )  );
         }
+        else{
+            // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
+            // std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
+        }
 
         _startTime = getSystemTime();
         _ctrlComp->sendRecv();
@@ -99,6 +108,9 @@ void FSM::run(){
         if( MOTOR_DATA_LOAD == true && MOTOR_ENTER_CLOSELOOP == true){ // ']'
             spi_2.send_all_data();
             algorithm_run();
+        }
+        else{
+            // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
         }
         absoluteWait(_startTime, (long long)(_ctrlComp->dt * 1000000));
 
@@ -137,8 +149,26 @@ void FSM::run(){
         absoluteWait(_startTime, (long long)(_ctrlComp->dt * 1000000));
     #endif
 }
+float a =1000;
+float c =0;
+double b =1000;
+
+#include"control/neural_bezier_curve.h"
+linear_trans deviation_conver_z_adaptive;
+linear_trans lt_lx;
+linear_trans lt_ly;
+linear_trans lt_l2;
+linear_trans lt_rx;
+linear_trans lt_ry;
+
+float set_z_deviation_adaptiv =10000;
 
 void FSM::algorithm_run(){
+
+    if( USVLCC_SETZERO == true ){  
+        userValue_lcc.setZero();
+    }
+
     if( fsm_first_start == true ){
         #if USE_A_REAL_HEXAPOD == true
         printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n");

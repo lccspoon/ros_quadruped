@@ -1286,8 +1286,9 @@ lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/common/enumClass.h \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
- /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
  /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
+ /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
+ /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
  /opt/ros/noetic/include/std_msgs/Float64.h \
  /opt/ros/noetic/include/ros/message_operations.h \
  /opt/ros/noetic/include/sensor_msgs/Joy.h \

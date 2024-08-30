@@ -1,7 +1,7 @@
-lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
- /home/lcc/cchex_ws/src/lcc/src/FSM/State_FreeStand.cpp \
+lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o: \
+ /home/lcc/cchex_ws/src/lcc/src/interface/CmdPanel.cpp \
  /usr/include/stdc-predef.h \
- /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -25,15 +25,28 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/9/stdlib.h \
- /usr/include/c++/9/cstdlib \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/9/math.h \
+ /usr/include/c++/9/cmath \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h \
- /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
- /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/c++/9/bits/cpp_type_traits.h \
+ /usr/include/c++/9/ext/type_traits.h /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h \
+ /usr/include/c++/9/bits/std_abs.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/x86_64-linux-gnu/sys/types.h \
@@ -61,45 +74,6 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /usr/include/c++/9/bits/std_abs.h \
- /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h /usr/include/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/termios.h \
- /usr/include/x86_64-linux-gnu/bits/termios.h \
- /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
- /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
- /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
- /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
- /usr/include/c++/9/math.h /usr/include/c++/9/cmath \
- /usr/include/c++/9/bits/cpp_type_traits.h \
- /usr/include/c++/9/ext/type_traits.h /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/math-vector.h \
- /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
- /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
- /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
- /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
- /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/x86_64-linux-gnu/bits/mathinline.h \
  /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
  /usr/include/c++/9/new /usr/include/c++/9/exception \
@@ -165,8 +139,8 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /usr/include/c++/9/bits/basic_string.h \
  /usr/include/c++/9/ext/alloc_traits.h \
  /usr/include/c++/9/bits/alloc_traits.h \
- /usr/include/c++/9/ext/string_conversions.h /usr/include/c++/9/cstdio \
- /usr/include/c++/9/cerrno /usr/include/errno.h \
+ /usr/include/c++/9/ext/string_conversions.h /usr/include/c++/9/cstdlib \
+ /usr/include/c++/9/cstdio /usr/include/c++/9/cerrno /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
@@ -193,11 +167,11 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/emmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/xmmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/mm_malloc.h \
- /usr/include/c++/9/cstddef /usr/include/c++/9/cassert \
- /usr/include/assert.h /usr/include/c++/9/functional \
- /usr/include/c++/9/tuple /usr/include/c++/9/utility \
- /usr/include/c++/9/bits/stl_relops.h /usr/include/c++/9/array \
- /usr/include/c++/9/bits/uses_allocator.h \
+ /usr/include/c++/9/stdlib.h /usr/include/c++/9/cstddef \
+ /usr/include/c++/9/cassert /usr/include/assert.h \
+ /usr/include/c++/9/functional /usr/include/c++/9/tuple \
+ /usr/include/c++/9/utility /usr/include/c++/9/bits/stl_relops.h \
+ /usr/include/c++/9/array /usr/include/c++/9/bits/uses_allocator.h \
  /usr/include/c++/9/bits/invoke.h /usr/include/c++/9/bits/refwrap.h \
  /usr/include/c++/9/bits/std_function.h /usr/include/c++/9/cstring \
  /usr/include/string.h /usr/include/strings.h \
@@ -390,143 +364,31 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
  /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
  /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTypes.h \
- /usr/include/eigen3/Eigen/Dense \
- /home/lcc/cchex_ws/src/lcc/include/FSM/State_FreeStand.h \
- /home/lcc/cchex_ws/src/lcc/include/FSM/FSMState.h \
- /home/lcc/cchex_ws/src/lcc/include/control/CtrlComponents.h \
- /home/lcc/cchex_ws/src/lcc/include/message/LowlevelCmd.h \
- /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
- /home/lcc/cchex_ws/src/lcc/include/interface/IOInterface.h \
- /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
- /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
- /home/lcc/cchex_ws/src/lcc/include/common/hexpodRobot.h \
- /home/lcc/cchex_ws/src/lcc/include/Gait/WaveGenerator.h \
- /home/lcc/cchex_ws/src/lcc/include/common/timeMarker.h \
- /home/lcc/cchex_ws/src/lcc/include/control/Estimator.h \
- /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_uninitialized.h \
- /usr/include/c++/9/bits/stl_vector.h \
- /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
- /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
- /home/lcc/cchex_ws/src/lcc/include/control/BalanceCtrl.h \
- /home/lcc/cchex_ws/src/lcc/include/control/ConvexMpc.h \
- /usr/local/include/OsqpEigen/OsqpEigen.h \
- /usr/local/include/OsqpEigen/Constants.hpp \
- /usr/local/include/OsqpEigen/Compat.hpp /usr/local/include/osqp/osqp.h \
- /usr/local/include/osqp/osqp_configure.h \
- /usr/local/include/osqp/osqp_api_constants.h \
- /usr/local/include/osqp/osqp_api_types.h \
- /usr/local/include/osqp/osqp_api_functions.h \
- /usr/local/include/osqp/osqp_export_define.h \
- /usr/local/include/osqp/osqp_api_utils.h \
- /usr/local/include/OsqpEigen/Data.hpp \
- /usr/local/include/OsqpEigen/SparseMatrixHelper.hpp \
- /usr/include/eigen3/Eigen/Sparse /usr/include/eigen3/Eigen/SparseCore \
- /usr/include/c++/9/map /usr/include/c++/9/bits/stl_tree.h \
- /usr/include/c++/9/ext/aligned_buffer.h \
- /usr/include/c++/9/bits/stl_map.h /usr/include/c++/9/bits/stl_multimap.h \
- /usr/include/c++/9/bits/erase_if.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseMatrixBase.h \
- /usr/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h \
- /usr/include/eigen3/Eigen/src/plugins/CommonCwiseBinaryOps.h \
- /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h \
- /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h \
- /usr/include/eigen3/Eigen/src/plugins/BlockMethods.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseAssign.h \
- /usr/include/eigen3/Eigen/src/SparseCore/CompressedStorage.h \
- /usr/include/eigen3/Eigen/src/SparseCore/AmbiVector.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseCompressedBase.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseMatrix.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseMap.h \
- /usr/include/eigen3/Eigen/src/SparseCore/MappedSparseMatrix.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseVector.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseRef.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseUnaryOp.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseCwiseBinaryOp.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseTranspose.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseBlock.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseDot.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseRedux.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseView.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseDiagonalProduct.h \
- /usr/include/eigen3/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseSparseProductWithPruning.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseProduct.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseDenseProduct.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseSelfAdjointView.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseTriangularView.h \
- /usr/include/eigen3/Eigen/src/SparseCore/TriangularSolver.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparsePermutation.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseFuzzy.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseSolverBase.h \
- /usr/include/eigen3/Eigen/OrderingMethods \
- /usr/include/eigen3/Eigen/src/OrderingMethods/Amd.h \
- /usr/include/eigen3/Eigen/src/Core/util/NonMPL2.h \
- /usr/include/eigen3/Eigen/src/OrderingMethods/Ordering.h \
- /usr/include/eigen3/Eigen/src/OrderingMethods/Eigen_Colamd.h \
- /usr/include/eigen3/Eigen/SparseCholesky \
- /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky.h \
- /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h \
- /usr/include/eigen3/Eigen/src/Core/util/NonMPL2.h \
- /usr/include/eigen3/Eigen/SparseLU \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_gemm_kernel.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Structs.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLUImpl.h \
- /usr/include/eigen3/Eigen/src/SparseCore/SparseColEtree.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Memory.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_relax_snode.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pivotL.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_dfs.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_kernel_bmod.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_panel_bmod.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_dfs.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_bmod.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_pruneL.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_Utils.h \
- /usr/include/eigen3/Eigen/src/SparseLU/SparseLU.h \
- /usr/include/eigen3/Eigen/SparseQR \
- /usr/include/eigen3/Eigen/src/SparseQR/SparseQR.h \
- /usr/include/eigen3/Eigen/IterativeLinearSolvers \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
- /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
- /usr/include/c++/9/list /usr/include/c++/9/bits/stl_list.h \
- /usr/include/c++/9/bits/allocated_ptr.h /usr/include/c++/9/bits/list.tcc \
- /usr/local/include/OsqpEigen/SparseMatrixHelper.tpp \
- /usr/local/include/OsqpEigen/Debug.hpp \
- /usr/local/include/OsqpEigen/Data.tpp \
- /usr/local/include/OsqpEigen/Settings.hpp \
- /usr/local/include/OsqpEigen/Solver.hpp /usr/include/c++/9/memory \
- /usr/include/c++/9/bits/stl_raw_storage_iter.h \
- /usr/include/c++/9/ext/concurrence.h \
- /usr/include/c++/9/bits/unique_ptr.h \
- /usr/include/c++/9/bits/shared_ptr.h \
- /usr/include/c++/9/bits/shared_ptr_base.h \
- /usr/include/c++/9/bits/shared_ptr_atomic.h \
- /usr/include/c++/9/bits/atomic_base.h \
- /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h \
- /usr/local/include/OsqpEigen/Solver.tpp \
- /usr/local/include/OsqpEigen/Debug.hpp \
- /usr/include/eigen3/Eigen/Eigenvalues \
- /usr/include/eigen3/unsupported/Eigen/MatrixFunctions \
- /usr/include/c++/9/cfloat \
- /usr/lib/gcc/x86_64-linux-gnu/9/include/float.h \
- /usr/include/eigen3/Eigen/Core /usr/include/eigen3/Eigen/LU \
- /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixExponential.h \
- /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/StemFunction.h \
- /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixFunction.h \
- /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixSquareRoot.h \
- /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixLogarithm.h \
- /usr/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixPower.h \
- /home/lcc/cchex_ws/src/lcc/include/common/protection.h
+ /usr/include/eigen3/Eigen/Dense

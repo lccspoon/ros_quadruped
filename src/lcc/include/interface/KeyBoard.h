@@ -13,6 +13,7 @@
 #include "common/mathTools.h"
 
 extern bool KEY_M;
+extern bool USVLCC_SETZERO;
 
 class KeyBoard : public CmdPanel{
 public:

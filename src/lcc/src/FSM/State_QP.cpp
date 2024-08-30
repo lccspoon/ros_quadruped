@@ -9,6 +9,7 @@
 #include <iostream>
 #include <thread>
 #include <atomic>
+#include "interface/KeyBoard.h"
 
 State_QP::State_QP(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::QP, "qp"), 
@@ -18,7 +19,7 @@ State_QP::State_QP(CtrlComponents *ctrlComp)
               {
     _gait = new GaitGenerator(ctrlComp);
 
-    _gaitHeight = 0.08;
+    _gaitHeight = 0.10;
     root_euler_d.setZero();
 
 // #ifdef ROBOT_TYPE_Go1
@@ -49,9 +50,9 @@ State_QP::State_QP(CtrlComponents *ctrlComp)
     // _KdSwing = Vec3(10, 10, 10).asDiagonal();
 // #endif
 
-    _vxLim = _sixlegdogModel->getRobVelLimitX();
-    _vyLim = _sixlegdogModel->getRobVelLimitY();
-    _wyawLim = _sixlegdogModel->getRobVelLimitYaw();
+    _vxLim << -0.075, 0.075;
+    _vyLim << -0.15, 0.15; 
+    _wyawLim << -0.15, 0.15;
 
     _contact_te = new VecInt4;
 }
@@ -65,8 +66,11 @@ void State_QP::enter(){
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
     // _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0);
-    body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
-    _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    // body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    // _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0;//lcc 20240604
+    _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0;//lcc 20240604
+
 
     // std::cout<<" _pcd :\n"<< _pcd.transpose() <<std::endl;
 
@@ -82,7 +86,8 @@ void State_QP::enter(){
 
     _initFeetPos = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::HIP);//QP
 
-    _lowState->userValue.setZero();
+    // userValue_lcc.setZero();
+    USVLCC_SETZERO = true; 
 }
 
 void State_QP::exit(){
@@ -136,6 +141,8 @@ void State_QP::run(){
     _velFeetGlobal = _est->getFeetVel();
     _B2G_RotMat = _lowState->getRotMat();//机身 到 世界 的变化矩阵
     _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
+
+    // std::cout<<"_posBody:  \n"<< _posBody.transpose() <<std::endl;
 
     #if TERRIANESTI_FOURLEG
         (*_contact_te)(0) = (*_contact_hex)(0); 
@@ -191,14 +198,6 @@ void State_QP::run(){
     // _lowCmd->setQ(vec36ToVec18(_qGoal));
     // _lowCmd->setQd(vec36ToVec18(_qdGoal));
     #endif
-
-    for(int i(0); i<6; ++i){
-        if((*_contact_hex)(i) == 0){
-            _lowCmd->setSwingGain(i);
-        }else{
-            _lowCmd->setStableGain(i);
-        }
-    }
 }
 
 bool State_QP::checkStepOrNot(){
@@ -218,12 +217,12 @@ bool State_QP::checkStepOrNot(){
 
 void State_QP::getUserCmd(){
     /* Movement */
-    _vCmdBody(0) =  invNormalize(_lowState->userValue.ly, _vxLim(0), _vxLim(1));
-    _vCmdBody(1) = -invNormalize(_lowState->userValue.lx, _vyLim(0), _vyLim(1));
+    _vCmdBody(0) =  invNormalize(userValue_lcc.ly, _vxLim(0), _vxLim(1));
+    _vCmdBody(1) = -invNormalize(userValue_lcc.lx, _vyLim(0), _vyLim(1));
     _vCmdBody(2) = 0;
 
     /* Turning */
-    _dYawCmd = -invNormalize(_lowState->userValue.rx, _wyawLim(0), _wyawLim(1));
+    _dYawCmd = -invNormalize(userValue_lcc.rx, _wyawLim(0), _wyawLim(1));
     _dYawCmd = 0.9*_dYawCmdPast + (1-0.9) * _dYawCmd;
     _dYawCmdPast = _dYawCmd;
 }
@@ -284,7 +283,8 @@ void State_QP::calcTau(){
     }
     if( (*_phase_hex)(0) > 0.3 && (*_phase_hex)(0) <= 0.8 )
     {
-        body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num + 0.0944;
+        // body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num + 0.0944;
+        body_h = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num + 0.0;
     }
     _posError(2) = _pcd(2) - body_h; // 使用接地腿的高度平均值作为机身实际高度，摆脱世界系下机身高度状态估计不准的难题
     // std::cout<<" body_h :"<< body_h <<std::endl;

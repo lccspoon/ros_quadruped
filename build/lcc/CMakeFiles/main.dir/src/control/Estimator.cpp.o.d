@@ -365,8 +365,12 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
+ /usr/include/c++/9/math.h /usr/include/eigen3/Eigen/Dense \
+ /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
- /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
+ /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
+ /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
  /home/lcc/cchex_ws/src/lcc/include/common/hexpodRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
  /home/lcc/cchex_ws/src/lcc/include/Gait/WaveGenerator.h \
@@ -383,7 +387,7 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /opt/ros/noetic/include/ros/ros.h /opt/ros/noetic/include/ros/time.h \
  /opt/ros/noetic/include/ros/platform.h \
  /opt/ros/noetic/include/ros/exception.h \
- /opt/ros/noetic/include/ros/duration.h /usr/include/c++/9/math.h \
+ /opt/ros/noetic/include/ros/duration.h \
  /opt/ros/noetic/include/ros/rostime_decl.h \
  /opt/ros/noetic/include/ros/macros.h \
  /usr/include/boost/math/special_functions/round.hpp \
@@ -412,7 +416,7 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /usr/include/boost/math/tools/user.hpp \
  /usr/include/boost/math/policies/error_handling.hpp \
  /usr/include/c++/9/iomanip /usr/include/c++/9/locale \
- /usr/include/c++/9/bits/locale_facets_nonio.h /usr/include/c++/9/ctime \
+ /usr/include/c++/9/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
  /usr/include/libintl.h /usr/include/c++/9/bits/codecvt.h \
@@ -929,9 +933,7 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /usr/include/boost/system/detail/generic_category.hpp \
  /usr/include/boost/system/detail/system_category_posix.hpp \
  /usr/include/boost/system/detail/std_interoperability.hpp \
- /usr/include/c++/9/mutex /usr/include/c++/9/chrono \
- /usr/include/c++/9/ratio /usr/include/c++/9/bits/parse_numbers.h \
- /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/mutex /usr/include/c++/9/bits/std_mutex.h \
  /usr/include/c++/9/bits/unique_lock.h \
  /usr/include/boost/config/abi_prefix.hpp \
  /usr/include/boost/config/abi_suffix.hpp \

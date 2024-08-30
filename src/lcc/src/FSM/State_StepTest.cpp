@@ -1,5 +1,6 @@
  
 #include "FSM/State_StepTest.h"
+#include "interface/KeyBoard.h"
 
 State_StepTest::State_StepTest(CtrlComponents *ctrlComp)
                   :FSMState(ctrlComp, FSMStateName::STEPTEST, "stepTest"),

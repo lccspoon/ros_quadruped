@@ -122,11 +122,15 @@ int main(int argc, char **argv){
 
     Vec6 _bias;
     _bias << 0, 0.5, 0.5, 0, 0, 0.5;
+
+    #if USE_A_REAL_HEXAPOD == false
     // ctrlComp->waveGen = new WaveGenerator(0.45, 0.5, _bias); // Trot
     ctrlComp->waveGen = new WaveGenerator(0.55, 0.5, _bias); // Trot
+    // ctrlComp->waveGen = new WaveGenerator(0.6, 0.5, _bias); // Trot
     // ctrlComp->waveGen = new WaveGenerator(0.8, 0.5, _bias); // Trot
-    // ctrlComp->waveGen = new WaveGenerator(1, 0.5, _bias); // Trot
-    // ctrlComp->waveGen = new WaveGenerator(3, 0.5, _bias); // Trot
+    #else
+    ctrlComp->waveGen = new WaveGenerator(1, 0.5, _bias); // Trot
+    #endif
 
     ctrlComp->geneObj();
     ControlFrame ctrlFrame(ctrlComp);

@@ -36,6 +36,8 @@ Estimator::Estimator(QuadrupedRobot *robotModel, HexapodRobot *sixlegdogModel, L
     // _Qdig(5) = 1; //lcc
     _initSystem();
 
+    body_est_vel.setZero();
+    _posBody_estByVelBody.setZero();
 }
 
 Estimator::~Estimator(){
@@ -215,100 +217,123 @@ void Estimator::_initSystem(){
 }
 
 void Estimator::run(){
-    _feetH.setZero();
-    _feetPosGlobalKine = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::GLOBAL);
-    _feetVelGlobalKine = _sixlegdogModel->getFeet2BVelocities(*_lowState, FrameType::GLOBAL);
+    // _feetH.setZero();
+    // _feetPosGlobalKine = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::GLOBAL);
+    // _feetVelGlobalKine = _sixlegdogModel->getFeet2BVelocities(*_lowState, FrameType::GLOBAL);
 
-    _Q = _QInit;
-    _R = _RInit;
+    // _Q = _QInit;
+    // _R = _RInit;
 
-    for(int i(0); i < 6; ++i){
-        if((*_contact)(i) == 0){
-            _Q.block(6+3*i, 6+3*i, 3, 3) = _largeVariance * I3;
-            _R.block(18+3*i, 18+3*i, 3, 3) = _largeVariance * I3;
-            _R(36+i, 36+i) = _largeVariance;
-        }
-        else{
-            _trust = windowFunc((*_phase)(i), 0.2);
-            _Q.block(6+3*i, 6+3*i, 3, 3) = (1 + (1-_trust)*_largeVariance) * _QInit.block(6+3*i, 6+3*i, 3, 3);
-            _R.block(18+3*i, 18+3*i, 3, 3) = (1 + (1-_trust)*_largeVariance) * _RInit.block(18+3*i, 18+3*i, 3, 3);
-            _R(36+i, 36+i) = (1 + (1-_trust)*_largeVariance) * _RInit(36+i, 36+i);
-        }
-        _feetPos2Body.segment(3*i, 3) = _feetPosGlobalKine.col(i);
-        _feetVel2Body.segment(3*i, 3) = _feetVelGlobalKine.col(i);
-    }
-
-    // std::cout<<" (*_phase):\n "<< (*_phase).transpose() << std::endl;
-    // std::cout<<" (*_contact):\n "<< (*_contact).transpose() << std::endl;
-    // std::cout<<" _Q:\n "<< _Q << std::endl;
-    // std::cout<<" _R:\n "<< _R << std::endl;
-    // std::cout<<" _R:\n "<< _R << std::endl;
-    // std::cout<<" _feetPos2Body:\n "<< _feetPos2Body.transpose() << std::endl;
-    // std::cout<<" _feetVel2Body:\n "<< _feetVel2Body.transpose() << std::endl;
-
-
-    _rotMatB2G = _lowState->getRotMat();
-    // _u = _rotMatB2G * _lowState->getAcc() + _g;
-    _u = _rotMatB2G * _lowState->getAcc();
-
-    //lcc 20240604
-    // if ( _lowState->userFunctionMode.function_test == true ){
-    //     accOffset = -_u;
+    // for(int i(0); i < 6; ++i){
+    //     if((*_contact)(i) == 0){
+    //         _Q.block(6+3*i, 6+3*i, 3, 3) = _largeVariance * I3;
+    //         _R.block(18+3*i, 18+3*i, 3, 3) = _largeVariance * I3;
+    //         _R(36+i, 36+i) = _largeVariance;
+    //     }
+    //     else{
+    //         _trust = windowFunc((*_phase)(i), 0.2);
+    //         _Q.block(6+3*i, 6+3*i, 3, 3) = (1 + (1-_trust)*_largeVariance) * _QInit.block(6+3*i, 6+3*i, 3, 3);
+    //         _R.block(18+3*i, 18+3*i, 3, 3) = (1 + (1-_trust)*_largeVariance) * _RInit.block(18+3*i, 18+3*i, 3, 3);
+    //         _R(36+i, 36+i) = (1 + (1-_trust)*_largeVariance) * _RInit(36+i, 36+i);
+    //     }
+    //     _feetPos2Body.segment(3*i, 3) = _feetPosGlobalKine.col(i);
+    //     _feetVel2Body.segment(3*i, 3) = _feetVelGlobalKine.col(i);
     // }
-    // _u = _u + accOffset;
 
-    _xhat = _A * _xhat + _B * _u;
-    _yhat = _C * _xhat;
-    _y << _feetPos2Body, _feetVel2Body, _feetH;
+    // // std::cout<<" (*_phase):\n "<< (*_phase).transpose() << std::endl;
+    // // std::cout<<" (*_contact):\n "<< (*_contact).transpose() << std::endl;
+    // // std::cout<<" _Q:\n "<< _Q << std::endl;
+    // // std::cout<<" _R:\n "<< _R << std::endl;
+    // // std::cout<<" _R:\n "<< _R << std::endl;
+    // // std::cout<<" _feetPos2Body:\n "<< _feetPos2Body.transpose() << std::endl;
+    // // std::cout<<" _feetVel2Body:\n "<< _feetVel2Body.transpose() << std::endl;
 
-    // _RCheck->measure(_y);//lcc 20250602
-    // _uCheck->measure(_u);//lcc 20250602
-    // std::cout<<" _y:\n "<< _y << std::endl;
-    // std::cout<<" _u:\n "<< _u << std::endl;
 
-    _Ppriori = _A * _P * _A.transpose() + _Q;
-    _S =  _R + _C * _Ppriori * _C.transpose();
-    _Slu = _S.lu();
-    _Sy = _Slu.solve(_y - _yhat);
-    _Sc = _Slu.solve(_C);
-    _SR = _Slu.solve(_R);
-    _STC = (_S.transpose()).lu().solve(_C);
-    _IKC = I24 - _Ppriori*_C.transpose()*_Sc;
-
-    _xhat += _Ppriori * _C.transpose() * _Sy;
-    _P =  _IKC * _Ppriori * _IKC.transpose()
-        + _Ppriori * _C.transpose() * _SR * _STC * _Ppriori.transpose();
+    // _rotMatB2G = _lowState->getRotMat();
+    // // _u = _rotMatB2G * _lowState->getAcc() + _g;
+    // _u = _rotMatB2G * _lowState->getAcc();
 
     // //lcc 20240604
-    if ( _lowState->userFunctionMode.state_reset == true ){
-        postionOffset = -_xhat.segment(0, 3) - Vec3(0, 0, _robModel-> _feetPosNormalStand(2));// 只有站起来才可以用
-        // velocityOffset = -_xhat.segment(3, 3);
-        // printf(" adadadada\n");
-    }
-    // // std::cout<<" getPosition(): "<< getPosition().transpose() << std::endl;
-    // // std::cout<<" getVelocity():\n "<< getVelocity().transpose() << std::endl;
+    // // if ( _lowState->userFunctionMode.function_test == true ){
+    // //     accOffset = -_u;
+    // // }
+    // // _u = _u + accOffset;
+
+    // _xhat = _A * _xhat + _B * _u;
+    // _yhat = _C * _xhat;
+    // _y << _feetPos2Body, _feetVel2Body, _feetH;
+
+    // // _RCheck->measure(_y);//lcc 20250602
+    // // _uCheck->measure(_u);//lcc 20250602
+    // // std::cout<<" _y:\n "<< _y << std::endl;
     // // std::cout<<" _u:\n "<< _u << std::endl;
-    // // std::cout<<" ODE_P:\n "<< ODE_P << std::endl;
 
+    // _Ppriori = _A * _P * _A.transpose() + _Q;
+    // _S =  _R + _C * _Ppriori * _C.transpose();
+    // _Slu = _S.lu();
+    // _Sy = _Slu.solve(_y - _yhat);
+    // _Sc = _Slu.solve(_C);
+    // _SR = _Slu.solve(_R);
+    // _STC = (_S.transpose()).lu().solve(_C);
+    // _IKC = I24 - _Ppriori*_C.transpose()*_Sc;
 
+    // _xhat += _Ppriori * _C.transpose() * _Sy;
+    // _P =  _IKC * _Ppriori * _IKC.transpose()
+    //     + _Ppriori * _C.transpose() * _SR * _STC * _Ppriori.transpose();
 
-    //lcc 20240603
-    // std::cout<<" x:\n "<< _xhat.segment(0, 3).transpose() << std::endl;
-    // std::cout<<" v:\n "<< _xhat.segment(3, 3).transpose() << std::endl;
+    // // //lcc 20240604
+    // if ( _lowState->userFunctionMode.state_reset == true ){
+    //     postionOffset = -_xhat.segment(0, 3) - Vec3(0, 0, _robModel-> _feetPosNormalStand(2));// 只有站起来才可以用
+    //     // velocityOffset = -_xhat.segment(3, 3);
+    //     // printf(" adadadada\n");
+    // }
+    // // // std::cout<<" getPosition(): "<< getPosition().transpose() << std::endl;
+    // // // std::cout<<" getVelocity():\n "<< getVelocity().transpose() << std::endl;
+    // // // std::cout<<" _u:\n "<< _u << std::endl;
+    // // // std::cout<<" ODE_P:\n "<< ODE_P << std::endl;
 
-    // _xhat.segment(0, 3) = ODE_P;
-    // _xhat.segment(3, 3) = ODE_V;
+    // //lcc 20240603
+    // // std::cout<<" x:\n "<< _xhat.segment(0, 3).transpose() << std::endl;
+    // // std::cout<<" v:\n "<< _xhat.segment(3, 3).transpose() << std::endl;
+
+    // // _xhat.segment(0, 3) = ODE_P;
+    // // _xhat.segment(3, 3) = ODE_V;
+
+    // lcc 20240829: 纯腿足里程计，通过 body_est_vel 来估算是 world系 下的位置。 
+    _posBody_estByVelBody = _posBody_estByVelBody + _dt * getVelocity();
+    Vec6 leg_deep;
+    int leg_deep_num;
+    leg_deep_num = 0;
+    leg_deep.setZero();
+    for (int i = 0; i < 6; i++){   
+        if((*_contact)(i) == 1) { //stand
+            leg_deep(i) = _sixlegdogModel->getFootPosition(*_lowState, i, FrameType::BODY)(2);
+            leg_deep_num ++;
+        }
+    }
+    // if( (*_phase)(0) > 0.05 && (*_phase)(0) <= 0.975 ){
+        if( leg_deep_num != 0 )
+        // _posBody_estByVelBody_z = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num + 0.0944;
+        _posBody_estByVelBody_z = -(leg_deep(0) + leg_deep(1) + leg_deep(2) + leg_deep(3) + leg_deep(4) + leg_deep(5) )/leg_deep_num;
+    // }
+    _posBody_estByVelBody(2) = _posBody_estByVelBody_z;
+    // std::cout<<" _dt"<< _dt <<std::endl;
+    // std::cout<<" getVelocity()"<< getVelocity().transpose() <<std::endl;
+    // std::cout<<" _posBody_estByVelBody:\n "<< _posBody_estByVelBody.transpose() << std::endl;
 }
 
 Vec3 Estimator::getPosition(){
     
     // return _xhat.segment(0, 3) + Vec3(postionOffset(0), postionOffset(1), 0); //lcc 20240604
 
-    return _xhat.segment(0, 3); //lcc 20240604SS
+    // return _xhat.segment(0, 3); //lcc 20240604
 
     // Vec3 z3;
     // z3.setZero();
     // return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
+
+    // lcc 20240829: 纯腿足里程计，通过 body_est_vel 来估算是 world系 下的位置。 
+    return _posBody_estByVelBody;
 }
 
 Vec3 Estimator::getVelocity(){
@@ -319,20 +344,28 @@ Vec3 Estimator::getVelocity(){
     // return z3; //lcc 20240621  摆脱状态估计的依赖->_velbody
 
     //lcc 20240622, 一个简单的:足端->质心速度估计
-    Vec3 body_est_vel;
     int leg_num;
-    body_est_vel.setZero();
     leg_num = 0;
     Vec36 feetVel = _sixlegdogModel->getFeet2BVelocities(*_lowState, FrameType::GLOBAL);
+    // Vec36 feetVel = _sixlegdogModel->getFeet2BVelocities(*_lowState, FrameType::BODY);
+    body_est_vel.setZero();
     for (int i = 0; i < 6; i++){
-        if ( (*_contact)(i) == 1 && (*_phase)(i) > 0.2 && (*_phase)(i) <= 0.9 ){
+        if ( (*_contact)(i) == 1 && (*_phase)(i) > 0.05 && (*_phase)(i) <= 0.975 ){
             leg_num ++;
             body_est_vel = body_est_vel + feetVel.col(i);
         }
     }
+    // if ( (*_contact)(0) == 1 && (*_contact)(1) == 1 && (*_contact)(2) == 1 && (*_contact)(3) == 1 && (*_contact)(4) == 1 && (*_contact)(5) == 1)
+    // {
+    //     body_est_vel.setZero();
+    // }
+    
     if( leg_num != 0){
         body_est_vel = -body_est_vel/leg_num;
     }
+
+    // std::cout<<" (*_contact) :\n"<< (*_contact).transpose() <<std::endl;
+    // std::cout<<" (*_phase) :\n"<< (*_phase).transpose() <<std::endl;
 
     // std::cout<<" body_est_vel :\n"<< body_est_vel.transpose() <<std::endl;
     // std::cout<<" leg_num :"<< leg_num <<std::endl;

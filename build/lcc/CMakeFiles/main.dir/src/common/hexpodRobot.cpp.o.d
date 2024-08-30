@@ -363,5 +363,9 @@ lcc/CMakeFiles/main.dir/src/common/hexpodRobot.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
+ /usr/include/c++/9/math.h /usr/include/eigen3/Eigen/Dense \
+ /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
- /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core
+ /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
+ /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h
