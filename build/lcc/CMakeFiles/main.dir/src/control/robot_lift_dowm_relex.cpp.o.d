@@ -379,19 +379,49 @@ lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o: \
  /usr/local/include/eigen3/Eigen/Dense \
  /home/hex/hex_ws/src/lcc/include/common/mathTools.h \
  /home/hex/hex_ws/src/lcc/include/common/enumClass.h \
- /home/hex/hex_ws/src/lcc/include/message/LowlevelState.h \
+ /home/hex/hex_ws/src/lcc/include/interface/KeyBoard.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
  /home/hex/hex_ws/src/lcc/include/interface/CmdPanel.h \
  /home/hex/hex_ws/src/lcc/include/message/unitree_joystick.h \
+ /usr/include/c++/9/mutex /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/thread \
+ /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_uninitialized.h \
+ /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/9/ext/concurrence.h \
+ /usr/include/c++/9/bits/unique_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr_base.h \
+ /usr/include/c++/9/bits/allocated_ptr.h \
+ /usr/include/c++/9/ext/aligned_buffer.h \
+ /usr/include/c++/9/bits/shared_ptr_atomic.h \
+ /usr/include/c++/9/bits/atomic_base.h \
+ /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/9/backward/auto_ptr.h \
+ /home/hex/hex_ws/src/lcc/include/message/LowlevelState.h \
  /home/hex/hex_ws/src/lcc/include/interface/IOInterface.h \
  /home/hex/hex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/hex/hex_ws/src/lcc/include/common/unitreeLeg.h \
  /home/hex/hex_ws/src/lcc/include/common/hexpodRobot.h \
  /home/hex/hex_ws/src/lcc/include/Gait/WaveGenerator.h \
  /home/hex/hex_ws/src/lcc/include/common/timeMarker.h \
- /usr/include/x86_64-linux-gnu/sys/time.h \
  /home/hex/hex_ws/src/lcc/include/control/Estimator.h \
- /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_uninitialized.h \
- /usr/include/c++/9/bits/stl_vector.h \
+ /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_vector.h \
  /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
  /home/hex/hex_ws/src/lcc/include/common/LowPassFilter.h \
  /home/hex/hex_ws/src/lcc/include/control/BalanceCtrl.h \
@@ -409,9 +439,8 @@ lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o: \
  /usr/local/include/OsqpEigen/SparseMatrixHelper.hpp \
  /usr/local/include/eigen3/Eigen/Sparse \
  /usr/local/include/eigen3/Eigen/SparseCore /usr/include/c++/9/map \
- /usr/include/c++/9/bits/stl_tree.h \
- /usr/include/c++/9/ext/aligned_buffer.h \
- /usr/include/c++/9/bits/stl_map.h /usr/include/c++/9/bits/stl_multimap.h \
+ /usr/include/c++/9/bits/stl_tree.h /usr/include/c++/9/bits/stl_map.h \
+ /usr/include/c++/9/bits/stl_multimap.h \
  /usr/include/c++/9/bits/erase_if.h \
  /usr/local/include/eigen3/Eigen/src/SparseCore/SparseUtil.h \
  /usr/local/include/eigen3/Eigen/src/SparseCore/SparseMatrixBase.h \
@@ -487,21 +516,12 @@ lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o: \
  /usr/local/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
  /usr/local/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
  /usr/include/c++/9/list /usr/include/c++/9/bits/stl_list.h \
- /usr/include/c++/9/bits/allocated_ptr.h /usr/include/c++/9/bits/list.tcc \
+ /usr/include/c++/9/bits/list.tcc \
  /usr/local/include/OsqpEigen/SparseMatrixHelper.tpp \
  /usr/local/include/OsqpEigen/Debug.hpp \
  /usr/local/include/OsqpEigen/Data.tpp \
  /usr/local/include/OsqpEigen/Settings.hpp \
- /usr/local/include/OsqpEigen/Solver.hpp /usr/include/c++/9/memory \
- /usr/include/c++/9/bits/stl_raw_storage_iter.h \
- /usr/include/c++/9/ext/concurrence.h \
- /usr/include/c++/9/bits/unique_ptr.h \
- /usr/include/c++/9/bits/shared_ptr.h \
- /usr/include/c++/9/bits/shared_ptr_base.h \
- /usr/include/c++/9/bits/shared_ptr_atomic.h \
- /usr/include/c++/9/bits/atomic_base.h \
- /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h \
+ /usr/local/include/OsqpEigen/Solver.hpp \
  /usr/local/include/OsqpEigen/Solver.tpp \
  /usr/local/include/OsqpEigen/Debug.hpp \
  /usr/local/include/eigen3/Eigen/Eigenvalues \

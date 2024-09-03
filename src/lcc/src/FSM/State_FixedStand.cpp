@@ -1,7 +1,7 @@
  
 #include <iostream>
 #include "FSM/State_FixedStand.h"
-
+#include "interface/KeyBoard.h"
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -34,7 +34,8 @@ void State_FixedStand::enter(){
     //     _lowCmd->setZeroDq(i);
     //     _lowCmd->setZeroTau(i);
     // }
-
+    
+    USVLCC_SETZERO = true; 
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
         _lowCmd->motorCmd[i].Kp = 200;

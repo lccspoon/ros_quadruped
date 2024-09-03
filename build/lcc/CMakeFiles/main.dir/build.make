@@ -573,10 +573,24 @@ lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hex/hex_ws/src/lcc/src/control/robot_lift_dowm_relex.cpp -o CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s
 
+lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o: lcc/CMakeFiles/main.dir/flags.make
+lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/CmdPanel.cpp
+lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o"
+	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o -MF CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o.d -o CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/CmdPanel.cpp
+
+lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/interface/CmdPanel.cpp.i"
+	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hex/hex_ws/src/lcc/src/interface/CmdPanel.cpp > CMakeFiles/main.dir/src/interface/CmdPanel.cpp.i
+
+lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/interface/CmdPanel.cpp.s"
+	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hex/hex_ws/src/lcc/src/interface/CmdPanel.cpp -o CMakeFiles/main.dir/src/interface/CmdPanel.cpp.s
+
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/IOROS.cpp
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o -MF CMakeFiles/main.dir/src/interface/IOROS.cpp.o.d -o CMakeFiles/main.dir/src/interface/IOROS.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/IOROS.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.i: cmake_force
@@ -590,7 +604,7 @@ lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/IOSDK.cpp
 lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o -MF CMakeFiles/main.dir/src/interface/IOSDK.cpp.o.d -o CMakeFiles/main.dir/src/interface/IOSDK.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/IOSDK.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.i: cmake_force
@@ -604,7 +618,7 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/KeyBoard.cpp
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o -MF CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o.d -o CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/KeyBoard.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.i: cmake_force
@@ -618,7 +632,7 @@ lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/hipnuc_dec.cpp
 lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o -MF CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o.d -o CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/hipnuc_dec.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.i: cmake_force
@@ -632,7 +646,7 @@ lcc/CMakeFiles/main.dir/src/interface/hipnuc_dec.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/interface/imu.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/imu.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/imu.cpp
 lcc/CMakeFiles/main.dir/src/interface/imu.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/imu.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/imu.cpp.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/imu.cpp.o -MF CMakeFiles/main.dir/src/interface/imu.cpp.o.d -o CMakeFiles/main.dir/src/interface/imu.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/imu.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/imu.cpp.i: cmake_force
@@ -646,7 +660,7 @@ lcc/CMakeFiles/main.dir/src/interface/imu.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/intl_spi.cpp
 lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.o -MF CMakeFiles/main.dir/src/interface/intl_spi.cpp.o.d -o CMakeFiles/main.dir/src/interface/intl_spi.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/intl_spi.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.i: cmake_force
@@ -660,7 +674,7 @@ lcc/CMakeFiles/main.dir/src/interface/intl_spi.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.o: /home/hex/hex_ws/src/lcc/src/interface/serial_port.cpp
 lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.o -MF CMakeFiles/main.dir/src/interface/serial_port.cpp.o.d -o CMakeFiles/main.dir/src/interface/serial_port.cpp.o -c /home/hex/hex_ws/src/lcc/src/interface/serial_port.cpp
 
 lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.i: cmake_force
@@ -674,7 +688,7 @@ lcc/CMakeFiles/main.dir/src/interface/serial_port.cpp.s: cmake_force
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o: /home/hex/hex_ws/src/lcc/src/quadProgpp/Array.cc
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.o -MF CMakeFiles/main.dir/src/quadProgpp/Array.cc.o.d -o CMakeFiles/main.dir/src/quadProgpp/Array.cc.o -c /home/hex/hex_ws/src/lcc/src/quadProgpp/Array.cc
 
 lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.i: cmake_force
@@ -688,7 +702,7 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/Array.cc.s: cmake_force
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: lcc/CMakeFiles/main.dir/flags.make
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc/src/quadProgpp/QuadProg++.cc
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: lcc/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o"
 	cd /home/hex/hex_ws/build/lcc && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o -MF CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o.d -o CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o -c /home/hex/hex_ws/src/lcc/src/quadProgpp/QuadProg++.cc
 
 lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.i: cmake_force
@@ -737,6 +751,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o" \
 "CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o" \
 "CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o" \
+"CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o" \
 "CMakeFiles/main.dir/src/interface/IOROS.cpp.o" \
 "CMakeFiles/main.dir/src/interface/IOSDK.cpp.o" \
 "CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o" \
@@ -786,6 +801,7 @@ main_EXTERNAL_OBJECTS =
 /home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/TerrianEsti.cpp.o
 /home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o
 /home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o
+/home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o
 /home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o
 /home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o
 /home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o
@@ -816,7 +832,7 @@ main_EXTERNAL_OBJECTS =
 /home/hex/hex_ws/devel/lib/lcc/main: /usr/local/lib/libOsqpEigen.so.0.8.1
 /home/hex/hex_ws/devel/lib/lcc/main: /usr/local/lib/libosqp.so
 /home/hex/hex_ws/devel/lib/lcc/main: lcc/CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Linking CXX executable /home/hex/hex_ws/devel/lib/lcc/main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hex/hex_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Linking CXX executable /home/hex/hex_ws/devel/lib/lcc/main"
 	cd /home/hex/hex_ws/build/lcc && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

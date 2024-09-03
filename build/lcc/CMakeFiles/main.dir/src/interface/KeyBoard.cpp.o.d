@@ -87,30 +87,44 @@ lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
  /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
  /home/hex/hex_ws/src/lcc/include/interface/CmdPanel.h \
- /home/hex/hex_ws/src/lcc/include/message/unitree_joystick.h \
- /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/hex/hex_ws/src/lcc/include/common/enumClass.h \
- /usr/include/c++/9/iostream /usr/include/c++/9/ostream \
- /usr/include/c++/9/ios /usr/include/c++/9/iosfwd \
- /usr/include/c++/9/bits/stringfwd.h /usr/include/c++/9/bits/memoryfwd.h \
- /usr/include/c++/9/bits/postypes.h /usr/include/c++/9/cwchar \
- /usr/include/wchar.h /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/wchar2.h /usr/include/c++/9/exception \
+ /usr/include/c++/9/math.h /usr/include/c++/9/cmath \
+ /usr/include/c++/9/bits/cpp_type_traits.h \
+ /usr/include/c++/9/ext/type_traits.h /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h \
+ /usr/local/include/eigen3/Eigen/Dense \
+ /usr/local/include/eigen3/Eigen/Core \
+ /usr/local/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
+ /usr/include/c++/9/new /usr/include/c++/9/exception \
  /usr/include/c++/9/bits/exception.h \
  /usr/include/c++/9/bits/exception_ptr.h \
  /usr/include/c++/9/bits/exception_defines.h \
  /usr/include/c++/9/bits/cxxabi_init_exception.h \
  /usr/include/c++/9/typeinfo /usr/include/c++/9/bits/hash_bytes.h \
- /usr/include/c++/9/new /usr/include/c++/9/bits/nested_exception.h \
+ /usr/include/c++/9/bits/nested_exception.h \
  /usr/include/c++/9/bits/move.h /usr/include/c++/9/bits/concept_check.h \
- /usr/include/c++/9/type_traits /usr/include/c++/9/bits/char_traits.h \
+ /usr/include/c++/9/type_traits \
+ /usr/local/include/eigen3/Eigen/src/Core/util/Macros.h \
+ /usr/include/c++/9/complex /usr/include/c++/9/sstream \
+ /usr/include/c++/9/istream /usr/include/c++/9/ios \
+ /usr/include/c++/9/iosfwd /usr/include/c++/9/bits/stringfwd.h \
+ /usr/include/c++/9/bits/memoryfwd.h /usr/include/c++/9/bits/postypes.h \
+ /usr/include/c++/9/cwchar /usr/include/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+ /usr/include/c++/9/bits/char_traits.h \
  /usr/include/c++/9/bits/stl_algobase.h \
  /usr/include/c++/9/bits/functexcept.h \
- /usr/include/c++/9/bits/cpp_type_traits.h \
- /usr/include/c++/9/ext/type_traits.h \
  /usr/include/c++/9/ext/numeric_traits.h \
  /usr/include/c++/9/bits/stl_pair.h \
  /usr/include/c++/9/bits/stl_iterator_base_types.h \
@@ -119,6 +133,8 @@ lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: \
  /usr/include/c++/9/bits/stl_iterator.h \
  /usr/include/c++/9/bits/ptr_traits.h /usr/include/c++/9/debug/debug.h \
  /usr/include/c++/9/bits/predefined_ops.h /usr/include/c++/9/cstdint \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/c++/9/bits/localefwd.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++locale.h \
  /usr/include/c++/9/clocale /usr/include/locale.h \
@@ -170,25 +186,9 @@ lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: \
  /usr/include/c++/9/bits/streambuf_iterator.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
  /usr/include/c++/9/bits/locale_facets.tcc \
- /usr/include/c++/9/bits/basic_ios.tcc \
- /usr/include/c++/9/bits/ostream.tcc /usr/include/c++/9/istream \
- /usr/include/c++/9/bits/istream.tcc /usr/include/c++/9/sstream \
+ /usr/include/c++/9/bits/basic_ios.tcc /usr/include/c++/9/ostream \
+ /usr/include/c++/9/bits/ostream.tcc /usr/include/c++/9/bits/istream.tcc \
  /usr/include/c++/9/bits/sstream.tcc \
- /usr/local/include/eigen3/Eigen/Dense \
- /usr/local/include/eigen3/Eigen/Core \
- /usr/local/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
- /usr/local/include/eigen3/Eigen/src/Core/util/Macros.h \
- /usr/include/c++/9/complex /usr/include/c++/9/cmath /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/math-vector.h \
- /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
- /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
- /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
- /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
- /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/x86_64-linux-gnu/bits/mathinline.h \
  /usr/local/include/eigen3/Eigen/src/Core/util/MKL_support.h \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/mmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/emmintrin.h \
@@ -388,10 +388,29 @@ lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: \
  /usr/local/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/local/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
  /usr/local/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
- /usr/local/include/eigen3/Eigen/Core \
+ /usr/local/include/eigen3/Eigen/Core /usr/include/c++/9/iostream \
+ /home/hex/hex_ws/src/lcc/include/message/unitree_joystick.h \
+ /home/hex/hex_ws/src/lcc/include/common/enumClass.h \
+ /home/hex/hex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
+ /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
  /home/hex/hex_ws/src/lcc/include/common/mathTools.h \
  /home/hex/hex_ws/src/lcc/include/common/mathTypes.h \
- /usr/local/include/eigen3/Eigen/Dense \
+ /usr/local/include/eigen3/Eigen/Dense /usr/include/c++/9/mutex \
+ /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/thread \
+ /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_uninitialized.h \
+ /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/9/ext/concurrence.h \
+ /usr/include/c++/9/bits/unique_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr_base.h \
+ /usr/include/c++/9/bits/allocated_ptr.h \
+ /usr/include/c++/9/ext/aligned_buffer.h \
+ /usr/include/c++/9/bits/shared_ptr_atomic.h \
+ /usr/include/c++/9/bits/atomic_base.h \
+ /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/9/backward/auto_ptr.h \
  /home/hex/hex_ws/src/lcc/include/interface/IOSDK.h \
  /home/hex/hex_ws/src/lcc/include/interface/IOInterface.h \
  /home/hex/hex_ws/src/lcc/include/message/LowlevelCmd.h \
@@ -431,6 +450,5 @@ lcc/CMakeFiles/main.dir/src/interface/KeyBoard.cpp.o: \
  /usr/include/asm-generic/ioctls.h \
  /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
  /home/hex/hex_ws/src/lcc/include/common/protection.h \
- /usr/include/c++/9/math.h \
  /home/hex/hex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/hex/hex_ws/src/lcc/include/common/unitreeLeg.h

@@ -392,7 +392,6 @@ void IOROS::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
 }
 
 void IOROS::recvState(LowlevelState *state){
-
     for(int i(0); i < NUM_DOF_W; ++i){
         state->motorState[i].q = sub_joint_p_local(i);
         state->motorState[i].dq = sub_joint_v_local(i);

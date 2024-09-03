@@ -7,6 +7,7 @@
 #include "FSM/State_MPC.h"
 #include <iomanip>
 #include <cmath>
+#include "interface/KeyBoard.h"
 State_A1MPC::State_A1MPC(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::A1MPC, "a1mpc"), 
               _est(ctrlComp->estimator), _phase(ctrlComp->phase_hex), _Apla( ctrlComp->Apla),
@@ -76,7 +77,8 @@ void State_A1MPC::enter(){
     _ctrlComp->ioInter->zeroCmdPanel();
     _gait->restart();
     printf(" State_A1MPC!\n ");
-    _lowState->userValue.setZero();
+    // userValue_lcc.setZero();
+    USVLCC_SETZERO = true; 
 }
 
 void State_A1MPC::exit(){
@@ -202,12 +204,12 @@ bool State_A1MPC::checkStepOrNot(){
 
 void State_A1MPC::getUserCmd(){
     /* Movement */
-    _vCmdBody(0) =  invNormalize(_lowState->userValue.ly, _vxLim(0), _vxLim(1));
-    _vCmdBody(1) = -invNormalize(_lowState->userValue.lx, _vyLim(0), _vyLim(1));
+    _vCmdBody(0) =  invNormalize(userValue_lcc.ly, _vxLim(0), _vxLim(1));
+    _vCmdBody(1) = -invNormalize(userValue_lcc.lx, _vyLim(0), _vyLim(1));
     _vCmdBody(2) = 0;
 
     /* Turning */
-    _dYawCmd = -invNormalize(_lowState->userValue.rx, _wyawLim(0), _wyawLim(1));
+    _dYawCmd = -invNormalize(userValue_lcc.rx, _wyawLim(0), _wyawLim(1));
     _dYawCmd = 0.9*_dYawCmdPast + (1-0.9) * _dYawCmd;
     _dYawCmdPast = _dYawCmd;
 }

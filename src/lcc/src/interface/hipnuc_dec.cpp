@@ -7,6 +7,7 @@
  */
 
 #include "interface/hipnuc.h"
+#include "interface/KeyBoard.h"
 
 /* The driver file for decoding HiPNUC protocol, DO NOT MODIFTY*/
 
@@ -203,6 +204,7 @@ int hipnuc_input(hipnuc_raw_t *raw, uint8_t data)
  */
 int hipnuc_dump_packet(hipnuc_raw_t *raw, char *buf, size_t buf_size)
 {
+    std::lock_guard<std::mutex> lock(MTX_IMU); // 自动加锁
     int written = 0;
     int ret;
 

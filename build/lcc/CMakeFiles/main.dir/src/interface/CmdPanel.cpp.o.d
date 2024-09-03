@@ -1,40 +1,37 @@
-lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
- /home/hex/hex_ws/src/lcc/src/interface/IOSDK.cpp \
+lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o: \
+ /home/hex/hex_ws/src/lcc/src/interface/CmdPanel.cpp \
  /usr/include/stdc-predef.h \
- /home/hex/hex_ws/src/lcc/include/interface/IOSDK.h \
- /home/hex/hex_ws/src/lcc/include/interface/IOInterface.h \
- /home/hex/hex_ws/src/lcc/include/message/LowlevelCmd.h \
- /home/hex/hex_ws/src/lcc/include/common/mathTypes.h \
- /usr/local/include/eigen3/Eigen/Dense \
- /usr/local/include/eigen3/Eigen/Core \
- /usr/local/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
- /usr/include/c++/9/new \
- /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
+ /home/hex/hex_ws/src/lcc/include/interface/CmdPanel.h \
+ /usr/include/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h \
- /usr/include/c++/9/exception /usr/include/c++/9/bits/exception.h \
- /usr/include/c++/9/bits/exception_ptr.h \
- /usr/include/c++/9/bits/exception_defines.h \
- /usr/include/c++/9/bits/cxxabi_init_exception.h \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h \
- /usr/include/c++/9/typeinfo /usr/include/c++/9/bits/hash_bytes.h \
- /usr/include/c++/9/bits/nested_exception.h \
- /usr/include/c++/9/bits/move.h /usr/include/c++/9/bits/concept_check.h \
- /usr/include/c++/9/type_traits \
- /usr/local/include/eigen3/Eigen/src/Core/util/Macros.h \
- /usr/include/c++/9/complex /usr/include/c++/9/bits/cpp_type_traits.h \
- /usr/include/c++/9/ext/type_traits.h /usr/include/c++/9/cmath \
- /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/9/math.h \
+ /usr/include/c++/9/cmath \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h \
+ /usr/include/c++/9/bits/cpp_type_traits.h \
+ /usr/include/c++/9/ext/type_traits.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
@@ -76,18 +73,28 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/c++/9/sstream \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+ /usr/local/include/eigen3/Eigen/Dense \
+ /usr/local/include/eigen3/Eigen/Core \
+ /usr/local/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
+ /usr/include/c++/9/new /usr/include/c++/9/exception \
+ /usr/include/c++/9/bits/exception.h \
+ /usr/include/c++/9/bits/exception_ptr.h \
+ /usr/include/c++/9/bits/exception_defines.h \
+ /usr/include/c++/9/bits/cxxabi_init_exception.h \
+ /usr/include/c++/9/typeinfo /usr/include/c++/9/bits/hash_bytes.h \
+ /usr/include/c++/9/bits/nested_exception.h \
+ /usr/include/c++/9/bits/move.h /usr/include/c++/9/bits/concept_check.h \
+ /usr/include/c++/9/type_traits \
+ /usr/local/include/eigen3/Eigen/src/Core/util/Macros.h \
+ /usr/include/c++/9/complex /usr/include/c++/9/sstream \
  /usr/include/c++/9/istream /usr/include/c++/9/ios \
  /usr/include/c++/9/iosfwd /usr/include/c++/9/bits/stringfwd.h \
  /usr/include/c++/9/bits/memoryfwd.h /usr/include/c++/9/bits/postypes.h \
  /usr/include/c++/9/cwchar /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
  /usr/include/c++/9/bits/char_traits.h \
  /usr/include/c++/9/bits/stl_algobase.h \
@@ -134,17 +141,9 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /usr/include/c++/9/ext/alloc_traits.h \
  /usr/include/c++/9/bits/alloc_traits.h \
  /usr/include/c++/9/ext/string_conversions.h /usr/include/c++/9/cstdlib \
- /usr/include/c++/9/cstdio /usr/include/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/9/cerrno \
- /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/c++/9/cstdio /usr/include/c++/9/cerrno /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/9/bits/functional_hash.h \
@@ -363,9 +362,12 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /usr/local/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/local/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
  /usr/local/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
- /home/hex/hex_ws/src/lcc/include/common/mathTools.h \
- /usr/include/c++/9/iostream \
+ /usr/local/include/eigen3/Eigen/Core /usr/include/c++/9/iostream \
+ /home/hex/hex_ws/src/lcc/include/message/unitree_joystick.h \
  /home/hex/hex_ws/src/lcc/include/common/enumClass.h \
+ /home/hex/hex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
+ /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
  /home/hex/hex_ws/src/lcc/include/interface/KeyBoard.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
@@ -391,14 +393,10 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
  /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
  /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
- /home/hex/hex_ws/src/lcc/include/interface/CmdPanel.h \
- /usr/include/c++/9/math.h /usr/local/include/eigen3/Eigen/Dense \
- /usr/local/include/eigen3/Eigen/Core \
- /home/hex/hex_ws/src/lcc/include/message/unitree_joystick.h \
- /home/hex/hex_ws/src/lcc/include/control/neural_bezier_curve.h \
- /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
- /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
- /usr/include/c++/9/mutex /usr/include/c++/9/bits/std_mutex.h \
+ /home/hex/hex_ws/src/lcc/include/common/mathTools.h \
+ /home/hex/hex_ws/src/lcc/include/common/mathTypes.h \
+ /usr/local/include/eigen3/Eigen/Dense /usr/include/c++/9/mutex \
+ /usr/include/c++/9/bits/std_mutex.h \
  /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/thread \
  /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_uninitialized.h \
  /usr/include/c++/9/bits/stl_raw_storage_iter.h \
@@ -411,66 +409,4 @@ lcc/CMakeFiles/main.dir/src/interface/IOSDK.cpp.o: \
  /usr/include/c++/9/bits/shared_ptr_atomic.h \
  /usr/include/c++/9/bits/atomic_base.h \
  /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h \
- /home/hex/hex_ws/src/lcc/include/message/LowlevelState.h \
- /home/hex/hex_ws/src/lcc/include/interface/intl_spi.h \
- /usr/include/arpa/inet.h /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/sys/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket_type.h \
- /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
- /usr/include/x86_64-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
- /usr/include/asm-generic/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h \
- /usr/include/x86_64-linux-gnu/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/socket2.h \
- /usr/include/x86_64-linux-gnu/bits/in.h \
- /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
- /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
- /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
- /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /usr/include/linux/spi/spidev.h /usr/include/linux/ioctl.h \
- /usr/include/x86_64-linux-gnu/asm/ioctl.h \
- /usr/include/asm-generic/ioctl.h \
- /usr/include/x86_64-linux-gnu/sys/ioctl.h \
- /usr/include/x86_64-linux-gnu/bits/ioctls.h \
- /usr/include/x86_64-linux-gnu/asm/ioctls.h \
- /usr/include/asm-generic/ioctls.h \
- /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
- /home/hex/hex_ws/src/lcc/include/common/protection.h \
- /home/hex/hex_ws/src/lcc/include/common/unitreeRobot.h \
- /home/hex/hex_ws/src/lcc/include/common/unitreeLeg.h \
- /home/hex/hex_ws/src/lcc/include/interface/imu.h \
- /home/hex/hex_ws/src/lcc/include/interface/serial_port.h \
- /home/hex/hex_ws/src/lcc/include/interface/hipnuc.h \
- /usr/include/c++/9/csignal /usr/include/signal.h \
- /usr/include/x86_64-linux-gnu/bits/signum.h \
- /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
- /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
- /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
- /usr/include/x86_64-linux-gnu/bits/sigaction.h \
- /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
- /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
- /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /usr/include/x86_64-linux-gnu/bits/signal_ext.h
+ /usr/include/c++/9/backward/auto_ptr.h

@@ -107,6 +107,8 @@ private:
     Vec3 velocityOffset;
 
     Vec3 body_est_vel;
+    Vec3 _posBody_estByVelBody;
+    float _posBody_estByVelBody_z; //z方向通过运动学来估计
 
 #ifdef COMPILE_DEBUG
     PyPlot *_testPlot;

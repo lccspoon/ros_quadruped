@@ -1,6 +1,7 @@
  
 #include "FSM/State_PosReflex.h"
 #include <iomanip>
+#include "interface/KeyBoard.h"
 
 State_PosReflex::State_PosReflex(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::POSREFLEX, "posreflex"), 
@@ -74,6 +75,7 @@ State_PosReflex::~State_PosReflex(){
 }
 
 void State_PosReflex::enter(){
+
     // printf(" \n enter -> qp \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
@@ -102,7 +104,8 @@ void State_PosReflex::enter(){
 
     _initFeetPos = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::HIP);//QP
 
-    _lowState->userValue.setZero();
+    // userValue_lcc.setZero();
+    USVLCC_SETZERO = true; 
 }
 
 void State_PosReflex::exit(){
@@ -206,12 +209,12 @@ bool State_PosReflex::checkStepOrNot(){
 
 void State_PosReflex::getUserCmd(){
     /* Movement */
-    _vCmdBody(0) =  invNormalize(_lowState->userValue.ly, _vxLim(0), _vxLim(1));
-    _vCmdBody(1) = -invNormalize(_lowState->userValue.lx, _vyLim(0), _vyLim(1));
+    _vCmdBody(0) =  invNormalize(userValue_lcc.ly, _vxLim(0), _vxLim(1));
+    _vCmdBody(1) = -invNormalize(userValue_lcc.lx, _vyLim(0), _vyLim(1));
     _vCmdBody(2) = 0;
     
     /* Turning */
-    _dYawCmd = -invNormalize(_lowState->userValue.rx, _wyawLim(0), _wyawLim(1));
+    _dYawCmd = -invNormalize(userValue_lcc.rx, _wyawLim(0), _wyawLim(1));
     _dYawCmd = 0.9*_dYawCmdPast + (1-0.9) * _dYawCmd;
     _dYawCmdPast = _dYawCmd;
 }
@@ -402,7 +405,7 @@ void State_PosReflex::calcP(){
     row = invNormalize(adj_RPY_P(0)*0 + 0.0, _rowMin, _rowMax);
     pitch = invNormalize(adj_RPY_P(1)*0 + 0.0 + _lowState->userFunctionMode.set_pitch, _pitchMin, _pitchMax);
     yaw = -invNormalize(adj_RPY_P(2)*0 , _yawMin, _yawMax);
-    height = invNormalize(_lowState->userValue.ry + set_z_deviation_adaptiv + 0.0, _heightMin, _heightMax) ;
+    height = invNormalize(userValue_lcc.ry + set_z_deviation_adaptiv + 0.0, _heightMin, _heightMax) ;
     for(int i(0); i < 6; ++i){
         // if((*_contact_hex)(i) == 1){  //stand _posFeet2BGoal_P_Increment
         // _posFeet2BGoal_P.col(i) = _posFeet2BGoal_P.col(i) + (_calcOP(row, pitch, yaw, height).col(i) - _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ).col(i));

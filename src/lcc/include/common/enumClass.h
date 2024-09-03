@@ -22,8 +22,8 @@
 // #define LEG_DOF 3
 // #define NUM_DOF 12
 
-// #define TERRIANESTI_FOURLEG true
-#define TERRIANESTI_FOURLEG false
+#define TERRIANESTI_FOURLEG true
+// #define TERRIANESTI_FOURLEG false
 
 // #define PCONTROL_REFLEX_LIFE_DOWM true
 #define PCONTROL_REFLEX_LIFE_DOWM false

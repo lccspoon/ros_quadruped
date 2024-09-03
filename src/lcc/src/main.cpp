@@ -108,8 +108,9 @@ int main(int argc, char **argv){
 
     CtrlComponents *ctrlComp = new CtrlComponents(ioInter);
     ctrlComp->ctrlPlatform = ctrlPlat;
-    // ctrlComp->dt = 0.002; // run at 500hz
-    ctrlComp->dt = 0.0025; // lcc
+    ctrlComp->dt = 0.002; // run at 500hz
+    // ctrlComp->dt = 0.00225; // run 
+    // ctrlComp->dt = 0.0025; // lcc
     // ctrlComp->dt = 0.003; // lcc
     ctrlComp->running = &running;
 
@@ -122,11 +123,16 @@ int main(int argc, char **argv){
 
     Vec6 _bias;
     _bias << 0, 0.5, 0.5, 0, 0, 0.5;
+
+    #if USE_A_REAL_HEXAPOD == false
     // ctrlComp->waveGen = new WaveGenerator(0.45, 0.5, _bias); // Trot
-    // ctrlComp->waveGen = new WaveGenerator(0.55, 0.5, _bias); // Trot
+    ctrlComp->waveGen = new WaveGenerator(0.55, 0.5, _bias); // Trot
+    // ctrlComp->waveGen = new WaveGenerator(0.6, 0.5, _bias); // Trot
     // ctrlComp->waveGen = new WaveGenerator(0.8, 0.5, _bias); // Trot
-    ctrlComp->waveGen = new WaveGenerator(1, 0.5, _bias); // Trot
-    // ctrlComp->waveGen = new WaveGenerator(3, 0.5, _bias); // Trot
+    #else
+    // ctrlComp->waveGen = new WaveGenerator(1, 0.5, _bias); // Trotss
+    ctrlComp->waveGen = new WaveGenerator(0.75, 0.5, _bias); // Trot
+    #endif
 
     ctrlComp->geneObj();
     ControlFrame ctrlFrame(ctrlComp);
@@ -138,7 +144,7 @@ int main(int argc, char **argv){
         RosTopicMsgPub RPY("RPY");
         while (running){   
 
-            // if( ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag == 1 ){
+            // if( ctrlFrame.ctrlComp->lowState->userFunctionMode.motor_disenable_flag == 1 ){
             //     spi.exit_close_loop();
             //     printf("\n ininininin \n");
             // }
@@ -146,8 +152,8 @@ int main(int argc, char **argv){
 
             // }
             // // printf("\n ininininin \n");
-            // // std::cout<<"motor_disenable_flag:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.motor_disenable_flag <<std::endl;
-            // // std::cout<<"function_test:  "<< ctrlFrame._ctrlComp->lowState->userFunctionMode.function_test <<std::endl;
+            // // std::cout<<"motor_disenable_flag:  "<< ctrlFrame.ctrlComp->lowState->userFunctionMode.motor_disenable_flag <<std::endl;
+            // // std::cout<<"function_test:  "<< ctrlFrame.ctrlComp->lowState->userFunctionMode.function_test <<std::endl;
             // usleep(2000);
 
             // auto t1 = std::chrono::high_resolution_clock::now();
@@ -167,15 +173,86 @@ int main(int argc, char **argv){
         std::atomic<bool> control_execute{};
         control_execute.store(true, std::memory_order_release);
 
-        // std::thread compute_foot_forces_grf_thread([&]() {
-        //     while (control_execute.load(std::memory_order_acquire)  && running) {
-        //         ;
-        //     }
-        // });
+        std::thread spi_can_run([&]() {
+            Vec36 init_motor_set_q;
+            Vec36 dou_dong_angle;
+            bool get_motor_response_flag = false;
+            long long startTime;
+            while (control_execute.load(std::memory_order_acquire)  && running) {
+
+            //     if( MOTOR_DISABEL_FLAG == true ){ // 'o'
+            //         spi_2.exit_close_loop();
+            //         init_motor_set_q = ctrlComp->lowState->getQ_Hex();
+
+            //         Vec36 motor_set;
+            //         Vec36 motor_kp;
+            //         Vec36 motor_kd;
+            //         // MTX_MOTORCMD_2.lock();
+            //         for (int i = 0; i < 18; i++)
+            //         {
+            //             ctrlComp->lowCmd->motorCmd[i].q = init_motor_set_q(i);
+            //             motor_set(i) = ctrlComp->lowCmd->motorCmd[i].q;
+            //             ctrlComp->lowCmd->setAllLegGain(30, 1);
+            //         }
+
+            //         if( ctrlComp->lowCmd->motorCmd[0].q == 0.000 or ctrlComp->lowCmd->motorCmd[1].q == 0.000 or ctrlComp->lowCmd->motorCmd[2].q == 0.000 or
+            //         ctrlComp->lowCmd->motorCmd[3].q == 0.000 or ctrlComp->lowCmd->motorCmd[4].q == 0.000 or ctrlComp->lowCmd->motorCmd[5].q == 0.000 or
+            //         ctrlComp->lowCmd->motorCmd[6].q == 0.000 or ctrlComp->lowCmd->motorCmd[7].q == 0.000 or ctrlComp->lowCmd->motorCmd[8].q == 0.000 or
+            //         ctrlComp->lowCmd->motorCmd[9].q == 0.000 or ctrlComp->lowCmd->motorCmd[10].q == 0.000 or ctrlComp->lowCmd->motorCmd[11].q == 0.000 or
+            //         ctrlComp->lowCmd->motorCmd[12].q == 0.000 or ctrlComp->lowCmd->motorCmd[13].q == 0.000 or ctrlComp->lowCmd->motorCmd[14].q == 0.000 or
+            //         ctrlComp->lowCmd->motorCmd[15].q == 0.000 or ctrlComp->lowCmd->motorCmd[16].q == 0.000 or ctrlComp->lowCmd->motorCmd[17].q == 0.000 )
+            //             get_motor_response_flag = false;
+            //         else
+            //             get_motor_response_flag = true;
+
+            //         // MTX_MOTORCMD_2.unlock();
+
+            //         MOTOR_ENTER_CLOSELOOP = false;
+            //         MOTOR_READY_FLAG = false;
+            //         MOTOR_ENABLE_FLAG = false;
+            //         // std::cout<<"\n MOTOR_DISABEL_FLAG : rec_moter_q:  \n"<< spi_2.rec_moter_q* 180/3.1415926 <<std::endl;
+            //         // std::cout<<"\n MOTOR_DISABEL_FLAG : getQ_Hex:  \n"<< ctrlComp->lowState->getQ_Hex() * 180/3.1415926 <<std::endl;
+            //         std::cout<<"MOTOR_DISABEL_FLAG : motor_set:  \n"<< motor_set * 180/3.1415926 <<std::endl;
+            //         // printf(" _yaw: %f \n", ctrlComp->lowState->getYaw()*180/3.1415926);
+            //         std::cout<<"rotMatToRPY:"<< rotMatToRPY(ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
+            //     }
+            //     else if( MOTOR_ENABLE_FLAG == true && get_motor_response_flag == true){ // 'p'
+            //         for (int i = 0; i < 6; i++){
+            //             spi_2.enter_close_loop();
+            //             usleep(5000);
+            //         }
+            //         init_motor_set_q = ctrlComp->lowState->getQ_Hex();
+            //         MOTOR_ENABLE_FLAG = false;
+            //         MOTOR_ENTER_CLOSELOOP = true;
+            //     }
+            //     else if( MOTOR_READY_FLAG == true && MOTOR_ENTER_CLOSELOOP == true){ // '['
+            //         spi_2.send_all_data();
+            //         dou_dong_angle.setZero();
+            //         for (int i = 0; i < 18; i++){
+            //             dou_dong_angle(i) = DOU_DONG_ANGEL;
+            //         }
+            //         ctrlComp->lowCmd->setQ( vec36ToVec18( init_motor_set_q + dou_dong_angle )  );
+            //     }
+            //     else{
+            //     }
+
+            //     startTime = getSystemTime();
+
+            //     if( MOTOR_DATA_LOAD == true && MOTOR_ENTER_CLOSELOOP == true){ // ']'
+            //         spi_2.send_all_data();
+            //     }
+            //     else{
+            //         // printf(" _yaw: %f \n", ctrlComp->lowState->getYaw()*180/3.1415926);
+            //     }
+            //     absoluteWait(startTime, (long long)(ctrlComp->dt * 1000000));
+            }
+        });
 
         std::thread imu_recv([&]() {
+            long long startTime;
             while (control_execute.load(std::memory_order_acquire)  && running) {
                 imu_run();
+                absoluteWait(startTime, (long long)(ctrlComp->dt * 1000000));
             }
         });
 
@@ -185,12 +262,10 @@ int main(int argc, char **argv){
             }
         });
 
-        // compute_foot_forces_grf_thread.join();
+        // spi_can_run.join();
         imu_recv.join();
         main_thread.join();
     #endif
 
     return 0;
 }
-
-

@@ -1725,6 +1725,30 @@ src/control/robot_lift_dowm_relex.cpp.s:
 	cd /home/hex/hex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.s
 .PHONY : src/control/robot_lift_dowm_relex.cpp.s
 
+src/interface/CmdPanel.o: src/interface/CmdPanel.cpp.o
+.PHONY : src/interface/CmdPanel.o
+
+# target to build an object file
+src/interface/CmdPanel.cpp.o:
+	cd /home/hex/hex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o
+.PHONY : src/interface/CmdPanel.cpp.o
+
+src/interface/CmdPanel.i: src/interface/CmdPanel.cpp.i
+.PHONY : src/interface/CmdPanel.i
+
+# target to preprocess a source file
+src/interface/CmdPanel.cpp.i:
+	cd /home/hex/hex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.i
+.PHONY : src/interface/CmdPanel.cpp.i
+
+src/interface/CmdPanel.s: src/interface/CmdPanel.cpp.s
+.PHONY : src/interface/CmdPanel.s
+
+# target to generate assembly for a file
+src/interface/CmdPanel.cpp.s:
+	cd /home/hex/hex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/interface/CmdPanel.cpp.s
+.PHONY : src/interface/CmdPanel.cpp.s
+
 src/interface/IOROS.o: src/interface/IOROS.cpp.o
 .PHONY : src/interface/IOROS.o
 
@@ -2134,6 +2158,9 @@ help:
 	@echo "... src/control/robot_lift_dowm_relex.o"
 	@echo "... src/control/robot_lift_dowm_relex.i"
 	@echo "... src/control/robot_lift_dowm_relex.s"
+	@echo "... src/interface/CmdPanel.o"
+	@echo "... src/interface/CmdPanel.i"
+	@echo "... src/interface/CmdPanel.s"
 	@echo "... src/interface/IOROS.o"
 	@echo "... src/interface/IOROS.i"
 	@echo "... src/interface/IOROS.s"

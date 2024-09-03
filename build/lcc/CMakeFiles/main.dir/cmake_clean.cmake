@@ -71,6 +71,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/control/neural_bezier_curve.cpp.o.d"
   "CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o"
   "CMakeFiles/main.dir/src/control/robot_lift_dowm_relex.cpp.o.d"
+  "CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o"
+  "CMakeFiles/main.dir/src/interface/CmdPanel.cpp.o.d"
   "CMakeFiles/main.dir/src/interface/IOROS.cpp.o"
   "CMakeFiles/main.dir/src/interface/IOROS.cpp.o.d"
   "CMakeFiles/main.dir/src/interface/IOSDK.cpp.o"

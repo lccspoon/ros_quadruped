@@ -1,5 +1,6 @@
  #include "FSM/State_Position.h"
 #include <iomanip>
+#include "interface/KeyBoard.h"
 
 State_Position::State_Position(CtrlComponents *ctrlComp)
              :FSMState(ctrlComp, FSMStateName::POSITION, "position"), 
@@ -10,7 +11,8 @@ State_Position::State_Position(CtrlComponents *ctrlComp)
     _gait = new GaitGenerator(ctrlComp);
     _gait_P = new GaitGenerator_P(ctrlComp);
 
-    _gaitHeight = 0.08;
+    // _gaitHeight = 0.75;
+    _gaitHeight = 0.10;
     root_euler_d.setZero();
 
     _vxLim = _sixlegdogModel->getRobVelLimitX();
@@ -46,12 +48,15 @@ State_Position::~State_Position(){
 }
 
 void State_Position::enter(){
+
     // printf(" \n enter -> qp \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
     // _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0);
-    body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
-    _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    // body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    // _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0944;//lcc 20240604
+    body_h = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0;//lcc 20240604
+    _pcd(2) = -_sixlegdogModel->getFeetPosIdeal()(2, 0) + 0.0;//lcc 20240604
 
     // std::cout<<" _pcd :\n"<< _pcd.transpose() <<std::endl;
 
@@ -74,7 +79,8 @@ void State_Position::enter(){
 
     _initFeetPos = _sixlegdogModel->getFeet2BPositions(*_lowState, FrameType::HIP);//QP
 
-    _lowState->userValue.setZero();
+    // userValue_lcc.setZero();
+    USVLCC_SETZERO = true; 
 
     for(int i=0; i<NUM_DOF_W; i++){ //lcc 20240809
         _lowCmd->motorCmd[i].dq = 0;
@@ -111,11 +117,11 @@ void State_Position::run(){
     _B2G_RotMat = _lowState->getRotMat();//机身 到 世界 的变化矩阵
     _G2B_RotMat = _B2G_RotMat.transpose();//世界 到 机身 的变化矩阵
 
-    _posBody_estByVelBody = _posBody_estByVelBody + _velBody * _ctrlComp->dt;
+    // _posBody_estByVelBody = _posBody_estByVelBody + _velBody * _ctrlComp->dt;
 
     // std::cout<<"_posBody:  \n"<< _posBody.transpose() <<std::endl;
-    std::cout<< _posBody.transpose() <<" _posBody "<<std::endl;
-    std::cout<< _posBody_estByVelBody.transpose() <<" _posBody_estByVelBody "<<std::endl;
+    // std::cout<< _posBody.transpose() <<" _posBody "<<std::endl;
+    // std::cout<< _velBody.transpose() <<"_velBody:  \n"<<std::endl;
     // std::cout<<"_velBody:  \n"<< _velBody.transpose() <<std::endl;
     // std::cout<<"getFeet2BPositions:  \n"<<  _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ) <<std::endl;
     // std::cout<< _velBody.transpose() << (*_contact_hex).transpose()  << (*_phase_hex).transpose()<<std::endl;
@@ -159,12 +165,12 @@ void State_Position::run(){
 
     for(int i(0); i<6; ++i){
         if((*_contact_hex)(i) == 0){
-            _lowCmd->setLegGain(i, 100, 5);//swing
+            _lowCmd->setLegGain(i, 100, 1);//swing
         }else{
             if( i == 2 || i == 3)
-            _lowCmd->setLegGain(i, 400, 5);//stand,mid leg
+            _lowCmd->setLegGain(i, 400, 4);//stand,mid leg
             else
-            _lowCmd->setLegGain(i, 200, 5);//stand
+            _lowCmd->setLegGain(i, 200, 2);//stand
         }
     }
     
@@ -192,12 +198,12 @@ bool State_Position::checkStepOrNot(){
 
 void State_Position::getUserCmd(){
     /* Movement */
-    _vCmdBody(0) =  invNormalize(_lowState->userValue.ly, _vxLim(0), _vxLim(1));
-    _vCmdBody(1) = -invNormalize(_lowState->userValue.lx, _vyLim(0), _vyLim(1));
+    _vCmdBody(0) =  invNormalize(userValue_lcc.ly, _vxLim(0), _vxLim(1));
+    _vCmdBody(1) = -invNormalize(userValue_lcc.lx, _vyLim(0), _vyLim(1));
     _vCmdBody(2) = 0;
     
     /* Turning */
-    _dYawCmd = -invNormalize(_lowState->userValue.rx, _wyawLim(0), _wyawLim(1));
+    _dYawCmd = -invNormalize(userValue_lcc.rx, _wyawLim(0), _wyawLim(1));
     _dYawCmd = 0.9*_dYawCmdPast + (1-0.9) * _dYawCmd;
     _dYawCmdPast = _dYawCmd;
 }
@@ -280,8 +286,8 @@ void State_Position::calcP(){
     float row, pitch, yaw, height;
     Vec3 rpy;
     rpy = rotMatToRPY(_ctrlComp->lowState->getRotMat());
-    // adj_RPY_P << root_euler_d(0) - rpy(0), root_euler_d(1) - rpy(1), 0;
-    adj_RPY_P << root_euler_d(0) , root_euler_d(1) , 0;
+    adj_RPY_P << root_euler_d(0) - rpy(0), root_euler_d(1) - rpy(1), 0;
+    // adj_RPY_P << root_euler_d(0) , root_euler_d(1) , 0;
     // std::cout<<" adj_RPY_P: \n"<< adj_RPY_P.transpose() <<std::endl;
     adj_RPY_P = 0.0 * adj_RPY_P_past + (1 - 0.0) * adj_RPY_P;
     // std::cout<<" adj_RPY_P affter: \n"<< adj_RPY_P.transpose() <<std::endl;
@@ -289,7 +295,7 @@ void State_Position::calcP(){
     row = invNormalize(adj_RPY_P(0), _rowMin, _rowMax);
     pitch = invNormalize(adj_RPY_P(1), _pitchMin, _pitchMax);
     yaw = -invNormalize(adj_RPY_P(2), _yawMin, _yawMax);
-    // height = invNormalize(_lowState->userValue.ry, _heightMin, _heightMax) ;
+    // height = invNormalize(userValue_lcc.ry, _heightMin, _heightMax) ;
     height = 0;
     for(int i(0); i < 6; ++i){
         if((*_contact_hex)(i) == 1){  //stand

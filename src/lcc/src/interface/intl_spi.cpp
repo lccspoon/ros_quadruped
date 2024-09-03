@@ -1,5 +1,6 @@
 #include"interface/intl_spi.h"
 #include "zlib.h"
+#include "interface/KeyBoard.h"
 
 spi_sr::spi_sr(){
 	init_spi();
@@ -460,6 +461,7 @@ void spi_sr::datetofloat2(uint16_t *Rxdate)
         //S2+123=标号2
         //S2+789=标号1
 
+    MTX_SPIREC.lock();
     //lm leg_3
     motor_states[9].q = spi_pos0; 
     motor_states[9].dq = spi_vel0; 
@@ -513,7 +515,8 @@ void spi_sr::datetofloat2(uint16_t *Rxdate)
     //             <<" 7: "<<std::dec << numid6 <<" 8: "<<std::dec<< numid7<<" 9: "<<std::dec<<numid8
     //             <<std::endl;
 
-    // printf("\n");       
+    // printf("\n");     
+    MTX_SPIREC.unlock();
 }
 
 
@@ -754,6 +757,7 @@ void spi_sr::datetofloat(uint16_t *Rxdate)
          spi_toq8 = spiuint_to_float(Rxdate[37], -10.0f, 10.0f, 12);	        
     }
 
+    MTX_SPIREC.lock();
     //lb leg_5
     motor_states[15].q = spi_pos0; 
     motor_states[15].dq = spi_vel0; 
@@ -810,7 +814,8 @@ void spi_sr::datetofloat(uint16_t *Rxdate)
     //             <<" 7: "<<std::dec << nnumid6 <<" 8: "<<std::dec<< nnumid7<<" 9: "<<std::dec<<nnumid8
     //             <<std::endl;
 
-    // printf("\n");       
+    // printf("\n");  
+    MTX_SPIREC.unlock();
 }
 
 // void spi_sr::pos_loaddate(float  pos0,float   pos1,float   pos2,float  pos3,float   pos4,float   pos5,float   pos6,float   pos7,float   pos8)
@@ -822,6 +827,7 @@ void spi_sr::pos_loaddate()
     float spi_vel=0;
     uint16_t loadmag[46]={0};
 
+    MTX_SPICMD.lock();
     uint16_t spi_pos_tmp0=spifloat_to_uint(lb1.q,-12.5f,12.5f,16);
     uint16_t spi_pos_tmp1=spifloat_to_uint(lb2.q,-12.5f,12.5f,16);
     uint16_t spi_pos_tmp2=spifloat_to_uint(lb3.q,-12.5f,12.5f,16);
@@ -872,6 +878,7 @@ void spi_sr::pos_loaddate()
     uint16_t spi_tor_tmp7=spifloat_to_uint(rf2.tau,-10.0f,10.0f,12);
     uint16_t spi_tor_tmp8=spifloat_to_uint(rf3.tau,-10.0f,10.0f,12);
     loadmag[0] = 0x2255;
+    MTX_SPICMD.unlock();
 
             loadmag[1]=spi_pos_tmp0;
             loadmag[2]=spi_vel_tmp0;
@@ -952,7 +959,7 @@ void spi_sr::pos_loaddate2()
     float spi_trop=0;
     float spi_vel=0;
     uint16_t loadmag2[46]={0};
-
+    MTX_SPICMD.lock();
     uint16_t spi_pos_tmp0=spifloat_to_uint(lm1.q,-12.5f,12.5f,16);
     uint16_t spi_pos_tmp1=spifloat_to_uint(lm2.q,-12.5f,12.5f,16);
     uint16_t spi_pos_tmp2=spifloat_to_uint(lm3.q,-12.5f,12.5f,16);
@@ -1004,6 +1011,7 @@ void spi_sr::pos_loaddate2()
     uint16_t spi_tor_tmp8=spifloat_to_uint(lf3.tau,-10.0f,10.0f,12);
 
         loadmag2[0]=0x2244;
+    MTX_SPICMD.unlock();
 
             loadmag2[1] = spi_pos_tmp0;
             loadmag2[2] = spi_vel_tmp0;
@@ -1088,5 +1096,5 @@ void spi_sr::send_all_data(){
     pos_loaddate();
     usleep(500);
     pos_loaddate2();
-    // usleep(2000);
+    // usleep(500);
 }

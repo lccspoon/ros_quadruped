@@ -135,13 +135,13 @@ Vec36 HexapodRobot::getFeet2BVelocities(LowlevelState &state, FrameType frame){
     }
 
     if(frame == FrameType::GLOBAL){
-        #if USE_A_REAL_HEXAPOD == true
+        // #if USE_A_REAL_HEXAPOD == true
         return state.getRotMat() * feetVel;
-        #else
-        Vec36 feetPos = getFeet2BPositions(state, FrameType::BODY);
-        feetVel += skew(state.getGyro()) * feetPos;
-        return state.getRotMat() * feetVel;
-        #endif
+        // #else
+        // Vec36 feetPos = getFeet2BPositions(state, FrameType::BODY);
+        // feetVel += skew(state.getGyro()) * feetPos;
+        // return state.getRotMat() * feetVel;
+        // #endif
     }
     else if((frame == FrameType::BODY) || (frame == FrameType::HIP)){
         return feetVel;
@@ -167,21 +167,29 @@ SixLegDogRobot::SixLegDogRobot(){
     _Legs[5] = new SixLegDogLeg(5, Vec3(-0.155,  0.075, 0));//lb
     //lcc 实际上，这个理想位置就是：body系下 x和y值就是(足端+小腿+大腿)平面,即LX和LY+L1。z方向的值还不知道怎么确定
     //hip下的投影
+    // _feetPosNormalStand <<  0.155 + 0.076,  0.155 + 0.076, 0.0, 0.0, -0.155 - 0.076, -0.155 - 0.076, 
+    //                        -0.075 - 0.12,  0.075 + 0.12, -0.075 - 0.12,  0.075 + 0.12, -0.075 - 0.12,  0.075 + 0.12,
+    //                        -0.21, -0.21, -0.21, -0.21, -0.21, -0.21;
+
     _feetPosNormalStand <<  0.155 + 0.076,  0.155 + 0.076, 0.0, 0.0, -0.155 - 0.076, -0.155 - 0.076, 
-                           -0.075 - 0.12,  0.075 + 0.12, -0.075 - 0.12,  0.075 + 0.12, -0.075 - 0.12,  0.075 + 0.12,
-                           -0.20, -0.20, -0.20, -0.20, -0.20, -0.20;
+                           -0.075 - 0.13,  0.075 + 0.13, -0.075 - 0.13,  0.075 + 0.13, -0.075 - 0.13,  0.075 + 0.13,
+                           -0.24, -0.24, -0.24, -0.24, -0.24, -0.24;
+
+    // _feetPosNormalStand <<  0.155 + 0.076,  0.155 + 0.076, 0.0, 0.0, -0.155 - 0.076, -0.155 - 0.076, 
+    //                        -0.075 - 0.13,  0.075 + 0.13, -0.075 - 0.13,  0.075 + 0.13, -0.075 - 0.13,  0.075 + 0.13,
+    //                        -0.27, -0.27, -0.27, -0.27, -0.27, -0.27;
 
     _feetPosNormalSquat <<  0.155 + 0.076,  0.155 + 0.076, 0.0, 0.0, -0.155 - 0.076, -0.155 - 0.076, 
                            -0.075 - 0.34,  0.075 + 0.34, -0.075 - 0.34,  0.075 + 0.34, -0.075 - 0.34,  0.075 + 0.34,
                            -0.025, -0.025, -0.025, -0.025, -0.025, -0.025;
 
-    _robVelLimitX << -0.2, 0.2;
-    _robVelLimitY << -0.3, 0.3;
+    _robVelLimitX << -0.1, 0.1;
+    _robVelLimitY << -0.2, 0.2; // 力位混合，最快 vy=0.3m/s
     _robVelLimitYaw << -0.2, 0.2;
 
-    _mass =16.8;
+    _mass =15;
     // _mass =20;
-    _pcb << 0.0, 0.0, 0.0;
+    _pcb << 0.0, 0.0, 0.07;
 
     // ixx="0.026264"
     // ixy="0"
@@ -205,12 +213,16 @@ SixLegDogRobot::SixLegDogRobot(){
                            -0.0655 - 0.12,  0.0655 + 0.12, -0.0655 - 0.12,  0.0655 + 0.12, -0.0655 - 0.12,  0.0655 + 0.12,
                            -0.20, -0.20, -0.20, -0.20, -0.20, -0.20;
 
+    _feetPosNormalStand <<  0.14185 + 0.07725,  0.14185 + 0.07725, 0.0, 0.0, -0.14185 - 0.07725, -0.14185 - 0.07725, 
+                           -0.0655 - 0.12,  0.0655 + 0.12, -0.0655 - 0.12,  0.0655 + 0.12, -0.0655 - 0.12,  0.0655 + 0.12,
+                           -0.26, -0.26, -0.26, -0.26, -0.26, -0.26;
+
     _feetPosNormalSquat <<  0.14185 + 0.07725,  0.14185 + 0.07725, 0.0, 0.0, -0.14185 - 0.07725, -0.14185 - 0.07725, 
                            -0.0655 - 0.34,  0.0655 + 0.34, -0.0655 - 0.34,  0.0655 + 0.34, -0.0655 - 0.34,  0.0655 + 0.34,
                            -0.025, -0.025, -0.025, -0.025, -0.025, -0.025;
 
-    _robVelLimitX << -0.2, 0.2;
-    _robVelLimitY << -0.3, 0.3;
+    _robVelLimitX << -0.1, 0.1;
+    _robVelLimitY << -0.2, 0.2; // 力位混合，最快 vy=0.3m/s
     _robVelLimitYaw << -0.2, 0.2;
 
     // _mass =16;

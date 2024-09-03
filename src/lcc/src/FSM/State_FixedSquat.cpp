@@ -23,7 +23,6 @@ State_FixedSquat::State_FixedSquat(CtrlComponents *ctrlComp)
                 :FSMState(ctrlComp, FSMStateName::SQUAT, "fixed squat"){}
 
 void State_FixedSquat::enter(){
-
     // for(int i=0; i<NUM_LEG_W; i++){
     //     if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
     //         _lowCmd->setSimStanceGain(i);

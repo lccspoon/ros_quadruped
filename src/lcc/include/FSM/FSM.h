@@ -63,7 +63,7 @@ public:
     ~FSM();
     void initialize();
     void run();
-    void algorithm_run();
+    void fsm_run();
 private:
     FSMState* getNextState(FSMStateName stateName);
     bool checkSafty();

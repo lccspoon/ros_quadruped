@@ -5,6 +5,9 @@
 #include "interface/IOROS.h"
 #include "interface/imu.h"
 #include <thread>
+#include "interface/KeyBoard.h"
+#include "interface/CmdPanel.h"
+
 FSM::FSM(CtrlComponents *ctrlComp)
     :_ctrlComp(ctrlComp){
 
@@ -43,6 +46,7 @@ Vec36 init_motor_set_q;
 Vec36 dou_dong_angle;
 bool get_motor_response_flag = false;
 void FSM::run(){
+
     #if USE_A_REAL_HEXAPOD == true
         if( MOTOR_DISABEL_FLAG == true ){ // 'o'
             spi_2.exit_close_loop();
@@ -55,7 +59,7 @@ void FSM::run(){
             {
                 _ctrlComp->lowCmd->motorCmd[i].q = init_motor_set_q(i);
                 motor_set(i) = _ctrlComp->lowCmd->motorCmd[i].q;
-                _ctrlComp->lowCmd->setAllLegGain(30, 1);
+                _ctrlComp->lowCmd->setAllLegGain(100, 1);
             }
 
             if( _ctrlComp->lowCmd->motorCmd[0].q == 0.000 or _ctrlComp->lowCmd->motorCmd[1].q == 0.000 or _ctrlComp->lowCmd->motorCmd[2].q == 0.000 or
@@ -104,7 +108,7 @@ void FSM::run(){
 
         if( MOTOR_DATA_LOAD == true && MOTOR_ENTER_CLOSELOOP == true){ // ']'
             spi_2.send_all_data();
-            algorithm_run();
+            fsm_run();
         }
         else{
             // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
@@ -142,12 +146,17 @@ void FSM::run(){
         _waitCount++;
         _startTime = getSystemTime();
         _ctrlComp->sendRecv();
-        algorithm_run();
+        fsm_run();
         absoluteWait(_startTime, (long long)(_ctrlComp->dt * 1000000));
     #endif
 }
 
-void FSM::algorithm_run(){
+void FSM::fsm_run(){
+
+    if( USVLCC_SETZERO == true ){  
+        userValue_lcc.setZero();
+    }
+
     if( fsm_first_start == true ){
         #if USE_A_REAL_HEXAPOD == true
         printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n");
