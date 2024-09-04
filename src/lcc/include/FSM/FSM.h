@@ -19,6 +19,7 @@
 #include "FSM/State_PosReflex.h"
 #include "FSM/State_FixedSquat.h"
 #include "FSM/State_Force_Pos.h"
+#include "FSM/State_MPC_Force_Pos.h"
 
 struct FSMStateList{
     FSMState *invalid;
@@ -34,6 +35,7 @@ struct FSMStateList{
     State_PosReflex *posReflex;//lcc 20240627
     State_FixedSquat *fixedSquat;//lcc 20240808
     State_Force_Pos *force_pos;//lcc 20240827
+    State_MPC_Force_Pos *mpc_force_pos;//lcc 20240903
 #ifdef COMPILE_WITH_MOVE_BASE
     State_move_base *moveBase;
 #endif  // COMPILE_WITH_MOVE_BASE
@@ -48,6 +50,7 @@ struct FSMStateList{
         delete posReflex;// lcc 20240627
         delete qp;// lcc 20240523
         delete force_pos;// lcc 20240827
+        delete mpc_force_pos;// lcc 20240903
         delete balanceTest;
         delete swingTest;
         delete stepTest;
@@ -63,7 +66,7 @@ public:
     ~FSM();
     void initialize();
     void run();
-    void algorithm_run();
+    void fsm_run();
 private:
     FSMState* getNextState(FSMStateName stateName);
     bool checkSafty();

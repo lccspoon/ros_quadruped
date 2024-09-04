@@ -17,11 +17,11 @@ UserValue_lcc::~UserValue_lcc()
 }
 
 void UserValue_lcc::setZero(){
-    L2 = lt_l2.linearConvert(L2, 0, 100);
-    lx = lt_lx.linearConvert(lx, 0, 100);
-    ly = lt_ly.linearConvert(ly, 0, 100);
-    rx = lt_rx.linearConvert(rx, 0, 100);
-    ry = lt_ry.linearConvert(ry, 0, 100);
+    L2 = lt_l2.linearConvert(L2, 0, 200);
+    lx = lt_lx.linearConvert(lx, 0, 200);
+    ly = lt_ly.linearConvert(ly, 0, 200);
+    rx = lt_rx.linearConvert(rx, 0, 200);
+    ry = lt_ry.linearConvert(ry, 0, 200);
 
     // lx = lx -0.001;
     // printf(" lx:%f, ly:%f, rx:%f, ry:%f, L2:%f\n", lx,ly,rx,ry,L2);

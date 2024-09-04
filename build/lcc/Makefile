@@ -1077,6 +1077,30 @@ src/FSM/State_MPC.cpp.s:
 	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_MPC.cpp.s
 .PHONY : src/FSM/State_MPC.cpp.s
 
+src/FSM/State_MPC_Force_Pos.o: src/FSM/State_MPC_Force_Pos.cpp.o
+.PHONY : src/FSM/State_MPC_Force_Pos.o
+
+# target to build an object file
+src/FSM/State_MPC_Force_Pos.cpp.o:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_MPC_Force_Pos.cpp.o
+.PHONY : src/FSM/State_MPC_Force_Pos.cpp.o
+
+src/FSM/State_MPC_Force_Pos.i: src/FSM/State_MPC_Force_Pos.cpp.i
+.PHONY : src/FSM/State_MPC_Force_Pos.i
+
+# target to preprocess a source file
+src/FSM/State_MPC_Force_Pos.cpp.i:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_MPC_Force_Pos.cpp.i
+.PHONY : src/FSM/State_MPC_Force_Pos.cpp.i
+
+src/FSM/State_MPC_Force_Pos.s: src/FSM/State_MPC_Force_Pos.cpp.s
+.PHONY : src/FSM/State_MPC_Force_Pos.s
+
+# target to generate assembly for a file
+src/FSM/State_MPC_Force_Pos.cpp.s:
+	cd /home/lcc/cchex_ws/build && $(MAKE) $(MAKESILENT) -f lcc/CMakeFiles/main.dir/build.make lcc/CMakeFiles/main.dir/src/FSM/State_MPC_Force_Pos.cpp.s
+.PHONY : src/FSM/State_MPC_Force_Pos.cpp.s
+
 src/FSM/State_Passive.o: src/FSM/State_Passive.cpp.o
 .PHONY : src/FSM/State_Passive.o
 
@@ -2077,6 +2101,9 @@ help:
 	@echo "... src/FSM/State_MPC.o"
 	@echo "... src/FSM/State_MPC.i"
 	@echo "... src/FSM/State_MPC.s"
+	@echo "... src/FSM/State_MPC_Force_Pos.o"
+	@echo "... src/FSM/State_MPC_Force_Pos.i"
+	@echo "... src/FSM/State_MPC_Force_Pos.s"
 	@echo "... src/FSM/State_Passive.o"
 	@echo "... src/FSM/State_Passive.i"
 	@echo "... src/FSM/State_Passive.s"

@@ -5,6 +5,7 @@
 #include "common/mathTypes.h"
 #include "common/mathTools.h"
 #include "common/enumClass.h"
+#include "interface/KeyBoard.h"
 
 struct MotorCmd{
     unsigned int mode;

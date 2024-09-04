@@ -1,12 +1,12 @@
-#include "FSM/State_Force_Pos.h"
+#include "FSM/State_MPC_Force_Pos.h"
 #include "interface/KeyBoard.h"
 #include <iomanip>
 
-State_Force_Pos::State_Force_Pos(CtrlComponents *ctrlComp)
-             :FSMState(ctrlComp, FSMStateName::FORCE_POS, "force_pos"), 
+State_MPC_Force_Pos::State_MPC_Force_Pos(CtrlComponents *ctrlComp)
+             :FSMState(ctrlComp, FSMStateName::MPC_FORCE_POS, "mpc_force_pos"), 
               _est(ctrlComp->estimator), _phase(ctrlComp->phase), _Apla( ctrlComp->Apla),
               _contact(ctrlComp->contact), _robModel(ctrlComp->robotModel), _sixlegdogModel(ctrlComp->sixlegdogModel), 
-              _balCtrl(ctrlComp->balCtrl), _phase_hex(ctrlComp->phase_hex), _contact_hex(ctrlComp->contact_hex)
+              _balCtrl(ctrlComp->balCtrl), _phase_hex(ctrlComp->phase_hex), _contact_hex(ctrlComp->contact_hex), _convMpc(ctrlComp->convMpc)
               {
     _gait = new GaitGenerator(ctrlComp);
     _gait_P = new GaitGenerator_P(ctrlComp);
@@ -42,6 +42,10 @@ State_Force_Pos::State_Force_Pos(CtrlComponents *ctrlComp)
     // _KdSwing = Vec3(10, 10, 10).asDiagonal();
 // #endif
 
+    // _vxLim << -0.075, 0.075;
+    // _vyLim << -0.15, 0.15; 
+    // _wyawLim << -0.15, 0.15;
+
     _vxLim = _sixlegdogModel->getRobVelLimitX();
     _vyLim = _sixlegdogModel->getRobVelLimitY();
     _wyawLim = _sixlegdogModel->getRobVelLimitYaw();
@@ -65,14 +69,43 @@ State_Force_Pos::State_Force_Pos(CtrlComponents *ctrlComp)
     _posFeet2BGoal_P_Increment.setZero();
     terian_FootHold = new Vec1_6;
     (*terian_FootHold).setZero();
+
+    /* ------------MPC start-------------- */
+    //mpc init
+    q_weights.resize(MPC_STATE_DIM);
+    r_weights.resize(NUM_DOF);
+
+    // q_weights << 100.0, 100.0, 100.0,  //R P Y
+    //         30, 30, 100.0,     // X Y Z
+    //         70.0, 70.0, 70.0,    // WX WY WZ
+    //         20.0, 20.0, 20.0,  // VX VY vz
+    //         0.0;
+
+    q_weights << 80.0, 80.0, 2.0,  //R P Y
+            1, 30, 270.0,     // X Y Z
+            1.0, 1.0, 30.0,    // WX WY WZ
+            20.0, 30.0, 20.0,  // VX VY vz
+            0.0;
+
+    r_weights << 1e-5, 1e-5, 1e-6,
+            1e-5, 1e-5, 1e-6,
+            1e-5, 1e-5, 1e-6,
+            1e-5, 1e-5, 1e-6,
+            1e-5, 1e-5, 1e-6,
+            1e-5, 1e-5, 1e-6;
+    mpc_states.resize(MPC_STATE_DIM);
+    mpc_init_counter = 0;
+    /* ------------MPC end -------------- */
+
 }
 
-State_Force_Pos::~State_Force_Pos(){
+State_MPC_Force_Pos::~State_MPC_Force_Pos(){
     delete _gait;
     delete _gait_P;
 }
 
-void State_Force_Pos::enter(){
+
+void State_MPC_Force_Pos::enter(){
 
     // printf(" \n enter -> qp \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
@@ -113,14 +146,31 @@ void State_Force_Pos::enter(){
         _lowCmd->motorCmd[i].Kd = 2;
         _lowCmd->motorCmd[i].tau = 0;
     }
+
+    thread_stop = false;
+    pthread_t thread_id;  
+    // 注意：这里传递 this 指针给线程函数  
+    if (pthread_create(&thread_id, nullptr, threadWrapper, this) != 0) {  
+        std::cerr << "Failed to create thread" << std::endl;  
+    }  
 }
 
-void State_Force_Pos::exit(){
+// 类的成员函数，实际要在线程中运行的代码  
+void State_MPC_Force_Pos::threadFunction() {  
+    while (thread_stop == false) {  
+        calcGrf();
+        // std::cout << "1Thread is running..." << std::endl;  
+        // std::this_thread::sleep_for(std::chrono::seconds(1));  
+    }  
+}  
+
+void State_MPC_Force_Pos::exit(){
     _ctrlComp->ioInter->zeroCmdPanel();
     _ctrlComp->setAllSwing();
+    thread_stop = true;
 }
 
-FSMStateName State_Force_Pos::checkChange(){
+FSMStateName State_MPC_Force_Pos::checkChange(){
     if(_lowState->userCmd == UserCommand::PASSIVE_1){
         return FSMStateName::PASSIVE;
     }
@@ -128,12 +178,13 @@ FSMStateName State_Force_Pos::checkChange(){
         return FSMStateName::FIXEDSTAND;
     }
     else{
-        return FSMStateName::FORCE_POS;
+        return FSMStateName::MPC_FORCE_POS;
     }
 }
 
-void State_Force_Pos::run(){
+void State_MPC_Force_Pos::run(){
     // Rob State
+    // MTX_STATE.lock();
     _posBody = _est->getPosition();
     _velBody = _est->getVelocity();
     _yaw = _lowState->getYaw();
@@ -153,6 +204,7 @@ void State_Force_Pos::run(){
     // std::cout<<" _yaw :\n"<< _yaw <<std::endl;
     // std::cout<<" getAcc :\n"<< _lowState->getAcc().transpose() <<std::endl;
 
+    // MTX_STATE.unlock();
     #if TERRIANESTI_FOURLEG
         (*_contact_te)(0) = (*_contact_hex)(0); 
         (*_contact_te)(1) = (*_contact_hex)(1); 
@@ -196,6 +248,37 @@ void State_Force_Pos::run(){
     _torqueCtrl();// 位置控制 + 位置反馈 的力矩控制
     #endif
     
+    /*MPC*/
+    thread_stop = false;
+    if ( mpc_init_counter<PLAN_HORIZON *5){
+        mpc_init_counter++;
+    }
+    // calcGrf();// 计算MPC支反力
+    // MTX_GRF.lock();
+    if ( mpc_init_counter > PLAN_HORIZON + 1)  //
+    {
+        _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 2;
+        _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1;
+        _forceFeetBody.block< 3, 6>( 0, 0) = _forceFeetBody.block< 3, 6>( 0, 0) * 2;
+        foot_forces_grf.block< 1, 6>( 0, 0) = foot_forces_grf.block< 1, 6>( 0, 0) * 2;
+        foot_forces_grf.block< 2, 6>( 0, 0) = foot_forces_grf.block< 2, 6>( 0, 0) * 1;
+        foot_forces_grf.block< 3, 6>( 0, 0) = foot_forces_grf.block< 3, 6>( 0, 0) * 0.45;
+        _q = vec36ToVec18(_lowState->getQ_Hex());
+        // _tau = _sixlegdogModel->getTau(_q, _forceFeetBody * 0.6 + foot_forces_grf * 0.6 * 0.8); // qp + mpc
+        _tau = _sixlegdogModel->getTau(_q, _forceFeetBody * 0.5 + foot_forces_grf * 0.5); // qp + mpc
+    }
+    else
+    {
+        /*QP*/
+        _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 5;
+        _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1;
+        _q = vec36ToVec18(_lowState->getQ_Hex());
+        _tau = _sixlegdogModel->getTau(_q, _forceFeetBody * 1 + foot_forces_grf * 0); // qp + mpc
+        // _tau = _sixlegdogModel->getTau(_q, _forceFeetBody); // qp + mpc
+    }
+    // std::cout<<"foot_forces_grf\n"<<foot_forces_grf<<std::endl;
+    // MTX_GRF.unlock();
+
     if(checkStepOrNot()){
         _ctrlComp->setStartWave();
     }else{
@@ -207,9 +290,7 @@ void State_Force_Pos::run(){
     // tau_send = _tau * 1 + torque18 * 1;
     tau_send = (_tau * 0.5 + torque18 * 0.3) * 1;
     _lowCmd->setTau( tau_send ); //lcc 20240602
-
     // std::cout<<" _forceFeetBody: \n"<< _forceFeetBody <<std::endl;
-
     float kkk = 0.15;
     for(int i(0); i<6; ++i){
         if((*_contact_hex)(i) == 0){
@@ -221,7 +302,6 @@ void State_Force_Pos::run(){
             _lowCmd->setLegGain(i, 100 * kkk, 2 * kkk);//stand
         }
     }
-
     #else
     Vec18 tau_send;
     tau_send = _tau * 1 + torque18 * 1;
@@ -230,7 +310,7 @@ void State_Force_Pos::run(){
     #endif
 }
 
-bool State_Force_Pos::checkStepOrNot(){
+bool State_MPC_Force_Pos::checkStepOrNot(){
     if( (fabs(_vCmdBody(0)) > 0.01) ||
         (fabs(_vCmdBody(1)) > 0.01) ||
         (fabs(_posError(0)) > 0.04) ||
@@ -245,7 +325,7 @@ bool State_Force_Pos::checkStepOrNot(){
     }
 }
 
-void State_Force_Pos::getUserCmd(){
+void State_MPC_Force_Pos::getUserCmd(){
     /* Movement */
     _vCmdBody(0) =  invNormalize(userValue_lcc.ly, _vxLim(0), _vxLim(1));
     _vCmdBody(1) = -invNormalize(userValue_lcc.lx, _vyLim(0), _vyLim(1));
@@ -257,7 +337,7 @@ void State_Force_Pos::getUserCmd(){
     _dYawCmdPast = _dYawCmd;
 }
 
-void State_Force_Pos::calcCmd(){
+void State_MPC_Force_Pos::calcCmd(){
     /* Movement */
     _vCmdGlobal = _B2G_RotMat * _vCmdBody; //将机身速度映射到world系
 
@@ -301,7 +381,7 @@ void State_Force_Pos::calcCmd(){
     _wCmdGlobal(2) = _dYawCmd;
 }
 
-void State_Force_Pos::calcTau(){
+void State_MPC_Force_Pos::calcTau(){
     _posError = _pcd - _posBody;
     /*--------------lcc start 20240604----------------*/
     Vec6 leg_deep;
@@ -401,19 +481,19 @@ void State_Force_Pos::calcTau(){
 
     _forceFeetBody = _G2B_RotMat * _forceFeetGlobal;//将足端力从world系转换到body系
 
-    //lcc 20240617
-    #if USE_A_REAL_HEXAPOD == true
-    _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 1.5;
-    _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1.2;
-    #else
-    _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 5; //x方向的力
-    _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1; //y方向的力
-    #endif
-    _q = vec36ToVec18(_lowState->getQ_Hex());
-    _tau = _sixlegdogModel->getTau(_q, _forceFeetBody);
+    // //lcc 20240617
+    // #if USE_A_REAL_HEXAPOD == true
+    // _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 1.5;
+    // _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1.2;
+    // #else
+    // _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 5; //x方向的力
+    // _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1; //y方向的力
+    // #endif
+    // _q = vec36ToVec18(_lowState->getQ_Hex());
+    // _tau = _sixlegdogModel->getTau(_q, _forceFeetBody);
 }
 
-void State_Force_Pos::calcP(){
+void State_MPC_Force_Pos::calcP(){
     //lcc 20240624: 位置控制的摆动轨迹
     _gait_P->setGait(_vCmdBody.segment(0,2), _wCmdGlobal(2), _gaitHeight);
     // _gait_P->run(_posSwingLeg_P, _velSwingLeg_P);
@@ -466,7 +546,7 @@ void State_Force_Pos::calcP(){
     _ctrlComp->lowCmd->setQ( _ctrlComp->sixlegdogModel->getQ( _posFeet2BGoal_P, FrameType::BODY) );
 }
 
-Vec36 State_Force_Pos::_calcOP(float row, float pitch, float yaw, float height){
+Vec36 State_MPC_Force_Pos::_calcOP(float row, float pitch, float yaw, float height){
     Vec3 vecXO = -_initVecOX;
     vecXO(2) += height;
     RotMat rotM = rpyToRotMat(row, pitch, yaw);
@@ -481,7 +561,7 @@ Vec36 State_Force_Pos::_calcOP(float row, float pitch, float yaw, float height){
     return vecOP;
 }
 
-void State_Force_Pos::_torqueCtrl(){
+void State_MPC_Force_Pos::_torqueCtrl(){
     #if USE_A_REAL_HEXAPOD == true
         // _Kp = Vec3(500, 500, 500).asDiagonal();
         // _Kd = Vec3( 15,  15, 15).asDiagonal() ;
@@ -567,7 +647,118 @@ void State_Force_Pos::_torqueCtrl(){
     torque18 = (torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 1.5) *1; //力矩控制
     #else
     // torque18 = (torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5) * 0.1; //力位混合
-    torque18 = (torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5) * 0.1; //力位混合
-    // torque18 = torque18_o1 * 0.0 + torque18_o2 * 0.0 + torque18_o3 * 1; //位置控制
+    // torque18 = (torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5) * 0.1; //力位混合
+    torque18 = torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 0; //位置控制
     #endif
+}
+
+
+void State_MPC_Force_Pos::calcGrf(){
+
+    ConvexMpc mpc_solver = ConvexMpc( q_weights, r_weights);
+    mpc_solver.reset();
+
+    Vec3 root_euler, root_ang_vel;
+    root_euler = rotMatToRPY( _B2G_RotMat );
+    root_ang_vel = _lowState->getGyroGlobal();
+    mpc_states <<   root_euler(0), root_euler(1), root_euler(2), 
+                    // _posBody(0), _posBody(1), _posBody(2), 
+                    _posBody(0), _posBody(1), body_h, //lcc 20240604
+                    root_ang_vel(0), root_ang_vel(1), root_ang_vel(2), 
+                    _velBody(0), _velBody(1), _velBody(2), 
+                    -9.8;
+    // double mpc_dt = 0.002;
+    double mpc_dt = _ctrlComp->dt;
+    // std::cout<<" body_h :"<< body_h <<std::endl;
+    // std::cout<<" _pcd(2) :"<< _pcd(2) <<std::endl;
+
+     _yawCmd = _yawCmd + _dYawCmd * _ctrlComp->dt;
+
+    Vec3 root_lin_vel_d_world;
+    root_lin_vel_d_world = _B2G_RotMat * _vCmdBody;
+    for (int i = 0; i < PLAN_HORIZON; ++i) {
+        mpc_states_d.segment(i * MPC_STATE_DIM, MPC_STATE_DIM) <<
+                root_euler_d(0),
+                root_euler_d(1),
+                root_euler(2) + _dYawCmd * mpc_dt * (i + 1),
+                _posBody(0) +  root_lin_vel_d_world(0) * mpc_dt * (i + 1),
+                _posBody(1) +  root_lin_vel_d_world(1) * mpc_dt * (i + 1),
+                _pcd(2),
+                _wCmdGlobal(0),
+                _wCmdGlobal(1),
+                _wCmdGlobal(2),
+                _vCmdGlobal(0),
+                _vCmdGlobal(1),
+                0,
+                -9.8;
+    }
+
+    auto t1 = std::chrono::high_resolution_clock::now();
+    mpc_solver.calculate_A_mat_c(root_euler);
+
+    auto t2 = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < PLAN_HORIZON; i++) {
+        mpc_solver.calculate_B_mat_c(   _sixlegdogModel->getRobMass(),
+                                        _sixlegdogModel->getRobInertial(),
+                                        _B2G_RotMat,
+                                        _posFeet2BGlobal);
+        mpc_solver.state_space_discretization(mpc_dt);
+        mpc_solver.B_mat_d_list.block<MPC_STATE_DIM, NUM_DOF>(i * MPC_STATE_DIM, 0) = mpc_solver.B_mat_d;
+    }
+
+    // calculate QP matrices
+    auto t3 = std::chrono::high_resolution_clock::now();
+    bool contacts[NUM_LEG];
+    VecInt6 contact_;
+    contact_ = *_contact_hex;
+    for (int i = 0; i < NUM_LEG; i++){
+        if( contact_(i) == 1 )
+            contacts[i] = 1;
+        else
+            contacts[i] = 0;
+    }
+    mpc_solver.calculate_qp_mats( mpc_states, mpc_states_d, contacts);
+
+    // solve
+    auto t4 = std::chrono::high_resolution_clock::now();
+    if (!solver.isInitialized()) {
+        solver.settings()->setVerbosity(false);
+        solver.settings()->setWarmStart(true);
+        solver.data()->setNumberOfVariables(NUM_DOF * PLAN_HORIZON);
+        solver.data()->setNumberOfConstraints(MPC_CONSTRAINT_DIM * PLAN_HORIZON);
+        solver.data()->setLinearConstraintsMatrix(mpc_solver.linear_constraints);
+        solver.data()->setHessianMatrix(mpc_solver.hessian);
+        solver.data()->setGradient(mpc_solver.gradient);
+        solver.data()->setLowerBound(mpc_solver.lb);
+        solver.data()->setUpperBound(mpc_solver.ub);
+        solver.initSolver();
+    } else {
+        solver.updateHessianMatrix(mpc_solver.hessian);
+        solver.updateGradient(mpc_solver.gradient);
+        solver.updateLowerBound(mpc_solver.lb);
+        solver.updateUpperBound(mpc_solver.ub);
+    }
+    auto t5 = std::chrono::high_resolution_clock::now();
+    solver.solve();
+    auto t6 = std::chrono::high_resolution_clock::now();
+
+    // std::chrono::duration<double, std::milli> ms_double_1 = t2 - t1;
+    // std::chrono::duration<double, std::milli> ms_double_2 = t3 - t2;
+    // std::chrono::duration<double, std::milli> ms_double_3 = t4 - t3;
+    // std::chrono::duration<double, std::milli> ms_double_4 = t5 - t4;
+    // std::chrono::duration<double, std::milli> ms_double_5 = t6 - t5;
+    // double total_time_ms = ms_double_1.count() + ms_double_2.count() + ms_double_3.count() + ms_double_4.count() + ms_double_5.count();
+    // std::cout << "mpc cal A_mat_c: " << ms_double_1.count() << "ms" << std::endl;
+    // std::cout << "mpc cal B_mat_d_list: " << ms_double_2.count() << "ms" << std::endl;
+    // std::cout << "mpc cal qp mats: " << ms_double_3.count() << "ms" << std::endl;
+    // std::cout << "mpc init time: " << ms_double_4.count() << "ms" << std::endl;
+    // std::cout << "mpc solve time: " << ms_double_5.count() << "ms" << std::endl << std::endl;
+    // std::cout << " calcGrf total time: " << total_time_ms << "ms" << std::endl;
+
+    Eigen::VectorXd solution = solver.getSolution();
+
+    for (int i = 0; i < NUM_LEG; ++i) {
+        // if (!isnan(solution.segment<3>(i * 3).norm()))
+            foot_forces_grf.block<3, 1>(0, i) = - _G2B_RotMat * solution.segment<3>(i * 3);
+    }
 }

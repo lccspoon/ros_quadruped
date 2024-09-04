@@ -14,6 +14,7 @@ State_FreeStand::State_FreeStand(CtrlComponents *ctrlComp)
 }
 
 void State_FreeStand::enter(){
+
     // for(int i=0; i<6; i++){
     //     if(_ctrlComp->ctrlPlatform == CtrlPlatform::GAZEBO){
     //         _lowCmd->setSimStanceGain(i);
@@ -53,7 +54,7 @@ void State_FreeStand::run(){
     // vel36 = _ctrlComp->sixlegdogModel->getFeet2BVelocities(*_lowState,FrameType::BODY );
     // std::cout<<" vel36 \n"<< vel36 <<std::endl;
 
-    std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
+    // std::cout<<"rotMatToRPY:"<< rotMatToRPY(_ctrlComp->lowState->getRotMat()).transpose()*180/3.1415926 <<std::endl;
 }
 
 void State_FreeStand::exit(){

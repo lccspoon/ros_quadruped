@@ -22,8 +22,8 @@
 // #define LEG_DOF 3
 // #define NUM_DOF 12
 
-// #define TERRIANESTI_FOURLEG true
-#define TERRIANESTI_FOURLEG false
+#define TERRIANESTI_FOURLEG true
+// #define TERRIANESTI_FOURLEG false
 
 // #define PCONTROL_REFLEX_LIFE_DOWM true
 #define PCONTROL_REFLEX_LIFE_DOWM false
@@ -61,7 +61,8 @@ enum class UserCommand{
     A1MPC_6,        //lcc 20240416
     POSREFLEX_7,        //lcc 20240627
     SQUAT_C,        //lcc 20240808
-    FORCE_POS_8        //lcc 20240827, 力位混合
+    FORCE_POS_8,        //lcc 20240827, 力位混合
+    MPC_FORCE_POS_0        //lcc 20240903, MPC+力位混合
 };
 
 enum class FrameType{
@@ -97,9 +98,10 @@ enum class FSMStateName{
     STEPTEST,
     A1MPC,  // lcc 20240416
     QP,  // lcc 20240523
-    POSREFLEX,        //lcc 20240627
+    POSREFLEX,        //lcc 20240627 
     SQUAT,       //lcc 20240808
-    FORCE_POS        //lcc 20240827, 力位混合
+    FORCE_POS,        //lcc 20240827, 力位混合
+    MPC_FORCE_POS    //lcc 20240903, MPC+力位混合
 };
 
 #endif  // ENUMCLASS_H

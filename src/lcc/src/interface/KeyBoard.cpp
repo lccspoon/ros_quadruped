@@ -5,6 +5,15 @@
 
 bool KEY_M = false;
 bool USVLCC_SETZERO = false;
+bool FORCE_PROTECT_CHANGE = false;
+
+std::mutex MTX_MOTORCMD;
+std::mutex MTX_MOTORSTATES;
+std::mutex MTX_IMU;
+
+std::mutex MTX_SPICMD;
+std::mutex MTX_SPIREC;
+
 
 KeyBoard::KeyBoard(){
     userCmd = UserCommand::NONE;
@@ -16,7 +25,7 @@ KeyBoard::KeyBoard(){
     tcsetattr( fileno( stdin ), TCSANOW, &_newSettings );
 
     pthread_create(&_tid, NULL, runKeyBoard, (void*)this);
-    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n");
+    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n; 0->MPC_FOREC_POS0 ( ----******---- )\n");
     printf(" TERRIANESTI_FOURLEG: %d \n",TERRIANESTI_FOURLEG);
 }
 
@@ -32,32 +41,41 @@ UserCommand KeyBoard::checkCmd(){
     case '1':
         return UserCommand::PASSIVE_1;
     case 'c':
+        FORCE_PROTECT_CHANGE = false;
         return UserCommand::SQUAT_C;
     case '2':
+        FORCE_PROTECT_CHANGE = false;
         return UserCommand::FIXEDSTAND_2;
     case '3':
+        FORCE_PROTECT_CHANGE = false;
         return UserCommand::FREESTAND_3;
     case '4':
         // printf(" \n keyboard->QP_4  \n ");
         return UserCommand::QP_4;
     case '5':
+        FORCE_PROTECT_CHANGE = false;
         return UserCommand::POSITION_5;
 
-#ifdef COMPILE_WITH_MOVE_BASE
-    case '5':
-        return UserCommand::L2_Y;
-#endif  // COMPILE_WITH_MOVE_BASE
-    // case '6':
-    //     return UserCommand::A1MPC_6;
+    #ifdef COMPILE_WITH_MOVE_BASE
+        case '5':
+            return UserCommand::L2_Y;
+    #endif  // COMPILE_WITH_MOVE_BASE
+
+    case '6':
+        return UserCommand::A1MPC_6;
     // case '7':
     //     return UserCommand::POSREFLEX_7;
     // case '0':
     //     return UserCommand::BALANCE_TEST0;
+    case '0':
+        return UserCommand::MPC_FORCE_POS_0;
     case '9':
         return UserCommand::SWING_TEST9;
     // case '8':
     //     return UserCommand::SETP_TEST8;
     case '8':
+        FORCE_PROTECT_CHANGE = true;
+        // printf(" FORCE_PROTECT_CHANGE:%d\n",FORCE_PROTECT_CHANGE);
         return UserCommand::FORCE_POS_8;
     case ' ':
         {   
@@ -168,7 +186,7 @@ void KeyBoard::changeFunctionModeValue(){
         case ']':case '}':{ //进入程序算法，点击获得程序的控制数据
                 MOTOR_DATA_LOAD = true;
                 MOTOR_READY_FLAG = false;
-                printf(" \n  ----------------- algorithm_run -------------------- \n ");
+                printf(" \n  ----------------- fsm_run -------------------- \n ");
             }
             break;
         case '-':case '_':{ //退出闭环

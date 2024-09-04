@@ -368,7 +368,24 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/common/enumClass.h \
- /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /usr/include/c++/9/math.h /usr/include/eigen3/Eigen/Dense \
  /usr/include/eigen3/Eigen/Core \
@@ -376,16 +393,29 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
  /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
  /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
+ /usr/include/c++/9/mutex /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/thread \
+ /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_uninitialized.h \
+ /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/9/ext/concurrence.h \
+ /usr/include/c++/9/bits/unique_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr_base.h \
+ /usr/include/c++/9/bits/allocated_ptr.h \
+ /usr/include/c++/9/ext/aligned_buffer.h \
+ /usr/include/c++/9/bits/shared_ptr_atomic.h \
+ /usr/include/c++/9/bits/atomic_base.h \
+ /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/9/backward/auto_ptr.h \
+ /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/IOInterface.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
  /home/lcc/cchex_ws/src/lcc/include/common/hexpodRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/Gait/WaveGenerator.h \
  /home/lcc/cchex_ws/src/lcc/include/common/timeMarker.h \
- /usr/include/x86_64-linux-gnu/sys/time.h \
  /home/lcc/cchex_ws/src/lcc/include/control/Estimator.h \
- /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_uninitialized.h \
- /usr/include/c++/9/bits/stl_vector.h \
+ /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_vector.h \
  /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
  /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
  /home/lcc/cchex_ws/src/lcc/include/control/BalanceCtrl.h \
@@ -403,7 +433,6 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /usr/local/include/OsqpEigen/SparseMatrixHelper.hpp \
  /usr/include/eigen3/Eigen/Sparse /usr/include/eigen3/Eigen/SparseCore \
  /usr/include/c++/9/map /usr/include/c++/9/bits/stl_tree.h \
- /usr/include/c++/9/ext/aligned_buffer.h \
  /usr/include/c++/9/bits/stl_map.h /usr/include/c++/9/bits/stl_multimap.h \
  /usr/include/c++/9/bits/erase_if.h \
  /usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h \
@@ -480,21 +509,12 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
  /usr/include/c++/9/list /usr/include/c++/9/bits/stl_list.h \
- /usr/include/c++/9/bits/allocated_ptr.h /usr/include/c++/9/bits/list.tcc \
+ /usr/include/c++/9/bits/list.tcc \
  /usr/local/include/OsqpEigen/SparseMatrixHelper.tpp \
  /usr/local/include/OsqpEigen/Debug.hpp \
  /usr/local/include/OsqpEigen/Data.tpp \
  /usr/local/include/OsqpEigen/Settings.hpp \
- /usr/local/include/OsqpEigen/Solver.hpp /usr/include/c++/9/memory \
- /usr/include/c++/9/bits/stl_raw_storage_iter.h \
- /usr/include/c++/9/ext/concurrence.h \
- /usr/include/c++/9/bits/unique_ptr.h \
- /usr/include/c++/9/bits/shared_ptr.h \
- /usr/include/c++/9/bits/shared_ptr_base.h \
- /usr/include/c++/9/bits/shared_ptr_atomic.h \
- /usr/include/c++/9/bits/atomic_base.h \
- /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h \
+ /usr/local/include/OsqpEigen/Solver.hpp \
  /usr/local/include/OsqpEigen/Solver.tpp \
  /usr/local/include/OsqpEigen/Debug.hpp \
  /usr/include/eigen3/Eigen/Eigenvalues \
@@ -534,11 +554,11 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/control/robot_lift_dowm_relex.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_FixedSquat.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_Force_Pos.h \
+ /home/lcc/cchex_ws/src/lcc/include/FSM/State_MPC_Force_Pos.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/IOSDK.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/intl_spi.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
  /usr/include/x86_64-linux-gnu/bits/socket.h \
  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
@@ -556,16 +576,12 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/socket2.h \
  /usr/include/x86_64-linux-gnu/bits/in.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h \
  /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
  /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
  /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
  /usr/include/linux/spi/spidev.h /usr/include/linux/ioctl.h \
  /usr/include/x86_64-linux-gnu/asm/ioctl.h \
  /usr/include/asm-generic/ioctl.h \
@@ -574,7 +590,6 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /usr/include/x86_64-linux-gnu/asm/ioctls.h \
  /usr/include/asm-generic/ioctls.h \
  /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
- /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/IOROS.h \
  /opt/ros/noetic/include/ros/ros.h /opt/ros/noetic/include/ros/time.h \
  /opt/ros/noetic/include/ros/platform.h \
@@ -1109,8 +1124,6 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /usr/include/boost/system/detail/generic_category.hpp \
  /usr/include/boost/system/detail/system_category_posix.hpp \
  /usr/include/boost/system/detail/std_interoperability.hpp \
- /usr/include/c++/9/mutex /usr/include/c++/9/bits/std_mutex.h \
- /usr/include/c++/9/bits/unique_lock.h \
  /usr/include/boost/config/abi_prefix.hpp \
  /usr/include/boost/config/abi_suffix.hpp \
  /usr/include/boost/thread/lock_types.hpp \
@@ -1496,17 +1509,5 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /opt/ros/noetic/include/geometry_msgs/Wrench.h \
  /opt/ros/noetic/include/geometry_msgs/PointStamped.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/imu.h \
- /usr/include/termios.h /usr/include/x86_64-linux-gnu/bits/termios.h \
- /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
- /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/serial_port.h \
- /home/lcc/cchex_ws/src/lcc/include/interface/hipnuc.h \
- /usr/include/c++/9/thread \
- /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h
+ /home/lcc/cchex_ws/src/lcc/include/interface/hipnuc.h

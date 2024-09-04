@@ -14,6 +14,19 @@
 
 extern bool KEY_M;
 extern bool USVLCC_SETZERO;
+extern bool FORCE_PROTECT_CHANGE;
+
+#include <mutex>
+#include <thread>
+
+extern std::mutex MTX_IMU;
+extern std::mutex MTX_MOTORCMD;
+extern std::mutex MTX_MOTORCMD_2;
+extern std::mutex MTX_MOTORSTATES;
+
+extern std::mutex MTX_SPICMD;
+extern std::mutex MTX_SPIREC;
+
 
 class KeyBoard : public CmdPanel{
 public:

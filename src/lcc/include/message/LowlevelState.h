@@ -7,6 +7,7 @@
 #include "common/mathTools.h"
 #include "interface/CmdPanel.h"
 #include "common/enumClass.h"
+#include "interface/KeyBoard.h"
 
 struct MotorState
 {

@@ -1284,11 +1284,29 @@ lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/common/enumClass.h \
- /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
+ /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/CmdPanel.h \
  /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /home/lcc/cchex_ws/src/lcc/include/message/unitree_joystick.h \
  /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
+ /usr/include/c++/9/thread \
+ /home/lcc/cchex_ws/src/lcc/include/message/LowlevelState.h \
  /opt/ros/noetic/include/std_msgs/Float64.h \
  /opt/ros/noetic/include/ros/message_operations.h \
  /opt/ros/noetic/include/sensor_msgs/Joy.h \
@@ -1314,23 +1332,6 @@ lcc/CMakeFiles/main.dir/src/interface/IOROS.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeRobot.h \
  /home/lcc/cchex_ws/src/lcc/include/common/unitreeLeg.h \
  /home/lcc/cchex_ws/src/lcc/include/common/protection.h \
- /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
- /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/termios.h \
- /usr/include/x86_64-linux-gnu/bits/termios.h \
- /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
- /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
- /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
  /usr/include/c++/9/csignal /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \

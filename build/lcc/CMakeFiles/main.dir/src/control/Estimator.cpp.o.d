@@ -371,10 +371,7 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/control/neural_bezier_curve.h \
  /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
  /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
- /home/lcc/cchex_ws/src/lcc/include/common/hexpodRobot.h \
- /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
- /home/lcc/cchex_ws/src/lcc/include/Gait/WaveGenerator.h \
- /home/lcc/cchex_ws/src/lcc/include/common/timeMarker.h \
+ /home/lcc/cchex_ws/src/lcc/include/interface/KeyBoard.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -382,7 +379,40 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h /usr/include/c++/9/mutex \
+ /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/thread \
+ /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/9/ext/concurrence.h \
+ /usr/include/c++/9/bits/unique_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr_base.h \
+ /usr/include/c++/9/bits/allocated_ptr.h \
+ /usr/include/c++/9/ext/aligned_buffer.h \
+ /usr/include/c++/9/bits/shared_ptr_atomic.h \
+ /usr/include/c++/9/bits/atomic_base.h \
+ /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/9/backward/auto_ptr.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/hexpodRobot.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
+ /home/lcc/cchex_ws/src/lcc/include/Gait/WaveGenerator.h \
+ /home/lcc/cchex_ws/src/lcc/include/common/timeMarker.h \
  /home/lcc/cchex_ws/src/lcc/include/interface/IOROS.h \
  /opt/ros/noetic/include/ros/ros.h /opt/ros/noetic/include/ros/time.h \
  /opt/ros/noetic/include/ros/platform.h \
@@ -422,7 +452,6 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /usr/include/libintl.h /usr/include/c++/9/bits/codecvt.h \
  /usr/include/c++/9/bits/locale_facets_nonio.tcc \
  /usr/include/c++/9/bits/locale_conv.h \
- /usr/include/c++/9/bits/unique_ptr.h \
  /usr/include/boost/config/no_tr1/complex.hpp \
  /usr/include/boost/math/policies/policy.hpp \
  /usr/include/boost/mpl/list.hpp /usr/include/boost/mpl/limits/list.hpp \
@@ -755,7 +784,6 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /opt/ros/noetic/include/ros/rate.h /opt/ros/noetic/include/ros/console.h \
  /opt/ros/noetic/include/ros/console_backend.h /usr/include/c++/9/cstdarg \
  /usr/include/c++/9/map /usr/include/c++/9/bits/stl_tree.h \
- /usr/include/c++/9/ext/aligned_buffer.h \
  /usr/include/c++/9/bits/stl_map.h /usr/include/c++/9/bits/stl_multimap.h \
  /usr/include/c++/9/bits/erase_if.h /usr/include/log4cxx/level.h \
  /usr/include/log4cxx/logstring.h /usr/include/log4cxx/log4cxx.h \
@@ -772,18 +800,9 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /opt/ros/noetic/include/ros/forwards.h /usr/include/c++/9/set \
  /usr/include/c++/9/bits/stl_set.h /usr/include/c++/9/bits/stl_multiset.h \
  /usr/include/c++/9/list /usr/include/c++/9/bits/stl_list.h \
- /usr/include/c++/9/bits/allocated_ptr.h /usr/include/c++/9/bits/list.tcc \
- /usr/include/boost/shared_ptr.hpp \
+ /usr/include/c++/9/bits/list.tcc /usr/include/boost/shared_ptr.hpp \
  /usr/include/boost/smart_ptr/shared_ptr.hpp \
- /usr/include/boost/config/no_tr1/memory.hpp /usr/include/c++/9/memory \
- /usr/include/c++/9/bits/stl_raw_storage_iter.h \
- /usr/include/c++/9/ext/concurrence.h \
- /usr/include/c++/9/bits/shared_ptr.h \
- /usr/include/c++/9/bits/shared_ptr_base.h \
- /usr/include/c++/9/bits/shared_ptr_atomic.h \
- /usr/include/c++/9/bits/atomic_base.h \
- /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h \
+ /usr/include/boost/config/no_tr1/memory.hpp \
  /usr/include/boost/checked_delete.hpp \
  /usr/include/boost/core/checked_delete.hpp \
  /usr/include/boost/smart_ptr/detail/shared_count.hpp \
@@ -933,8 +952,6 @@ lcc/CMakeFiles/main.dir/src/control/Estimator.cpp.o: \
  /usr/include/boost/system/detail/generic_category.hpp \
  /usr/include/boost/system/detail/system_category_posix.hpp \
  /usr/include/boost/system/detail/std_interoperability.hpp \
- /usr/include/c++/9/mutex /usr/include/c++/9/bits/std_mutex.h \
- /usr/include/c++/9/bits/unique_lock.h \
  /usr/include/boost/config/abi_prefix.hpp \
  /usr/include/boost/config/abi_suffix.hpp \
  /usr/include/boost/thread/lock_types.hpp \

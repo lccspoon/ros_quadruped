@@ -147,6 +147,9 @@ FSMStateName State_FixedStand::checkChange(){
     else if(_lowState->userCmd == UserCommand::FORCE_POS_8){  //lcc 20240827
         return FSMStateName::FORCE_POS;
     }
+    else if(_lowState->userCmd == UserCommand::MPC_FORCE_POS_0){  //lcc 20240903
+        return FSMStateName::MPC_FORCE_POS;
+    }
 #ifdef COMPILE_WITH_MOVE_BASE
     else if(_lowState->userCmd == UserCommand::L2_Y){
         return FSMStateName::MOVE_BASE;

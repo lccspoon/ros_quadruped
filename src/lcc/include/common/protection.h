@@ -55,7 +55,7 @@ class DataUnusualProtect
                         if(pos_erro_printf_flag[i]==0)
                         {
                             // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
+                            printf("velLimAndDifFroDesPosAndActPos leg_number:%d \n",leg_number);
                             printf(" diff_val_flag[%d]:%d  des_pos[%d]:%f   act_pos[%d]:%f   diff:%f   tolerate_v:%f   \n",
                                     i, diff_val_flag, i, des_pos[i]*_RAD2,i, act_pos[i]*_RAD2, 
                                     fabs( des_pos[i]-act_pos[i] )*_RAD2, tolerate_differ_v*_RAD2);       
@@ -68,7 +68,7 @@ class DataUnusualProtect
                         if(vel_erro_printf_flag[i]==0)
                         {
                             // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
+                            printf("velLimAndDifFroDesPosAndActPos leg_number:%d \n",leg_number);
                             printf("vel_lim_flag[%d]:%d  act_vel[%d]:%f  vel_limit_v:%f\n",
                                 i,vel_lim_flag,i,act_vel[i],vel_limit_v); 
                             vel_erro_printf_flag[i]=1;                 
@@ -85,8 +85,8 @@ class DataUnusualProtect
                     {
                         diff_val_flag=false;
                         // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
-                        printf("diff_val_flag[%d]:%d  des_pos[%d]:%f   act_pos[%d]:%f   diff:%f   tolerate_v:%f   \n",
+                            printf("velLimAndDifFroDesPosAndActPos leg_number:%d \n",leg_number);
+                        printf(" diff_val_flag[%d]:%d  des_pos[%d]:%f   act_pos[%d]:%f   diff:%f   tolerate_v:%f   \n",
                                 i, diff_val_flag, i, des_pos[i]*_RAD2,i, act_pos[i]*_RAD2, 
                                 fabs( des_pos[i]-act_pos[i] )*_RAD2, tolerate_differ_v*_RAD2);
                     }
@@ -94,8 +94,8 @@ class DataUnusualProtect
                     if(   fabs(act_vel[i])>=vel_limit_v)
                     {
                         // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
-                        printf("vel_lim_flag[%d]:%d  act_vel[%d]:%f  vel_limit_v:%f\n",
+                            printf("velLimAndDifFroDesPosAndActPos leg_number:%d \n",leg_number);
+                        printf(" vel_lim_flag[%d]:%d  act_vel[%d]:%f  vel_limit_v:%f\n",
                                 i,vel_lim_flag,i,act_vel[i],vel_limit_v);
                         vel_lim_flag=false;
                     }
@@ -111,7 +111,7 @@ class DataUnusualProtect
                         diff_val_flag=false;
                         // std::cout<<*leg_name<<std::endl;
                             printf("leg_number:%d \n",leg_number);
-                        printf("diff_val_flag[%d]:%d  des_pos[%d]:%f   act_pos[%d]:%f   diff:%f   tolerate_v:%f   \n",
+                        printf("velLimAndDifFroDesPosAndActPos diff_val_flag[%d]:%d  des_pos[%d]:%f   act_pos[%d]:%f   diff:%f   tolerate_v:%f   \n",
                                 i, diff_val_flag, i, des_pos[i]*_RAD2,i, act_pos[i]*_RAD2, 
                                 fabs( des_pos[i]-act_pos[i] )*_RAD2, tolerate_differ_v*_RAD2);
                     }
@@ -119,7 +119,7 @@ class DataUnusualProtect
                     if(   fabs(act_vel[i])>=vel_limit_v)
                     {
                         // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
+                            printf("velLimAndDifFroDesPosAndActPos leg_number:%d \n",leg_number);
                         printf("vel_lim_flag[%d]:%d  act_vel[%d]:%f  vel_limit_v:%f\n",
                                 i,vel_lim_flag,i,act_vel[i],vel_limit_v);
                         vel_lim_flag=false;
@@ -135,7 +135,7 @@ class DataUnusualProtect
                     {
                         diff_val_flag=false;
                         // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
+                            printf("velLimAndDifFroDesPosAndActPos leg_number:%d \n",leg_number);
                         printf("diff_val_flag[%d]:%d  des_pos[%d]:%f   act_pos[%d]:%f   diff:%f   tolerate_v:%f   \n",
                                 i, diff_val_flag, i, des_pos[i]*_RAD2,i, act_pos[i]*_RAD2, 
                                 fabs( des_pos[i]-act_pos[i] )*_RAD2, tolerate_differ_v*_RAD2);
@@ -144,7 +144,7 @@ class DataUnusualProtect
                     if(   fabs(act_vel[i])>=vel_limit_v)
                     {
                         // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
+                            printf("velLimAndDifFroDesPosAndActPos leg_number:%d \n",leg_number);
                         printf("vel_lim_flag[%d]:%d  act_vel[%d]:%f  vel_limit_v:%f\n",
                                 i,vel_lim_flag,i,act_vel[i],vel_limit_v);
                         vel_lim_flag=false;
@@ -152,6 +152,12 @@ class DataUnusualProtect
 
                 } 
             }
+        }
+
+        void diff_val_flag_reset(void)
+        {
+            diff_val_flag = true;
+            vel_lim_flag = true;
         }
 
         Eigen::Vector3d sendDataConPro(int leg_number, Eigen::Vector3d dataIn,double threshold)
@@ -177,7 +183,7 @@ class DataUnusualProtect
                     {
                         _max_dia[i]=fabs(_last[i]-dataIn(i));
                         // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
+                            printf("sendDataConPro leg_number:%d \n",leg_number);
                         printf("i:%d StopFlag:%d _enable:%d threshold:%f _last:%f  dataIn:%f \n",
                             i,StopFlag,_enable[i],threshold*_RAD2,_last[i]*_RAD2,dataIn(i)*_RAD2);
                                 printf("i:%d _max_dia:%f _rec_last:%f _rec_datain:%f _datda_out_:%f \n\n",
@@ -207,7 +213,7 @@ class DataUnusualProtect
                     {
                         _max_dia[i]=fabs(_last[i]-dataIn(i));
                         // std::cout<<*leg_name<<std::endl;
-                            printf("leg_number:%d \n",leg_number);
+                            printf("sendDataConPro leg_number:%d \n",leg_number);
                         printf("i:%d StopFlag:%d _enable:%d threshold:%f _last:%f  dataIn:%f \n",
                             i,StopFlag,_enable[i],threshold*_RAD2,_last[i]*_RAD2,dataIn(i)*_RAD2);
                                 printf("i:%d _max_dia:%f _rec_last:%f _rec_datain:%f _datda_out_:%f \n\n",

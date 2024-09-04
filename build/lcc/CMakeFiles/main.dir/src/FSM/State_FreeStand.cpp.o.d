@@ -392,7 +392,21 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /usr/include/c++/9/ctime /usr/include/c++/9/bits/parse_numbers.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTools.h \
  /home/lcc/cchex_ws/src/lcc/include/common/mathTypes.h \
- /usr/include/eigen3/Eigen/Dense \
+ /usr/include/eigen3/Eigen/Dense /usr/include/c++/9/mutex \
+ /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/thread \
+ /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_uninitialized.h \
+ /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/9/ext/concurrence.h \
+ /usr/include/c++/9/bits/unique_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr_base.h \
+ /usr/include/c++/9/bits/allocated_ptr.h \
+ /usr/include/c++/9/ext/aligned_buffer.h \
+ /usr/include/c++/9/bits/shared_ptr_atomic.h \
+ /usr/include/c++/9/bits/atomic_base.h \
+ /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/9/backward/auto_ptr.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/State_FreeStand.h \
  /home/lcc/cchex_ws/src/lcc/include/FSM/FSMState.h \
  /home/lcc/cchex_ws/src/lcc/include/control/CtrlComponents.h \
@@ -405,8 +419,7 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /home/lcc/cchex_ws/src/lcc/include/Gait/WaveGenerator.h \
  /home/lcc/cchex_ws/src/lcc/include/common/timeMarker.h \
  /home/lcc/cchex_ws/src/lcc/include/control/Estimator.h \
- /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_uninitialized.h \
- /usr/include/c++/9/bits/stl_vector.h \
+ /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_vector.h \
  /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
  /home/lcc/cchex_ws/src/lcc/include/common/LowPassFilter.h \
  /home/lcc/cchex_ws/src/lcc/include/control/BalanceCtrl.h \
@@ -424,7 +437,6 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /usr/local/include/OsqpEigen/SparseMatrixHelper.hpp \
  /usr/include/eigen3/Eigen/Sparse /usr/include/eigen3/Eigen/SparseCore \
  /usr/include/c++/9/map /usr/include/c++/9/bits/stl_tree.h \
- /usr/include/c++/9/ext/aligned_buffer.h \
  /usr/include/c++/9/bits/stl_map.h /usr/include/c++/9/bits/stl_multimap.h \
  /usr/include/c++/9/bits/erase_if.h \
  /usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h \
@@ -501,21 +513,12 @@ lcc/CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o: \
  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
  /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
  /usr/include/c++/9/list /usr/include/c++/9/bits/stl_list.h \
- /usr/include/c++/9/bits/allocated_ptr.h /usr/include/c++/9/bits/list.tcc \
+ /usr/include/c++/9/bits/list.tcc \
  /usr/local/include/OsqpEigen/SparseMatrixHelper.tpp \
  /usr/local/include/OsqpEigen/Debug.hpp \
  /usr/local/include/OsqpEigen/Data.tpp \
  /usr/local/include/OsqpEigen/Settings.hpp \
- /usr/local/include/OsqpEigen/Solver.hpp /usr/include/c++/9/memory \
- /usr/include/c++/9/bits/stl_raw_storage_iter.h \
- /usr/include/c++/9/ext/concurrence.h \
- /usr/include/c++/9/bits/unique_ptr.h \
- /usr/include/c++/9/bits/shared_ptr.h \
- /usr/include/c++/9/bits/shared_ptr_base.h \
- /usr/include/c++/9/bits/shared_ptr_atomic.h \
- /usr/include/c++/9/bits/atomic_base.h \
- /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h \
+ /usr/local/include/OsqpEigen/Solver.hpp \
  /usr/local/include/OsqpEigen/Solver.tpp \
  /usr/local/include/OsqpEigen/Debug.hpp \
  /usr/include/eigen3/Eigen/Eigenvalues \

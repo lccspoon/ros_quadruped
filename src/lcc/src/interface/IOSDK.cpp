@@ -4,6 +4,8 @@
 #include <iostream>
 #include <unistd.h>
 #include <csignal>
+#include <math.h>
+#include <cmath>
 
 #if USE_A_REAL_HEXAPOD == true
 spi_sr spi_2;
@@ -71,6 +73,7 @@ IOSDK::IOSDK():IOInterface(){
     // rec_offset(17) = 110.3448 * rad2;
     rec_offset(17) = 70.7158 * rad2;
     #endif
+    data_out_limt.setZero();
 }
 
 IOSDK::~IOSDK(){
@@ -79,7 +82,7 @@ IOSDK::~IOSDK(){
 
 void IOSDK::sendRecv(const LowlevelCmd *cmd, LowlevelState *state){
 
-    sendCmd(cmd);
+    sendCmd(cmd,state);
     recvState(state);
 
     state->userCmd = cmdPanel->getUserCmd();
@@ -95,7 +98,7 @@ void IOSDK::sendRecv(const LowlevelCmd *cmd, LowlevelState *state){
     // std::cout << "retSimOdeBodyV:\n" <<retSimOdeBodyV()<< std::endl;
 }
 
-void IOSDK::sendCmd(const LowlevelCmd *lowCmd){
+void IOSDK::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
     #if USE_A_REAL_HEXAPOD == true
     Vec3 rf_q, rf_t;
     Vec3 lf_q, lf_t;
@@ -103,6 +106,7 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd){
     Vec3 lm_q, lm_t;
     Vec3 rb_q, rb_t;
     Vec3 lb_q, lb_t;
+
     rf_q << lowCmd->motorCmd[0].q, lowCmd->motorCmd[1].q, lowCmd->motorCmd[2].q;
     lf_q << lowCmd->motorCmd[3].q, lowCmd->motorCmd[4].q, lowCmd->motorCmd[5].q;
     rm_q << lowCmd->motorCmd[6].q, lowCmd->motorCmd[7].q, lowCmd->motorCmd[8].q;
@@ -177,65 +181,184 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd){
         rb_q(2) = ( rb_q(2) + 0 ) / 0.6429;
         lb_q(2) = ( lb_q(2) + 0 ) / 0.6429;
 
-        rf_q = spi_2.___dataUnuProtect[1].sendDataConPro(0,rf_q,20*radd);
-        lf_q = spi_2.___dataUnuProtect[2].sendDataConPro(1,lf_q,20*radd);
-        rm_q = spi_2.___dataUnuProtect[3].sendDataConPro(2,rm_q,20*radd);
-        lm_q = spi_2.___dataUnuProtect[4].sendDataConPro(3,lm_q,20*radd);
-        rb_q = spi_2.___dataUnuProtect[5].sendDataConPro(4,rb_q,20*radd);
-        lb_q = spi_2.___dataUnuProtect[6].sendDataConPro(5,lb_q,20*radd);
+        // if(state->userCmd == UserCommand::FORCE_POS_8){FORCE_PROTECT_CHANGE
+        if(FORCE_PROTECT_CHANGE == true){
+            c_p = 60; v_p = 60;
+            // printf(" ------FORCE_POS_8------ \n");
+        }
+        else {
+            c_p = 20; v_p = 20;
+            rf_q = spi_2.___dataUnuProtect[1].sendDataConPro(0,rf_q,c_p*radd);
+            lf_q = spi_2.___dataUnuProtect[2].sendDataConPro(1,lf_q,c_p*radd);
+            rm_q = spi_2.___dataUnuProtect[3].sendDataConPro(2,rm_q,c_p*radd);
+            lm_q = spi_2.___dataUnuProtect[4].sendDataConPro(3,lm_q,c_p*radd);
+            rb_q = spi_2.___dataUnuProtect[5].sendDataConPro(4,rb_q,c_p*radd);
+            lb_q = spi_2.___dataUnuProtect[6].sendDataConPro(5,lb_q,c_p*radd);
+            // printf(" ------UserCommand ELSE------ \n");
+        }
 
         //  rec_moter_q 是真实返回的电机角度，没有经过任何补偿和修饰
+        MTX_SPIREC.lock();
         spi_2.___dataUnuProtect[1].velLimAndDifFroDesPosAndActPos(0,3,
                                                         rf_q, 
-                                                        spi_2.rec_moter_q.block<3, 1>(0, 0), 20 * radd,
+                                                        spi_2.rec_moter_q.block<3, 1>(0, 0), v_p * radd,
                                                         spi_2.rec_moter_v.block<3, 1>(0, 0), 9);
         spi_2.___dataUnuProtect[2].velLimAndDifFroDesPosAndActPos(1,3,
                                                         lf_q, 
-                                                        spi_2.rec_moter_q.block<3, 1>(0, 1), 20 * radd,
+                                                        spi_2.rec_moter_q.block<3, 1>(0, 1), v_p * radd,
                                                         spi_2.rec_moter_v.block<3, 1>(0, 1), 9);
         spi_2.___dataUnuProtect[3].velLimAndDifFroDesPosAndActPos(2,3,
                                                         rm_q, 
-                                                        spi_2.rec_moter_q.block<3, 1>(0, 2), 20 * radd,
+                                                        spi_2.rec_moter_q.block<3, 1>(0, 2), v_p * radd,
                                                         spi_2.rec_moter_v.block<3, 1>(0, 2), 9);
         spi_2.___dataUnuProtect[4].velLimAndDifFroDesPosAndActPos(3,3,
                                                         lm_q, 
-                                                        spi_2.rec_moter_q.block<3, 1>(0, 3), 20 * radd,
+                                                        spi_2.rec_moter_q.block<3, 1>(0, 3), v_p * radd,
                                                         spi_2.rec_moter_v.block<3, 1>(0, 3), 9);
         spi_2.___dataUnuProtect[5].velLimAndDifFroDesPosAndActPos(4,3,
                                                         rb_q,
-                                                        spi_2.rec_moter_q.block<3, 1>(0, 4), 20 * radd,
+                                                        spi_2.rec_moter_q.block<3, 1>(0, 4), v_p * radd,
                                                         spi_2.rec_moter_v.block<3, 1>(0, 4), 9);
         spi_2.___dataUnuProtect[6].velLimAndDifFroDesPosAndActPos(5,3,
                                                         lb_q, 
-                                                        spi_2.rec_moter_q.block<3, 1>(0, 5), 20 * radd,
+                                                        spi_2.rec_moter_q.block<3, 1>(0, 5), v_p * radd,
                                                         spi_2.rec_moter_v.block<3, 1>(0, 5), 9);
+        MTX_SPIREC.unlock();
+        // printf(" c_p:%f, v_p:%f \n",c_p,v_p);
 
         // 如果有false,那么pub_data就不会执行
-        if (spi_2.___dataUnuProtect[5].diff_val_flag == false or spi_2.___dataUnuProtect[4].diff_val_flag == false 
-        or spi_2.___dataUnuProtect[3].diff_val_flag == false or spi_2.___dataUnuProtect[2].diff_val_flag == false 
-        or spi_2.___dataUnuProtect[1].diff_val_flag == false or spi_2.___dataUnuProtect[6].diff_val_flag == false)
-        {
-                spi_2.___dataUnuProtect[5].diff_val_flag = false;
-                spi_2.___dataUnuProtect[4].diff_val_flag = false;
-                spi_2.___dataUnuProtect[3].diff_val_flag = false;
-                spi_2.___dataUnuProtect[2].diff_val_flag = false;
-                spi_2.___dataUnuProtect[1].diff_val_flag = false;
-                spi_2.___dataUnuProtect[6].diff_val_flag = false;
-                // printf("\n   ------------diff_val_flag:%d --------------\n",spi_2.___dataUnuProtect[5].diff_val_flag);
-                // exit(0);
+        // if (spi_2.___dataUnuProtect[5].diff_val_flag == false or spi_2.___dataUnuProtect[4].diff_val_flag == false 
+        // or spi_2.___dataUnuProtect[3].diff_val_flag == false or spi_2.___dataUnuProtect[2].diff_val_flag == false 
+        // or spi_2.___dataUnuProtect[1].diff_val_flag == false or spi_2.___dataUnuProtect[6].diff_val_flag == false)
+        // {
+        //         spi_2.___dataUnuProtect[5].diff_val_flag = false;
+        //         spi_2.___dataUnuProtect[4].diff_val_flag = false;
+        //         spi_2.___dataUnuProtect[3].diff_val_flag = false;
+        //         spi_2.___dataUnuProtect[2].diff_val_flag = false;
+        //         spi_2.___dataUnuProtect[1].diff_val_flag = false;
+        //         spi_2.___dataUnuProtect[6].diff_val_flag = false;
+        //         // printf("\n   ------------diff_val_flag:%d --------------\n",spi_2.___dataUnuProtect[5].diff_val_flag);
+        //         // exit(0);
+        // }
+        // else if(spi_2.___dataUnuProtect[5].vel_lim_flag==false or spi_2.___dataUnuProtect[4].vel_lim_flag==false 
+        // or spi_2.___dataUnuProtect[3].vel_lim_flag==false or spi_2.___dataUnuProtect[2].vel_lim_flag==false 
+        // or spi_2.___dataUnuProtect[1].vel_lim_flag==false or spi_2.___dataUnuProtect[6].vel_lim_flag==false)
+        // {
+        //         spi_2.___dataUnuProtect[5].vel_lim_flag=false;spi_2.___dataUnuProtect[4].vel_lim_flag=false;
+        //         spi_2.___dataUnuProtect[3].vel_lim_flag=false;spi_2.___dataUnuProtect[2].vel_lim_flag=false;
+        //         spi_2.___dataUnuProtect[1].vel_lim_flag=false;spi_2.___dataUnuProtect[6].vel_lim_flag=false;
+        //         // printf("\n   ------------vel_lim_flag:%d --------------\n",spi_2.___dataUnuProtect[5].vel_lim_flag);
+        //         // exit(0);
+        // }
+        
+        // if(spi_2.___dataUnuProtect[1].diff_val_flag == false || spi_2.___dataUnuProtect[1].vel_lim_flag == false){
+        //     data_out_limt(0)++;
+        //     std::cout<<"0data_out_limt:"<< data_out_limt.transpose() <<std::endl;
+        //     spi_2.___dataUnuProtect[1].diff_val_flag = true;
+        //     spi_2.___dataUnuProtect[1].diff_val_flag_reset();
+        // }
+        // else if(spi_2.___dataUnuProtect[2].diff_val_flag == false || spi_2.___dataUnuProtect[2].vel_lim_flag == false){
+        //     data_out_limt(1)++;
+        //     std::cout<<"1data_out_limt:"<< data_out_limt.transpose() <<std::endl;
+        //     spi_2.___dataUnuProtect[2].diff_val_flag = true;
+        //     spi_2.___dataUnuProtect[2].diff_val_flag_reset();
+        // }
+        // else if(spi_2.___dataUnuProtect[3].diff_val_flag == false || spi_2.___dataUnuProtect[3].vel_lim_flag == false){
+        //     data_out_limt(2)++;
+        //     std::cout<<"2data_out_limt:"<< data_out_limt.transpose() <<std::endl;
+        //     spi_2.___dataUnuProtect[3].diff_val_flag = true;
+        //     spi_2.___dataUnuProtect[3].diff_val_flag_reset();
+        // }
+        // else if(spi_2.___dataUnuProtect[4].diff_val_flag == false || spi_2.___dataUnuProtect[4].vel_lim_flag == false){
+        //     data_out_limt(3)++;
+        //     std::cout<<"3data_out_limt:"<< data_out_limt.transpose() <<std::endl;
+        //     spi_2.___dataUnuProtect[4].diff_val_flag = true;
+        //     spi_2.___dataUnuProtect[4].diff_val_flag_reset();
+        // }
+        // else if(spi_2.___dataUnuProtect[5].diff_val_flag == false || spi_2.___dataUnuProtect[5].vel_lim_flag == false){
+        //     data_out_limt(4)++;
+        //     std::cout<<"4data_out_limt:"<< data_out_limt.transpose() <<std::endl;
+        //     spi_2.___dataUnuProtect[5].diff_val_flag = true;
+        //     spi_2.___dataUnuProtect[5].diff_val_flag_reset();
+        // }
+        // else if(spi_2.___dataUnuProtect[6].diff_val_flag == false || spi_2.___dataUnuProtect[6].vel_lim_flag == false){
+        //     data_out_limt(5)++;
+        //     std::cout<<"5data_out_limt:"<< data_out_limt.transpose() <<std::endl;
+        //     spi_2.___dataUnuProtect[6].diff_val_flag = true;
+        //     spi_2.___dataUnuProtect[6].diff_val_flag_reset();
+        // }
+        if( 
+        fabs(rf_q(0) - spi_2.rec_moter_q(0,0)) >= v_p * radd ||
+        fabs(rf_q(1) - spi_2.rec_moter_q(1,0)) >= v_p * radd ||
+        fabs(rf_q(2) - spi_2.rec_moter_q(2,0)) >= v_p * radd ||
+        fabs(lf_q(0) - spi_2.rec_moter_q(0,1)) >= v_p * radd ||
+        fabs(lf_q(1) - spi_2.rec_moter_q(1,1)) >= v_p * radd ||
+        fabs(lf_q(2) - spi_2.rec_moter_q(2,1)) >= v_p * radd ||
+        fabs(rm_q(0) - spi_2.rec_moter_q(0,2)) >= v_p * radd ||
+        fabs(rm_q(1) - spi_2.rec_moter_q(1,2)) >= v_p * radd ||
+        fabs(rm_q(2) - spi_2.rec_moter_q(2,2)) >= v_p * radd ||
+        fabs(lm_q(0) - spi_2.rec_moter_q(0,3)) >= v_p * radd ||
+        fabs(lm_q(1) - spi_2.rec_moter_q(1,3)) >= v_p * radd ||
+        fabs(lm_q(2) - spi_2.rec_moter_q(2,3)) >= v_p * radd ||
+        fabs(rb_q(0) - spi_2.rec_moter_q(0,4)) >= v_p * radd ||
+        fabs(rb_q(1) - spi_2.rec_moter_q(1,4)) >= v_p * radd ||
+        fabs(rb_q(2) - spi_2.rec_moter_q(2,4)) >= v_p * radd ||
+        fabs(lb_q(0) - spi_2.rec_moter_q(0,5)) >= v_p * radd ||
+        fabs(lb_q(1) - spi_2.rec_moter_q(1,5)) >= v_p * radd ||
+        fabs(lb_q(2) - spi_2.rec_moter_q(2,5)) >= v_p * radd        
+        ){
+            data_out_limt(0)++;
+            printf("--------------- diff_val_flag: des_q - act_q --------------: %f \n", data_out_limt(0));
         }
-        else if(spi_2.___dataUnuProtect[5].vel_lim_flag==false or spi_2.___dataUnuProtect[4].vel_lim_flag==false 
-        or spi_2.___dataUnuProtect[3].vel_lim_flag==false or spi_2.___dataUnuProtect[2].vel_lim_flag==false 
-        or spi_2.___dataUnuProtect[1].vel_lim_flag==false or spi_2.___dataUnuProtect[6].vel_lim_flag==false)
-        {
-                spi_2.___dataUnuProtect[5].vel_lim_flag=false;spi_2.___dataUnuProtect[4].vel_lim_flag=false;
-                spi_2.___dataUnuProtect[3].vel_lim_flag=false;spi_2.___dataUnuProtect[2].vel_lim_flag=false;
-                spi_2.___dataUnuProtect[1].vel_lim_flag=false;spi_2.___dataUnuProtect[6].vel_lim_flag=false;
-                // printf("\n   ------------vel_lim_flag:%d --------------\n",spi_2.___dataUnuProtect[5].vel_lim_flag);
-                // exit(0);
+        else if( 
+        fabs(spi_2.rec_moter_q_last(0,0) - spi_2.rec_moter_q(0,0)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(1,0) - spi_2.rec_moter_q(1,0)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(2,0) - spi_2.rec_moter_q(2,0)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(0,1)- spi_2.rec_moter_q(0,1)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(1,1) - spi_2.rec_moter_q(1,1)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(2,1) - spi_2.rec_moter_q(2,1)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(0,2) - spi_2.rec_moter_q(0,2)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(1,2) - spi_2.rec_moter_q(1,2)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(2,2) - spi_2.rec_moter_q(2,2)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(0,3) - spi_2.rec_moter_q(0,3)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(1,3) - spi_2.rec_moter_q(1,3)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(2,3) - spi_2.rec_moter_q(2,3)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(0,4) - spi_2.rec_moter_q(0,4)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(1,4) - spi_2.rec_moter_q(1,4)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(2,4) - spi_2.rec_moter_q(2,4)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(0,5) - spi_2.rec_moter_q(0,5)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(1,5) - spi_2.rec_moter_q(1,5)) >= v_p * radd ||
+        fabs(spi_2.rec_moter_q_last(2,5) - spi_2.rec_moter_q(2,5)) >= v_p * radd        
+        ){
+            data_out_limt(0)++;
+            printf("--------------- diff_val_flag: act_q_last - act_q --------------: %f \n", data_out_limt(0));
+        }
+        else if( 
+        fabs(spi_2.rec_moter_v(0,0)) >= 9 ||
+        fabs(spi_2.rec_moter_v(1,0)) >= 9 ||
+        fabs(spi_2.rec_moter_v(2,0)) >= 9 ||
+        fabs(spi_2.rec_moter_v(0,1)) >= 9 ||
+        fabs(spi_2.rec_moter_v(1,1)) >= 9 ||
+        fabs(spi_2.rec_moter_v(2,1)) >= 9 ||
+        fabs(spi_2.rec_moter_v(0,2)) >= 9 ||
+        fabs(spi_2.rec_moter_v(1,2)) >= 9 ||
+        fabs(spi_2.rec_moter_v(2,2)) >= 9 ||
+        fabs(spi_2.rec_moter_v(0,3)) >= 9||
+        fabs(spi_2.rec_moter_v(1,3)) >= 9||
+        fabs(spi_2.rec_moter_v(2,3)) >= 9||
+        fabs(spi_2.rec_moter_v(0,4)) >= 9||
+        fabs(spi_2.rec_moter_v(1,4)) >= 9||
+        fabs(spi_2.rec_moter_v(2,4)) >= 9||
+        fabs(spi_2.rec_moter_v(0,5)) >= 9||
+        fabs(spi_2.rec_moter_v(1,5)) >= 9||
+        fabs(spi_2.rec_moter_v(2,5)) >= 9       
+        ){
+            data_out_limt(1)++;
+            printf("--------------- vel_val_flag: vel>9 --------------: %f \n", data_out_limt(1));
         }
         else
         {
+            MTX_SPICMD.lock();
             spi_2.rf1.q = rf_q(0);
             spi_2.rf2.q = rf_q(1);
             spi_2.rf3.q = rf_q(2);
@@ -354,7 +477,7 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd){
             spi_2.lb1.Kd = lowCmd->motorCmd[15].Kd;
             spi_2.lb2.Kd = lowCmd->motorCmd[16].Kd;
             spi_2.lb3.Kd = lowCmd->motorCmd[17].Kd;
-
+            MTX_SPICMD.unlock();
             // printf("\n ------------ sending ------------ \n");
         }
     }
@@ -362,7 +485,7 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd){
 }
 
 void IOSDK::recvState(LowlevelState *state){
-
+    
     // Vec36 rec_moter_q;
     // Vec36 rec_moter_v;
     // Vec36 rec_moter_t;
@@ -376,7 +499,7 @@ void IOSDK::recvState(LowlevelState *state){
     // Vec36 rec_moter_t_erroCount;
 
     #if USE_A_REAL_HEXAPOD == true
-
+        MTX_SPIREC.lock();
         for(int i(0); i < NUM_DOF_W; ++i){
             spi_2.rec_moter_q(i) = spi_2.motor_states[i].q;
             spi_2.rec_moter_v(i) = spi_2.motor_states[i].dq;
@@ -393,8 +516,27 @@ void IOSDK::recvState(LowlevelState *state){
                     spi_2.rec_moter_q_erroCount(i) += 1;
                     spi_2.rec_moter_v_erroCount(i) += 1;
                     spi_2.rec_moter_t_erroCount(i) += 1;
-                    std::cout<<"\n warning : rec_moter_q_erroCount:  \n"<< spi_2.rec_moter_q_erroCount <<std::endl;
+                    std::cout<<"\n warning : 11rec_moter_q_erroCount:  \n"<< spi_2.rec_moter_q_erroCount <<std::endl;
                 }
+                // else if(  fabs( spi_2.rec_moter_q(i) - spi_2.rec_moter_q_last(i) ) >= (v_p - 2) *3.14/180 ){
+                //     spi_2.rec_moter_q(i) = spi_2.rec_moter_q_last(i);
+                //     spi_2.rec_moter_v(i) = spi_2.rec_moter_v_last(i);
+                //     spi_2.rec_moter_t(i) = spi_2.rec_moter_t_last(i);
+                //     spi_2.rec_moter_q_erroCount(i) += 1;
+                //     // spi_2.rec_moter_v_erroCount(i) += 1;
+                //     // spi_2.rec_moter_t_erroCount(i) += 1;
+                //     // printf(" fabs %f",fabs(-3215235));
+                //     std::cout<<"\n warning : 22rec_moter_q_erroCount:  \n"<< spi_2.rec_moter_q_erroCount <<std::endl;
+                // }
+                // else if(  fabs( spi_2.rec_moter_v(i) ) >= (9 - 1) ){
+                //     spi_2.rec_moter_q(i) = spi_2.rec_moter_q_last(i);
+                //     spi_2.rec_moter_v(i) = spi_2.rec_moter_v_last(i);
+                //     spi_2.rec_moter_t(i) = spi_2.rec_moter_t_last(i);
+                //     // spi_2.rec_moter_q_erroCount(i) += 1;
+                //     spi_2.rec_moter_v_erroCount(i) += 1;
+                //     // spi_2.rec_moter_t_erroCount(i) += 1;
+                //     std::cout<<"\n warning : 33rec_moter_v_erroCount:  \n"<< spi_2.rec_moter_v_erroCount <<std::endl;
+                // }
                 else{
                     spi_2.rec_moter_q_last(i) = spi_2.rec_moter_q(i);
                     spi_2.rec_moter_v_last(i) = spi_2.rec_moter_v(i);
@@ -413,7 +555,8 @@ void IOSDK::recvState(LowlevelState *state){
             state->motorState[i].dq = spi_2.rec_moter_v(i);
             state->motorState[i].tauEst = spi_2.rec_moter_t(i);
         }
-
+        MTX_SPIREC.unlock();
+        
         // q校正
         state->motorState[1].q = -state->motorState[1].q;
         state->motorState[2].q = -state->motorState[2].q;
@@ -470,27 +613,27 @@ void IOSDK::recvState(LowlevelState *state){
         // std::cout<<"MOTOR_DISABEL_FLAG : rec_moter_q_last:  \n"<< spi_2.rec_moter_q_last  * 180/3.1415926<<std::endl;
         // std::cout<<"MOTOR_DISABEL_FLAG : rec_moter_q_erroCount:  \n"<< spi_2.rec_moter_q_erroCount <<std::endl;
 
+        std::lock_guard<std::mutex> lock(MTX_IMU); // 自动加锁
+        // MTX_IMU.lock();
         for(int i(0); i < 3; ++i){
             state->imu.accelerometer[i] = hipnuc_raw.hi91.acc[i]*GRAVITY;
             state->imu.gyroscope[i] = hipnuc_raw.hi91.gyr[i];
         }
-
         // Note: state->imu.quaternion:  w, x, y, z
         //   geometry_msgs/Quaternion orientation
         //   float64 x
         //   float64 y
         //   float64 z
         //   float64 w
-
         state->imu.quaternion[0] = hipnuc_raw.hi91.quat[0];
         state->imu.quaternion[1] = hipnuc_raw.hi91.quat[1];
         state->imu.quaternion[2] = hipnuc_raw.hi91.quat[2];
         state->imu.quaternion[3] = hipnuc_raw.hi91.quat[3];
-
         // printf(" roll:%f,  pitch:%f, yaw:%f\n",hipnuc_raw.hi91.roll, hipnuc_raw.hi91.pitch, hipnuc_raw.hi91.yaw);
         // printf(" acc0:%f,  acc1:%f, acc2:%f\n",hipnuc_raw.hi91.acc[0]*GRAVITY, hipnuc_raw.hi91.acc[1]*GRAVITY, hipnuc_raw.hi91.acc[2]*GRAVITY);
         // printf(" gyr0:%f,  gyr1:%f, gyr2:%f\n",hipnuc_raw.hi91.gyr[0], hipnuc_raw.hi91.gyr[1], hipnuc_raw.hi91.gyr[2]);
         // printf(" quaternion 0:%f,  1:%f, 2:%f 3:%f \n",state->imu.quaternion[0], state->imu.quaternion[1], state->imu.quaternion[2], state->imu.quaternion[3]);
+        // MTX_IMU.unlock();
 
     #endif
 

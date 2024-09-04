@@ -75,6 +75,7 @@ State_PosReflex::~State_PosReflex(){
 }
 
 void State_PosReflex::enter(){
+
     // printf(" \n enter -> qp \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。

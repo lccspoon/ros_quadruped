@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/FSM/State_FreeStand.cpp.o.d"
   "CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o"
   "CMakeFiles/main.dir/src/FSM/State_MPC.cpp.o.d"
+  "CMakeFiles/main.dir/src/FSM/State_MPC_Force_Pos.cpp.o"
+  "CMakeFiles/main.dir/src/FSM/State_MPC_Force_Pos.cpp.o.d"
   "CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o"
   "CMakeFiles/main.dir/src/FSM/State_Passive.cpp.o.d"
   "CMakeFiles/main.dir/src/FSM/State_PosReflex.cpp.o"

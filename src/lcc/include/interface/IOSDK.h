@@ -8,6 +8,7 @@
 #include"interface/intl_spi.h"
 #include <string>
 #include "common/unitreeRobot.h"
+#include "common/mathTypes.h"
 
 #if USE_A_REAL_HEXAPOD == true
 extern spi_sr spi_2;
@@ -31,9 +32,14 @@ Eigen::Matrix<double, 3, 1> retSimOdeBodyP();
 
 Eigen::Matrix<double, 3, 1> retSimOdeBodyV();
 
+float c_p, v_p;
+Vec6 data_out_limt;
+
 private:
-void sendCmd(const LowlevelCmd *cmd);
+void sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state);
 void recvState(LowlevelState *state);
+
+
 };
 
 #endif  // IOROS_H

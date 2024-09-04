@@ -11,6 +11,7 @@ State_Position::State_Position(CtrlComponents *ctrlComp)
     _gait = new GaitGenerator(ctrlComp);
     _gait_P = new GaitGenerator_P(ctrlComp);
 
+    // _gaitHeight = 0.75;
     _gaitHeight = 0.10;
     root_euler_d.setZero();
 
@@ -47,6 +48,7 @@ State_Position::~State_Position(){
 }
 
 void State_Position::enter(){
+
     // printf(" \n enter -> qp \n ");
     /* 一开始，设置期望的位置为实际位置；速度设置为0； */
     _pcd = _est->getPosition(); //一开始，将实际位置设置为目标位置。_pcd-> world系下，机身目标位置。
@@ -119,7 +121,7 @@ void State_Position::run(){
 
     // std::cout<<"_posBody:  \n"<< _posBody.transpose() <<std::endl;
     // std::cout<< _posBody.transpose() <<" _posBody "<<std::endl;
-    // std::cout<< _posBody_estByVelBody.transpose() <<" _posBody_estByVelBody "<<std::endl;
+    // std::cout<< _velBody.transpose() <<"_velBody:  \n"<<std::endl;
     // std::cout<<"_velBody:  \n"<< _velBody.transpose() <<std::endl;
     // std::cout<<"getFeet2BPositions:  \n"<<  _ctrlComp->sixlegdogModel->getFeet2BPositions(*_lowState,FrameType::BODY ) <<std::endl;
     // std::cout<< _velBody.transpose() << (*_contact_hex).transpose()  << (*_phase_hex).transpose()<<std::endl;
@@ -163,12 +165,12 @@ void State_Position::run(){
 
     for(int i(0); i<6; ++i){
         if((*_contact_hex)(i) == 0){
-            _lowCmd->setLegGain(i, 100, 5);//swing
+            _lowCmd->setLegGain(i, 100, 1);//swing
         }else{
             if( i == 2 || i == 3)
-            _lowCmd->setLegGain(i, 400, 5);//stand,mid leg
+            _lowCmd->setLegGain(i, 400, 4);//stand,mid leg
             else
-            _lowCmd->setLegGain(i, 200, 5);//stand
+            _lowCmd->setLegGain(i, 200, 2);//stand
         }
     }
     
@@ -284,8 +286,8 @@ void State_Position::calcP(){
     float row, pitch, yaw, height;
     Vec3 rpy;
     rpy = rotMatToRPY(_ctrlComp->lowState->getRotMat());
-    // adj_RPY_P << root_euler_d(0) - rpy(0), root_euler_d(1) - rpy(1), 0;
-    adj_RPY_P << root_euler_d(0) , root_euler_d(1) , 0;
+    adj_RPY_P << root_euler_d(0) - rpy(0), root_euler_d(1) - rpy(1), 0;
+    // adj_RPY_P << root_euler_d(0) , root_euler_d(1) , 0;
     // std::cout<<" adj_RPY_P: \n"<< adj_RPY_P.transpose() <<std::endl;
     adj_RPY_P = 0.0 * adj_RPY_P_past + (1 - 0.0) * adj_RPY_P;
     // std::cout<<" adj_RPY_P affter: \n"<< adj_RPY_P.transpose() <<std::endl;
