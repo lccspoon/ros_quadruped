@@ -559,6 +559,7 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: \
  /home/hex/hex_ws/src/lcc/include/control/robot_lift_dowm_relex.h \
  /home/hex/hex_ws/src/lcc/include/FSM/State_FixedSquat.h \
  /home/hex/hex_ws/src/lcc/include/FSM/State_Force_Pos.h \
+ /home/hex/hex_ws/src/lcc/include/FSM/State_MPC_Force_Pos.h \
  /home/hex/hex_ws/src/lcc/include/interface/IOSDK.h \
  /home/hex/hex_ws/src/lcc/include/interface/intl_spi.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \

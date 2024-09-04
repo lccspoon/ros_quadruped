@@ -105,7 +105,6 @@ int main(int argc, char **argv){
         ctrlPlat = CtrlPlatform::GAZEBO;
     #endif 
 
-
     CtrlComponents *ctrlComp = new CtrlComponents(ioInter);
     ctrlComp->ctrlPlatform = ctrlPlat;
     ctrlComp->dt = 0.002; // run at 500hz

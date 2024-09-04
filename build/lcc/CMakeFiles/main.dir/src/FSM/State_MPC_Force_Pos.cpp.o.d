@@ -1,8 +1,7 @@
-lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: \
- /home/hex/hex_ws/src/lcc/src/control/ControlFrame.cpp \
+lcc/CMakeFiles/main.dir/src/FSM/State_MPC_Force_Pos.cpp.o: \
+ /home/hex/hex_ws/src/lcc/src/FSM/State_MPC_Force_Pos.cpp \
  /usr/include/stdc-predef.h \
- /home/hex/hex_ws/src/lcc/include/control/ControlFrame.h \
- /home/hex/hex_ws/src/lcc/include/FSM/FSM.h \
+ /home/hex/hex_ws/src/lcc/include/FSM/State_MPC_Force_Pos.h \
  /home/hex/hex_ws/src/lcc/include/FSM/FSMState.h \
  /usr/include/c++/9/string \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
@@ -536,11 +535,6 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: \
  /usr/local/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixLogarithm.h \
  /usr/local/include/eigen3/unsupported/Eigen/src/MatrixFunctions/MatrixPower.h \
  /home/hex/hex_ws/src/lcc/include/common/protection.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_FixedStand.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_Passive.h \
- /home/hex/hex_ws/src/lcc/include/FSM/FSMState.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_FreeStand.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_Position.h \
  /home/hex/hex_ws/src/lcc/include/Gait/GaitGenerator.h \
  /home/hex/hex_ws/src/lcc/include/Gait/FeetEndCal.h \
  /home/hex/hex_ws/src/lcc/include/Gait/GaitGenerator_P.h \
@@ -550,15 +544,10 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: \
  /usr/include/c++/9/deque /usr/include/c++/9/bits/stl_deque.h \
  /usr/include/c++/9/bits/deque.tcc \
  /home/hex/hex_ws/src/lcc/include/Gait/SupportTrajectory.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_MPC.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_BalanceTest.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_SwingTest.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_StepTest.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_QP.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_PosReflex.h \
- /home/hex/hex_ws/src/lcc/include/control/ContactEst.h \
- /home/hex/hex_ws/src/lcc/include/Gait/cpg_scheduler.h \
- /home/hex/hex_ws/src/lcc/include/control/robot_lift_dowm_relex.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_FixedSquat.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_Force_Pos.h \
- /home/hex/hex_ws/src/lcc/include/FSM/State_MPC_Force_Pos.h
+ /usr/include/c++/9/iomanip /usr/include/c++/9/locale \
+ /usr/include/c++/9/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/9/bits/codecvt.h \
+ /usr/include/c++/9/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/9/bits/locale_conv.h

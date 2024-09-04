@@ -579,6 +579,7 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: \
  /home/hex/hex_ws/src/lcc/include/control/robot_lift_dowm_relex.h \
  /home/hex/hex_ws/src/lcc/include/FSM/State_FixedSquat.h \
  /home/hex/hex_ws/src/lcc/include/FSM/State_Force_Pos.h \
+ /home/hex/hex_ws/src/lcc/include/FSM/State_MPC_Force_Pos.h \
  /home/hex/hex_ws/src/lcc/include/interface/IOROS.h \
  /opt/ros/noetic/include/ros/ros.h /opt/ros/noetic/include/ros/time.h \
  /opt/ros/noetic/include/ros/platform.h \

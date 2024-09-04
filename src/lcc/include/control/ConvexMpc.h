@@ -34,7 +34,7 @@
 // #define LEG_DOF 3
 // #define NUM_DOF 12
 
-#define PLAN_HORIZON 5
+#define PLAN_HORIZON 3
 #define MPC_STATE_DIM 13
 #define MPC_CONSTRAINT_DIM 30
 

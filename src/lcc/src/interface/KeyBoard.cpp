@@ -25,7 +25,7 @@ KeyBoard::KeyBoard(){
     tcsetattr( fileno( stdin ), TCSANOW, &_newSettings );
 
     pthread_create(&_tid, NULL, runKeyBoard, (void*)this);
-    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n");
+    printf(" KeyBoard checkCmd:\n 1->PASSIVE_1 ( ----******---- );\n 2->FIXEDSTAND_2 ( ----******---- );\n c->FIXEDSQUAT_c ( ----******---- );\n 3->FREESTAND_3;\n 4->QP_4 ( ----******---- );\n 5->POSITION_5 ( ----******---- );\n 6->A1MPC_6(Ban);\n 7->POSREFLEX_7(Ban);\n 8->FORCE_POS ( ----******---- );\n 9->SWING_TEST9\n; 0->MPC_FOREC_POS0 ( ----******---- )\n");
     printf(" TERRIANESTI_FOURLEG: %d \n",TERRIANESTI_FOURLEG);
 }
 
@@ -56,16 +56,19 @@ UserCommand KeyBoard::checkCmd(){
         FORCE_PROTECT_CHANGE = false;
         return UserCommand::POSITION_5;
 
-#ifdef COMPILE_WITH_MOVE_BASE
-    case '5':
-        return UserCommand::L2_Y;
-#endif  // COMPILE_WITH_MOVE_BASE
-    // case '6':
-    //     return UserCommand::A1MPC_6;
+    #ifdef COMPILE_WITH_MOVE_BASE
+        case '5':
+            return UserCommand::L2_Y;
+    #endif  // COMPILE_WITH_MOVE_BASE
+
+    case '6':
+        return UserCommand::A1MPC_6;
     // case '7':
     //     return UserCommand::POSREFLEX_7;
     // case '0':
     //     return UserCommand::BALANCE_TEST0;
+    case '0':
+        return UserCommand::MPC_FORCE_POS_0;
     case '9':
         return UserCommand::SWING_TEST9;
     // case '8':
