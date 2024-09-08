@@ -28,6 +28,9 @@
 // #define PCONTROL_REFLEX_LIFE_DOWM true
 #define PCONTROL_REFLEX_LIFE_DOWM false
 
+#define TXT_FLAGE true
+// #define TXT_FLAGE false
+
 enum class CtrlPlatform{
     GAZEBO,
     REALROBOT,

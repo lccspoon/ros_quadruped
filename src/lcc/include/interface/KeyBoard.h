@@ -15,6 +15,7 @@
 extern bool KEY_M;
 extern bool USVLCC_SETZERO;
 extern bool FORCE_PROTECT_CHANGE;
+extern bool DTAT_SAVE2TXT;
 
 #include <mutex>
 #include <thread>

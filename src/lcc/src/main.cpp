@@ -250,6 +250,7 @@ int main(int argc, char **argv){
         std::thread imu_recv([&]() {
             long long startTime;
             while (control_execute.load(std::memory_order_acquire)  && running) {
+                // startTime = getSystemTime();
                 imu_run();
                 absoluteWait(startTime, (long long)(ctrlComp->dt * 1000000));
             }
@@ -261,9 +262,81 @@ int main(int argc, char **argv){
             }
         });
 
+        std::thread save_data2txt([&]() {
+            while (control_execute.load(std::memory_order_acquire) && running) {
+            usleep(10000);
+            #if TXT_FLAGE
+            if( DTAT_SAVE2TXT == true ){
+                if ( ! ctrlFrame._FSMController->motor_t) { cout << "motor_t 文件不能打开" <<endl; }
+                    ctrlFrame._FSMController->motor_t <<  
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[0].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[1].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[2].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[9].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[10].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[11].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[12].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[13].tauEst <<" "<< 
+                    ctrlFrame._FSMController->_ctrlComp->lowState->motorState[14].tauEst << "\n";
+
+                Vec3 RPY;    
+                RPY = rotMatToRPY(ctrlFrame._FSMController->_ctrlComp->lowState->getRotMat());
+                Vec3 vel, pos;    
+                pos = ctrlFrame._FSMController->_ctrlComp->estimator->getPosition();
+                vel = ctrlFrame._FSMController->_ctrlComp->estimator->getVelocity();
+                if ( ! ctrlFrame._FSMController->robot_RPY) { cout << "robot_RPY 文件不能打开" <<endl; }
+                    ctrlFrame._FSMController->robot_RPY <<  
+                    RPY(0) <<" "<< 
+                    RPY(1) <<" "<< 
+                    RPY(2) <<" "<< 
+                    pos(0) <<" "<< 
+                    pos(1) <<" "<< 
+                    pos(2) <<" "<< 
+                    TERRIAN_EST_DEGREE(0) <<" "<< 
+                    TERRIAN_EST_DEGREE(1) <<" "<< 
+                    vel(0) <<" "<< 
+                    vel(1) <<" "<< 
+                    vel(2) << "\n";
+
+                Vec36 feet_pos;
+                feet_pos = ctrlFrame._FSMController->_ctrlComp->estimator->getFeetPos();
+                if ( ! ctrlFrame._FSMController->feet_pos_world) { cout << "feet_pos_world 文件不能打开" <<endl; }
+                    ctrlFrame._FSMController->feet_pos_world <<  
+                    feet_pos(0) <<" "<< 
+                    feet_pos(1) <<" "<< 
+                    feet_pos(2) <<" "<< 
+                    feet_pos(9) <<" "<< 
+                    feet_pos(10) <<" "<< 
+                    feet_pos(11) <<" "<< 
+                    feet_pos(12) <<" "<< 
+                    feet_pos(13) <<" "<< 
+                    feet_pos(14) << "\n";
+                Vec36 _footTipForceEst;
+                _footTipForceEst = ctrlFrame._FSMController->_ctrlComp->sixlegdogModel->calcForceByTauEst( 
+                    vec36ToVec18(
+                        ctrlFrame._FSMController->_ctrlComp->lowState->getQ_Hex()), 
+                        ctrlFrame._FSMController->_ctrlComp->lowState->getTau_Hex()
+                        );
+                if ( ! ctrlFrame._FSMController->feet_force_est) { cout << "feet_force_est 文件不能打开" <<endl; }
+                    ctrlFrame._FSMController->feet_force_est <<  
+                    _footTipForceEst(0) <<" "<< 
+                    _footTipForceEst(1) <<" "<< 
+                    _footTipForceEst(2) <<" "<< 
+                    _footTipForceEst(9) <<" "<< 
+                    _footTipForceEst(10) <<" "<< 
+                    _footTipForceEst(11) <<" "<< 
+                    _footTipForceEst(12) <<" "<< 
+                    _footTipForceEst(13) <<" "<< 
+                    _footTipForceEst(14) << "\n";
+            }
+            #endif
+            }
+        });
+
         // spi_can_run.join();
         imu_recv.join();
         main_thread.join();
+        save_data2txt.join();
     #endif
 
     return 0;

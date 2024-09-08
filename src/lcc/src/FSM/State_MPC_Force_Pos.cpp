@@ -11,7 +11,7 @@ State_MPC_Force_Pos::State_MPC_Force_Pos(CtrlComponents *ctrlComp)
     _gait = new GaitGenerator(ctrlComp);
     _gait_P = new GaitGenerator_P(ctrlComp);
 
-    _gaitHeight = 0.10;
+    _gaitHeight = 0.175;
     root_euler_d.setZero();
 
 // #ifdef ROBOT_TYPE_Go1
@@ -235,17 +235,7 @@ void State_MPC_Force_Pos::run(){
         _posFeet2BGlobal_te.block< 3, 1>( 0, 1) =  _posFeet2BGlobal.block< 3, 1>( 0, 1); 
         _posFeet2BGlobal_te.block< 3, 1>( 0, 2) =  _posFeet2BGlobal.block< 3, 1>( 0, 4); 
         _posFeet2BGlobal_te.block< 3, 1>( 0, 3) =  _posFeet2BGlobal.block< 3, 1>( 0, 5); 
-        // (*_contact_te)(0) = (*_contact_hex)(0); 
-        // (*_contact_te)(1) = (*_contact_hex)(1); 
-        // (*_contact_te)(2) = (*_contact_hex)(2); 
-        // (*_contact_te)(3) = (*_contact_hex)(3);
-        // _posFeet2BGlobal_te.block< 3, 1>( 0, 0) =  _posFeet2BGlobal.block< 3, 1>( 0, 0); 
-        // _posFeet2BGlobal_te.block< 3, 1>( 0, 1) =  _posFeet2BGlobal.block< 3, 1>( 0, 1); 
-        // _posFeet2BGlobal_te.block< 3, 1>( 0, 2) =  _posFeet2BGlobal.block< 3, 1>( 0, 2); 
-        // _posFeet2BGlobal_te.block< 3, 1>( 0, 3) =  _posFeet2BGlobal.block< 3, 1>( 0, 3); 
         terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_te, _posFeet2BGlobal_te, _Apla);//lcc
-    // #else
-        // terr.terrain_adaptation( _posBody, _yawCmd, root_euler_d, _contact_hex, _posFeet2BGlobal, _Apla);//lcc
     #endif
 
     // std::cout<<" root_euler_d :"<< root_euler_d.transpose()*180/3.1415926 <<std::endl;
@@ -279,20 +269,6 @@ void State_MPC_Force_Pos::run(){
     if ( mpc_init_counter > PLAN_HORIZON * 2)  //
     {
         #if USE_A_REAL_HEXAPOD == true
-
-        // _Kpp = Vec3(40, 40, 100).asDiagonal();
-        // _Kdp = Vec3(6, 6, 6).asDiagonal();
-        // // _kpw = 120;
-        // // _Kdw = Vec3(0.175, 0.175, 0.175).asDiagonal();
-        // _kpw = 125;
-        // _Kdw = Vec3(0.2, 0.2, 0.2).asDiagonal();
-
-        // q_weights << 80.0, 80.0, 2.0,  //R P Y
-        // 1, 30, 270.0,     // X Y Z
-        // 1.0, 1.0, 30.0,    // WX WY WZ
-        // 20.0, 30.0, 20.0,  // VX VY vz
-        // 0.0;
-
         _forceFeetBody.block< 1, 6>( 0, 0) = _forceFeetBody.block< 1, 6>( 0, 0) * 1.5;
         _forceFeetBody.block< 2, 6>( 0, 0) = _forceFeetBody.block< 2, 6>( 0, 0) * 1.2;
         _forceFeetBody.block< 3, 6>( 0, 0) = _forceFeetBody.block< 3, 6>( 0, 0) * 2;
@@ -344,15 +320,17 @@ void State_MPC_Force_Pos::run(){
     tau_send = (_tau * 0.5 + torque18 * 0.3) * 1;
     _lowCmd->setTau( tau_send ); //lcc 20240602
     // std::cout<<" _forceFeetBody: \n"<< _forceFeetBody <<std::endl;
-    float kkk = 0.15;
+    float kkk = 0.1;
     for(int i(0); i<6; ++i){
         if((*_contact_hex)(i) == 0){
-            _lowCmd->setLegGain(i, 100 * kkk, 2 * kkk);//swing
+            // _lowCmd->setLegGain(i, 100 * kkk, 3 * kkk);//swing
+            _lowCmd->setLegGain(i, 150 * kkk, 1.5);//swing
         }else{
             // if( i == 2 || i == 3)
             // _lowCmd->setLegGain(i, 400 * kkk, 4 * kkk * 1);//stand,mid leg
             // else
-            _lowCmd->setLegGain(i, 100 * kkk, 2 * kkk);//stand
+            // _lowCmd->setLegGain(i, 100 * kkk, 3 * kkk);//stand
+            _lowCmd->setLegGain(i, 100 * kkk, 1);//stand
         }
     }
     #else
@@ -478,7 +456,7 @@ void State_MPC_Force_Pos::calcTau(){
     // _KpSwing = Vec3(400, 400, 400).asDiagonal();
     // _KdSwing = Vec3(10, 10, 10).asDiagonal();
 
-    _Kpp = Vec3(40, 40, 100).asDiagonal();
+    _Kpp = Vec3(60, 60, 120).asDiagonal();
     _Kdp = Vec3(6, 6, 6).asDiagonal();
     // _kpw = 120;
     // _Kdw = Vec3(0.175, 0.175, 0.175).asDiagonal();
@@ -506,18 +484,18 @@ void State_MPC_Force_Pos::calcTau(){
     #if USE_A_REAL_HEXAPOD == true
     _KpSwing = Vec3(0, 0, 0).asDiagonal();
     _KdSwing = Vec3(0, 0, 0).asDiagonal();
-    // if( (*_phase_hex)(0) >= 0.95 ){
-    //     _KpSwing = Vec3(0, 0, 0).asDiagonal();
-    //     _KdSwing = Vec3(0, 0, 0).asDiagonal();
-    // }
-    // else if( (*_phase_hex)(0) >= 0.85 &&  (*_phase_hex)(0) < 0.95){
-    //     _KpSwing = Vec3(2.5, 2.5, 2.5).asDiagonal();
-    //     _KdSwing = Vec3(0.1, 0.1, 0.1).asDiagonal();
-    // }
-    // else{
-    //     _KpSwing = Vec3(5, 5, 5).asDiagonal();
-    //     _KdSwing = Vec3(0.1, 0.1, 0.1).asDiagonal();
-    // }
+    if( (*_phase_hex)(0) >= 0.85 ){
+        _KpSwing = Vec3(0, 0, 0).asDiagonal();
+        _KdSwing = Vec3(0, 0, 0).asDiagonal();
+    }
+    else if( (*_phase_hex)(0) >= 0.75 &&  (*_phase_hex)(0) < 0.85){
+        _KpSwing = Vec3(15, 15, 15).asDiagonal();
+        _KdSwing = Vec3(0.1, 0.1, 0.1).asDiagonal();
+    }
+    else{
+        _KpSwing = Vec3(15, 15, 15).asDiagonal();
+        _KdSwing = Vec3(0.1, 0.1, 0.1).asDiagonal();
+    }
     #endif
     
     /* 对于 (*_contact)(i) == 0-> 处于swing的腿。使用PD来获得摆动力  */
@@ -683,9 +661,21 @@ void State_MPC_Force_Pos::_torqueCtrl(){
     /* 对于 (*_contact)(i) == 0-> 处于swing的腿。  */
     for(int i(0); i<6; ++i){
         if((*_contact_hex)(i) == 0){
-            // force36_o1.col(i) = force36_o1.col(i) * 0.9999;
-            // force36_o2.col(i) = force36_o2.col(i) * 0.9999;
-            // force36_o3.col(i) = force36_o3.col(i) * 0.9999;
+            if( (*_phase_hex)(i) >= 0.85 ){
+                    force36_o1.col(i) = force36_o1.col(i) * 1;
+                    force36_o2.col(i) = force36_o2.col(i) * 1;
+                    force36_o3.col(i) = force36_o3.col(i) * 1;
+            }
+            else if( (*_phase_hex)(i) >= 0.75 &&  (*_phase_hex)(i) < 0.85){
+                    force36_o1.col(i) = force36_o1.col(i) * 2;
+                    force36_o2.col(i) = force36_o2.col(i) * 2;
+                    force36_o3.col(i) = force36_o3.col(i) * 2;
+            }
+            else{
+                    force36_o1.col(i) = force36_o1.col(i) * 3;
+                    force36_o2.col(i) = force36_o2.col(i) * 3;
+                    force36_o3.col(i) = force36_o3.col(i) * 3;
+            }
         }
     }
     #endif
@@ -697,7 +687,8 @@ void State_MPC_Force_Pos::_torqueCtrl(){
     torque18_o2 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o2);
     torque18_o3 = _ctrlComp->sixlegdogModel->getTau( _q, force36_o3);
     #if USE_A_REAL_HEXAPOD == true
-    torque18 = (torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 1.5) *1; //力矩控制
+    // torque18 = (torque18_o1 * 0.01 + torque18_o2 * 0.1 + torque18_o3 * 1.5) *1; //力矩控制
+    torque18 = (torque18_o1 * 0.005 + torque18_o2 * 0.05 + torque18_o3 * 1) *0.3; //力矩控制
     #else
     // torque18 = (torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5) * 0.1; //力位混合
     // torque18 = (torque18_o1 * 0.0005 + torque18_o2 * 0.005 + torque18_o3 * 1.5) * 0.1; //力位混合

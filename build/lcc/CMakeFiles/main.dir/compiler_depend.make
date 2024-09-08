@@ -4,8 +4,10 @@
 lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.cpp \
   /usr/include/stdc-predef.h \
   /home/hex/hex_ws/src/lcc/include/FSM/FSM.h \
-  /home/hex/hex_ws/src/lcc/include/FSM/FSMState.h \
-  /usr/include/c++/9/string \
+  /usr/include/c++/9/fstream \
+  /usr/include/c++/9/istream \
+  /usr/include/c++/9/ios \
+  /usr/include/c++/9/iosfwd \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
   /usr/include/features.h \
@@ -17,24 +19,6 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.
   /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h \
   /usr/include/c++/9/bits/stringfwd.h \
   /usr/include/c++/9/bits/memoryfwd.h \
-  /usr/include/c++/9/bits/char_traits.h \
-  /usr/include/c++/9/bits/stl_algobase.h \
-  /usr/include/c++/9/bits/functexcept.h \
-  /usr/include/c++/9/bits/exception_defines.h \
-  /usr/include/c++/9/bits/cpp_type_traits.h \
-  /usr/include/c++/9/ext/type_traits.h \
-  /usr/include/c++/9/ext/numeric_traits.h \
-  /usr/include/c++/9/bits/stl_pair.h \
-  /usr/include/c++/9/bits/move.h \
-  /usr/include/c++/9/bits/concept_check.h \
-  /usr/include/c++/9/type_traits \
-  /usr/include/c++/9/bits/stl_iterator_base_types.h \
-  /usr/include/c++/9/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/9/debug/assertions.h \
-  /usr/include/c++/9/bits/stl_iterator.h \
-  /usr/include/c++/9/bits/ptr_traits.h \
-  /usr/include/c++/9/debug/debug.h \
-  /usr/include/c++/9/bits/predefined_ops.h \
   /usr/include/c++/9/bits/postypes.h \
   /usr/include/c++/9/cwchar \
   /usr/include/wchar.h \
@@ -52,6 +36,32 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+  /usr/include/c++/9/exception \
+  /usr/include/c++/9/bits/exception.h \
+  /usr/include/c++/9/bits/exception_ptr.h \
+  /usr/include/c++/9/bits/exception_defines.h \
+  /usr/include/c++/9/bits/cxxabi_init_exception.h \
+  /usr/include/c++/9/typeinfo \
+  /usr/include/c++/9/bits/hash_bytes.h \
+  /usr/include/c++/9/new \
+  /usr/include/c++/9/bits/nested_exception.h \
+  /usr/include/c++/9/bits/move.h \
+  /usr/include/c++/9/bits/concept_check.h \
+  /usr/include/c++/9/type_traits \
+  /usr/include/c++/9/bits/char_traits.h \
+  /usr/include/c++/9/bits/stl_algobase.h \
+  /usr/include/c++/9/bits/functexcept.h \
+  /usr/include/c++/9/bits/cpp_type_traits.h \
+  /usr/include/c++/9/ext/type_traits.h \
+  /usr/include/c++/9/ext/numeric_traits.h \
+  /usr/include/c++/9/bits/stl_pair.h \
+  /usr/include/c++/9/bits/stl_iterator_base_types.h \
+  /usr/include/c++/9/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/9/debug/assertions.h \
+  /usr/include/c++/9/bits/stl_iterator.h \
+  /usr/include/c++/9/bits/ptr_traits.h \
+  /usr/include/c++/9/debug/debug.h \
+  /usr/include/c++/9/bits/predefined_ops.h \
   /usr/include/c++/9/cstdint \
   /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h \
   /usr/include/stdint.h \
@@ -61,34 +71,16 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.
   /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/c++/9/bits/allocator.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h \
-  /usr/include/c++/9/ext/new_allocator.h \
-  /usr/include/c++/9/new \
-  /usr/include/c++/9/exception \
-  /usr/include/c++/9/bits/exception.h \
-  /usr/include/c++/9/bits/exception_ptr.h \
-  /usr/include/c++/9/bits/cxxabi_init_exception.h \
-  /usr/include/c++/9/typeinfo \
-  /usr/include/c++/9/bits/hash_bytes.h \
-  /usr/include/c++/9/bits/nested_exception.h \
   /usr/include/c++/9/bits/localefwd.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++locale.h \
   /usr/include/c++/9/clocale \
   /usr/include/locale.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
-  /usr/include/c++/9/iosfwd \
   /usr/include/c++/9/cctype \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
-  /usr/include/c++/9/bits/ostream_insert.h \
-  /usr/include/c++/9/bits/cxxabi_forced.h \
-  /usr/include/c++/9/bits/stl_function.h \
-  /usr/include/c++/9/backward/binders.h \
-  /usr/include/c++/9/bits/range_access.h \
-  /usr/include/c++/9/initializer_list \
-  /usr/include/c++/9/bits/basic_string.h \
+  /usr/include/c++/9/bits/ios_base.h \
   /usr/include/c++/9/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h \
@@ -115,6 +107,18 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/atomic_word.h \
+  /usr/include/c++/9/bits/locale_classes.h \
+  /usr/include/c++/9/string \
+  /usr/include/c++/9/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h \
+  /usr/include/c++/9/ext/new_allocator.h \
+  /usr/include/c++/9/bits/ostream_insert.h \
+  /usr/include/c++/9/bits/cxxabi_forced.h \
+  /usr/include/c++/9/bits/stl_function.h \
+  /usr/include/c++/9/backward/binders.h \
+  /usr/include/c++/9/bits/range_access.h \
+  /usr/include/c++/9/initializer_list \
+  /usr/include/c++/9/bits/basic_string.h \
   /usr/include/c++/9/ext/alloc_traits.h \
   /usr/include/c++/9/bits/alloc_traits.h \
   /usr/include/c++/9/ext/string_conversions.h \
@@ -156,11 +160,6 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/9/bits/functional_hash.h \
   /usr/include/c++/9/bits/basic_string.tcc \
-  /usr/include/c++/9/iostream \
-  /usr/include/c++/9/ostream \
-  /usr/include/c++/9/ios \
-  /usr/include/c++/9/bits/ios_base.h \
-  /usr/include/c++/9/bits/locale_classes.h \
   /usr/include/c++/9/bits/locale_classes.tcc \
   /usr/include/c++/9/system_error \
   /usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h \
@@ -177,9 +176,15 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.
   /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
   /usr/include/c++/9/bits/locale_facets.tcc \
   /usr/include/c++/9/bits/basic_ios.tcc \
+  /usr/include/c++/9/ostream \
   /usr/include/c++/9/bits/ostream.tcc \
-  /usr/include/c++/9/istream \
   /usr/include/c++/9/bits/istream.tcc \
+  /usr/include/c++/9/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
+  /home/hex/hex_ws/src/lcc/include/FSM/FSMState.h \
+  /usr/include/c++/9/iostream \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -710,7 +715,6 @@ lcc/CMakeFiles/main.dir/src/FSM/FSM.cpp.o: /home/hex/hex_ws/src/lcc/src/FSM/FSM.
   /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
   /usr/include/libintl.h \
-  /usr/include/c++/9/bits/codecvt.h \
   /usr/include/c++/9/bits/locale_facets_nonio.tcc \
   /usr/include/c++/9/bits/locale_conv.h \
   /usr/include/boost/config/no_tr1/complex.hpp \
@@ -16353,8 +16357,10 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/hex/hex_ws/src/lcc
   /usr/include/stdc-predef.h \
   /home/hex/hex_ws/src/lcc/include/control/ControlFrame.h \
   /home/hex/hex_ws/src/lcc/include/FSM/FSM.h \
-  /home/hex/hex_ws/src/lcc/include/FSM/FSMState.h \
-  /usr/include/c++/9/string \
+  /usr/include/c++/9/fstream \
+  /usr/include/c++/9/istream \
+  /usr/include/c++/9/ios \
+  /usr/include/c++/9/iosfwd \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
   /usr/include/features.h \
@@ -16366,24 +16372,6 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/hex/hex_ws/src/lcc
   /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h \
   /usr/include/c++/9/bits/stringfwd.h \
   /usr/include/c++/9/bits/memoryfwd.h \
-  /usr/include/c++/9/bits/char_traits.h \
-  /usr/include/c++/9/bits/stl_algobase.h \
-  /usr/include/c++/9/bits/functexcept.h \
-  /usr/include/c++/9/bits/exception_defines.h \
-  /usr/include/c++/9/bits/cpp_type_traits.h \
-  /usr/include/c++/9/ext/type_traits.h \
-  /usr/include/c++/9/ext/numeric_traits.h \
-  /usr/include/c++/9/bits/stl_pair.h \
-  /usr/include/c++/9/bits/move.h \
-  /usr/include/c++/9/bits/concept_check.h \
-  /usr/include/c++/9/type_traits \
-  /usr/include/c++/9/bits/stl_iterator_base_types.h \
-  /usr/include/c++/9/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/9/debug/assertions.h \
-  /usr/include/c++/9/bits/stl_iterator.h \
-  /usr/include/c++/9/bits/ptr_traits.h \
-  /usr/include/c++/9/debug/debug.h \
-  /usr/include/c++/9/bits/predefined_ops.h \
   /usr/include/c++/9/bits/postypes.h \
   /usr/include/c++/9/cwchar \
   /usr/include/wchar.h \
@@ -16401,6 +16389,32 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/hex/hex_ws/src/lcc
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+  /usr/include/c++/9/exception \
+  /usr/include/c++/9/bits/exception.h \
+  /usr/include/c++/9/bits/exception_ptr.h \
+  /usr/include/c++/9/bits/exception_defines.h \
+  /usr/include/c++/9/bits/cxxabi_init_exception.h \
+  /usr/include/c++/9/typeinfo \
+  /usr/include/c++/9/bits/hash_bytes.h \
+  /usr/include/c++/9/new \
+  /usr/include/c++/9/bits/nested_exception.h \
+  /usr/include/c++/9/bits/move.h \
+  /usr/include/c++/9/bits/concept_check.h \
+  /usr/include/c++/9/type_traits \
+  /usr/include/c++/9/bits/char_traits.h \
+  /usr/include/c++/9/bits/stl_algobase.h \
+  /usr/include/c++/9/bits/functexcept.h \
+  /usr/include/c++/9/bits/cpp_type_traits.h \
+  /usr/include/c++/9/ext/type_traits.h \
+  /usr/include/c++/9/ext/numeric_traits.h \
+  /usr/include/c++/9/bits/stl_pair.h \
+  /usr/include/c++/9/bits/stl_iterator_base_types.h \
+  /usr/include/c++/9/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/9/debug/assertions.h \
+  /usr/include/c++/9/bits/stl_iterator.h \
+  /usr/include/c++/9/bits/ptr_traits.h \
+  /usr/include/c++/9/debug/debug.h \
+  /usr/include/c++/9/bits/predefined_ops.h \
   /usr/include/c++/9/cstdint \
   /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h \
   /usr/include/stdint.h \
@@ -16410,34 +16424,16 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/hex/hex_ws/src/lcc
   /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/c++/9/bits/allocator.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h \
-  /usr/include/c++/9/ext/new_allocator.h \
-  /usr/include/c++/9/new \
-  /usr/include/c++/9/exception \
-  /usr/include/c++/9/bits/exception.h \
-  /usr/include/c++/9/bits/exception_ptr.h \
-  /usr/include/c++/9/bits/cxxabi_init_exception.h \
-  /usr/include/c++/9/typeinfo \
-  /usr/include/c++/9/bits/hash_bytes.h \
-  /usr/include/c++/9/bits/nested_exception.h \
   /usr/include/c++/9/bits/localefwd.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++locale.h \
   /usr/include/c++/9/clocale \
   /usr/include/locale.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
-  /usr/include/c++/9/iosfwd \
   /usr/include/c++/9/cctype \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
-  /usr/include/c++/9/bits/ostream_insert.h \
-  /usr/include/c++/9/bits/cxxabi_forced.h \
-  /usr/include/c++/9/bits/stl_function.h \
-  /usr/include/c++/9/backward/binders.h \
-  /usr/include/c++/9/bits/range_access.h \
-  /usr/include/c++/9/initializer_list \
-  /usr/include/c++/9/bits/basic_string.h \
+  /usr/include/c++/9/bits/ios_base.h \
   /usr/include/c++/9/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h \
@@ -16464,6 +16460,18 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/hex/hex_ws/src/lcc
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/atomic_word.h \
+  /usr/include/c++/9/bits/locale_classes.h \
+  /usr/include/c++/9/string \
+  /usr/include/c++/9/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h \
+  /usr/include/c++/9/ext/new_allocator.h \
+  /usr/include/c++/9/bits/ostream_insert.h \
+  /usr/include/c++/9/bits/cxxabi_forced.h \
+  /usr/include/c++/9/bits/stl_function.h \
+  /usr/include/c++/9/backward/binders.h \
+  /usr/include/c++/9/bits/range_access.h \
+  /usr/include/c++/9/initializer_list \
+  /usr/include/c++/9/bits/basic_string.h \
   /usr/include/c++/9/ext/alloc_traits.h \
   /usr/include/c++/9/bits/alloc_traits.h \
   /usr/include/c++/9/ext/string_conversions.h \
@@ -16505,11 +16513,6 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/hex/hex_ws/src/lcc
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/9/bits/functional_hash.h \
   /usr/include/c++/9/bits/basic_string.tcc \
-  /usr/include/c++/9/iostream \
-  /usr/include/c++/9/ostream \
-  /usr/include/c++/9/ios \
-  /usr/include/c++/9/bits/ios_base.h \
-  /usr/include/c++/9/bits/locale_classes.h \
   /usr/include/c++/9/bits/locale_classes.tcc \
   /usr/include/c++/9/system_error \
   /usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h \
@@ -16526,9 +16529,15 @@ lcc/CMakeFiles/main.dir/src/control/ControlFrame.cpp.o: /home/hex/hex_ws/src/lcc
   /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
   /usr/include/c++/9/bits/locale_facets.tcc \
   /usr/include/c++/9/bits/basic_ios.tcc \
+  /usr/include/c++/9/ostream \
   /usr/include/c++/9/bits/ostream.tcc \
-  /usr/include/c++/9/istream \
   /usr/include/c++/9/bits/istream.tcc \
+  /usr/include/c++/9/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
+  /home/hex/hex_ws/src/lcc/include/FSM/FSMState.h \
+  /usr/include/c++/9/iostream \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -25578,6 +25587,11 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: /home/hex/hex_ws/src/lcc/src/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
   /home/hex/hex_ws/src/lcc/include/control/ControlFrame.h \
   /home/hex/hex_ws/src/lcc/include/FSM/FSM.h \
+  /usr/include/c++/9/fstream \
+  /usr/include/c++/9/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
   /home/hex/hex_ws/src/lcc/include/FSM/FSMState.h \
   /home/hex/hex_ws/src/lcc/include/control/CtrlComponents.h \
   /home/hex/hex_ws/src/lcc/include/message/LowlevelCmd.h \
@@ -26060,7 +26074,6 @@ lcc/CMakeFiles/main.dir/src/main.cpp.o: /home/hex/hex_ws/src/lcc/src/main.cpp \
   /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
   /usr/include/libintl.h \
-  /usr/include/c++/9/bits/codecvt.h \
   /usr/include/c++/9/bits/locale_facets_nonio.tcc \
   /usr/include/c++/9/bits/locale_conv.h \
   /usr/include/boost/config/no_tr1/complex.hpp \
@@ -28244,10 +28257,6 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/config/abi_prefix.hpp:
 
-/usr/include/boost/type_traits/is_class.hpp:
-
-/usr/include/boost/system/detail/std_interoperability.hpp:
-
 /usr/include/boost/system/detail/system_category_posix.hpp:
 
 /usr/include/boost/system/detail/config.hpp:
@@ -28424,11 +28433,9 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/type_traits/is_pod.hpp:
 
-/usr/local/include/eigen3/Eigen/src/SparseLU/SparseLUImpl.h:
+/usr/include/boost/type_traits/alignment_of.hpp:
 
-/usr/include/boost/concept/detail/concept_undef.hpp:
-
-/usr/local/include/eigen3/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h:
+/usr/include/boost/type_traits/type_with_alignment.hpp:
 
 /usr/local/include/eigen3/Eigen/SparseLU:
 
@@ -28748,15 +28755,15 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/local/include/eigen3/Eigen/src/Core/products/SelfadjointMatrixVector.h:
 
-/opt/ros/noetic/include/geometry_msgs/WrenchStamped.h:
-
-/usr/local/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
-
 /usr/include/boost/smart_ptr/allocate_shared_array.hpp:
 
 /usr/local/include/eigen3/Eigen/src/Core/products/GeneralMatrixVector.h:
 
 /usr/include/boost/preprocessor/punctuation/comma_if.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_forward.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:
 
 /usr/include/boost/mpl/vector/aux_/item.hpp:
 
@@ -28783,6 +28790,12 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /usr/local/include/eigen3/Eigen/src/Core/GeneralProduct.h:
 
 /usr/local/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h:
+
+/usr/include/boost/type_traits/is_class.hpp:
+
+/usr/include/boost/system/detail/std_interoperability.hpp:
+
+/usr/include/c++/9/fstream:
 
 /usr/local/include/eigen3/Eigen/src/Core/Swap.h:
 
@@ -28818,8 +28831,6 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/at_fwd.hpp:
 
-/usr/include/features.h:
-
 /usr/local/include/eigen3/Eigen/src/Core/VectorBlock.h:
 
 /usr/local/include/eigen3/Eigen/src/Core/Transpose.h:
@@ -28845,8 +28856,6 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /usr/local/include/eigen3/Eigen/src/Core/CwiseNullaryOp.h:
 
 /usr/include/c++/9/bits/sstream.tcc:
-
-/usr/local/include/eigen3/Eigen/src/Core/CwiseBinaryOp.h:
 
 /usr/local/include/eigen3/Eigen/src/Core/products/SelfadjointProduct.h:
 
@@ -28934,6 +28943,8 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/local/include/eigen3/Eigen/src/Core/DenseBase.h:
 
+/usr/local/include/eigen3/Eigen/src/Core/CwiseBinaryOp.h:
+
 /usr/local/include/eigen3/Eigen/src/SparseCore/SparseDot.h:
 
 /usr/local/include/eigen3/Eigen/src/SparseLU/SparseLU_column_dfs.h:
@@ -28968,6 +28979,18 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/list/aux_/pop_front.hpp:
 
+/usr/local/include/eigen3/Eigen/src/SparseCore/MappedSparseMatrix.h:
+
+/opt/ros/noetic/include/ros/timer.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/util/XprHelper.h:
+
+/usr/include/c++/9/iostream:
+
+/usr/include/boost/core/use_default.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:
+
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/asm-generic/socket.h:
@@ -28987,6 +29010,38 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/boost/mpl/aux_/config/preprocessor.hpp:
+
+/usr/local/include/eigen3/Eigen/src/SparseCore/SparsePermutation.h:
+
+/usr/include/boost/type_traits/add_volatile.hpp:
+
+/usr/include/boost/predef/os/bsd/open.h:
+
+/usr/include/boost/predef/os/qnxnto.h:
+
+/usr/include/c++/9/bits/postypes.h:
+
+/usr/include/boost/date_time/gregorian_calendar.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Core/util/Meta.h:
+
+/usr/include/boost/preprocessor/tuple/elem.hpp:
+
+/usr/include/boost/mpl/O1_size_fwd.hpp:
+
+/usr/include/errno.h:
+
+/usr/include/c++/9/bits/ostream_insert.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/local/include/eigen3/Eigen/src/Cholesky/LDLT.h:
+
+/usr/local/include/eigen3/Eigen/SparseCholesky:
+
+/usr/include/c++/9/debug/assertions.h:
+
+/usr/include/c++/9/stdlib.h:
 
 /usr/include/c++/9/bits/stl_algobase.h:
 
@@ -29044,43 +29099,31 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /home/hex/hex_ws/src/lcc/src/FSM/FSM.cpp:
 
-/usr/include/boost/predef/compiler/ibm.h:
-
-/usr/include/boost/bind/bind_mf2_cc.hpp:
-
-/usr/include/boost/move/detail/workaround.hpp:
-
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
 /usr/include/locale.h:
 
-/usr/include/boost/mpl/list/aux_/push_back.hpp:
+/usr/include/c++/9/bits/stl_iterator_base_funcs.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+/home/hex/hex_ws/src/lcc/src/FSM/State_Passive.cpp:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+/opt/ros/noetic/include/ros/message_operations.h:
 
-/usr/include/boost/preprocessor/arithmetic/inc.hpp:
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/usr/local/include/eigen3/Eigen/src/SparseCore/SparseMap.h:
+/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
 
-/usr/include/c++/9/bits/parse_numbers.h:
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
-/usr/include/c++/9/iostream:
+/opt/ros/noetic/include/geometry_msgs/WrenchStamped.h:
 
-/opt/ros/noetic/include/ros/timer.h:
-
-/usr/local/include/eigen3/Eigen/src/Core/util/XprHelper.h:
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
 
 /usr/local/include/eigen3/Eigen/src/Core/CommaInitializer.h:
 
 /usr/include/c++/9/ext/atomicity.h:
-
-/usr/include/boost/type_traits/composite_traits.hpp:
-
-/usr/include/c++/9/bits/range_access.h:
 
 /usr/local/include/eigen3/Eigen/src/SparseCore/AmbiVector.h:
 
@@ -29094,27 +29137,9 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/vector.hpp:
 
-/usr/local/include/eigen3/Eigen/src/SparseCore/SparsePermutation.h:
+/usr/include/boost/type_traits/composite_traits.hpp:
 
-/usr/include/boost/type_traits/add_volatile.hpp:
-
-/usr/include/boost/predef/os/bsd/open.h:
-
-/usr/include/boost/predef/os/qnxnto.h:
-
-/usr/include/c++/9/bits/postypes.h:
-
-/usr/include/boost/date_time/gregorian_calendar.hpp:
-
-/usr/local/include/eigen3/Eigen/src/Core/util/Meta.h:
-
-/usr/include/boost/preprocessor/tuple/elem.hpp:
-
-/usr/include/boost/mpl/O1_size_fwd.hpp:
-
-/usr/include/errno.h:
-
-/usr/include/c++/9/bits/ostream_insert.h:
+/usr/include/c++/9/bits/range_access.h:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
@@ -29130,145 +29155,29 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp:
 
-/usr/local/include/eigen3/Eigen/src/Core/ArrayWrapper.h:
-
-/usr/local/include/eigen3/Eigen/src/misc/Kernel.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/boost/smart_ptr/shared_array.hpp:
-
-/usr/local/include/eigen3/Eigen/src/Core/ReturnByValue.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/list.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/local/include/eigen3/Eigen/src/Cholesky/LDLT.h:
-
-/usr/local/include/eigen3/Eigen/SparseCholesky:
-
-/usr/include/c++/9/debug/assertions.h:
-
 /home/hex/hex_ws/src/lcc/include/common/unitreeLeg.h:
 
 /usr/include/c++/9/bits/memoryfwd.h:
 
-/opt/ros/noetic/include/geometry_msgs/Point.h:
+/usr/include/boost/predef/platform/mingw64.h:
 
-/usr/local/include/eigen3/Eigen/QR:
+/usr/include/x86_64-linux-gnu/bits/ioctl-types.h:
 
-/usr/include/c++/9/cstdio:
+/opt/ros/noetic/include/ros/steady_timer.h:
 
-/usr/include/c++/9/stdexcept:
+/usr/include/boost/mpl/push_front.hpp:
 
-/usr/include/boost/predef/os/cygwin.h:
+/usr/local/include/eigen3/Eigen/src/Core/ProductEvaluators.h:
 
-/usr/include/boost/predef/compiler/dignus.h:
+/usr/include/c++/9/cstdint:
 
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/usr/include/boost/preprocessor/logical/bool.hpp:
+/usr/include/boost/mpl/aux_/find_if_pred.hpp:
 
-/usr/include/boost/mpl/integral_c_fwd.hpp:
+/usr/include/boost/smart_ptr/detail/sp_has_sync.hpp:
 
-/usr/include/c++/9/initializer_list:
-
-/usr/include/boost/preprocessor/config/config.hpp:
-
-/usr/include/boost/is_placeholder.hpp:
-
-/usr/include/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/statx-generic.h:
-
-/usr/include/c++/9/atomic:
-
-/usr/include/c++/9/bits/exception.h:
-
-/home/hex/hex_ws/src/lcc/include/interface/intl_spi.h:
-
-/usr/include/boost/range/rbegin.hpp:
-
-/usr/include/boost/mpl/vector/aux_/vector0.hpp:
-
-/usr/include/ctype.h:
-
-/usr/include/c++/9/bits/localefwd.h:
-
-/usr/include/boost/iterator/detail/config_def.hpp:
-
-/usr/include/boost/config/user.hpp:
-
-/usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h:
-
-/usr/include/c++/9/cmath:
-
-/usr/local/include/eigen3/Eigen/src/SparseCore/SparseSelfAdjointView.h:
-
-/home/hex/hex_ws/src/lcc/include/FSM/State_FixedSquat.h:
-
-/usr/include/boost/concept/usage.hpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h:
-
-/usr/include/c++/9/new:
-
-/usr/local/include/eigen3/Eigen/src/Core/MapBase.h:
-
-/home/hex/hex_ws/src/lcc/src/FSM/State_Passive.cpp:
-
-/opt/ros/noetic/include/ros/message_operations.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
-
-/usr/include/c++/9/bits/stl_iterator_base_funcs.h:
-
-/home/hex/hex_ws/src/lcc/include/interface/KeyBoard.h:
-
-/usr/include/c++/9/bits/shared_ptr.h:
-
-/usr/include/c++/9/backward/binders.h:
-
-/usr/include/boost/predef/hardware/simd/x86_amd/versions.h:
-
-/usr/local/include/eigen3/Eigen/src/SparseCore/SparseColEtree.h:
-
-/usr/include/c++/9/bits/streambuf.tcc:
-
-/usr/local/include/eigen3/Eigen/src/SparseCore/SparseFuzzy.h:
-
-/usr/include/boost/mpl/aux_/has_begin.hpp:
-
-/usr/include/boost/smart_ptr/make_shared.hpp:
-
-/usr/local/include/eigen3/Eigen/src/Core/arch/SSE/TypeCasting.h:
-
-/usr/include/boost/core/first_scalar.hpp:
-
-/usr/include/c++/9/bits/nested_exception.h:
-
-/usr/local/include/eigen3/Eigen/src/SparseCore/MappedSparseMatrix.h:
-
-/usr/include/boost/assert.hpp:
-
-/usr/include/c++/9/streambuf:
-
-/usr/include/math.h:
-
-/usr/local/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp:
-
-/usr/include/c++/9/bits/move.h:
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
 /home/hex/hex_ws/src/lcc/include/control/BalanceCtrl.h:
 
@@ -29290,47 +29199,73 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /opt/ros/noetic/include/ros/console_backend.h:
 
-/usr/local/include/eigen3/Eigen/src/Core/VectorwiseOp.h:
+/usr/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp:
 
-/usr/include/c++/9/bits/concept_check.h:
+/usr/include/c++/9/bits/move.h:
 
-/usr/local/include/eigen3/Eigen/LU:
+/usr/include/c++/9/bits/predefined_ops.h:
 
-/usr/local/include/eigen3/Eigen/src/Core/util/StaticAssert.h:
+/usr/include/time.h:
 
-/usr/include/log4cxx/helpers/class.h:
+/usr/include/boost/predef/architecture/arm.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+
+/usr/include/c++/9/debug/debug.h:
+
+/usr/include/boost/config/detail/select_platform_config.hpp:
+
+/usr/include/boost/predef/os/bsd/bsdi.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/c++/9/streambuf:
+
+/usr/include/math.h:
+
+/opt/ros/noetic/include/ros/this_node.h:
+
+/usr/local/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h:
+
+/opt/ros/noetic/include/ros/service_client_options.h:
+
+/usr/local/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/asm/socket.h:
+
+/usr/include/boost/lexical_cast/detail/widest_char.hpp:
+
+/usr/include/boost/type_traits/is_constructible.hpp:
+
+/usr/include/boost/predef/platform/windows_phone.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/boost/mpl/aux_/lambda_arity_param.hpp:
+
+/usr/include/boost/date_time/date_duration.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h:
+
+/usr/include/boost/mpl/integral_c.hpp:
+
+/usr/local/include/eigen3/Eigen/src/QR/CompleteOrthogonalDecomposition.h:
+
+/usr/local/include/eigen3/Eigen/src/Geometry/AlignedBox.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h:
+
+/usr/include/c++/9/cmath:
+
+/usr/include/c++/9/mutex:
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/atomic_word.h:
-
-/usr/include/boost/range/empty.hpp:
-
-/usr/local/include/eigen3/Eigen/src/Geometry/Translation.h:
-
-/home/hex/hex_ws/src/lcc/include/FSM/FSMState.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/boost/mpl/aux_/config/ctps.hpp:
-
-/usr/local/include/OsqpEigen/SparseMatrixHelper.tpp:
-
-/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:
-
-/opt/ros/noetic/include/ros/console.h:
-
-/usr/include/c++/9/bits/char_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
-
-/usr/include/linux/falloc.h:
 
 /usr/include/boost/date_time/period.hpp:
 
@@ -29339,6 +29274,20 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /usr/include/c++/9/bits/stl_map.h:
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/ArrayWrapper.h:
+
+/usr/local/include/eigen3/Eigen/src/misc/Kernel.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/boost/smart_ptr/shared_array.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Core/ReturnByValue.h:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/list.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/c++/9/bits/unique_lock.h:
 
@@ -29354,59 +29303,35 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/checked_delete.hpp:
 
+/usr/include/boost/is_placeholder.hpp:
+
+/usr/include/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/statx-generic.h:
+
+/usr/include/c++/9/atomic:
+
 /usr/include/x86_64-linux-gnu/c++/9/bits/c++locale.h:
 
 /home/hex/hex_ws/src/lcc/include/FSM/FSM.h:
 
 /usr/include/boost/mpl/long.hpp:
 
-/usr/include/c++/9/debug/debug.h:
+/usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h:
 
-/usr/include/boost/config/detail/select_platform_config.hpp:
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
-/usr/include/c++/9/mutex:
+/usr/include/linux/falloc.h:
 
-/usr/local/include/eigen3/Eigen/src/Core/NumTraits.h:
+/usr/include/linux/spi/spidev.h:
 
-/usr/include/boost/preprocessor/punctuation/comma.hpp:
+/usr/include/c++/9/bits/locale_classes.h:
 
-/usr/local/include/eigen3/Eigen/src/SparseLU/SparseLU_Memory.h:
+/usr/include/boost/mpl/lambda.hpp:
 
-/usr/include/boost/predef/hardware/simd/ppc.h:
+/usr/include/boost/mpl/aux_/preprocessed/gcc/quote.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/socket.h:
-
-/usr/include/boost/range/detail/misc_concept.hpp:
-
-/usr/include/c++/9/backward/auto_ptr.h:
-
-/usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/local/include/eigen3/Eigen/src/Core/Reverse.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-/usr/include/boost/mpl/contains_fwd.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/c++/9/bits/exception_defines.h:
-
-/usr/include/boost/preprocessor/repetition/repeat_from_to.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/c++/9/bits/stl_function.h:
-
-/usr/include/boost/date_time/posix_time/posix_time_config.hpp:
-
-/usr/include/c++/9/deque:
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
 
 /home/hex/hex_ws/src/lcc/include/common/mathTools.h:
 
@@ -29415,6 +29340,104 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /home/hex/hex_ws/src/lcc/include/common/LowPassFilter.h:
 
 /usr/include/c++/9/bits/ptr_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h:
+
+/usr/include/boost/preprocessor/logical/bool.hpp:
+
+/usr/include/boost/mpl/integral_c_fwd.hpp:
+
+/usr/include/c++/9/initializer_list:
+
+/usr/include/boost/preprocessor/config/config.hpp:
+
+/usr/include/boost/predef/os/cygwin.h:
+
+/usr/include/boost/predef/compiler/dignus.h:
+
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/local/include/eigen3/Eigen/LU:
+
+/usr/local/include/eigen3/Eigen/src/Core/util/StaticAssert.h:
+
+/usr/include/log4cxx/helpers/class.h:
+
+/usr/include/boost/range/empty.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Geometry/Translation.h:
+
+/home/hex/hex_ws/src/lcc/include/FSM/FSMState.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/local/include/eigen3/Eigen/src/SparseCore/SparseSelfAdjointView.h:
+
+/home/hex/hex_ws/src/lcc/include/FSM/State_FixedSquat.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/MapBase.h:
+
+/usr/include/c++/9/new:
+
+/usr/include/boost/concept/usage.hpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h:
+
+/usr/include/boost/range/detail/misc_concept.hpp:
+
+/usr/include/c++/9/backward/auto_ptr.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/boost/predef/hardware/simd/ppc.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/boost/predef/compiler/llvm.h:
+
+/usr/include/boost/mpl/next_prior.hpp:
+
+/usr/include/c++/9/ext/new_allocator.h:
+
+/usr/include/boost/mpl/aux_/adl_barrier.hpp:
+
+/usr/include/boost/predef/architecture/convex.h:
+
+/usr/include/c++/9/limits:
+
+/usr/include/limits.h:
+
+/usr/include/boost/mpl/list/aux_/empty.hpp:
+
+/usr/include/boost/predef/architecture/z.h:
+
+/usr/include/c++/9/list:
+
+/usr/include/boost/mpl/list/aux_/item.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrix.h:
+
+/usr/local/include/eigen3/Eigen/src/SparseCore/SparseDenseProduct.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/VectorwiseOp.h:
+
+/usr/include/c++/9/bits/concept_check.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/c++/9/bits/ios_base.h:
+
+/usr/include/x86_64-linux-gnu/asm/ioctl.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h:
+
+/usr/local/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
+
+/usr/include/boost/predef/detail/_cassert.h:
 
 /usr/include/boost/core/noncopyable.hpp:
 
@@ -29472,145 +29495,57 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/aux_/arity.hpp:
 
-/home/hex/hex_ws/src/lcc/include/common/hexpodRobot.h:
-
-/usr/include/boost/predef/compiler/sgi_mipspro.h:
-
-/usr/local/include/eigen3/Eigen/src/Core/Transpositions.h:
-
-/usr/include/alloca.h:
-
-/usr/include/c++/9/type_traits:
-
-/usr/include/c++/9/bits/predefined_ops.h:
-
-/usr/include/time.h:
-
-/usr/include/boost/predef/architecture/arm.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
-
-/usr/include/boost/predef/compiler/llvm.h:
-
-/usr/include/boost/mpl/next_prior.hpp:
-
-/usr/include/c++/9/ext/new_allocator.h:
-
-/usr/include/boost/mpl/aux_/adl_barrier.hpp:
-
-/usr/include/boost/predef/architecture/convex.h:
-
-/usr/include/c++/9/limits:
-
-/usr/include/limits.h:
-
-/usr/include/boost/mpl/list/aux_/empty.hpp:
-
-/usr/include/c++/9/ext/type_traits.h:
-
-/usr/local/include/osqp/osqp_api_utils.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-/home/hex/hex_ws/src/lcc/include/common/enumClass.h:
-
-/usr/include/c++/9/bits/uses_allocator.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h:
-
-/usr/local/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
-
-/usr/include/boost/predef/detail/_cassert.h:
-
-/usr/include/boost/bind/arg.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/boost/predef/os/bsd/bsdi.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/boost/throw_exception.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/include/boost/preprocessor/detail/is_binary.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
-
-/opt/ros/noetic/include/ros/master.h:
-
-/usr/include/x86_64-linux-gnu/bits/time.h:
-
-/usr/local/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrix.h:
-
-/usr/local/include/eigen3/Eigen/src/SparseCore/SparseDenseProduct.h:
-
-/usr/include/c++/9/bits/atomic_base.h:
-
-/usr/include/c++/9/bits/stl_vector.h:
-
-/usr/include/boost/predef/platform/mingw64.h:
-
-/usr/include/x86_64-linux-gnu/bits/ioctl-types.h:
-
-/opt/ros/noetic/include/ros/steady_timer.h:
-
-/usr/include/boost/mpl/push_front.hpp:
-
-/usr/local/include/eigen3/Eigen/src/Core/ProductEvaluators.h:
-
-/usr/include/c++/9/cstdint:
-
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/usr/include/boost/mpl/aux_/find_if_pred.hpp:
-
-/usr/include/boost/smart_ptr/detail/sp_has_sync.hpp:
-
-/opt/ros/noetic/include/ros/this_node.h:
-
-/usr/local/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h:
-
-/opt/ros/noetic/include/ros/service_client_options.h:
-
-/usr/local/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/x86_64-linux-gnu/asm/socket.h:
-
-/usr/include/boost/lexical_cast/detail/widest_char.hpp:
-
-/usr/include/boost/type_traits/is_constructible.hpp:
-
-/usr/include/boost/predef/platform/windows_phone.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/local_lim.h:
-
-/usr/include/boost/mpl/aux_/lambda_arity_param.hpp:
-
-/usr/include/boost/date_time/date_duration.hpp:
-
-/usr/local/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h:
-
-/usr/include/boost/mpl/integral_c.hpp:
-
-/usr/local/include/eigen3/Eigen/src/QR/CompleteOrthogonalDecomposition.h:
-
-/usr/local/include/eigen3/Eigen/src/Geometry/AlignedBox.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h:
-
 /usr/include/boost/iterator/detail/config_undef.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/c++/9/bits/basic_string.h:
+
+/home/hex/hex_ws/src/lcc/include/FSM/State_MPC_Force_Pos.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/boost/smart_ptr/weak_ptr.hpp:
+
+/usr/include/c++/9/ios:
+
+/usr/include/assert.h:
+
+/usr/include/boost/mpl/aux_/config/has_xxx.hpp:
+
+/usr/include/stdlib.h:
+
+/usr/include/c++/9/bits/char_traits.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:
+
+/opt/ros/noetic/include/ros/console.h:
+
+/usr/include/c++/9/bits/exception.h:
+
+/home/hex/hex_ws/src/lcc/include/interface/intl_spi.h:
+
+/usr/include/boost/range/rbegin.hpp:
+
+/usr/include/boost/mpl/vector/aux_/vector0.hpp:
+
+/usr/include/ctype.h:
+
+/usr/include/c++/9/bits/localefwd.h:
+
+/usr/include/boost/iterator/detail/config_def.hpp:
+
+/usr/include/boost/config/user.hpp:
+
+/usr/include/boost/mpl/list/aux_/push_back.hpp:
+
+/usr/local/include/eigen3/Eigen/src/QR/ColPivHouseholderQR.h:
+
+/usr/include/boost/preprocessor/control/detail/while.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Core/util/BlasUtil.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
@@ -29622,15 +29557,135 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /home/hex/hex_ws/src/lcc/include/FSM/State_Position.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+/usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h:
 
-/usr/local/include/eigen3/Eigen/src/QR/ColPivHouseholderQR.h:
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
-/usr/include/boost/preprocessor/control/detail/while.hpp:
+/usr/include/c++/9/bits/stl_vector.h:
 
-/usr/local/include/eigen3/Eigen/src/Core/util/BlasUtil.h:
+/usr/include/c++/9/bits/atomic_base.h:
 
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+/usr/local/include/eigen3/Eigen/src/Core/Reverse.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/boost/mpl/contains_fwd.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/c++/9/bits/exception_defines.h:
+
+/usr/include/boost/preprocessor/repetition/repeat_from_to.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/c++/9/bits/stl_function.h:
+
+/usr/include/boost/date_time/posix_time/posix_time_config.hpp:
+
+/usr/include/c++/9/deque:
+
+/opt/ros/noetic/include/geometry_msgs/Point.h:
+
+/usr/local/include/eigen3/Eigen/QR:
+
+/usr/include/c++/9/cstdio:
+
+/usr/include/c++/9/stdexcept:
+
+/home/hex/hex_ws/src/lcc/include/interface/KeyBoard.h:
+
+/usr/include/c++/9/bits/shared_ptr.h:
+
+/usr/include/c++/9/backward/binders.h:
+
+/usr/include/boost/predef/hardware/simd/x86_amd/versions.h:
+
+/usr/local/include/eigen3/Eigen/src/SparseCore/SparseColEtree.h:
+
+/usr/include/c++/9/bits/streambuf.tcc:
+
+/usr/local/include/eigen3/Eigen/src/SparseCore/SparseFuzzy.h:
+
+/usr/include/boost/mpl/aux_/has_begin.hpp:
+
+/usr/include/boost/smart_ptr/make_shared.hpp:
+
+/usr/local/include/eigen3/Eigen/src/Core/arch/SSE/TypeCasting.h:
+
+/usr/include/c++/9/bits/stl_heap.h:
+
+/usr/include/c++/9/bits/allocator.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/boost/mpl/aux_/config/ctps.hpp:
+
+/usr/local/include/OsqpEigen/SparseMatrixHelper.tpp:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/boost/bind/arg.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/boost/preprocessor/arithmetic/inc.hpp:
+
+/usr/local/include/eigen3/Eigen/src/SparseCore/SparseMap.h:
+
+/usr/include/c++/9/bits/parse_numbers.h:
+
+/usr/include/boost/core/first_scalar.hpp:
+
+/usr/include/c++/9/bits/nested_exception.h:
+
+/usr/include/boost/assert.hpp:
+
+/usr/include/c++/9/ext/type_traits.h:
+
+/usr/local/include/osqp/osqp_api_utils.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/home/hex/hex_ws/src/lcc/include/common/hexpodRobot.h:
+
+/usr/include/boost/predef/compiler/sgi_mipspro.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/Transpositions.h:
+
+/usr/include/alloca.h:
+
+/usr/include/c++/9/type_traits:
+
+/usr/include/features.h:
+
+/usr/include/boost/predef/compiler/ibm.h:
+
+/usr/include/boost/bind/bind_mf2_cc.hpp:
+
+/usr/include/boost/move/detail/workaround.hpp:
+
+/usr/include/c++/9/bits/fstream.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
+
+/opt/ros/noetic/include/ros/master.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/boost/throw_exception.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/boost/preprocessor/detail/is_binary.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
@@ -29702,6 +29757,10 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/greater.hpp:
 
+/usr/include/c++/9/bits/uses_allocator.h:
+
+/home/hex/hex_ws/src/lcc/include/common/enumClass.h:
+
 /usr/include/c++/9/bits/stl_tree.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
@@ -29731,46 +29790,6 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /usr/include/boost/bind.hpp:
 
 /usr/include/boost/smart_ptr/detail/sp_typeinfo_.hpp:
-
-/usr/include/boost/mpl/apply_fwd.hpp:
-
-/usr/include/c++/9/ostream:
-
-/home/hex/hex_ws/src/lcc/include/FSM/State_MPC_Force_Pos.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
-/usr/include/boost/smart_ptr/weak_ptr.hpp:
-
-/usr/include/c++/9/ios:
-
-/usr/include/c++/9/bits/allocator.h:
-
-/usr/include/c++/9/bits/stl_heap.h:
-
-/usr/include/assert.h:
-
-/usr/include/boost/mpl/aux_/config/has_xxx.hpp:
-
-/usr/include/stdlib.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/c++/9/bits/ios_base.h:
-
-/usr/include/x86_64-linux-gnu/asm/ioctl.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/quote.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
-
-/usr/include/linux/spi/spidev.h:
-
-/usr/include/c++/9/bits/locale_classes.h:
-
-/usr/include/boost/mpl/lambda.hpp:
-
-/usr/include/c++/9/stdlib.h:
 
 /usr/include/boost/type_traits/is_scalar.hpp:
 
@@ -29808,11 +29827,15 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/c++/9/bits/streambuf_iterator.h:
 
-/usr/include/boost/predef/architecture/z.h:
+/usr/include/boost/mpl/apply_fwd.hpp:
 
-/usr/include/c++/9/list:
+/usr/include/c++/9/ostream:
 
-/usr/include/boost/mpl/list/aux_/item.hpp:
+/usr/include/c++/9/bits/codecvt.h:
+
+/usr/local/include/eigen3/Eigen/src/Core/NumTraits.h:
+
+/usr/include/boost/preprocessor/punctuation/comma.hpp:
 
 /usr/include/boost/date_time/gregorian/conversion.hpp:
 
@@ -29984,8 +30007,6 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/clear_fwd.hpp:
 
-/usr/include/boost/type_traits/alignment_of.hpp:
-
 /usr/local/include/eigen3/Eigen/src/Core/ConditionEstimator.h:
 
 /usr/include/boost/predef/compiler/diab.h:
@@ -30002,9 +30023,15 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/remove_if.hpp:
 
-/usr/include/boost/core/use_default.hpp:
+/usr/include/boost/concept/detail/concept_undef.hpp:
 
-/usr/local/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:
+/usr/local/include/eigen3/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h:
+
+/usr/local/include/eigen3/Eigen/src/SparseLU/SparseLUImpl.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h:
+
+/usr/local/include/eigen3/Eigen/src/SparseLU/SparseLU_Memory.h:
 
 /usr/local/include/eigen3/Eigen/src/SparseLU/SparseLU_pivotL.h:
 
@@ -30340,8 +30367,6 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h:
 
-/usr/include/c++/9/bits/codecvt.h:
-
 /opt/ros/noetic/include/ros/service_server.h:
 
 /usr/include/c++/9/bits/locale_conv.h:
@@ -30662,6 +30687,8 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_fwd.hpp:
 
+/usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h:
+
 /usr/include/boost/mpl/apply_wrap.hpp:
 
 /usr/include/boost/mpl/aux_/clear_impl.hpp:
@@ -30675,10 +30702,6 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /usr/include/boost/preprocessor/repetition/repeat.hpp:
 
 /usr/include/boost/mpl/push_back.hpp:
-
-/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:
-
-/usr/include/boost/smart_ptr/detail/sp_forward.hpp:
 
 /home/hex/hex_ws/src/lcc/src/interface/IOROS.cpp:
 
@@ -31085,5 +31108,3 @@ lcc/CMakeFiles/main.dir/src/quadProgpp/QuadProg++.cc.o: /home/hex/hex_ws/src/lcc
 /usr/include/boost/smart_ptr/make_shared_object.hpp:
 
 /usr/include/boost/move/utility_core.hpp:
-
-/usr/include/boost/type_traits/type_with_alignment.hpp:

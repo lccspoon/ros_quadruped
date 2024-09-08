@@ -15,6 +15,7 @@
 #include "control/TerrianEsti.h"
 #include "common/filter.h"
 
+extern Vec2 TERRIAN_EST_DEGREE;
 
 class TerrianEsti
 {

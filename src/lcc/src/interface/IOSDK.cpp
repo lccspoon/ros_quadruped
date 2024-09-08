@@ -55,8 +55,8 @@ IOSDK::IOSDK():IOInterface(){
 
     rec_offset(6) = -1.6283 * rad2;
     rec_offset(7) = -119.5684 * rad2;
-    // rec_offset(8) = -47.3093 * rad2;
-    rec_offset(8) = -31.0756 * rad2;
+    // rec_offset(8) = -31.0756 * rad2;
+    rec_offset(8) = -33.0756 * rad2;
 
     rec_offset(9) = 6.0216 * rad2;
     rec_offset(10) = -124.1365 * rad2;
@@ -183,7 +183,7 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
 
         // if(state->userCmd == UserCommand::FORCE_POS_8){FORCE_PROTECT_CHANGE
         if(FORCE_PROTECT_CHANGE == true){
-            c_p = 60; v_p = 60;
+            c_p = 60; v_p = 120;
             // printf(" ------FORCE_POS_8------ \n");
         }
         else {
@@ -202,27 +202,27 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
         spi_2.___dataUnuProtect[1].velLimAndDifFroDesPosAndActPos(0,3,
                                                         rf_q, 
                                                         spi_2.rec_moter_q.block<3, 1>(0, 0), v_p * radd,
-                                                        spi_2.rec_moter_v.block<3, 1>(0, 0), 9);
+                                                        spi_2.rec_moter_v.block<3, 1>(0, 0), 12);
         spi_2.___dataUnuProtect[2].velLimAndDifFroDesPosAndActPos(1,3,
                                                         lf_q, 
                                                         spi_2.rec_moter_q.block<3, 1>(0, 1), v_p * radd,
-                                                        spi_2.rec_moter_v.block<3, 1>(0, 1), 9);
+                                                        spi_2.rec_moter_v.block<3, 1>(0, 1), 12);
         spi_2.___dataUnuProtect[3].velLimAndDifFroDesPosAndActPos(2,3,
                                                         rm_q, 
                                                         spi_2.rec_moter_q.block<3, 1>(0, 2), v_p * radd,
-                                                        spi_2.rec_moter_v.block<3, 1>(0, 2), 9);
+                                                        spi_2.rec_moter_v.block<3, 1>(0, 2), 12);
         spi_2.___dataUnuProtect[4].velLimAndDifFroDesPosAndActPos(3,3,
                                                         lm_q, 
                                                         spi_2.rec_moter_q.block<3, 1>(0, 3), v_p * radd,
-                                                        spi_2.rec_moter_v.block<3, 1>(0, 3), 9);
+                                                        spi_2.rec_moter_v.block<3, 1>(0, 3), 12);
         spi_2.___dataUnuProtect[5].velLimAndDifFroDesPosAndActPos(4,3,
                                                         rb_q,
                                                         spi_2.rec_moter_q.block<3, 1>(0, 4), v_p * radd,
-                                                        spi_2.rec_moter_v.block<3, 1>(0, 4), 9);
+                                                        spi_2.rec_moter_v.block<3, 1>(0, 4), 12);
         spi_2.___dataUnuProtect[6].velLimAndDifFroDesPosAndActPos(5,3,
                                                         lb_q, 
                                                         spi_2.rec_moter_q.block<3, 1>(0, 5), v_p * radd,
-                                                        spi_2.rec_moter_v.block<3, 1>(0, 5), 9);
+                                                        spi_2.rec_moter_v.block<3, 1>(0, 5), 12);
         MTX_SPIREC.unlock();
         // printf(" c_p:%f, v_p:%f \n",c_p,v_p);
 
@@ -334,24 +334,24 @@ void IOSDK::sendCmd(const LowlevelCmd *lowCmd, LowlevelState *state){
             printf("--------------- diff_val_flag: act_q_last - act_q --------------: %f \n", data_out_limt(0));
         }
         else if( 
-        fabs(spi_2.rec_moter_v(0,0)) >= 9 ||
-        fabs(spi_2.rec_moter_v(1,0)) >= 9 ||
-        fabs(spi_2.rec_moter_v(2,0)) >= 9 ||
-        fabs(spi_2.rec_moter_v(0,1)) >= 9 ||
-        fabs(spi_2.rec_moter_v(1,1)) >= 9 ||
-        fabs(spi_2.rec_moter_v(2,1)) >= 9 ||
-        fabs(spi_2.rec_moter_v(0,2)) >= 9 ||
-        fabs(spi_2.rec_moter_v(1,2)) >= 9 ||
-        fabs(spi_2.rec_moter_v(2,2)) >= 9 ||
-        fabs(spi_2.rec_moter_v(0,3)) >= 9||
-        fabs(spi_2.rec_moter_v(1,3)) >= 9||
-        fabs(spi_2.rec_moter_v(2,3)) >= 9||
-        fabs(spi_2.rec_moter_v(0,4)) >= 9||
-        fabs(spi_2.rec_moter_v(1,4)) >= 9||
-        fabs(spi_2.rec_moter_v(2,4)) >= 9||
-        fabs(spi_2.rec_moter_v(0,5)) >= 9||
-        fabs(spi_2.rec_moter_v(1,5)) >= 9||
-        fabs(spi_2.rec_moter_v(2,5)) >= 9       
+        fabs(spi_2.rec_moter_v(0,0)) >= 12 ||
+        fabs(spi_2.rec_moter_v(1,0)) >= 12 ||
+        fabs(spi_2.rec_moter_v(2,0)) >= 12 ||
+        fabs(spi_2.rec_moter_v(0,1)) >= 12 ||
+        fabs(spi_2.rec_moter_v(1,1)) >= 12 ||
+        fabs(spi_2.rec_moter_v(2,1)) >= 12 ||
+        fabs(spi_2.rec_moter_v(0,2)) >= 12 ||
+        fabs(spi_2.rec_moter_v(1,2)) >= 12 ||
+        fabs(spi_2.rec_moter_v(2,2)) >= 12 ||
+        fabs(spi_2.rec_moter_v(0,3)) >= 12||
+        fabs(spi_2.rec_moter_v(1,3)) >= 12||
+        fabs(spi_2.rec_moter_v(2,3)) >= 12||
+        fabs(spi_2.rec_moter_v(0,4)) >= 12||
+        fabs(spi_2.rec_moter_v(1,4)) >= 12||
+        fabs(spi_2.rec_moter_v(2,4)) >= 12||
+        fabs(spi_2.rec_moter_v(0,5)) >= 12||
+        fabs(spi_2.rec_moter_v(1,5)) >= 12||
+        fabs(spi_2.rec_moter_v(2,5)) >= 12       
         ){
             data_out_limt(1)++;
             printf("--------------- vel_val_flag: vel>9 --------------: %f \n", data_out_limt(1));
@@ -613,7 +613,7 @@ void IOSDK::recvState(LowlevelState *state){
         // std::cout<<"MOTOR_DISABEL_FLAG : rec_moter_q_last:  \n"<< spi_2.rec_moter_q_last  * 180/3.1415926<<std::endl;
         // std::cout<<"MOTOR_DISABEL_FLAG : rec_moter_q_erroCount:  \n"<< spi_2.rec_moter_q_erroCount <<std::endl;
 
-        std::lock_guard<std::mutex> lock(MTX_IMU); // 自动加锁
+        std::lock_guard<std::mutex> lock(MTX_IMU); //lcc 自动加锁
         // MTX_IMU.lock();
         for(int i(0); i < 3; ++i){
             state->imu.accelerometer[i] = hipnuc_raw.hi91.acc[i]*GRAVITY;

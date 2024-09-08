@@ -6,6 +6,7 @@
 bool KEY_M = false;
 bool USVLCC_SETZERO = false;
 bool FORCE_PROTECT_CHANGE = false;
+bool DTAT_SAVE2TXT = false;
 
 std::mutex MTX_MOTORCMD;
 std::mutex MTX_MOTORSTATES;
@@ -49,9 +50,11 @@ UserCommand KeyBoard::checkCmd(){
     case '3':
         FORCE_PROTECT_CHANGE = false;
         return UserCommand::FREESTAND_3;
+    #if USE_A_REAL_HEXAPOD == false
     case '4':
         // printf(" \n keyboard->QP_4  \n ");
         return UserCommand::QP_4;
+    #endif
     case '5':
         FORCE_PROTECT_CHANGE = false;
         return UserCommand::POSITION_5;
@@ -60,14 +63,16 @@ UserCommand KeyBoard::checkCmd(){
         case '5':
             return UserCommand::L2_Y;
     #endif  // COMPILE_WITH_MOVE_BASE
-
+    #if USE_A_REAL_HEXAPOD == false
     case '6':
         return UserCommand::A1MPC_6;
+    #endif;
     // case '7':
     //     return UserCommand::POSREFLEX_7;
     // case '0':
     //     return UserCommand::BALANCE_TEST0;
     case '0':
+        FORCE_PROTECT_CHANGE = true;
         return UserCommand::MPC_FORCE_POS_0;
     case '9':
         return UserCommand::SWING_TEST9;
@@ -207,10 +212,16 @@ void KeyBoard::changeFunctionModeValue(){
             break;
         case 't':case 'T':{
 
-                if( TEST_FLAG == false )
-                    TEST_FLAG = true;
-                else if( TEST_FLAG == true )
-                    TEST_FLAG = false;
+                if( DTAT_SAVE2TXT == false )
+                    DTAT_SAVE2TXT = true;
+                else if( DTAT_SAVE2TXT == true )
+                    DTAT_SAVE2TXT = false;
+                std::cout<<"DTAT_SAVE2TXT:  "<< DTAT_SAVE2TXT <<std::endl;
+
+                // if( TEST_FLAG == false )
+                //     TEST_FLAG = true;
+                // else if( TEST_FLAG == true )
+                //     TEST_FLAG = false;
 
                 // if( userFunctionMode.function_test == false )
                 //     userFunctionMode.function_test = true;

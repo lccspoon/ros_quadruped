@@ -3,6 +3,7 @@
 #define FSM_H
 
 // FSM States
+#include <fstream> // c++文件操作
 #include "FSM/FSMState.h"
 #include "FSM/State_FixedStand.h"
 #include "FSM/State_Passive.h"
@@ -67,7 +68,15 @@ public:
     void initialize();
     void run();
     void fsm_run();
-private:
+    void data_save2txt();
+
+    #if TXT_FLAGE
+            ofstream motor_t,motor_p;
+            ofstream robot_RPY,robot_pos_world,robot_vel_world;
+            ofstream feet_force_des,feet_force_est,feet_pos_world;
+    #endif
+
+// private:
     FSMState* getNextState(FSMStateName stateName);
     bool checkSafty();
     CtrlComponents *_ctrlComp;// 结构体，包含所有控制组件
@@ -80,6 +89,7 @@ private:
     int count;
 
     bool fsm_first_start = true;
+
 };
 
 

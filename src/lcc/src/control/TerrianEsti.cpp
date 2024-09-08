@@ -7,6 +7,7 @@
 
 #include "control/TerrianEsti.h"
 
+Vec2 TERRIAN_EST_DEGREE;
 
 // #if TERRIANESTI_FOURLEG
 TerrianEsti::TerrianEsti(/* args */)
@@ -53,7 +54,8 @@ void TerrianEsti::terrain_adaptation(Vec3 _posBody, double _yawCmd, Vec3 &root_e
         kethai = pseudo_inverse(gama.transpose() * gama) * gama.transpose() * ne;  // 对应 yxy (2.70)
         root_euler_d(0) = -root_euler_d_x_filter.CalculateAverage( asin( kethai(1) )); //lcc 20240617：相比于yxy论文，添加了负号"-"
         root_euler_d(1) = root_euler_d_y_filter.CalculateAverage( atan( kethai(0) / kethai(2) ) );
-        root_euler_d = root_euler_d * 1.0;//lcc 20240904
+        // root_euler_d = root_euler_d * 1.0;//lcc 20240904
+        TERRIAN_EST_DEGREE << root_euler_d(0), root_euler_d(1);
 }
 
 Vec3 TerrianEsti::compute_walking_surface(VecInt4 *_contact, Vec34 _posFeet2BGlobal, Vec3 *_Apla) {

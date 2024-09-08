@@ -13,7 +13,7 @@ public:
 	}
 	void run();
 	CtrlComponents *_ctrlComp;
-private:
+// private:
 	FSM* _FSMController;
 	// CtrlComponents *_ctrlComp;
 };

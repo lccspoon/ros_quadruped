@@ -7,6 +7,8 @@
 #include <thread>
 #include "interface/KeyBoard.h"
 #include "interface/CmdPanel.h"
+#include <fstream>
+#include "control/TerrianEsti.h"
 
 FSM::FSM(CtrlComponents *ctrlComp)
     :_ctrlComp(ctrlComp){
@@ -40,6 +42,19 @@ void FSM::initialize(){
     _currentState -> enter();
     _nextState = _currentState;
     _mode = FSMMode::NORMAL;
+
+    #if TXT_FLAGE
+            motor_t.open("./motor_t.txt", ios::out | ios::trunc);
+            // motor_p.open("./motor_p.txt", ios::out | ios::trunc);
+
+            robot_RPY.open("./robot_RPY.txt", ios::out | ios::trunc);
+            // robot_pos_world.open("./robot_pos_world.txt", ios::out | ios::trunc);
+            // robot_vel_world.open("./robot_vel_world.txt", ios::out | ios::trunc);
+
+            // feet_force_des.open("./feet_force_des.txt", ios::out | ios::trunc);
+            feet_force_est.open("./feet_force_est.txt", ios::out | ios::trunc);
+            feet_pos_world.open("./feet_pos_world.txt", ios::out | ios::trunc);
+    #endif
 }
 
 unsigned int _waitCount;
@@ -110,6 +125,7 @@ void FSM::run(){
         if( MOTOR_DATA_LOAD == true && MOTOR_ENTER_CLOSELOOP == true){ // ']'
             spi_2.send_all_data();
             fsm_run();
+            // data_save2txt();
         }
         else{
             // printf(" _yaw: %f \n", _ctrlComp->lowState->getYaw()*180/3.1415926);
@@ -254,4 +270,127 @@ bool FSM::checkSafty(){
     }else{
         return true;
     }
+}
+
+void FSM::data_save2txt(){
+    #if TXT_FLAGE
+    if( DTAT_SAVE2TXT == true ){
+        if ( ! motor_t) { cout << "motor_t 文件不能打开" <<endl; }
+            motor_t <<  
+            _ctrlComp->lowCmd->motorCmd[0].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[1].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[2].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[3].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[4].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[5].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[6].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[7].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[8].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[9].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[10].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[11].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[12].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[13].tau <<" "<< 
+            _ctrlComp->lowCmd->motorCmd[14].tau << "\n";
+            // _ctrlComp->lowCmd->motorCmd[15].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[16].tau <<" "<< 
+            // _ctrlComp->lowCmd->motorCmd[17].tau << "\n";
+        // if ( ! motor_p) { cout << "motor_p 文件不能打开" <<endl; }
+        //     motor_p <<  
+        //     _ctrlComp->lowCmd->motorCmd[0].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[1].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[2].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[3].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[4].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[5].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[6].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[7].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[8].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[9].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[11].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[12].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[13].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[14].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[15].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[16].q <<" "<< 
+        //     _ctrlComp->lowCmd->motorCmd[17].q << "\n";
+
+        Vec3 RPY;    
+        RPY = rotMatToRPY(_ctrlComp->lowState->getRotMat());
+        Vec3 vel, pos;    
+        pos = _ctrlComp->estimator->getPosition();
+        vel = _ctrlComp->estimator->getVelocity();
+        if ( ! robot_RPY) { cout << "robot_RPY 文件不能打开" <<endl; }
+            robot_RPY <<  
+            RPY(0) <<" "<< 
+            RPY(1) <<" "<< 
+            RPY(2) <<" "<< 
+            pos(0) <<" "<< 
+            pos(1) <<" "<< 
+            pos(2) <<" "<< 
+            TERRIAN_EST_DEGREE(0) <<" "<< 
+            TERRIAN_EST_DEGREE(1) <<" "<< 
+            vel(0) <<" "<< 
+            vel(1) <<" "<< 
+            vel(2) << "\n";
+
+        // if ( ! robot_pos_world) { cout << "robot_pos_world 文件不能打开" <<endl; }
+        //     robot_pos_world <<  
+        //     pos(0) <<" "<< 
+        //     pos(1) <<" "<< 
+        //     pos(2) <<" "<< 
+        //     TERRIAN_EST_DEGREE(0) <<" "<< 
+        //     TERRIAN_EST_DEGREE(1) << "\n";
+        // if ( ! robot_vel_world) { cout << "robot_vel_world 文件不能打开" <<endl; }
+        //     robot_vel_world <<  
+        //     vel(0) <<" "<< 
+        //     vel(1) <<" "<< 
+            // vel(2) << "\n";
+
+        Vec36 feet_pos;
+        feet_pos = _ctrlComp->estimator->getFeetPos();
+        if ( ! feet_pos_world) { cout << "feet_pos_world 文件不能打开" <<endl; }
+            feet_pos_world <<  
+            feet_pos(0) <<" "<< 
+            feet_pos(1) <<" "<< 
+            feet_pos(2) <<" "<< 
+            // feet_pos(3) <<" "<< 
+            // feet_pos(4) <<" "<< 
+            // feet_pos(5) <<" "<< 
+            // feet_pos(6) <<" "<< 
+            // feet_pos(7) <<" "<< 
+            // feet_pos(8) <<" "<< 
+            feet_pos(9) <<" "<< 
+            feet_pos(10) <<" "<< 
+            feet_pos(11) <<" "<< 
+            feet_pos(12) <<" "<< 
+            feet_pos(13) <<" "<< 
+            feet_pos(14) << "\n";
+            // feet_pos(15) <<" "<< 
+            // feet_pos(16) <<" "<< 
+            // feet_pos(17) << "\n";
+        Vec36 _footTipForceEst;
+        _footTipForceEst = _ctrlComp->sixlegdogModel->calcForceByTauEst( vec36ToVec18(_ctrlComp->lowState->getQ_Hex()), _ctrlComp->lowState->getTau_Hex());
+        if ( ! feet_force_est) { cout << "feet_force_est 文件不能打开" <<endl; }
+            feet_force_est <<  
+            _footTipForceEst(0) <<" "<< 
+            _footTipForceEst(1) <<" "<< 
+            _footTipForceEst(2) <<" "<< 
+            // _footTipForceEst(3) <<" "<< 
+            // _footTipForceEst(4) <<" "<< 
+            // _footTipForceEst(5) <<" "<< 
+            // _footTipForceEst(6) <<" "<< 
+            // _footTipForceEst(7) <<" "<< 
+            // _footTipForceEst(8) <<" "<< 
+            _footTipForceEst(9) <<" "<< 
+            _footTipForceEst(10) <<" "<< 
+            _footTipForceEst(11) <<" "<< 
+            _footTipForceEst(12) <<" "<< 
+            _footTipForceEst(13) <<" "<< 
+            _footTipForceEst(14) << "\n";
+            // _footTipForceEst(15) <<" "<< 
+            // _footTipForceEst(16) <<" "<< 
+            // _footTipForceEst(17) << "\n";
+    }
+    #endif
 }
