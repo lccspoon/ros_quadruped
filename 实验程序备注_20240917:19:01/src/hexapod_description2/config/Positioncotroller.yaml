@@ -1,0 +1,98 @@
+# Publish all joint states
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 1000.0
+  
+# Positon Controllers
+rfj1_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rfj1
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+rfj2_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rfj2
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+rfj3_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rfj3
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+lfj5_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lfj4
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+lfj6_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lfj5
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+lfj7_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lfj6
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+rmj9_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rmj7
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+rmj10_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rmj8
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+rmj11_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rmj9
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+lmj13_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lmj10
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+lmj14_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lmj11
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+lmj15_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lmj12
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+rbj17_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rbj13
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+rbj18_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rbj14
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+rbj19_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: rbj15
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+lbj21_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lbj16
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+lbj22_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lbj17
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+lbj23_jointcc:
+  type: effort_controllers/JointPositionController
+  joint: lbj18
+  pid: {p: 100.0, i: 0.01, d: 10.0}

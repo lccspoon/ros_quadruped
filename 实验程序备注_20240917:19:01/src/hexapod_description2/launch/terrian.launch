@@ -1,0 +1,20 @@
+<launch>
+    <arg name="wname" default="earth"/>
+    <!-- <arg name="wname" default="empty"/> -->
+    <!-- <arg name="wname" default="stairs"/> -->
+    <!-- <arg name="wname" default="stair"/> -->
+    <!-- <arg name="wname" default="rugged"/> -->
+    <!-- <arg name="wname" default="slope7"/> -->
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find  hexapod_description2)/launch/$(arg wname).world"/>
+        <arg name="paused" value="true"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="recording" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+</launch>
+
+     
