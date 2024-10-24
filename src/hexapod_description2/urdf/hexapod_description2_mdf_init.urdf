@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="hexapod_description2">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0012365 5.5511E-17 0.028671"
+        rpy="0 0 0" />
+      <mass
+        value="16" />
+      <inertia
+        ixx="1"
+        ixy="0"
+        ixz="0"
+        iyy="1"
+        iyz="0"
+        izz="1" />
+    </inertial>
+
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rfl1">
+    <inertial>
+      <origin
+        xyz="0 0 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj1"
+    type="continuous">
+    <origin
+      xyz="0.14185 -0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rfl1" />
+    <axis
+      xyz="0 0 -1" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rfl2">
+    <inertial>
+      <origin
+        xyz="-0.032218 -0.0039271 6.5321E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj2"
+    type="continuous">
+    <origin
+      xyz="0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="rfl1" />
+    <child
+      link="rfl2" />
+    <axis
+      xyz="-1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rfl3">
+    <inertial>
+      <origin
+        xyz="-5.5511E-17 -0.13449 -2.7756E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rfl3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rfj3"
+    type="continuous">
+    <origin
+      xyz="0.02875 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="rfl2" />
+    <child
+      link="rfl3" />
+    <axis
+      xyz="1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lfl4">
+    <inertial>
+      <origin
+        xyz="0 2.7756E-17 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj4"
+    type="continuous">
+    <origin
+      xyz="0.14185 0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lfl4" />
+    <axis
+      xyz="0 0 -1" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lfl5">
+    <inertial>
+      <origin
+        xyz="-0.032218 0.0039271 -6.544E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj5"
+    type="continuous">
+    <origin
+      xyz="0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="lfl4" />
+    <child
+      link="lfl5" />
+    <axis
+      xyz="-1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lfl6">
+    <inertial>
+      <origin
+        xyz="-3.2585E-14 0.13449 0.00015249"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lfl6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lfj6"
+    type="continuous">
+    <origin
+      xyz="0.0287500000000004 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="lfl5" />
+    <child
+      link="lfl6" />
+    <axis
+      xyz="1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rml7">
+    <inertial>
+      <origin
+        xyz="-0.0017584 -1.3878E-17 0.00056229"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj7"
+    type="continuous">
+    <origin
+      xyz="0 -0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rml7" />
+    <axis
+      xyz="0 0 -1" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rml8">
+    <inertial>
+      <origin
+        xyz="-0.0587261224930773 -0.000532880509906325 -5.88251406696827E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj8"
+    type="continuous">
+    <origin
+      xyz="0.02875 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="rml7" />
+    <child
+      link="rml8" />
+    <axis
+      xyz="1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rml9">
+    <inertial>
+      <origin
+        xyz="3.25295346215171E-14 -0.134485559698129 0.000152488307947479"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rml9.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rmj9"
+    type="continuous">
+    <origin
+      xyz="-0.02875 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="rml8" />
+    <child
+      link="rml9" />
+    <axis
+      xyz="-1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lml10">
+    <inertial>
+      <origin
+        xyz="-0.0017584 -2.7756E-17 0.00056229"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml10.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml10.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj10"
+    type="continuous">
+    <origin
+      xyz="0 0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lml10" />
+    <axis
+      xyz="0 0 -1" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lml11">
+    <inertial>
+      <origin
+        xyz="-0.0587261224930773 0.000532880509906242 5.88251406696827E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml11.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml11.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj11"
+    type="continuous">
+    <origin
+      xyz="0.02875 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="lml10" />
+    <child
+      link="lml11" />
+    <axis
+      xyz="1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lml12">
+    <inertial>
+      <origin
+        xyz="3.26960680752109E-14 0.134485559698129 -0.000152488307947535"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lml12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lmj12"
+    type="continuous">
+    <origin
+      xyz="-0.02875 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="lml11" />
+    <child
+      link="lml12" />
+    <axis
+      xyz="-1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rbl13">
+    <inertial>
+      <origin
+        xyz="0 0 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl13.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl13.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj13"
+    type="continuous">
+    <origin
+      xyz="-0.14185 -0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rbl13" />
+    <axis
+      xyz="0 0 -1" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rbl14">
+    <inertial>
+      <origin
+        xyz="0.032218 -0.0039271 -6.544E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl14.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl14.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj14"
+    type="continuous">
+    <origin
+      xyz="-0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="rbl13" />
+    <child
+      link="rbl14" />
+    <axis
+      xyz="1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="rbl15">
+    <inertial>
+      <origin
+        xyz="-9.77E-15 -0.13449 -4.4688E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl15.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/rbl15.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rbj15"
+    type="continuous">
+    <origin
+      xyz="-0.02875 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="rbl14" />
+    <child
+      link="rbl15" />
+    <axis
+      xyz="-1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lbl16">
+    <inertial>
+      <origin
+        xyz="0 0 0.0013145"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl16.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl16.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj16"
+    type="continuous">
+    <origin
+      xyz="-0.14185 0.0655 -0.01975"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lbl16" />
+    <axis
+      xyz="0 0 -1" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lbl17">
+    <inertial>
+      <origin
+        xyz="0.032218 0.0039271 6.5321E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl17.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl17.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj17"
+    type="continuous">
+    <origin
+      xyz="-0.0385 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="lbl16" />
+    <child
+      link="lbl17" />
+    <axis
+      xyz="1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+  <link
+    name="lbl18">
+    <inertial>
+      <origin
+        xyz="-2.3759E-14 0.13449 0.00011183"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl18.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hexapod_description2/meshes/lbl18.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lbj18"
+    type="continuous">
+    <origin
+      xyz="-0.02875 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="lbl17" />
+    <child
+      link="lbl18" />
+    <axis
+      xyz="-1 0 0" />
+                            <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.1"
+       friction="0.01"
+    />
+  </joint>
+
+<transmission name="trans_lfj4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lfj4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lfj4_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lfj5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lfj5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lfj5_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lfj6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lfj6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lfj6_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rfj1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rfj1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rfj1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rfj2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rfj2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rfj2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rfj3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rfj3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rfj3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rmj7">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rmj7">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rmj7_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rmj8">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rmj8">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rmj8_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rmj9">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rmj9">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rmj9_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lmj10">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lmj10">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lmj10_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lmj11">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lmj11">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lmj11_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lmj12">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lmj12">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lmj12_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rbj13">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rbj13">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rbj13_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rbj14">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rbj14">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rbj14_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_rbj15">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rbj15">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rbj15_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lbj16">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lbj16">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lbj16_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lbj17">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lbj17">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lbj17_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_lbj18">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lbj18">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="lbj18_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+  	  <alwaysOn>true</alwaysOn>
+    	<bodyName>base_link</bodyName>
+    	<topicName>imu</topicName>
+    	<serviceName>imu_service</serviceName>
+    	<gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>base_link</frameName>
+    	<updateRate>500.0</updateRate>
+    </plugin>
+
+    <plugin name="POS_COM" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>500.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>POS_COM</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+  <!-- fix the model  -->
+  <!-- <link name="world"/>
+  <joint name="fix" type="fixed">
+  <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  <parent link="world"/>
+  <child link="base_link"/> 
+  </joint> -->
+
+  <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/hexapod_description2</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+  </gazebo>
+
+</robot>

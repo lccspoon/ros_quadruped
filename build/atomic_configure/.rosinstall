@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/lcc/ros_quadruped-ExperimentDataRecord/devel/setup.sh

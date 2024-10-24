@@ -1,0 +1,19 @@
+<launch>
+  <rosparam file="$(find  hexapod_description2)/config/Positioncotroller.yaml" command="load" ns="/hexapod_description2" />
+  
+  <node name="control_spawner" pkg="controller_manager" type="spawner"
+             respawn="false" output="screen"  ns="/hexapod_description2"
+             args="joint_state_controller
+                  rfj1_jointcc rfj2_jointcc rfj3_jointcc 
+                  lfj5_jointcc lfj6_jointcc lfj7_jointcc 
+                  rmj9_jointcc rmj10_jointcc rmj11_jointcc 
+                  lmj13_jointcc lmj14_jointcc lmj15_jointcc 
+                  rbj17_jointcc rbj18_jointcc rbj19_jointcc 
+                  lbj21_jointcc lbj22_jointcc lbj23_jointcc 
+                   "/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+             respawn="false" output="screen"  >
+    <remap from="/joint_state" to="/hexapod_description2/joint_states"/>
+  </node>
+  
+</launch>
