@@ -1,0 +1,8 @@
+prefix=/home/lcc/1_noetic_ws/20250329_ws/install
+
+Name: hexapod_v3
+Description: Description of hexapod_v3
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
